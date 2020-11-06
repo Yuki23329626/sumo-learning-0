@@ -77,7 +77,7 @@ int main (int argc, char *argv[])
 {
   string traceFile = "scratch/test03.tcl";
  
-  int nodeNum = 8300;
+  int nodeNum = 2;
   int bandwidth = 100;       //num of RB ,10MHz
   int enbNum = 5;
   int connected = 4;
