@@ -35,7 +35,7 @@ class UEs_Info{
           this->sinr = 10*log10(sinr);
           //if ( counter %1000 == 0 ){
 
-          if (now >= 0 && now < 1 )
+          //if (now >= 0 && now < 1 )
             *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
         }
 
@@ -80,7 +80,7 @@ int main (int argc, char *argv[])
   int enbNum = 5;
   int connected = 4;
 
-  double duration = 269;         //50 seconds
+  double duration = 30;         //50 seconds
   double eNbTxPower = 20 ;      //Transimission power in doubleBm
 
   Ptr<LteUePhy> uephy;
