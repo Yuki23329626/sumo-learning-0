@@ -95,7 +95,7 @@ class UEs_Info{
 
 int main (int argc, char *argv[])
 {
-  string traceFile = "scratch/300node.420s.tcl";
+  string traceFile = "scratch/test03.tcl";
  
   int    nodeNum = 300;
   int    bandwidth = 100;       //num of RB ,10MHz
