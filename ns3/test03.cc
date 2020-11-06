@@ -195,7 +195,7 @@ int main (int argc, char *argv[])
 		// set imsi
 		uephy = ueDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetPhy ();
 		//ueRrc = ueDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetRrc ();
-		ues_info[i].set_imsi(ueDevs.Get (i)->GetObject<LteUeNetDevice> ()-GetImsi ());
+		ues_info[i].set_imsi(ueDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetImsi());
 
 		// Connect Sinr Report to class member fucntion.
 		uephy -> TraceConnectWithoutContext("ReportCurrentCellRsrpSinr",MakeCallback (&UEs_Info::GetUeSinr, &ues_info[i]));
