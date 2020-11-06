@@ -37,6 +37,7 @@ class UEs_Info{
 
           //if (now >= 0 && now < 1 )
             *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
+			printf("\n\n\n\n\n");
         }
 
         //When ue move change the ue position
