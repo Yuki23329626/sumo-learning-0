@@ -104,7 +104,7 @@ int main (int argc, char *argv[])
 	
 	CommandLine cmd;
 	cmd.AddValue ("traceFile", "Ns2 movement trace file", traceFile);
-	cmd.AddValue ("nodeNum", "Number of nodes", enbNum);
+	cmd.AddValue ("nodeNum", "Number of nodes", nodeNum);
 	cmd.AddValue ("duration", "Duration of Simulation", duration);
 	cmd.Parse (argc,argv);
 	
@@ -133,11 +133,11 @@ int main (int argc, char *argv[])
 	lteHelper->SetEnbAntennaModelType("ns3::IsotropicAntennaModel");
 	lteHelper->SetEnbAntennaModelAttribute("Gain",DoubleValue(1.0));
 	
-	UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*enbNum);
+	UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*nodeNum);
 	Ns2MobilityHelper ns2 = Ns2MobilityHelper (traceFile);
 	
 	NodeContainer ueNode;
-	ueNode.Create (enbNum);
+	ueNode.Create(nodeNum);
 	
 	ns2.Install ();
 	
