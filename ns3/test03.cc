@@ -35,9 +35,9 @@ class UEs_Info{
           this->sinr = 10*log10(sinr);
           //if ( counter %1000 == 0 ){
 
-          //if (now >= 0 && now < 1 )
+          if (now >= 0 && now < 1 )
             *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
-			printf("\n\n\n\n\n");
+		printf("\n\n\n\n\n");
         }
 
         //When ue move change the ue position
@@ -210,6 +210,7 @@ int main (int argc, char *argv[])
   EpsBearer bearer (q);
   lteHelper->ActivateDataRadioBearer (ueDevs, bearer);
   
+  AnimationInterface anim("animation.xml");
   Simulator::Stop (Seconds (duration));
   Simulator::Run ();
   Simulator::Destroy ();
