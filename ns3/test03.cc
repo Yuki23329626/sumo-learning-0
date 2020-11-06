@@ -35,7 +35,7 @@ class UEs_Info{
           this->sinr = 10*log10(sinr);
           //if ( counter %1000 == 0 ){
 
-          if (now >= 223 && now < 224 )
+          if (now >= 0 && now < 1 )
             *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
         }
 
@@ -94,10 +94,8 @@ int main (int argc, char *argv[])
   //std::ofstream outputfile5;
 
   outputfile1.open("enb5_266s.csv");
-  //outputfile5.open("enb2_306s.csv");
 
   outputfile1<<"Time_s,Imsi,Sinr,x,y,Cellid"<<endl;
-  //outputfile5<<"Time_s,Imsi,Sinr,x,y,Cellid"<<endl;
 
   // Enable logging from the ns2 helper
   LogComponentEnable ("Ns2MobilityHelper",LOG_LEVEL_DEBUG);
