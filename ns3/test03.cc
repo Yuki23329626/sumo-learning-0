@@ -75,7 +75,7 @@ int main (int argc, char *argv[])
 {
   string traceFile = "scratch/test03.tcl";
  
-  int nodeNum = 300;
+  int nodeNum = 8300;
   int bandwidth = 100;       //num of RB ,10MHz
   int enbNum = 5;
   int connected = 4;
@@ -209,7 +209,7 @@ int main (int argc, char *argv[])
   EpsBearer bearer (q);
   lteHelper->ActivateDataRadioBearer (ueDevs, bearer);
   
-  //Simulator::Stop (Seconds (duration));
+  Simulator::Stop (Seconds (duration));
   Simulator::Run ();
   Simulator::Destroy ();
   return 0;
