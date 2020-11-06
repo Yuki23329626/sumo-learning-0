@@ -87,6 +87,10 @@ int main (int argc, char *argv[])
 	const double duration = 269;         //50 seconds
 	const double eNbTxPower = 20 ;      //Transimission power in doubleBm
 	
+	Ptr<LteUePhy> uephy;
+	Ptr<LteHelper> lteHelper = CreateObject<LteHelper> ();
+	Ptr<MobilityModel> ueMobilityModel;
+	
 	//./waf --run "ns2-mobility-trace --traceFile=scratch/test03.tcl --nodeNum=6299 --duration=90 --logFile=trace.log"
 	string traceFile = "scratch/test03.tcl";
 	
