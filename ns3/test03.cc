@@ -39,7 +39,7 @@ class UEs_Info{
           //if ( counter %1000 == 0 ){
 
           if (now >= 223 && now < 224 )
-            *os4 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
+            *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
 
         }
 
@@ -81,7 +81,7 @@ int main (int argc, char *argv[])
 {
 	const int ENB_NUM = 5;
 	
-	//./waf --run "ns3-mobility-trace --traceFile=scratch/test03.tcl --nodeNum=6299 --duration=90 --logFile=trace.log"
+	//./waf --run "ns2-mobility-trace --traceFile=scratch/test03.tcl --nodeNum=6299 --duration=90 --logFile=trace.log"
 	string traceFile = "scratch/test03.tcl";
 	
 	std::ofstream outputfile1;
