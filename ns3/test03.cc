@@ -18,19 +18,16 @@ using namespace std;
 
 class UEs_Info{
     public:
-
         void
         set_imsi(int imsi){
             if(imsi >= 0)
                 this->imsi = imsi;
         }
-
         void
         set_Position(Vector position){
             this->position = position;
         }
-
-        /////TraceFunction
+        //TraceFunction
         void
         GetUeSinr(uint16_t cellId, uint16_t rnti, double rsrp, double sinr, uint8_t componentCarrierId){
           double now = Simulator::Now().GetSeconds();
@@ -50,9 +47,6 @@ class UEs_Info{
            position = pos ;
         }
 
-        /*void setCounter(int c){
-          counter = c;
-        }*/
         void setConnectenb(int c){
           connectenb = c;
         }
@@ -81,10 +75,10 @@ int main (int argc, char *argv[])
 {
   string traceFile = "scratch/test03.tcl";
  
-  int    nodeNum = 300;
-  int    bandwidth = 100;       //num of RB ,10MHz
-  int    enbNum = 5;
-  int    connected = 4;
+  int nodeNum = 300;
+  int bandwidth = 100;       //num of RB ,10MHz
+  int enbNum = 5;
+  int connected = 4;
 
   double duration = 269;         //50 seconds
   double eNbTxPower = 20 ;      //Transimission power in doubleBm
@@ -96,9 +90,6 @@ int main (int argc, char *argv[])
 
   AsciiTraceHelper asciiTraceHelper;
   std::ofstream outputfile1;
-  std::ofstream outputfile2;
-  std::ofstream outputfile3;
-  std::ofstream outputfile4;
 
   //std::ofstream outputfile5;
 
@@ -160,7 +151,7 @@ int main (int argc, char *argv[])
   enbPositionAlloc->Add (Vector(500.0,8.00,0));
   
   for (int i = 1 ; i < enbNum ; i++){
-    Vector enbPosition ( 1000 * i +500 , 8, 0);
+    Vector enbPosition ( 100 * i +42 , 298, 0);
     enbPositionAlloc-> Add (enbPosition);
   }
 
@@ -221,10 +212,7 @@ int main (int argc, char *argv[])
   lteHelper->ActivateDataRadioBearer (ueDevs, bearer);
   
   Simulator::Stop (Seconds (duration));
-
-  //lteHelper->EnableTraces ();
   Simulator::Run ();
-
   Simulator::Destroy ();
   return 0;
 }
