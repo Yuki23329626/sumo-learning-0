@@ -82,7 +82,7 @@ int main (int argc, char *argv[])
 	const int nodeNum = 300;
 	const int bandwidth = 100;       //num of RB ,10MHz
 	const int connected = 4;
-	const int nodeNum = 5;
+	const int enbNum = 5;
 
 	const double duration = 269;         //50 seconds
 	const double eNbTxPower = 20 ;      //Transimission power in doubleBm
@@ -100,7 +100,7 @@ int main (int argc, char *argv[])
 	
 	CommandLine cmd;
 	cmd.AddValue ("traceFile", "Ns2 movement trace file", traceFile);
-	cmd.AddValue ("nodeNum", "Number of nodes", nodeNum);
+	cmd.AddValue ("nodeNum", "Number of nodes", enbNum);
 	cmd.AddValue ("duration", "Duration of Simulation", duration);
 	cmd.Parse (argc,argv);
 	
@@ -129,16 +129,16 @@ int main (int argc, char *argv[])
 	lteHelper->SetEnbAntennaModelType("ns3::IsotropicAntennaModel");
 	lteHelper->SetEnbAntennaModelAttribute("Gain",DoubleValue(1.0));
 	
-	UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*nodeNum);
+	UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*enbNum);
 	Ns2MobilityHelper ns2 = Ns2MobilityHelper (traceFile);
 	
 	NodeContainer ueNode;
-	ueNode.Create (nodeNum);
+	ueNode.Create (enbNum);
 	
 	ns2.Install ();
 	
 	NodeContainer enbNode;
-	enbNode.Create(nodeNum);
+	enbNode.Create(enbNum);
 
 	Ptr <ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator> ();
 	enbPositionAlloc->Add (Vector(500.0,8.00,0));
@@ -175,11 +175,11 @@ int main (int argc, char *argv[])
 	Ptr<LteSpectrumPhy> enbDlSpectrumPhy = enbDevs.Get(connected)->GetObject<LteEnbNetDevice> ()->GetPhy ()->GetDownlinkSpectrumPhy ()->GetObject<LteSpectrumPhy> ();
 	enbDlSpectrumPhy -> SetNoisePowerSpectralDensity(psd);
 	
-	for (int i = 0; i < nodeNum ; i++){
+	for (int i = 0; i < enbNum ; i++){
 		lteHelper->Attach(ueDevs.Get(i),enbDevs.Get(connected));
 	}
 	
-	for(int i = 0; i < nodeNum; i++){
+	for(int i = 0; i < enbNum; i++){
 		// set position
 		ueMobilityModel = ueNode.Get(i)->GetObject<MobilityModel>();
 		ues_info[i].set_Position(ueMobilityModel->GetPosition());
