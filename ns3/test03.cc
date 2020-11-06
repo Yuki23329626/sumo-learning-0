@@ -81,6 +81,7 @@ int main (int argc, char *argv[])
 {
 	const int ENB_NUM = 5;
 	
+	//./waf --run "ns3-mobility-trace --traceFile=scratch/test03.tcl --nodeNum=6299 --duration=90 --logFile=trace.log"
 	string traceFile = "scratch/test03.tcl";
 	
 	std::ofstream outputfile1;
