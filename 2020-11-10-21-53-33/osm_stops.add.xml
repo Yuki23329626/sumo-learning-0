@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 11/10/20 21:54:00 by Eclipse SUMO netconvert Version 1.7.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <type-files value="D:\SUMO\data\typemap\osmNetconvert.typ.xml"/>
+        <osm-files value="osm_bbox.osm.xml"/>
+    </input>
+
+    <output>
+        <output-file value="osm.net.xml"/>
+        <output.street-names value="true"/>
+        <output.original-names value="true"/>
+        <ptstop-output value="osm_stops.add.xml"/>
+        <ptline-output value="osm_ptlines.xml"/>
+    </output>
+
+    <projection>
+        <proj.utm value="true"/>
+    </projection>
+
+    <processing>
+        <geometry.remove value="true"/>
+        <roundabouts.guess value="true"/>
+    </processing>
+
+    <tls_building>
+        <tls.discard-simple value="true"/>
+        <tls.join value="true"/>
+        <tls.guess-signals value="true"/>
+        <tls.default-type value="actuated"/>
+    </tls_building>
+
+    <ramp_guessing>
+        <ramps.guess value="true"/>
+    </ramp_guessing>
+
+    <junctions>
+        <junctions.join value="true"/>
+        <junctions.corner-detail value="5"/>
+    </junctions>
+
+    <railway>
+        <railway.topology.repair value="true"/>
+        <railway.topology.repair.stop-turn value="true"/>
+    </railway>
+
+    <report>
+        <verbose value="true"/>
+        <aggregate-warnings value="5"/>
+    </report>
+
+</configuration>
+-->
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <busStop id="-1493007672" name="行天宮" lane="-198281380_0" startPos="1934.57" endPos="2134.57" friendlyPos="true">
+        <access lane="265736010#3_0" pos="64.67" length="11.93" friendlyPos="1"/>
+        <access lane="265736010#4_0" pos="0.00" length="35.93" friendlyPos="1"/>
+        <access lane="495021759#7_0" pos="13.78" length="22.82" friendlyPos="1"/>
+        <access lane="50823651#1_0" pos="34.09" length="39.39" friendlyPos="1"/>
+        <access lane="593840517#1_0" pos="90.17" length="10.25" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-1493007755" name="松江南京" lane="-198281380_0" startPos="1114.63" endPos="1314.63" friendlyPos="true">
+        <access lane="232003900#1_0" pos="0.00" length="29.83" friendlyPos="1"/>
+        <access lane="494737329_0" pos="3.97" length="33.17" friendlyPos="1"/>
+        <access lane="494737330#0_0" pos="1.15" length="28.28" friendlyPos="1"/>
+        <access lane="495030817#0_0" pos="0.00" length="34.40" friendlyPos="1"/>
+        <access lane="593841520#2_0" pos="84.99" length="34.07" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-1493007755@4250356" name="松江南京" lane="-196868581_0" startPos="1684.93" endPos="1884.93" friendlyPos="true">
+        <access lane="232003900#1_0" pos="0.00" length="29.83" friendlyPos="1"/>
+        <access lane="494737329_0" pos="3.97" length="33.17" friendlyPos="1"/>
+        <access lane="494737330#0_0" pos="1.15" length="28.28" friendlyPos="1"/>
+        <access lane="495030817#0_0" pos="0.00" length="34.40" friendlyPos="1"/>
+        <access lane="593841520#2_0" pos="84.99" length="34.07" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-1681745146" name="大直" lane="-195696234_0" startPos="0.00" endPos="100.00" friendlyPos="true">
+        <access lane="338923676#0_0" pos="18.24" length="8.87" friendlyPos="1"/>
+        <access lane="338923676#1_0" pos="0.00" length="0.93" friendlyPos="1"/>
+        <access lane="407206572#13_0" pos="64.87" length="16.40" friendlyPos="1"/>
+        <access lane="810584621#1_0" pos="3.91" length="7.69" friendlyPos="1"/>
+        <access lane="810584621#2_0" pos="0.00" length="5.07" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-1681745146@447449" name="大直" lane="-195696227_0" startPos="0.00" endPos="83.97" friendlyPos="true">
+        <access lane="338923676#0_0" pos="18.24" length="8.87" friendlyPos="1"/>
+        <access lane="338923676#1_0" pos="0.00" length="0.93" friendlyPos="1"/>
+        <access lane="407206572#13_0" pos="64.87" length="16.40" friendlyPos="1"/>
+        <access lane="810584621#1_0" pos="3.91" length="7.69" friendlyPos="1"/>
+        <access lane="810584621#2_0" pos="0.00" length="5.07" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-2061145789" name="大直" lane="-195696225_0" startPos="0.00" endPos="100.00" friendlyPos="true">
+        <access lane="338923676#0_0" pos="18.24" length="9.34" friendlyPos="1"/>
+        <access lane="338923676#1_0" pos="0.38" length="3.42" friendlyPos="1"/>
+        <access lane="407206572#13_0" pos="64.87" length="12.24" friendlyPos="1"/>
+        <access lane="810584621#1_0" pos="3.91" length="5.56" friendlyPos="1"/>
+        <access lane="810584621#2_0" pos="0.00" length="9.16" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-2061145790" name="大直" lane="-195696217_0" startPos="0.00" endPos="86.17" friendlyPos="true">
+        <access lane="338923676#0_0" pos="18.24" length="11.43" friendlyPos="1"/>
+        <access lane="338923676#1_0" pos="0.00" length="4.72" friendlyPos="1"/>
+        <access lane="407206572#13_0" pos="64.87" length="20.43" friendlyPos="1"/>
+        <access lane="810584621#1_0" pos="3.91" length="11.60" friendlyPos="1"/>
+        <access lane="810584621#2_0" pos="0.09" length="3.11" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-2084404366" name="行天宮" lane="-198281380_0" startPos="1930.13" endPos="2130.13" friendlyPos="true">
+        <access lane="265736010#3_0" pos="60.21" length="17.86" friendlyPos="1"/>
+        <access lane="265736010#4_0" pos="0.00" length="44.33" friendlyPos="1"/>
+        <access lane="495021759#7_0" pos="18.19" length="28.82" friendlyPos="1"/>
+        <access lane="51364295#1_0" pos="0.00" length="41.51" friendlyPos="1"/>
+        <access lane="593840517#1_0" pos="94.61" length="4.31" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-2084404443" name="中山國小" lane="-198281393_0" startPos="374.54" endPos="574.54" friendlyPos="true">
+        <access lane="313235566#3_0" pos="44.42" length="20.35" friendlyPos="1"/>
+        <access lane="506597799#1_0" pos="74.63" length="3.75" friendlyPos="1"/>
+        <access lane="52248857#0_0" pos="0.00" length="80.31" friendlyPos="1"/>
+        <access lane="742681152_0" pos="73.06" length="17.29" friendlyPos="1"/>
+        <access lane="742681153#1_0" pos="52.93" length="35.35" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-2124843045" name="聚盛里" lane="-308987019#2_0" startPos="36.82" endPos="51.82" friendlyPos="true" lines="638"/>
+    <busStop id="-2442990954@3834875" name="南京吉林路口" lane="-288878934_0" startPos="5.24" endPos="14.98" friendlyPos="true" lines="52"/>
+    <busStop id="-2491474584" name="新興國中" lane="-308987019#10_0" startPos="3.06" endPos="18.06" friendlyPos="true" lines="638"/>
+    <busStop id="-2509549126" name="中山國小" lane="-308286090#11_0" startPos="20.33" endPos="35.33" friendlyPos="true" lines="208"/>
+    <busStop id="-2509549137" name="景福宮" lane="-308286090#2_0" startPos="24.88" endPos="39.88" friendlyPos="true" lines="208"/>
+    <busStop id="-2509668586" name="捷運圓山站(圓山公園)" lane="-241536989#0_0" startPos="21.45" endPos="36.45" friendlyPos="true" lines="208"/>
+    <busStop id="-2509991263" name="基河二期國宅二" lane="-244421750#2_0" startPos="12.12" endPos="27.12" friendlyPos="true" lines="208 208直 72"/>
+    <busStop id="-2517390807" name="基湖站" lane="-244421761#1_0" startPos="16.21" endPos="31.21" friendlyPos="true" lines="內科圓山 21 棕20 645 綠16"/>
+    <busStop id="-2517390809" name="基湖路口" lane="-326352589#1_0" startPos="71.33" endPos="86.33" friendlyPos="true" lines="內科圓山 NH18 NH10 21 藍27"/>
+    <busStop id="-2517390869" name="美堤碼頭" lane="-244421751_0" startPos="26.21" endPos="41.21" friendlyPos="true" lines="棕20"/>
+    <busStop id="-2631129011" name="聯合醫院中興院區(塔城)" lane="-244450426#1_0" startPos="1.63" endPos="16.63" friendlyPos="true" lines="274 52 302 綠17 12 9"/>
+    <busStop id="-2657578307" name="吉林路底" lane="-260789406#4_0" startPos="0.74" endPos="15.74" friendlyPos="true" lines="685吉林 688 紅57"/>
+    <busStop id="-2657578308" name="新壽公園" lane="-260789406#19_0" startPos="5.45" endPos="20.45" friendlyPos="true" lines="685吉林 688 紅57"/>
+    <busStop id="-2657578311" name="新福里" lane="-260789406#16_0" startPos="21.37" endPos="36.37" friendlyPos="true" lines="685吉林 688 紅57"/>
+    <busStop id="-2700742524" name="海光新村" lane="-301750978#13_0" startPos="10.92" endPos="25.92" friendlyPos="true" lines="2 206 669 9"/>
+    <busStop id="-2700743214" name="社子消防分隊" lane="-301750978#17_0" startPos="9.43" endPos="24.43" friendlyPos="true" lines="2 206 669 9"/>
+    <busStop id="-2700745271" name="污水處理廠" lane="-312929527#10_0" startPos="34.17" endPos="49.17" friendlyPos="true" lines="2 206 669 9"/>
+    <busStop id="-2700746722" name="鄰江里" lane="-159458610#7_0" startPos="0.00" endPos="14.31" friendlyPos="true" lines="206 41 669"/>
+    <busStop id="-2700749824" name="天師宮" lane="-355582249#2_0" startPos="11.77" endPos="26.77" friendlyPos="true" lines="206 41 669"/>
+    <busStop id="-2700750818" name="延平國小" lane="-50893434#16_0" startPos="30.95" endPos="45.95" friendlyPos="true" lines="206"/>
+    <busStop id="-2700751797" name="延三觀光夜市" lane="-50893434#7_0" startPos="7.22" endPos="22.22" friendlyPos="true" lines="206 41 669"/>
+    <busStop id="-2700754540" name="台北橋" lane="-312929526#0_0" startPos="59.51" endPos="74.51" friendlyPos="true" lines="206"/>
+    <busStop id="-2700756623" name="保安街口" lane="-199980019#11_0" startPos="9.04" endPos="24.04" friendlyPos="true" lines="274 206 669 9"/>
+    <busStop id="-2700757811" name="民生西路口(大稻埕碼頭)" lane="-199980019#3_0" startPos="6.37" endPos="21.37" friendlyPos="true" lines="274 206 669 9"/>
+    <busStop id="-2700761742" name="南京西路口(鈕扣街)" lane="-51392802#1_0" startPos="26.58" endPos="41.58" friendlyPos="true" lines="274 206 669 9"/>
+    <busStop id="-2700763928" name="延平長安路口" lane="-31051190#2_0" startPos="33.40" endPos="48.40" friendlyPos="true" lines="274 206 601 223 669"/>
+    <busStop id="-2700765836" name="延平鄭州路口" lane="-31051190#6_0" startPos="104.67" endPos="119.67" friendlyPos="true" lines="274 206 601 223 669"/>
+    <busStop id="-2706621452" name="圓環 (鈕扣街)" lane="-51911170#4_0" startPos="8.74" endPos="23.74" friendlyPos="true" lines="601 302 223"/>
+    <busStop id="-2811356129" name="台北小巨蛋" lane="-196868577#0_0" startPos="1407.98" endPos="1586.32" friendlyPos="true">
+        <access lane="374427273#2_0" pos="46.57" length="6.07" friendlyPos="1"/>
+        <access lane="506359650#1_0" pos="94.38" length="22.94" friendlyPos="1"/>
+        <access lane="506359652#3_0" pos="33.00" length="28.74" friendlyPos="1"/>
+        <access lane="506359668#1_0" pos="93.36" length="18.66" friendlyPos="1"/>
+        <access lane="51268697#6_0" pos="1.64" length="58.45" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-2811356130" name="南京三民" lane="-196868577#0_0" startPos="115.83" endPos="315.83" friendlyPos="true">
+        <access lane="265738682#3_0" pos="79.61" length="14.22" friendlyPos="1"/>
+        <access lane="310849376#1_0" pos="16.36" length="11.31" friendlyPos="1"/>
+        <access lane="466274668#4_0" pos="79.69" length="18.86" friendlyPos="1"/>
+        <access lane="759990578#6_0" pos="42.58" length="22.13" friendlyPos="1"/>
+        <access lane="810546529#1_0" pos="1.34" length="28.27" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-2924370652" name="南京東路口" lane="-506359600#2_0" startPos="8.48" endPos="23.48" friendlyPos="true" lines="52"/>
+    <busStop id="-3034547900" name="長春國小" lane="-317388748#6_0" startPos="49.90" endPos="64.90" friendlyPos="true" lines="12 1501"/>
+    <busStop id="-3188090049" name="南京西路口(塔城)" lane="-287316010#3_0" startPos="58.28" endPos="69.90" friendlyPos="true" lines="274 9"/>
+    <busStop id="-3188090051" name="台北大學(台北校區)" lane="-437870662#3_0" startPos="39.06" endPos="54.06" friendlyPos="true" lines="12"/>
+    <busStop id="-3188090055" name="延平一站(南京)" lane="-199980015#1_0" startPos="14.36" endPos="29.36" friendlyPos="true" lines="302"/>
+    <busStop id="-3188090056" name="慶城街口" lane="-374332362#7_0" startPos="70.45" endPos="85.45" friendlyPos="true" lines="12 5116"/>
+    <busStop id="-3188090785" name="長春市場" lane="-317388747#1_0" startPos="79.91" endPos="94.91" friendlyPos="true" lines="12 棕10"/>
+    <busStop id="-3188479004" name="大龍峒保安宮" lane="-24836065#5_0" startPos="16.74" endPos="31.74" friendlyPos="true" lines="2 41 9"/>
+    <busStop id="-3188479009" name="庫倫街" lane="-264309964#2_0" startPos="71.98" endPos="86.98" friendlyPos="true" lines="2 9"/>
+    <busStop id="-3188479017" name="老師里" lane="-312929531#1_0" startPos="41.74" endPos="56.74" friendlyPos="true" lines="2 41 9023 9"/>
+    <busStop id="-3188479019" name="酒泉街" lane="-312929531#6_0" startPos="12.01" endPos="27.01" friendlyPos="true" lines="2 41 9"/>
+    <busStop id="-3188479021" name="酒泉重慶北路口" lane="-24836065#2_0" startPos="55.43" endPos="69.69" friendlyPos="true" lines="2 41 9"/>
+    <busStop id="-3190313928" name="南京龍江路口" lane="-311319110#8_0" startPos="6.25" endPos="21.25" friendlyPos="true" lines="棕10"/>
+    <busStop id="-3495094871@4250356" name="中山" lane="-194585046_0" startPos="0.00" endPos="116.42" friendlyPos="true">
+        <access lane="204211736#1_0" pos="0.00" length="17.00" friendlyPos="1"/>
+        <access lane="450732442#0_0" pos="458.70" length="16.67" friendlyPos="1"/>
+        <access lane="450732442#1_0" pos="57.97" length="12.51" friendlyPos="1"/>
+        <access lane="464590785#5_0" pos="7.65" length="13.56" friendlyPos="1"/>
+        <access lane="541472439#4_0" pos="5.29" length="16.36" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-3495094873@4250354" name="民權西路" lane="-198281393_0" startPos="1101.19" endPos="1213.35" friendlyPos="true">
+        <access lane="265725164#2_0" pos="60.84" length="12.15" friendlyPos="1"/>
+        <access lane="299403732#0_0" pos="9.90" length="14.59" friendlyPos="1"/>
+        <access lane="382754632#1_0" pos="3.31" length="18.67" friendlyPos="1"/>
+        <access lane="382754632#2_0" pos="0.00" length="25.25" friendlyPos="1"/>
+        <access lane="382754638#0_0" pos="9.93" length="25.50" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-3497302606" name="南京復興" lane="-196868581_0" startPos="581.88" endPos="781.88" friendlyPos="true">
+        <access lane="374427269#0_0" pos="0.00" length="15.65" friendlyPos="1"/>
+        <access lane="495214071#2_0" pos="0.00" length="30.58" friendlyPos="1"/>
+        <access lane="668836500#1_0" pos="0.00" length="28.11" friendlyPos="1"/>
+        <access lane="668836507#2_0" pos="0.00" length="28.72" friendlyPos="1"/>
+        <access lane="668836507#3_0" pos="0.00" length="30.18" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-3497302606@447449" name="南京復興" lane="-195696216_0" startPos="0.00" endPos="131.94" friendlyPos="true">
+        <access lane="374427269#0_0" pos="0.00" length="15.65" friendlyPos="1"/>
+        <access lane="495214071#2_0" pos="0.00" length="30.58" friendlyPos="1"/>
+        <access lane="668836500#1_0" pos="0.00" length="28.11" friendlyPos="1"/>
+        <access lane="668836507#2_0" pos="0.00" length="28.72" friendlyPos="1"/>
+        <access lane="668836507#3_0" pos="0.00" length="30.18" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-3497302607" name="中山國中" lane="-195696237_0" startPos="0.00" endPos="99.48" friendlyPos="true">
+        <access lane="-50914316#0_0" pos="53.02" length="39.58" friendlyPos="1"/>
+        <access lane="264859962#3_0" pos="36.18" length="10.69" friendlyPos="1"/>
+        <access lane="401376480#4_0" pos="16.77" length="12.63" friendlyPos="1"/>
+        <access lane="50914316#0_0" pos="0.00" length="43.71" friendlyPos="1"/>
+        <access lane="827099040#4_0" pos="48.90" length="28.95" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-3497302608" name="松山機場" lane="-527687889_0" startPos="0.00" endPos="100.00" friendlyPos="true">
+        <access lane="450750322#1_0" pos="58.81" length="43.69" friendlyPos="1"/>
+        <access lane="450750322#2_0" pos="19.22" length="24.21" friendlyPos="1"/>
+        <access lane="50160066#2_0" pos="18.85" length="45.27" friendlyPos="1"/>
+        <access lane="667555337#3_0" pos="7.43" length="43.59" friendlyPos="1"/>
+        <access lane="667555337#4_0" pos="4.32" length="35.06" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-3497302608@447449" name="松山機場" lane="-195696218_0" startPos="0.00" endPos="156.15" friendlyPos="true">
+        <access lane="450750322#1_0" pos="58.81" length="43.69" friendlyPos="1"/>
+        <access lane="450750322#2_0" pos="19.22" length="24.21" friendlyPos="1"/>
+        <access lane="50160066#2_0" pos="18.85" length="45.27" friendlyPos="1"/>
+        <access lane="667555337#3_0" pos="7.43" length="43.59" friendlyPos="1"/>
+        <access lane="667555337#4_0" pos="4.32" length="35.06" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-3720461300" name="三重派出所 (福德北路)" lane="-105778508#2_0" startPos="5.92" endPos="20.85" friendlyPos="true" lines="225區 225 274"/>
+    <busStop id="-3720461313" name="長生街口" lane="-583848147#6_0" startPos="5.25" endPos="20.25" friendlyPos="true" lines="225區 225 274 226"/>
+    <busStop id="-373400210" name="中山國中" lane="-195696237_0" startPos="0.00" endPos="99.48" friendlyPos="true">
+        <access lane="-50914316#0_0" pos="53.02" length="41.22" friendlyPos="1"/>
+        <access lane="264859962#3_0" pos="35.99" length="8.15" friendlyPos="1"/>
+        <access lane="401376480#4_0" pos="16.97" length="15.16" friendlyPos="1"/>
+        <access lane="50914316#0_0" pos="0.00" length="45.24" friendlyPos="1"/>
+        <access lane="827099040#4_0" pos="49.11" length="26.42" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-3812564391" name="中山國小" lane="-198281393_0" startPos="375.06" endPos="575.06" friendlyPos="true">
+        <access lane="313235566#3_0" pos="44.86" length="10.82" friendlyPos="1"/>
+        <access lane="506597799#1_0" pos="74.19" length="13.29" friendlyPos="1"/>
+        <access lane="52248857#0_0" pos="0.00" length="78.04" friendlyPos="1"/>
+        <access lane="742681152_0" pos="73.40" length="26.84" friendlyPos="1"/>
+        <access lane="742681153#1_0" pos="52.93" length="25.79" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-3812564394" name="南京三民" lane="-196868577#0_0" startPos="115.48" endPos="315.48" friendlyPos="true">
+        <access lane="265738682#3_0" pos="79.31" length="9.45" friendlyPos="1"/>
+        <access lane="310849376#1_0" pos="16.63" length="16.07" friendlyPos="1"/>
+        <access lane="466274668#4_0" pos="79.34" length="14.10" friendlyPos="1"/>
+        <access lane="759990578#6_0" pos="42.28" length="26.90" friendlyPos="1"/>
+        <access lane="810546529#1_0" pos="4.28" length="28.66" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-3812564397" name="台北小巨蛋" lane="-196868577#0_0" startPos="1407.98" endPos="1586.32" friendlyPos="true">
+        <access lane="374427273#2_0" pos="46.57" length="11.12" friendlyPos="1"/>
+        <access lane="506359650#1_0" pos="94.43" length="27.99" friendlyPos="1"/>
+        <access lane="506359652#3_0" pos="32.93" length="23.69" friendlyPos="1"/>
+        <access lane="506359668#1_0" pos="93.37" length="13.61" friendlyPos="1"/>
+        <access lane="51268697#6_0" pos="1.64" length="56.60" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-4066659498" name="建北站" lane="-793234595_0" startPos="0.00" endPos="8.15" friendlyPos="true" lines="復興幹線 688"/>
+    <busStop id="-4205229664" name="延平一站(長安)" lane="-287316013#1_0" startPos="38.22" endPos="53.22" friendlyPos="true" lines="12"/>
+    <busStop id="-4205229665" name="後車站" lane="-407202572#5_0" startPos="0.00" endPos="12.02" friendlyPos="true" lines="12 282"/>
+    <busStop id="-4653351590" name="台北車站" lane="-170432840_0" startPos="2107.84" endPos="2289.64" friendlyPos="true">
+        <access lane="-33679832#1_0" pos="225.31" length="109.02" friendlyPos="1"/>
+        <access lane="288878925#0_0" pos="0.00" length="198.87" friendlyPos="1"/>
+        <access lane="33679832#0_0" pos="0.00" length="111.40" friendlyPos="1"/>
+        <access lane="4860359#7_0" pos="118.11" length="215.14" friendlyPos="1"/>
+        <access lane="837377226#0_0" pos="0.00" length="225.30" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-4653351591" name="台北車站" lane="-198163706_0" startPos="2104.31" endPos="2286.08" friendlyPos="true">
+        <access lane="-33679832#1_0" pos="225.31" length="116.57" friendlyPos="1"/>
+        <access lane="288878925#0_0" pos="0.00" length="202.71" friendlyPos="1"/>
+        <access lane="33679832#0_0" pos="0.00" length="118.80" friendlyPos="1"/>
+        <access lane="4860359#7_0" pos="118.11" length="218.69" friendlyPos="1"/>
+        <access lane="837377226#0_0" pos="0.00" length="229.17" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-6333316062" name="民權西路" lane="-198281393_0" startPos="1027.62" endPos="1213.35" friendlyPos="true">
+        <access lane="299403731#0_0" pos="47.45" length="7.85" friendlyPos="1"/>
+        <access lane="378429450_0" pos="0.00" length="62.35" friendlyPos="1"/>
+        <access lane="380944751#0_0" pos="0.00" length="75.34" friendlyPos="1"/>
+        <access lane="506596678#1_0" pos="54.59" length="19.12" friendlyPos="1"/>
+        <access lane="506596678#2_0" pos="0.00" length="64.82" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-7216196568" name="涼州重慶路口" lane="-312929529#3_0" startPos="17.81" endPos="32.81" friendlyPos="true" lines="274"/>
+    <busStop id="-7629997062" name="堤頂大道口" lane="-23766386#3_0" startPos="22.69" endPos="37.69" friendlyPos="true" lines="21"/>
+    <busStop id="1166189365" name="捷運中山國中站" lane="401376480#4_0" startPos="41.78" endPos="56.78" friendlyPos="true" lines="685吉林 685 復興幹線 5 63"/>
+    <busStop id="1217101754" lane="315886314_0" startPos="4972.93" endPos="5132.45" friendlyPos="true"/>
+    <busStop id="1217102308" lane="315886314_0" startPos="2223.73" endPos="2423.73" friendlyPos="true"/>
+    <busStop id="1217102313" lane="315886314_0" startPos="2957.32" endPos="3157.32" friendlyPos="true"/>
+    <busStop id="1218006902" lane="315886314_0" startPos="887.20" endPos="1087.20" friendlyPos="true">
+        <access lane="-485459093#0_0" pos="197.04" length="205.96" friendlyPos="1"/>
+        <access lane="-579912015#4_0" pos="0.00" length="59.68" friendlyPos="1"/>
+        <access lane="485459093#0_0" pos="0.00" length="207.64" friendlyPos="1"/>
+        <access lane="579912015#3_0" pos="306.52" length="55.49" friendlyPos="1"/>
+        <access lane="579912031_0" pos="450.82" length="20.03" friendlyPos="1"/>
+    </busStop>
+    <busStop id="1218007209" name="三民高中" lane="315886314_0" startPos="3921.73" endPos="4121.73" friendlyPos="true"/>
+    <busStop id="1223100051" name="中山國小" lane="198281391_0" startPos="639.47" endPos="839.47" friendlyPos="true">
+        <access lane="313235566#3_0" pos="44.51" length="2.22" friendlyPos="1"/>
+        <access lane="506597799#1_0" pos="74.53" length="21.88" friendlyPos="1"/>
+        <access lane="52248857#0_0" pos="0.00" length="75.86" friendlyPos="1"/>
+        <access lane="742681152_0" pos="72.96" length="35.42" friendlyPos="1"/>
+        <access lane="742681153#1_0" pos="52.93" length="17.31" friendlyPos="1"/>
+    </busStop>
+    <busStop id="1483501124" name="民權龍江路口" lane="198589912#6_0" startPos="130.60" endPos="140.44" friendlyPos="true" lines="225區 225 967直 967 685吉林 688 285 685 復興幹線 5116 801 松江新生 617 63 民權幹線"/>
+    <busStop id="1483501761" name="民權建國路口" lane="506599421#3_0" startPos="0.00" endPos="11.65" friendlyPos="true" lines="225區 225 967直 967 685吉林 688 285 685 復興幹線 5 5116 801 松江新生 617 63 民權幹線"/>
+    <busStop id="1483501762" name="行天宮" lane="238707595#1_0" startPos="39.56" endPos="54.56" friendlyPos="true" lines="967直 967 298 復興幹線 676 松江新生 72 5116 643 1840 1550"/>
+    <busStop id="1493007672" name="行天宮" lane="198281380_0" startPos="319.72" endPos="519.72" friendlyPos="true" lines="O">
+        <access lane="265736010#3_0" pos="64.67" length="11.93" friendlyPos="1"/>
+        <access lane="265736010#4_0" pos="0.00" length="35.93" friendlyPos="1"/>
+        <access lane="495021759#7_0" pos="13.78" length="22.82" friendlyPos="1"/>
+        <access lane="50823651#1_0" pos="34.09" length="39.39" friendlyPos="1"/>
+        <access lane="593840517#1_0" pos="90.17" length="10.25" friendlyPos="1"/>
+    </busStop>
+    <busStop id="1493007755" name="松江南京" lane="198281380_0" startPos="1139.65" endPos="1339.65" friendlyPos="true" lines="O">
+        <access lane="232003900#1_0" pos="0.00" length="29.83" friendlyPos="1"/>
+        <access lane="494737329_0" pos="3.97" length="33.17" friendlyPos="1"/>
+        <access lane="494737330#0_0" pos="1.15" length="28.28" friendlyPos="1"/>
+        <access lane="495030817#0_0" pos="0.00" length="34.40" friendlyPos="1"/>
+        <access lane="593841520#2_0" pos="84.99" length="34.07" friendlyPos="1"/>
+    </busStop>
+    <busStop id="1493007755@4250356" name="松江南京" lane="196868581_0" startPos="32.19" endPos="232.19" friendlyPos="true" lines="G">
+        <access lane="232003900#1_0" pos="0.00" length="29.83" friendlyPos="1"/>
+        <access lane="494737329_0" pos="3.97" length="33.17" friendlyPos="1"/>
+        <access lane="494737330#0_0" pos="1.15" length="28.28" friendlyPos="1"/>
+        <access lane="495030817#0_0" pos="0.00" length="34.40" friendlyPos="1"/>
+        <access lane="593841520#2_0" pos="84.99" length="34.07" friendlyPos="1"/>
+    </busStop>
+    <busStop id="1577610285" lane="299401470_0" startPos="434.09" endPos="634.09" friendlyPos="true">
+        <access lane="-258419780_0" pos="60.66" length="71.16" friendlyPos="1"/>
+        <access lane="240133507#0_0" pos="70.82" length="12.68" friendlyPos="1"/>
+        <access lane="258419780_0" pos="64.42" length="75.96" friendlyPos="1"/>
+        <access lane="50893541#1_0" pos="61.01" length="7.11" friendlyPos="1"/>
+        <access lane="579792116#0_0" pos="3.11" length="100.56" friendlyPos="1"/>
+    </busStop>
+    <busStop id="1632904207" name="七海文化園區" lane="730830606#1_0" startPos="28.82" endPos="43.82" friendlyPos="true"/>
+    <busStop id="1632904208" name="忠烈祠" lane="241811763#5_0" startPos="162.70" endPos="177.70" friendlyPos="true"/>
+    <busStop id="1681745146" name="大直" lane="195696234_0" startPos="2365.60" endPos="1904.67" friendlyPos="true" lines="BR">
+        <access lane="338923676#0_0" pos="18.24" length="8.87" friendlyPos="1"/>
+        <access lane="338923676#1_0" pos="0.00" length="0.93" friendlyPos="1"/>
+        <access lane="407206572#13_0" pos="64.87" length="16.40" friendlyPos="1"/>
+        <access lane="810584621#1_0" pos="3.91" length="7.69" friendlyPos="1"/>
+        <access lane="810584621#2_0" pos="0.00" length="5.07" friendlyPos="1"/>
+    </busStop>
+    <busStop id="1681745146@447449" name="大直" lane="195696227_0" startPos="0.00" endPos="83.97" friendlyPos="true" lines="BR">
+        <access lane="338923676#0_0" pos="18.24" length="8.87" friendlyPos="1"/>
+        <access lane="338923676#1_0" pos="0.00" length="0.93" friendlyPos="1"/>
+        <access lane="407206572#13_0" pos="64.87" length="16.40" friendlyPos="1"/>
+        <access lane="810584621#1_0" pos="3.91" length="7.69" friendlyPos="1"/>
+        <access lane="810584621#2_0" pos="0.00" length="5.07" friendlyPos="1"/>
+    </busStop>
+    <busStop id="1705943198" name="啟聰學校" lane="50893508#2_0" startPos="61.18" endPos="76.18" friendlyPos="true"/>
+    <busStop id="2051219239" name="民權西路" lane="194618291_0" startPos="0.00" endPos="142.51" friendlyPos="true">
+        <access lane="-52248916#0_0" pos="36.51" length="45.11" friendlyPos="1"/>
+        <access lane="380944751#0_0" pos="52.46" length="42.82" friendlyPos="1"/>
+        <access lane="380944751#1_0" pos="1.87" length="40.83" friendlyPos="1"/>
+        <access lane="382754638#1_0" pos="21.79" length="15.08" friendlyPos="1"/>
+        <access lane="382754645_0" pos="86.12" length="33.69" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2051219427" name="雙連" lane="194618343_0" startPos="0.00" endPos="113.73" friendlyPos="true">
+        <access lane="199973250#8_0" pos="4.53" length="3.84" friendlyPos="1"/>
+        <access lane="279545769_0" pos="0.00" length="18.18" friendlyPos="1"/>
+        <access lane="299403734#4_0" pos="0.00" length="20.07" friendlyPos="1"/>
+        <access lane="515156282#4_0" pos="10.65" length="8.87" friendlyPos="1"/>
+        <access lane="741274797#6_0" pos="4.96" length="14.21" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2061145789" name="大直" lane="195696225_0" startPos="541.52" endPos="620.99" friendlyPos="true">
+        <access lane="338923676#0_0" pos="18.24" length="9.34" friendlyPos="1"/>
+        <access lane="338923676#1_0" pos="0.38" length="3.42" friendlyPos="1"/>
+        <access lane="407206572#13_0" pos="64.87" length="12.24" friendlyPos="1"/>
+        <access lane="810584621#1_0" pos="3.91" length="5.56" friendlyPos="1"/>
+        <access lane="810584621#2_0" pos="0.00" length="9.16" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2061145790" name="大直" lane="195696217_0" startPos="0.00" endPos="86.27" friendlyPos="true">
+        <access lane="338923676#0_0" pos="18.24" length="11.43" friendlyPos="1"/>
+        <access lane="338923676#1_0" pos="0.00" length="4.72" friendlyPos="1"/>
+        <access lane="407206572#13_0" pos="64.87" length="20.43" friendlyPos="1"/>
+        <access lane="810584621#1_0" pos="3.91" length="11.60" friendlyPos="1"/>
+        <access lane="810584621#2_0" pos="0.09" length="3.11" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2061146022" name="中山國中" lane="195696239_0" startPos="0.00" endPos="99.81" friendlyPos="true">
+        <access lane="-50914316#0_0" pos="53.02" length="38.09" friendlyPos="1"/>
+        <access lane="264859962#3_0" pos="36.09" length="13.92" friendlyPos="1"/>
+        <access lane="401376480#4_0" pos="16.86" length="9.39" friendlyPos="1"/>
+        <access lane="50914316#0_0" pos="0.00" length="42.38" friendlyPos="1"/>
+        <access lane="827099040#4_0" pos="48.98" length="32.18" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2063258353" name="台北大學(台北校區)" lane="268564485#8_0" startPos="0.00" endPos="8.67" friendlyPos="true" lines="民生 612 643"/>
+    <busStop id="2063258368" name="合江街口" lane="268564485#14_0" startPos="78.97" endPos="93.97" friendlyPos="true" lines="民生 612 643"/>
+    <busStop id="2063258394" name="捷運松江南京站" lane="312888362#8_0" startPos="6.37" endPos="21.37" friendlyPos="true" lines="109 280 203 41 280直 676 松江新生 643"/>
+    <busStop id="2063258399" name="民生松江路口" lane="248976866#3_0" startPos="77.47" endPos="92.47" friendlyPos="true" lines="638 民生 612 紅57 643"/>
+    <busStop id="2063258416" name="民生敦化路口" lane="374332385#2_0" startPos="5.71" endPos="20.71" friendlyPos="true" lines="民生 612 12 63"/>
+    <busStop id="2063258453" name="西華飯店" lane="374332385#5_0" startPos="78.86" endPos="93.86" friendlyPos="true" lines="民生 612 12 63"/>
+    <busStop id="2063258483" name="長春松江路口" lane="265736009#8_0" startPos="7.68" endPos="22.68" friendlyPos="true" lines="109 280 203 41 280直 676 5 松江新生 643"/>
+    <busStop id="2071642857" name="台北小巨蛋" lane="196868572_0" startPos="0.00" endPos="179.48" friendlyPos="true">
+        <access lane="374427273#2_0" pos="47.26" length="19.09" friendlyPos="1"/>
+        <access lane="506359650#1_0" pos="93.82" length="35.98" friendlyPos="1"/>
+        <access lane="506359652#3_0" pos="33.51" length="15.70" friendlyPos="1"/>
+        <access lane="506359668#1_0" pos="92.69" length="5.64" friendlyPos="1"/>
+        <access lane="51268697#6_0" pos="1.64" length="55.53" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2079533635" name="興安華城" lane="506316030#2_0" startPos="5.70" endPos="20.70" friendlyPos="true" lines="685吉林 685 復興幹線"/>
+    <busStop id="2080967568" name="捷運行天宮站" lane="823329839#12_0" startPos="43.71" endPos="58.71" friendlyPos="true" lines="638 民生"/>
+    <busStop id="2084403954" lane="198281388_0" startPos="1936.15" endPos="2136.15" friendlyPos="true">
+        <access lane="-258419780_0" pos="59.37" length="63.95" friendlyPos="1"/>
+        <access lane="240133507#0_0" pos="70.91" length="5.21" friendlyPos="1"/>
+        <access lane="258419780_0" pos="65.71" length="68.75" friendlyPos="1"/>
+        <access lane="50893541#1_0" pos="60.94" length="14.58" friendlyPos="1"/>
+        <access lane="579792116#0_0" pos="7.90" length="98.50" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2084404348" lane="198281388_0" startPos="182.13" endPos="382.13" friendlyPos="true"/>
+    <busStop id="2084404366" name="行天宮" lane="198281380_0" startPos="324.16" endPos="524.16" friendlyPos="true">
+        <access lane="265736010#3_0" pos="60.21" length="17.86" friendlyPos="1"/>
+        <access lane="265736010#4_0" pos="0.00" length="44.33" friendlyPos="1"/>
+        <access lane="495021759#7_0" pos="18.19" length="28.82" friendlyPos="1"/>
+        <access lane="51364295#1_0" pos="0.00" length="41.51" friendlyPos="1"/>
+        <access lane="593840517#1_0" pos="94.61" length="4.31" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2084404379" lane="198281388_0" startPos="1100.73" endPos="1125.73" friendlyPos="true"/>
+    <busStop id="2084404443" name="中山國小" lane="198281393_0" startPos="638.96" endPos="838.96" friendlyPos="true">
+        <access lane="313235566#3_0" pos="44.42" length="20.35" friendlyPos="1"/>
+        <access lane="506597799#1_0" pos="74.63" length="3.75" friendlyPos="1"/>
+        <access lane="52248857#0_0" pos="0.00" length="80.31" friendlyPos="1"/>
+        <access lane="742681152_0" pos="73.06" length="17.29" friendlyPos="1"/>
+        <access lane="742681153#1_0" pos="52.93" length="35.35" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2084404550" lane="198281411_0" startPos="792.49" endPos="992.49" friendlyPos="true">
+        <access lane="-485459093#0_0" pos="197.04" length="209.47" friendlyPos="1"/>
+        <access lane="-579912015#4_0" pos="0.00" length="59.39" friendlyPos="1"/>
+        <access lane="485459093#0_0" pos="0.00" length="211.04" friendlyPos="1"/>
+        <access lane="579912015#3_0" pos="306.52" length="55.47" friendlyPos="1"/>
+        <access lane="579912031_0" pos="450.82" length="26.02" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2084404579" lane="198281411_0" startPos="2128.15" endPos="2328.15" friendlyPos="true"/>
+    <busStop id="2084404598" lane="198281411_0" startPos="2861.42" endPos="3061.42" friendlyPos="true"/>
+    <busStop id="2084404709" name="三民高中" lane="198281411_0" startPos="3827.91" endPos="4027.91" friendlyPos="true"/>
+    <busStop id="2084404762" lane="198281411_0" startPos="4878.04" endPos="5043.77" friendlyPos="true"/>
+    <busStop id="2093610131" name="長春松江路口" lane="506359611#6_0" startPos="3.57" endPos="18.57" friendlyPos="true" lines="280 41 280直 676 505 松江新生 72 5 643 1550 226"/>
+    <busStop id="2093610141" name="捷運松江南京站" lane="593841520#2_0" startPos="69.56" endPos="84.56" friendlyPos="true" lines="280 41 280直 676 505 松江新生 72 643 1501 1550 226"/>
+    <busStop id="2093610146" name="捷運行天宮站" lane="329022965#2_0" startPos="189.84" endPos="201.72" friendlyPos="true" lines="280 41 280直 676 松江新生 72 643 1550 226"/>
+    <busStop id="2124843046" name="華泰飯店" lane="248977580#2_0" startPos="14.81" endPos="29.81" friendlyPos="true" lines="民生"/>
+    <busStop id="2124843048" name="華泰飯店" lane="866002957#3_0" startPos="17.47" endPos="32.47" friendlyPos="true" lines="民生"/>
+    <busStop id="2124843058" name="中山里" lane="515156273#3_0" startPos="15.64" endPos="30.64" friendlyPos="true" lines="638 民生"/>
+    <busStop id="2179826596" name="興安華城" lane="291325259#1_0" startPos="54.98" endPos="69.98" friendlyPos="true" lines="685吉林 638 復興幹線 685 5201 12"/>
+    <busStop id="2183271156" name="民權松江路口" lane="241545656#4_0" startPos="99.95" endPos="114.95" friendlyPos="true" lines="NH18 225區 225 685吉林 688 敦化 685 801 63 617 民權幹線"/>
+    <busStop id="2188376122" name="民生松江路口" lane="334835603#4_0" startPos="2.83" endPos="17.83" friendlyPos="true" lines="638 民生 612 紅57 505 5"/>
+    <busStop id="2188606187" name="合江街口" lane="248976980#2_0" startPos="109.02" endPos="124.02" friendlyPos="true" lines="638 民生 612 505 5"/>
+    <busStop id="2365905405" name="捷運南京復興站" lane="506316032#0_0" startPos="94.82" endPos="109.82" friendlyPos="true" lines="685吉林 638 復興幹線 685 5201"/>
+    <busStop id="2410718856" name="南京敦化路口 (小巨蛋)" lane="374427263#0_0" startPos="0.00" endPos="7.50" friendlyPos="true" lines="967直 967 688 敦化 630 913 903"/>
+    <busStop id="2420918994" name="吉林國小" lane="308799570#34_0" startPos="0.02" endPos="15.02" friendlyPos="true" lines="市民小巴9"/>
+    <busStop id="2441338329" name="中山老人住宅" lane="823329839#5_0" startPos="36.03" endPos="51.03" friendlyPos="true" lines="638 民生"/>
+    <busStop id="2442990950" name="捷運中山站(志仁高中)" lane="226831239#4_0" startPos="82.00" endPos="97.00" friendlyPos="true" lines="292副 306 292 12 承德幹線 282 306區"/>
+    <busStop id="2442990951" name="捷運中山站(志仁高中)" lane="189615571#1_0" startPos="48.81" endPos="63.81" friendlyPos="true" lines="636 292副 52 306 承德幹線 12 282 306區 292"/>
+    <busStop id="2442990952" name="南京林森路口" lane="306251259#3_0" startPos="134.55" endPos="149.55" friendlyPos="true" lines="292副 306 292 12 承德幹線 5 282 1501 306區"/>
+    <busStop id="2442990953" name="南京林森路口" lane="51423119#2_0" startPos="78.71" endPos="88.88" friendlyPos="true" lines="292副 52 306 承德幹線 5 12 282 1501 306區 292"/>
+    <busStop id="2442990954" name="南京吉林路口" lane="506359605#1_0" startPos="109.91" endPos="120.66" friendlyPos="true" lines="292副 306 承德幹線 5 12 282 1501 306區 292"/>
+    <busStop id="2442990955" name="南京吉林路口" lane="506351863#3_0" startPos="77.31" endPos="92.31" friendlyPos="true" lines="292副 307 604 306 292 12 承德幹線 5 282 1501 306區"/>
+    <busStop id="2447066646" name="捷運松江南京站" lane="506359623#2_0" startPos="24.35" endPos="39.35" friendlyPos="true" lines="292副 306 承德幹線 282 306區 675 292"/>
+    <busStop id="2447066647" name="捷運松江南京站" lane="506359602#1_0" startPos="91.52" endPos="106.52" friendlyPos="true" lines="292副 307 604 306 292 12 承德幹線 5 282 306區"/>
+    <busStop id="2447073212" name="南京龍江路口" lane="506359630#3_0" startPos="169.99" endPos="184.99" friendlyPos="true" lines="292副 307 604 306 292 668 675 承德幹線 282 306區"/>
+    <busStop id="2447073215" name="南京龍江路口" lane="374427269#7_0" startPos="0.00" endPos="9.51" friendlyPos="true" lines="292副 638 306 承德幹線 668 282 306區 675 292"/>
+    <busStop id="2447073218" name="南京建國路口" lane="317388746#3_0" startPos="150.42" endPos="162.69" friendlyPos="true" lines="292副 306 承德幹線 668 282 306區 675 292"/>
+    <busStop id="2447073221" name="南京建國路口" lane="506359617#3_0" startPos="29.01" endPos="39.26" friendlyPos="true" lines="292副 307 604 306 292 668 675 承德幹線 282 306區"/>
+    <busStop id="2447087409" name="捷運南京復興站" lane="317388745#5_0" startPos="0.00" endPos="11.84" friendlyPos="true" lines="292副 307 604 306 292 668 675 承德幹線 282 306區 棕10"/>
+    <busStop id="2447087414" name="捷運南京復興站" lane="472093921#5_0" startPos="4.20" endPos="19.20" friendlyPos="true" lines="292副 306 承德幹線 668 282 306區 675 292 棕10"/>
+    <busStop id="2459652479" name="中山國小" lane="262879963#4_0" startPos="6.68" endPos="21.68" friendlyPos="true" lines="285 685 280直"/>
+    <busStop id="2459652486" name="劍潭" lane="822577908#1_0" startPos="67.51" endPos="82.51" friendlyPos="true" lines="685吉林 260區 260 285 中山幹線 685 612 267 280直 1717"/>
+    <busStop id="2459652514" name="民族東路口" lane="262879963#13_0" startPos="9.12" endPos="24.12" friendlyPos="true" lines="285 685 280直"/>
+    <busStop id="2459652521" name="稻江護校" lane="262879963#10_0" startPos="22.20" endPos="37.20" friendlyPos="true" lines="285 685 280直"/>
+    <busStop id="2460552082" name="中山國小" lane="254326526#7_0" startPos="114.47" endPos="129.47" friendlyPos="true" lines="606 109 敦化 685 612 203 280直"/>
+    <busStop id="2460552086" name="中山老人住宅" lane="24006860#2_0" startPos="30.69" endPos="45.69" friendlyPos="true" lines="606"/>
+    <busStop id="2460552092" name="南京新生北路口" lane="51289046#2_0" startPos="37.56" endPos="52.56" friendlyPos="true" lines="606"/>
+    <busStop id="2460552095" name="吉林國小" lane="24006860#9_0" startPos="1.53" endPos="16.53" friendlyPos="true" lines="606"/>
+    <busStop id="2460552125" name="新興國中(新生)" lane="827108944#0_0" startPos="82.02" endPos="97.02" friendlyPos="true"/>
+    <busStop id="2460552126" name="民族東路口" lane="254326526#3_0" startPos="62.40" endPos="77.40" friendlyPos="true" lines="606 109 敦化 685 612 203 280直"/>
+    <busStop id="2460552127" name="稻江護校" lane="254326526#5_0" startPos="132.22" endPos="147.21" friendlyPos="true" lines="606 109 敦化 685 612 203 280直"/>
+    <busStop id="2495367461" name="捷運南京復興站" lane="506316039#1_0" startPos="60.11" endPos="75.11" friendlyPos="true" lines="685吉林 685 復興幹線"/>
+    <busStop id="2506289795" name="下埤里" lane="238707596#14_0" startPos="92.10" endPos="107.10" friendlyPos="true" lines="復興幹線 松江新生 643"/>
+    <busStop id="2506289797" name="五常街口" lane="198589897#3_0" startPos="75.20" endPos="90.20" friendlyPos="true" lines="復興幹線 松江新生"/>
+    <busStop id="2506289798" name="復興北村" lane="198589897#2_0" startPos="13.25" endPos="28.25" friendlyPos="true" lines="復興幹線 松江新生 643"/>
+    <busStop id="2506289799" name="捷運行天宮站" lane="263056100#3_0" startPos="62.38" endPos="77.38" friendlyPos="true" lines="109 280 612 203 紅57 280直 676 松江新生"/>
+    <busStop id="2506289800" name="新生公園（林安泰）" lane="238707595#9_0" startPos="53.53" endPos="68.53" friendlyPos="true" lines="298 復興幹線 676 松江新生 72 643"/>
+    <busStop id="2506289801" name="新生公園（林安泰）" lane="338923678#0_0" startPos="0.00" endPos="9.71" friendlyPos="true" lines="市民小巴9"/>
+    <busStop id="2506289802" name="民權建國路口" lane="506597809#1_0" startPos="147.14" endPos="162.14" friendlyPos="true" lines="NH18 225區 225 967直 967 685吉林 688 敦化 685 5116 801 63 617 民權幹線"/>
+    <busStop id="2506289803" name="民權松江路口" lane="506597810#2_0" startPos="74.48" endPos="85.89" friendlyPos="true" lines="225區 225 685吉林 688 285 685 復興幹線 676 5 801 松江新生 617 63 民權幹線"/>
+    <busStop id="2506289804" name="民權龍江路口" lane="506597812#2_0" startPos="126.11" endPos="141.11" friendlyPos="true" lines="NH18 225區 225 967直 967 685吉林 688 敦化 685 5116 801 63 617 民權幹線"/>
+    <busStop id="2506289804@5311165" name="民權龍江路口" lane="506599421#1_0" startPos="4.33" endPos="19.33" friendlyPos="true" lines="5"/>
+    <busStop id="2506289805" name="第二果菜市場" lane="238707596#10_0" startPos="15.48" endPos="30.48" friendlyPos="true" lines="復興幹線 松江新生 643"/>
+    <busStop id="2506289838" name="臺北漁市" lane="238707596#6_0" startPos="6.79" endPos="21.79" friendlyPos="true" lines="復興幹線 松江新生 643"/>
+    <busStop id="2506289848" name="行天宮" lane="260789415#8_0" startPos="40.29" endPos="55.29" friendlyPos="true" lines="9025 5116 1840"/>
+    <busStop id="2506754599" name="台北大學(台北校區)" lane="248976980#10_0" startPos="25.26" endPos="40.26" friendlyPos="true" lines="638 民生 612 9025 505 5"/>
+    <busStop id="2506754602" name="捷運中山國中站" lane="264859962#2_0" startPos="53.00" endPos="68.00" friendlyPos="true" lines="225 685吉林 復興幹線 685 5116 643 63"/>
+    <busStop id="2509549129" name="台北市立美術館" lane="49795876#0_0" startPos="83.88" endPos="98.88" friendlyPos="true" lines="21 260 中山幹線 247 1717 觀光巴士藍線 內湖"/>
+    <busStop id="2509549130" name="台北市立美術館" lane="49795872#1_0" startPos="156.70" endPos="171.70" friendlyPos="true" lines="21 260 208 中山幹線 612 1717 247 觀光巴士藍線 內湖"/>
+    <busStop id="2509549132" name="大同大學" lane="241811788#4_0" startPos="14.53" endPos="29.53" friendlyPos="true" lines="208"/>
+    <busStop id="2509549136" name="新興國中" lane="308987019#10_0" startPos="18.99" endPos="33.99" friendlyPos="true" lines="520 638 208"/>
+    <busStop id="2509549143" name="欣欣大眾公司" lane="51885181#2_0" startPos="38.06" endPos="53.06" friendlyPos="true" lines="208"/>
+    <busStop id="2509549194" name="聚盛里" lane="308987019#2_0" startPos="0.00" endPos="14.09" friendlyPos="true" lines="520 208"/>
+    <busStop id="2509549199" name="華泰飯店" lane="759988496#11_0" startPos="6.40" endPos="21.40" friendlyPos="true" lines="208"/>
+    <busStop id="2509668570" name="七海文化園區" lane="730830606#1_0" startPos="25.70" endPos="40.70" friendlyPos="true" lines="21 208 267 247 內湖"/>
+    <busStop id="2509668571" name="中央電台" lane="241811763#4_0" startPos="82.50" endPos="97.50" friendlyPos="true" lines="21 208 267 247 內湖"/>
+    <busStop id="2509668572" name="中央電台" lane="137317908#3_0" startPos="39.02" endPos="54.02" friendlyPos="true" lines="21 267 247 內湖"/>
+    <busStop id="2509668573" name="花博公園" lane="241536973#1_0" startPos="53.12" endPos="68.12" friendlyPos="true" lines="208"/>
+    <busStop id="2509668574" name="花博公園" lane="241536967#1_0" startPos="167.49" endPos="182.49" friendlyPos="true" lines="21 208"/>
+    <busStop id="2509668575" name="圓山大飯店" lane="241811763#1_0" startPos="131.54" endPos="146.54" friendlyPos="true" lines="21 208 267 247 內湖"/>
+    <busStop id="2509668576" name="圓山大飯店" lane="49795839#0_0" startPos="49.12" endPos="64.12" friendlyPos="true" lines="21 267 247 內湖"/>
+    <busStop id="2509668577" name="大直國小" lane="866318730#3_0" startPos="47.12" endPos="62.12" friendlyPos="true" lines="208 267 72 33 247 內湖"/>
+    <busStop id="2509668578" name="植福宮" lane="407206572#9_0" startPos="37.98" endPos="52.98" friendlyPos="true" lines="267 247 內湖"/>
+    <busStop id="2509668579" name="大直高中" lane="98726567#8_0" startPos="83.92" endPos="98.92" friendlyPos="true" lines="208 267 247 內湖"/>
+    <busStop id="2509668580" name="大直高中" lane="311860239#1_0" startPos="39.06" endPos="54.06" friendlyPos="true" lines="267 247 內湖"/>
+    <busStop id="2509668581" name="忠烈祠" lane="241811763#5_0" startPos="163.05" endPos="178.05" friendlyPos="true" lines="21 208 267 247 內湖"/>
+    <busStop id="2509668582" name="忠烈祠" lane="730830600#2_0" startPos="205.31" endPos="220.31" friendlyPos="true" lines="21 267 247 內湖"/>
+    <busStop id="2509668587" name="捷運大直站" lane="866318728#1_0" startPos="67.43" endPos="82.43" friendlyPos="true" lines="267 247 內湖"/>
+    <busStop id="2509668588" name="捷運大直站" lane="338923676#2_0" startPos="34.37" endPos="49.37" friendlyPos="true" lines="208 267 72 33 247 內湖"/>
+    <busStop id="2509668590" name="空軍司令部" lane="98726567#4_0" startPos="21.69" endPos="36.69" friendlyPos="true" lines="208 267 247 內湖"/>
+    <busStop id="2509668591" name="空軍司令部" lane="311860239#2_0" startPos="105.00" endPos="120.00" friendlyPos="true" lines="267 247 內湖"/>
+    <busStop id="2517390803" name="基河二期國宅一" lane="28555484#1_0" startPos="36.15" endPos="51.15" friendlyPos="true" lines="綠16"/>
+    <busStop id="2517390804" name="基河二期國宅三" lane="243891935#1_0" startPos="15.53" endPos="30.53" friendlyPos="true" lines="棕20 72 綠16"/>
+    <busStop id="2517390805" name="基河二期國宅一" lane="449379874#10_0" startPos="46.16" endPos="61.16" friendlyPos="true" lines="棕20 645 綠16"/>
+    <busStop id="2517390805@3304467" name="基河二期國宅一" lane="28555484#1_0" startPos="35.89" endPos="50.89" friendlyPos="true" lines="棕20"/>
+    <busStop id="2517390806" name="基河二期國宅二" lane="449395543#1_0" startPos="82.23" endPos="97.23" friendlyPos="true" lines="棕20 645 綠16"/>
+    <busStop id="2517390808" name="基湖站" lane="244421761#4_0" startPos="13.85" endPos="28.85" friendlyPos="true" lines="內科圓山 NH10 21"/>
+    <busStop id="2517390810" name="基湖路口" lane="326352589#1_0" startPos="148.46" endPos="163.46" friendlyPos="true" lines="內科圓山 跳蛙公車 21 棕20 645 綠16"/>
+    <busStop id="2517390817" name="濱江國中" lane="28555484#4_0" startPos="18.63" endPos="33.63" friendlyPos="true" lines="棕20 645 綠16"/>
+    <busStop id="2517390818" name="濱江國中" lane="449379874#5_0" startPos="40.00" endPos="55.00" friendlyPos="true" lines="棕20 645 綠16"/>
+    <busStop id="2517658797" name="南京公寓 (捷運南京三民)" lane="310849376#1_0" startPos="69.20" endPos="84.20" friendlyPos="true" lines="612"/>
+    <busStop id="2517658798" name="南京公寓 (捷運南京三民)" lane="265738682#3_0" startPos="9.95" endPos="24.95" friendlyPos="true" lines="204 306 668 306區 675"/>
+    <busStop id="2517658824" name="大同國小" lane="273012211#2_0" startPos="58.75" endPos="73.75" friendlyPos="true" lines="636 966 280 616 306 承德幹線 1501"/>
+    <busStop id="2517658825" name="大同國小" lane="264689872#7_0" startPos="6.42" endPos="21.42" friendlyPos="true" lines="280 616 承德幹線"/>
+    <busStop id="2517658838" name="就業服務處" lane="300090400#7_0" startPos="28.45" endPos="43.45" friendlyPos="true" lines="280 616 41 承德幹線"/>
+    <busStop id="2517658841" name="庫倫街口" lane="299804823#2_0" startPos="58.32" endPos="73.32" friendlyPos="true" lines="966 280 616 承德幹線 1819"/>
+    <busStop id="2517658844" name="庫倫街口" lane="300090400#1_0" startPos="23.90" endPos="38.90" friendlyPos="true" lines="280 616 41 9023 承德幹線"/>
+    <busStop id="2517658850" name="建成公園" lane="199239738#4_0" startPos="25.58" endPos="40.58" friendlyPos="true" lines="292副 承德幹線 292"/>
+    <busStop id="2517658856" name="成淵高中" lane="273012211#5_0" startPos="3.62" endPos="18.62" friendlyPos="true" lines="306 承德幹線"/>
+    <busStop id="2517658859" name="成淵高中" lane="732390620#1_0" startPos="49.88" endPos="64.88" friendlyPos="true" lines="NH18 2001 292副 966 292 承德幹線 63 民權幹線"/>
+    <busStop id="2517658893" name="明倫高中" lane="50893520#6_0" startPos="64.18" endPos="79.18" friendlyPos="true" lines="280 616 41 承德幹線"/>
+    <busStop id="2517658931" name="民族承德路口" lane="437870658#1_0" startPos="31.40" endPos="46.40" friendlyPos="true" lines="636 280 616 306 承德幹線"/>
+    <busStop id="2517658936" name="民族承德路口" lane="299804824#1_0" startPos="4.86" endPos="19.86" friendlyPos="true" lines="280 616 承德幹線"/>
+    <busStop id="2517658943" name="民生西路口" lane="289246486#1_0" startPos="31.54" endPos="46.54" friendlyPos="true" lines="292副 292 承德幹線 63"/>
+    <busStop id="2517658948" name="民生西路口" lane="312109408#2_0" startPos="15.87" endPos="30.87" friendlyPos="true" lines="292副 承德幹線 292"/>
+    <busStop id="2517659483" name="防癌協會" lane="264689872#2_0" startPos="21.69" endPos="36.69" friendlyPos="true" lines="280 616 承德幹線"/>
+    <busStop id="2528739039" name="圓環 (南京)" lane="49184199#3_0" startPos="36.34" endPos="51.34" friendlyPos="true" lines="306 2 12 282 1501 306區"/>
+    <busStop id="2528739040" name="圓環 (南京)" lane="407202550#2_0" startPos="59.72" endPos="74.72" friendlyPos="true" lines="636 52 306 12 282 1501 306區"/>
+    <busStop id="2528868387" name="朝陽公園 (鈕釦街)" lane="244618593#6_0" startPos="32.44" endPos="47.44" friendlyPos="true" lines="民生 306 2 601 704 302 223 306區"/>
+    <busStop id="2631129010" name="圓環 (天水)" lane="441378955#0_0" startPos="0.85" endPos="15.85" friendlyPos="true" lines="660 52 302"/>
+    <busStop id="2631129013" name="民生重慶路口" lane="264994531#1_0" startPos="90.58" endPos="100.47" friendlyPos="true" lines="306 2 2011 1816 704 1818 302 223 306區"/>
+    <busStop id="2631129014" name="民生重慶路口" lane="264994811#4_0" startPos="83.61" endPos="98.61" friendlyPos="true" lines="636 967直 2 601 1816 1818 306 302 223 1501 306區 63 2001"/>
+    <busStop id="2631129015" name="涼州重慶路口" lane="557916922#0_0" startPos="0.00" endPos="7.53" friendlyPos="true" lines="306 2 601 9003 1816 704 1818 302 223 1501 306區"/>
+    <busStop id="2631129016" name="涼州重慶路口" lane="265000940#1_0" startPos="130.20" endPos="137.74" friendlyPos="true" lines="636 967直 2 601 1816 1818 306 302 223 1501 306區 63 2001"/>
+    <busStop id="2631129017" name="捷運大橋頭站" lane="265000159_0" startPos="199.55" endPos="207.18" friendlyPos="true" lines="636 967直 601 1818 306 302 223 9"/>
+    <busStop id="2631129018" name="捷運大橋頭站" lane="264986617#2_0" startPos="150.35" endPos="165.35" friendlyPos="true" lines="2 601 2011 9003 1818 302 223 9 1501"/>
+    <busStop id="2631129019" name="昌吉重慶路口" lane="264986096#4_0" startPos="109.89" endPos="124.89" friendlyPos="true" lines="274 2 601 9003 1816 1818 302 223 9"/>
+    <busStop id="2631129020" name="昌吉重慶路口" lane="265000158#2_0" startPos="91.26" endPos="106.26" friendlyPos="true" lines="636 967直 2 601 1816 41 1818 306 302 223 9"/>
+    <busStop id="2631129022" name="民族重慶路口" lane="265000002#4_0" startPos="112.17" endPos="127.17" friendlyPos="true" lines="967直 601 1816 41 1818 306 302 223"/>
+    <busStop id="2631129023" name="酒泉重慶路口" lane="264999875#4_0" startPos="126.57" endPos="141.57" friendlyPos="true" lines="967直 601 1816 1818 302 223"/>
+    <busStop id="2631129023@7939997" name="酒泉重慶路口" lane="265000001#0_0" startPos="0.00" endPos="7.50" friendlyPos="true" lines="2001"/>
+    <busStop id="2631129024" name="酒泉重慶路口" lane="273012559#6_0" startPos="22.99" endPos="37.99" friendlyPos="true" lines="2001 601 2011 9003 1818 302 223"/>
+    <busStop id="2631129025" name="啟聰學校" lane="265000001#6_0" startPos="30.25" endPos="45.25" friendlyPos="true" lines="601 1818 302 223"/>
+    <busStop id="2631129026" name="大龍市場 (啟聰學校)" lane="265000001#8_0" startPos="9.86" endPos="24.86" friendlyPos="true" lines="1816"/>
+    <busStop id="2638333425" name="馬偕醫院" lane="199973250#10_0" startPos="37.60" endPos="52.60" friendlyPos="true" lines="民生"/>
+    <busStop id="2638505683" name="馬偕醫院" lane="515156282#2_0" startPos="44.34" endPos="59.34" friendlyPos="true" lines="民生"/>
+    <busStop id="2657578306" name="吉林路底" lane="260789406#4_0" startPos="16.96" endPos="31.96" friendlyPos="true" lines="685吉林 688 紅57 市民小巴9"/>
+    <busStop id="2657578309" name="新壽公園" lane="260789406#19_0" startPos="14.03" endPos="29.03" friendlyPos="true" lines="685吉林 688 紅57 市民小巴9"/>
+    <busStop id="2657578310" name="新生公園" lane="407513572#1_0" startPos="158.24" endPos="173.24" friendlyPos="true" lines="688 市民小巴9"/>
+    <busStop id="2657578312" name="新福里" lane="260789406#16_0" startPos="17.62" endPos="32.62" friendlyPos="true" lines="685吉林 688 紅57 市民小巴9"/>
+    <busStop id="2657578313" name="民權復興路口" lane="506599424#5_0" startPos="0.40" endPos="15.40" friendlyPos="true" lines="225區 225 967直 967 688 285 5116 801 33 617 民權幹線"/>
+    <busStop id="2657578314" name="民權復興路口" lane="772891699#0_0" startPos="2.95" endPos="17.95" friendlyPos="true" lines="NH18 967直 967 688 敦化 801 1840 617 民權幹線"/>
+    <busStop id="2657578315" name="民權敦化路口" lane="260789418#7_0" startPos="0.00" endPos="7.73" friendlyPos="true" lines="225區 225 967直 967 688 285 5116 801 33 617 民權幹線"/>
+    <busStop id="2657578316" name="民權敦化路口" lane="506599423#1_0" startPos="70.71" endPos="85.71" friendlyPos="true" lines="NH18 225區 967直 967 688 敦化 801 617 民權幹線"/>
+    <busStop id="2657578317" name="民生敦化路口" lane="374332365#0_0" startPos="4.07" endPos="15.86" friendlyPos="true" lines="967直 967 敦化 630 913 903"/>
+    <busStop id="2657578330" name="長春敦化路口" lane="374332369#1_0" startPos="105.66" endPos="114.00" friendlyPos="true" lines="967直 967 688 敦化 630 913 903"/>
+    <busStop id="2663477270" name="南京敦化路口 (小巨蛋)" lane="374332377#1_0" startPos="73.02" endPos="88.02" friendlyPos="true" lines="967直 967 688 285 906 630 905 913 905副 33"/>
+    <busStop id="2663477271" name="富錦街口" lane="557563424#2_0" startPos="20.10" endPos="35.10" friendlyPos="true" lines="225 967直 967 688 285 906 630 913 33"/>
+    <busStop id="2663477278" name="松山機場" lane="450750322#1_0" startPos="29.46" endPos="44.46" friendlyPos="true" lines="225區 225 688 913 801 617"/>
+    <busStop id="2663477301" name="長庚醫院" lane="329022964#3_0" startPos="84.85" endPos="99.85" friendlyPos="true" lines="967直 967 688 285 906 630 905 913 905副 12 5116 33"/>
+    <busStop id="2685395656" name="民權吉林路口" lane="241545654#1_0" startPos="101.48" endPos="111.55" friendlyPos="true" lines="225區 225 285 280 685 612 41 280直 801 226 617 63 民權幹線"/>
+    <busStop id="2685395657" name="民權松江路口" lane="593840518#3_0" startPos="38.58" endPos="53.58" friendlyPos="true" lines="280 612 41 紅57 280直 676 226"/>
+    <busStop id="2686831915" name="民權吉林路口" lane="506597805#1_0" startPos="82.96" endPos="97.96" friendlyPos="true" lines="NH18 225區 225 109 敦化 280 685 612 203 41 280直 801 63 617 民權幹線"/>
+    <busStop id="269836168" name="雙連" lane="194618334_0" startPos="430.48" endPos="544.69" friendlyPos="true">
+        <access lane="199973250#8_0" pos="11.78" length="0.79" friendlyPos="1"/>
+        <access lane="279545769_0" pos="0.00" length="16.01" friendlyPos="1"/>
+        <access lane="299403734#3_0" pos="53.52" length="9.27" friendlyPos="1"/>
+        <access lane="299403734#4_0" pos="0.00" length="10.34" friendlyPos="1"/>
+        <access lane="515156282#4_0" pos="3.40" length="11.93" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2700742930" name="社子消防分隊" lane="301750978#17_0" startPos="34.97" endPos="49.97" friendlyPos="true" lines="2 206 669 9"/>
+    <busStop id="2700745272" name="污水處理廠" lane="312929527#8_0" startPos="167.69" endPos="182.69" friendlyPos="true" lines="2 206 669 9"/>
+    <busStop id="2700746721" name="鄰江里" lane="159458610#9_0" startPos="14.28" endPos="22.45" friendlyPos="true" lines="206 669"/>
+    <busStop id="2700749823" name="天師宮" lane="355582249#2_0" startPos="8.51" endPos="23.51" friendlyPos="true" lines="274 206 704 669"/>
+    <busStop id="2700750819" name="延平國小" lane="50893434#16_0" startPos="18.20" endPos="33.20" friendlyPos="true" lines="274 206 704 669"/>
+    <busStop id="2700753009" name="延三觀光夜市" lane="50893434#3_0" startPos="11.27" endPos="26.27" friendlyPos="true" lines="274 206 704 669"/>
+    <busStop id="2700754539" name="台北橋" lane="312929526#0_0" startPos="88.64" endPos="103.64" friendlyPos="true" lines="274 206 704 669 306區"/>
+    <busStop id="2700756622" name="保安街口" lane="199980019#11_0" startPos="57.88" endPos="72.88" friendlyPos="true" lines="274 206 704 669 9"/>
+    <busStop id="2700760318" name="民生西路口(大稻埕碼頭)" lane="199980019#1_0" startPos="48.49" endPos="63.49" friendlyPos="true" lines="274 206 704 669 9"/>
+    <busStop id="2700761152" name="南京西路口(鈕扣街)" lane="51392802#1_0" startPos="45.08" endPos="60.08" friendlyPos="true" lines="274 民生 206 704 669 9"/>
+    <busStop id="2700763929" name="延平長安路口" lane="31051190#3_0" startPos="13.73" endPos="28.73" friendlyPos="true" lines="206 669"/>
+    <busStop id="2700950441" name="民權東路口" lane="506599423#4_0" startPos="168.06" endPos="183.06" friendlyPos="true" lines="敦化 民權幹線"/>
+    <busStop id="2702173283" name="大同大學" lane="515156236#1_0" startPos="102.02" endPos="117.02" friendlyPos="true" lines="中山幹線 247 1717 內湖"/>
+    <busStop id="2702173288" name="大同大學" lane="515156251#1_0" startPos="79.14" endPos="94.14" friendlyPos="true" lines="260 中山幹線 612 1717 247 內湖"/>
+    <busStop id="2702175363" name="大同公司 (晴光市場)" lane="515156259#1_0" startPos="40.65" endPos="55.65" friendlyPos="true" lines="中山幹線 247 1717 觀光巴士藍線 內湖"/>
+    <busStop id="2702175895" name="大同公司 (晴光市場)" lane="319208670#0_0" startPos="31.70" endPos="46.70" friendlyPos="true" lines="中山幹線 612 1717 247 觀光巴士藍線 內湖"/>
+    <busStop id="2702176992" name="台泥大樓(馬偕醫院)" lane="278492469#3_0" startPos="31.60" endPos="46.60" friendlyPos="true" lines="636 221 中山幹線 247 1717 1819 內湖"/>
+    <busStop id="2702176993" name="台泥大樓(馬偕醫院)" lane="515156266#2_0" startPos="21.69" endPos="36.69" friendlyPos="true" lines="中山幹線 1717 247 內湖"/>
+    <busStop id="2702178131" name="國賓飯店" lane="310620428#2_0" startPos="66.27" endPos="81.27" friendlyPos="true" lines="中山幹線 1717 247 觀光巴士藍線 內湖"/>
+    <busStop id="2702178132" name="國賓飯店" lane="515156275#4_0" startPos="9.67" endPos="24.67" friendlyPos="true" lines="636 221 中山幹線 247 1717 1819 觀光巴士藍線 內湖"/>
+    <busStop id="2702178682" name="中山市場" lane="310620429#2_0" startPos="13.26" endPos="28.26" friendlyPos="true" lines="221 中山幹線 247 1717 5 內湖"/>
+    <busStop id="2702178800" name="中山市場" lane="289004429#2_0" startPos="15.78" endPos="30.78" friendlyPos="true" lines="中山幹線 1717 5 247 內湖"/>
+    <busStop id="2703510764" name="民權中山路口" lane="506596676#2_0" startPos="14.20" endPos="29.20" friendlyPos="true" lines="NH18 520 225區 225 638 280 41 801 63 617 民權幹線"/>
+    <busStop id="2703510765" name="民權中山路口" lane="506597801#4_0" startPos="18.36" endPos="33.36" friendlyPos="true" lines="520 225區 225 638 280 41 801 226 617 63 民權幹線"/>
+    <busStop id="2703511529" name="捷運中山國小站" lane="506596684#6_0" startPos="19.28" endPos="34.28" friendlyPos="true" lines="NH18 520 225區 225 280 41 801 63 617 民權幹線"/>
+    <busStop id="2703511530" name="捷運中山國小站" lane="313235566#3_0" startPos="99.74" endPos="114.74" friendlyPos="true" lines="225區 225 280 41 801 226 617 63 民權幹線"/>
+    <busStop id="2705192600" name="民生東路口" lane="401376480#1_0" startPos="3.65" endPos="18.65" friendlyPos="true" lines="685吉林 685 63"/>
+    <busStop id="2706343208" name="民族重慶路口" lane="264984122#4_0" startPos="161.09" endPos="176.09" friendlyPos="true" lines="2 601 9003 1816 1818 302 223"/>
+    <busStop id="2706343208@3586256" name="民族重慶路口" lane="264984494#6_0" startPos="69.19" endPos="84.19" friendlyPos="true" lines="2011"/>
+    <busStop id="2706511272" name="圓環 (重慶)" lane="4860359#1_0" startPos="49.07" endPos="64.07" friendlyPos="true" lines="601 1816 704 1818 223"/>
+    <busStop id="2706511273" name="圓環 (重慶)" lane="329022966#3_0" startPos="20.64" endPos="35.64" friendlyPos="true" lines="2 1818 12 63"/>
+    <busStop id="2713414521" name="捷運民權西路站" lane="299291335#3_0" startPos="0.00" endPos="13.18" friendlyPos="true" lines="NH18 636 520 221 225區 225 638 616 41 801 63 617 民權幹線"/>
+    <busStop id="2713414522" name="民權大龍街口" lane="265725163#3_0" startPos="12.20" endPos="27.20" friendlyPos="true" lines="636 520 225區 225 292副 638 616 41 306 801 1501 292 226 617"/>
+    <busStop id="2713414697" name="三重派出所(重新路)" lane="240133507#1_0" startPos="70.59" endPos="85.59" friendlyPos="true" lines="636 520 292副 638 292 616 801 1501 617"/>
+    <busStop id="2713414698" name="三重派出所(重新路)" lane="50893541#0_0" startPos="88.23" endPos="103.23" friendlyPos="true" lines="636 520 292副 638 616 704 306 801 1501 292 617"/>
+    <busStop id="2713515916" name="西華飯店" lane="291325260#2_0" startPos="20.65" endPos="35.65" friendlyPos="true" lines="225 民生 612 505 63"/>
+    <busStop id="2713516585" name="民生敦化路口" lane="291325260#6_0" startPos="59.44" endPos="74.44" friendlyPos="true" lines="225 民生 612 505 63"/>
+    <busStop id="2713518381" name="公教住宅" lane="144500729#7_0" startPos="15.88" endPos="30.88" friendlyPos="true" lines="225 民生 612 12 63"/>
+    <busStop id="2713518382" name="公教住宅" lane="144500732#5_0" startPos="16.57" endPos="31.57" friendlyPos="true" lines="225 民生 612 905 905副 12 505 63"/>
+    <busStop id="2713519425" name="介壽國中" lane="557566166#11_0" startPos="25.50" endPos="40.50" friendlyPos="true" lines="225 民生 612 12 63"/>
+    <busStop id="2713519426" name="介壽國中" lane="144500730#1_0" startPos="38.89" endPos="53.89" friendlyPos="true" lines="225 民生 612 905 905副 12 505 63"/>
+    <busStop id="2713520550" name="聯合二村" lane="557566166#4_0" startPos="140.88" endPos="155.88" friendlyPos="true" lines="225 民生 612 12 63"/>
+    <busStop id="2713520788" name="民生社區活動中心" lane="557566166#1_0" startPos="58.03" endPos="73.03" friendlyPos="true" lines="225 民生 612 12 63"/>
+    <busStop id="2713520789" name="民生社區活動中心" lane="557843845#3_0" startPos="24.39" endPos="39.39" friendlyPos="true" lines="225 民生 612 905 905副 12 505 63"/>
+    <busStop id="2713522620" name="三民路" lane="238710694#18_0" startPos="5.41" endPos="20.41" friendlyPos="true" lines="604 278 612 278區 0東"/>
+    <busStop id="2713522621" name="三民路" lane="51272317#4_0" startPos="13.47" endPos="28.47" friendlyPos="true" lines="612"/>
+    <busStop id="2713522973" name="三民健康路口 (西松高中)" lane="238710694#3_0" startPos="36.43" endPos="48.43" friendlyPos="true" lines="604 278 612 278區 0東"/>
+    <busStop id="2713522976" name="三民健康路口 (西松高中)" lane="51272317#17_0" startPos="17.08" endPos="32.08" friendlyPos="true" lines="612"/>
+    <busStop id="2713524342" name="西松國小" lane="265738680#5_0" startPos="0.00" endPos="8.57" friendlyPos="true" lines="604 612"/>
+    <busStop id="2713524343" name="西松國小" lane="232361462#3_0" startPos="61.42" endPos="76.42" friendlyPos="true" lines="612"/>
+    <busStop id="2779084522" name="靜修女中(寧夏夜市)" lane="244618584#0_0" startPos="109.42" endPos="124.42" friendlyPos="true" lines="民生"/>
+    <busStop id="280503294" name="行天宮" lane="198281375_0" startPos="577.76" endPos="777.76" friendlyPos="true">
+        <access lane="265736010#3_0" pos="61.37" length="1.21" friendlyPos="1"/>
+        <access lane="265736010#4_0" pos="0.00" length="38.85" friendlyPos="1"/>
+        <access lane="495021759#7_0" pos="17.14" length="12.15" friendlyPos="1"/>
+        <access lane="50823651#1_0" pos="34.09" length="36.05" friendlyPos="1"/>
+        <access lane="593840517#1_0" pos="93.48" length="20.97" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2811356129" name="台北小巨蛋" lane="196868577#0_0" startPos="0.00" endPos="178.46" friendlyPos="true">
+        <access lane="374427273#2_0" pos="46.57" length="6.07" friendlyPos="1"/>
+        <access lane="506359650#1_0" pos="94.38" length="22.94" friendlyPos="1"/>
+        <access lane="506359652#3_0" pos="33.00" length="28.74" friendlyPos="1"/>
+        <access lane="506359668#1_0" pos="93.36" length="18.66" friendlyPos="1"/>
+        <access lane="51268697#6_0" pos="1.64" length="58.45" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2811356130" name="南京三民" lane="196868577#0_0" startPos="1270.61" endPos="1470.61" friendlyPos="true">
+        <access lane="265738682#3_0" pos="79.61" length="14.22" friendlyPos="1"/>
+        <access lane="310849376#1_0" pos="16.36" length="11.31" friendlyPos="1"/>
+        <access lane="466274668#4_0" pos="79.69" length="18.86" friendlyPos="1"/>
+        <access lane="759990578#6_0" pos="42.58" length="22.13" friendlyPos="1"/>
+        <access lane="810546529#1_0" pos="1.34" length="28.27" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2826082744" name="河邊北街(慈武宮)" lane="312929528#2_0" startPos="18.86" endPos="33.86" friendlyPos="true" lines="62"/>
+    <busStop id="2925551451" name="臺北大學(臺北校區)" lane="827859752#6_0" startPos="46.30" endPos="61.30" friendlyPos="true" lines="638 紅57 298"/>
+    <busStop id="3034546860" name="長春國小" lane="317388748#6_0" startPos="41.50" endPos="56.50" friendlyPos="true" lines="12"/>
+    <busStop id="3047363031" name="長春國小" lane="437870657#1_0" startPos="6.87" endPos="21.87" friendlyPos="true" lines="紅57 298"/>
+    <busStop id="3057057096" name="臺北大學(臺北校區)" lane="316964694#2_0" startPos="3.03" endPos="18.03" friendlyPos="true" lines="紅57 298"/>
+    <busStop id="3064960375" name="松江新村" lane="263056100#2_0" startPos="64.53" endPos="79.53" friendlyPos="true" lines="5201"/>
+    <busStop id="3079655520" name="南京公寓 (捷運南京三民)" lane="454329104#0_0" startPos="65.60" endPos="80.60" friendlyPos="true" lines="204 棕10"/>
+    <busStop id="3132488960" name="捷運中山國小站" lane="506597801#1_0" startPos="78.95" endPos="93.95" friendlyPos="true" lines="612"/>
+    <busStop id="3156267988" name="三軍總醫院松山分院" lane="51268670#1_0" startPos="30.12" endPos="45.12" friendlyPos="true" lines="278 278區 0東"/>
+    <busStop id="3156267989" name="健康新城" lane="51268670#11_0" startPos="44.19" endPos="59.19" friendlyPos="true" lines="278 278區 0東"/>
+    <busStop id="3156267990" name="南京三民路口" lane="189615573#4_0" startPos="116.10" endPos="131.10" friendlyPos="true" lines="307 604 204 306 668 675 306區 棕10"/>
+    <busStop id="3156267991" name="南京三民路口" lane="310849377#2_0" startPos="97.45" endPos="109.03" friendlyPos="true" lines="204 306 668 306區 675 棕10"/>
+    <busStop id="3156267992" name="南京寧安街口" lane="506359662#4_0" startPos="27.27" endPos="42.27" friendlyPos="true" lines="307 604 306 668 675 承德幹線 282 306區 棕10"/>
+    <busStop id="3156267993" name="南京敦化路口 (小巨蛋)" lane="506316037#5_0" startPos="73.29" endPos="88.29" friendlyPos="true" lines="292副 307 604 306 292 668 675 承德幹線 282 306區 棕10"/>
+    <busStop id="3156267994" name="南京新村" lane="238710697#7_0" startPos="19.30" endPos="34.30" friendlyPos="true" lines="278 278區 0東"/>
+    <busStop id="3156268001" name="長壽公園" lane="51268670#6_0" startPos="41.27" endPos="56.27" friendlyPos="true" lines="278 278區 0東"/>
+    <busStop id="3161349908" name="新益里" lane="317406911#6_0" startPos="11.29" endPos="26.29" friendlyPos="true" lines="225 0東 604 905 278 307 905副 278區 12 505"/>
+    <busStop id="3161349909" name="新益里" lane="244454468#7_0" startPos="31.01" endPos="44.40" friendlyPos="true" lines="藍27"/>
+    <busStop id="3161349914" name="莊敬里" lane="51272316#2_0" startPos="1.61" endPos="16.61" friendlyPos="true" lines="604 307 505"/>
+    <busStop id="3177452495" name="三民國小" lane="311964637#0_0" startPos="68.89" endPos="83.89" friendlyPos="true" lines="NH18 225 630 905 905副 278區 12 617 民權幹線"/>
+    <busStop id="3186011779" name="南京寧安街口" lane="506359679#3_0" startPos="87.12" endPos="100.21" friendlyPos="true" lines="306 承德幹線 668 282 306區 675 棕10"/>
+    <busStop id="3186011780" name="南京敦化路口 (小巨蛋)" lane="506359668#4_0" startPos="33.13" endPos="43.63" friendlyPos="true" lines="306 承德幹線 668 282 306區 675 棕10"/>
+    <busStop id="3186022961" name="南京公寓 (捷運南京三民)" lane="506389484#1_0" startPos="28.54" endPos="43.54" friendlyPos="true" lines="307 204 306 668 675 306區 棕10"/>
+    <busStop id="3188090045" name="中山老人住宅" lane="830711070#10_0" startPos="87.96" endPos="102.96" friendlyPos="true" lines="638 民生"/>
+    <busStop id="3188090050" name="南京西路口(塔城)" lane="287316010#3_0" startPos="30.68" endPos="45.68" friendlyPos="true" lines="660 704 302 9"/>
+    <busStop id="3188090052" name="台北大學(台北校區)" lane="437870662#2_0" startPos="19.29" endPos="34.29" friendlyPos="true" lines="12"/>
+    <busStop id="3188090057" name="捷運雙連站" lane="199973250#2_0" startPos="25.06" endPos="40.06" friendlyPos="true" lines="民生"/>
+    <busStop id="3188090058" name="捷運雙連站" lane="515156282#11_0" startPos="0.00" endPos="10.98" friendlyPos="true" lines="民生"/>
+    <busStop id="3188090059" name="捷運行天宮站" lane="830711070#2_0" startPos="13.72" endPos="28.72" friendlyPos="true" lines="638 民生"/>
+    <busStop id="3188090770" name="民生西路口(大稻埕碼頭)" lane="51392802#7_0" startPos="87.40" endPos="102.40" friendlyPos="true" lines="民生 669"/>
+    <busStop id="3188090786" name="長春市場" lane="317388747#1_0" startPos="39.16" endPos="54.16" friendlyPos="true" lines="12"/>
+    <busStop id="3188090787" name="靜修女中(寧夏夜市)" lane="686241187_0" startPos="56.88" endPos="71.88" friendlyPos="true" lines="民生"/>
+    <busStop id="3188323178" name="福德南路" lane="51392758#0_0" startPos="63.82" endPos="75.24" friendlyPos="true" lines="221 306 704"/>
+    <busStop id="3188323199" name="龍門路底" lane="312929528#0_0" startPos="0.00" endPos="7.50" friendlyPos="true" lines="62"/>
+    <busStop id="3188323200" name="龍門路底" lane="297312478#2_0" startPos="32.09" endPos="45.11" friendlyPos="true" lines="62 226"/>
+    <busStop id="3188479003" name="大龍峒保安宮" lane="24836065#5_0" startPos="3.73" endPos="18.73" friendlyPos="true" lines="41"/>
+    <busStop id="3188479010" name="捷運民權西路站" lane="299403732#0_0" startPos="85.58" endPos="99.64" friendlyPos="true" lines="225區 225 41 801 226 617 63 民權幹線"/>
+    <busStop id="3188479016" name="老師里" lane="312929531#1_0" startPos="8.09" endPos="23.09" friendlyPos="true" lines="2 9"/>
+    <busStop id="3188479018" name="酒泉街" lane="312929531#6_0" startPos="1.84" endPos="16.84" friendlyPos="true" lines="2 9"/>
+    <busStop id="3188479020" name="酒泉重慶北路口" lane="24836065#2_0" startPos="9.64" endPos="24.64" friendlyPos="true" lines="41"/>
+    <busStop id="3230272668" name="三民國小" lane="311438968#4_0" startPos="69.96" endPos="84.96" friendlyPos="true" lines="630 903 617 民權幹線"/>
+    <busStop id="3230272669" name="中華航空" lane="506599429#1_0" startPos="24.46" endPos="39.46" friendlyPos="true" lines="NH18 630 617 民權幹線"/>
+    <busStop id="3230272670" name="中華航空" lane="313235569#7_0" startPos="52.22" endPos="67.22" friendlyPos="true" lines="630 903 617 民權幹線"/>
+    <busStop id="3230272671" name="民權公園" lane="506599429#3_0" startPos="8.27" endPos="23.27" friendlyPos="true" lines="NH18 630 617 民權幹線"/>
+    <busStop id="3230272672" name="民權國小" lane="506599429#7_0" startPos="39.16" endPos="54.16" friendlyPos="true" lines="NH18 630 617 民權幹線"/>
+    <busStop id="3230272673" name="民權國小" lane="313235569#1_0" startPos="25.92" endPos="40.92" friendlyPos="true" lines="630 903 617 民權幹線"/>
+    <busStop id="3230272674" name="民權東路口" lane="311138396#1_0" startPos="27.00" endPos="42.00" friendlyPos="true" lines="NH18 630 617"/>
+    <busStop id="3236430217" name="遼寧街口" lane="311346862#6_0" startPos="8.81" endPos="23.81" friendlyPos="true" lines="棕10"/>
+    <busStop id="3305647700" name="捷運大橋頭站" lane="265000158#2_0" startPos="0.29" endPos="15.29" friendlyPos="true" lines="2001"/>
+    <busStop id="3305647703" name="民權重慶路口" lane="557916921#1_0" startPos="6.11" endPos="14.63" friendlyPos="true" lines="1816"/>
+    <busStop id="3356796609" name="圓山皇宮大廈" lane="382754789#5_0" startPos="133.93" endPos="140.55" friendlyPos="true"/>
+    <busStop id="3419306361" name="榮星花園" lane="238707587#1_0" startPos="81.15" endPos="96.15" friendlyPos="true" lines="298 676"/>
+    <busStop id="3419306362" name="第二果菜市場" lane="668037871#2_0" startPos="34.80" endPos="42.53" friendlyPos="true" lines="298 676"/>
+    <busStop id="3419516293" name="上塔悠" lane="334835604#5_0" startPos="146.11" endPos="161.11" friendlyPos="true" lines="505"/>
+    <busStop id="3419516295" name="下塔悠" lane="334835604#0_0" startPos="526.86" endPos="541.86" friendlyPos="true" lines="505"/>
+    <busStop id="3419516298" name="新東街口" lane="264484759#1_0" startPos="66.19" endPos="81.19" friendlyPos="true" lines="225 民生 12 63"/>
+    <busStop id="3419516299" name="飛航服務總台" lane="334835604#0_0" startPos="14.95" endPos="29.95" friendlyPos="true" lines="505"/>
+    <busStop id="3419699341" name="大稻埕碼頭" lane="382623053#0_0" startPos="21.96" endPos="36.96" friendlyPos="true" lines="綠17"/>
+    <busStop id="3419699343" name="延平宮" lane="382623053#3_0" startPos="24.61" endPos="39.61" friendlyPos="true" lines="綠17"/>
+    <busStop id="3419699344" name="民生西寧路口" lane="60730648#7_0" startPos="14.03" endPos="29.03" friendlyPos="true" lines="綠17"/>
+    <busStop id="3419699345" name="玉泉里" lane="334849018#1_0" startPos="79.07" endPos="94.07" friendlyPos="true" lines="綠17"/>
+    <busStop id="3421626793" name="松江長春路口" lane="312888362#2_0" startPos="15.62" endPos="30.62" friendlyPos="true" lines="12"/>
+    <busStop id="3495094871" name="中山" lane="194618361_0" startPos="0.00" endPos="122.78" friendlyPos="true" lines="R">
+        <access lane="204211736#1_0" pos="0.00" length="17.00" friendlyPos="1"/>
+        <access lane="450732442#0_0" pos="458.70" length="16.67" friendlyPos="1"/>
+        <access lane="450732442#1_0" pos="57.97" length="12.51" friendlyPos="1"/>
+        <access lane="464590785#5_0" pos="7.65" length="13.56" friendlyPos="1"/>
+        <access lane="541472439#4_0" pos="5.29" length="16.36" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3495094871@4250356" name="中山" lane="194585046_0" startPos="1475.20" endPos="1254.72" friendlyPos="true" lines="G">
+        <access lane="204211736#1_0" pos="0.00" length="17.00" friendlyPos="1"/>
+        <access lane="450732442#0_0" pos="458.70" length="16.67" friendlyPos="1"/>
+        <access lane="450732442#1_0" pos="57.97" length="12.51" friendlyPos="1"/>
+        <access lane="464590785#5_0" pos="7.65" length="13.56" friendlyPos="1"/>
+        <access lane="541472439#4_0" pos="5.29" length="16.36" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3495094871@5633242" name="中山" lane="194618365_0" startPos="428.87" endPos="536.96" friendlyPos="true" lines="R">
+        <access lane="204211736#1_0" pos="0.00" length="17.00" friendlyPos="1"/>
+        <access lane="450732442#0_0" pos="458.70" length="16.67" friendlyPos="1"/>
+        <access lane="450732442#1_0" pos="57.97" length="12.51" friendlyPos="1"/>
+        <access lane="464590785#5_0" pos="7.65" length="13.56" friendlyPos="1"/>
+        <access lane="541472439#4_0" pos="5.29" length="16.36" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3495094872" name="雙連" lane="194618343_0" startPos="0.00" endPos="113.34" friendlyPos="true" lines="R">
+        <access lane="199973250#8_0" pos="8.49" length="3.20" friendlyPos="1"/>
+        <access lane="299403734#3_0" pos="53.52" length="14.66" friendlyPos="1"/>
+        <access lane="299403734#4_0" pos="0.00" length="14.25" friendlyPos="1"/>
+        <access lane="515156282#4_0" pos="6.69" length="9.51" friendlyPos="1"/>
+        <access lane="741274797#6_0" pos="8.93" length="14.81" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3495094872@5633242" name="雙連" lane="194618334_0" startPos="431.35" endPos="544.69" friendlyPos="true" lines="R">
+        <access lane="199973250#8_0" pos="8.49" length="3.20" friendlyPos="1"/>
+        <access lane="299403734#3_0" pos="53.52" length="14.66" friendlyPos="1"/>
+        <access lane="299403734#4_0" pos="0.00" length="14.25" friendlyPos="1"/>
+        <access lane="515156282#4_0" pos="6.69" length="9.51" friendlyPos="1"/>
+        <access lane="741274797#6_0" pos="8.93" length="14.81" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3495094873" name="民權西路" lane="194618356_0" startPos="110.60" endPos="235.72" friendlyPos="true" lines="R">
+        <access lane="265725164#2_0" pos="60.84" length="12.15" friendlyPos="1"/>
+        <access lane="299403732#0_0" pos="9.90" length="14.59" friendlyPos="1"/>
+        <access lane="382754632#1_0" pos="3.31" length="18.67" friendlyPos="1"/>
+        <access lane="382754632#2_0" pos="0.00" length="25.25" friendlyPos="1"/>
+        <access lane="382754638#0_0" pos="9.93" length="25.50" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3495094873@4250352" name="民權西路" lane="105689021_0" startPos="0.00" endPos="100.00" friendlyPos="true" lines="O">
+        <access lane="265725164#2_0" pos="60.84" length="12.15" friendlyPos="1"/>
+        <access lane="299403732#0_0" pos="9.90" length="14.59" friendlyPos="1"/>
+        <access lane="382754632#1_0" pos="3.31" length="18.67" friendlyPos="1"/>
+        <access lane="382754632#2_0" pos="0.00" length="25.25" friendlyPos="1"/>
+        <access lane="382754638#0_0" pos="9.93" length="25.50" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3495094873@4250354" name="民權西路" lane="198281393_0" startPos="0.00" endPos="112.31" friendlyPos="true" lines="O">
+        <access lane="265725164#2_0" pos="60.84" length="12.15" friendlyPos="1"/>
+        <access lane="299403732#0_0" pos="9.90" length="14.59" friendlyPos="1"/>
+        <access lane="382754632#1_0" pos="3.31" length="18.67" friendlyPos="1"/>
+        <access lane="382754632#2_0" pos="0.00" length="25.25" friendlyPos="1"/>
+        <access lane="382754638#0_0" pos="9.93" length="25.50" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3495094873@5633242" name="民權西路" lane="194618300_0" startPos="0.00" endPos="132.04" friendlyPos="true" lines="R">
+        <access lane="265725164#2_0" pos="60.84" length="12.15" friendlyPos="1"/>
+        <access lane="299403732#0_0" pos="9.90" length="14.59" friendlyPos="1"/>
+        <access lane="382754632#1_0" pos="3.31" length="18.67" friendlyPos="1"/>
+        <access lane="382754632#2_0" pos="0.00" length="25.25" friendlyPos="1"/>
+        <access lane="382754638#0_0" pos="9.93" length="25.50" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3495094874" name="圓山" lane="265151055_0" startPos="7712.98" endPos="7308.91" friendlyPos="true" lines="R">
+        <access lane="245752581#1_0" pos="37.02" length="24.63" friendlyPos="1"/>
+        <access lane="300674610#7_0" pos="36.92" length="16.43" friendlyPos="1"/>
+        <access lane="50893516#0_0" pos="40.83" length="29.37" friendlyPos="1"/>
+        <access lane="824598120#1_0" pos="0.20" length="28.10" friendlyPos="1"/>
+        <access lane="824598122#2_0" pos="15.17" length="14.18" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3495444317" name="松山機場" lane="450750322#2_0" startPos="22.22" endPos="37.22" friendlyPos="true" lines="967直 967 9025 5116 1840"/>
+    <busStop id="3497302606" name="南京復興" lane="196868581_0" startPos="1135.24" endPos="1335.24" friendlyPos="true" lines="G">
+        <access lane="374427269#0_0" pos="0.00" length="15.65" friendlyPos="1"/>
+        <access lane="495214071#2_0" pos="0.00" length="30.58" friendlyPos="1"/>
+        <access lane="668836500#1_0" pos="0.00" length="28.11" friendlyPos="1"/>
+        <access lane="668836507#2_0" pos="0.00" length="28.72" friendlyPos="1"/>
+        <access lane="668836507#3_0" pos="0.00" length="30.18" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3497302606@447449" name="南京復興" lane="195696216_0" startPos="24.19" endPos="156.27" friendlyPos="true" lines="BR">
+        <access lane="374427269#0_0" pos="0.00" length="15.65" friendlyPos="1"/>
+        <access lane="495214071#2_0" pos="0.00" length="30.58" friendlyPos="1"/>
+        <access lane="668836500#1_0" pos="0.00" length="28.11" friendlyPos="1"/>
+        <access lane="668836507#2_0" pos="0.00" length="28.72" friendlyPos="1"/>
+        <access lane="668836507#3_0" pos="0.00" length="30.18" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3497302607" name="中山國中" lane="195696237_0" startPos="0.00" endPos="99.78" friendlyPos="true" lines="BR">
+        <access lane="-50914316#0_0" pos="53.02" length="39.58" friendlyPos="1"/>
+        <access lane="264859962#3_0" pos="36.18" length="10.69" friendlyPos="1"/>
+        <access lane="401376480#4_0" pos="16.77" length="12.63" friendlyPos="1"/>
+        <access lane="50914316#0_0" pos="0.00" length="43.71" friendlyPos="1"/>
+        <access lane="827099040#4_0" pos="48.90" length="28.95" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3497302608" name="松山機場" lane="527687889_0" startPos="288.32" endPos="377.02" friendlyPos="true" lines="BR">
+        <access lane="450750322#1_0" pos="58.81" length="43.69" friendlyPos="1"/>
+        <access lane="450750322#2_0" pos="19.22" length="24.21" friendlyPos="1"/>
+        <access lane="50160066#2_0" pos="18.85" length="45.27" friendlyPos="1"/>
+        <access lane="667555337#3_0" pos="7.43" length="43.59" friendlyPos="1"/>
+        <access lane="667555337#4_0" pos="4.32" length="35.06" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3497302608@447449" name="松山機場" lane="195696218_0" startPos="32.99" endPos="189.14" friendlyPos="true" lines="BR">
+        <access lane="450750322#1_0" pos="58.81" length="43.69" friendlyPos="1"/>
+        <access lane="450750322#2_0" pos="19.22" length="24.21" friendlyPos="1"/>
+        <access lane="50160066#2_0" pos="18.85" length="45.27" friendlyPos="1"/>
+        <access lane="667555337#3_0" pos="7.43" length="43.59" friendlyPos="1"/>
+        <access lane="667555337#4_0" pos="4.32" length="35.06" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3566306318" name="基河二期國宅三" lane="449395546#1_0" startPos="40.93" endPos="55.93" friendlyPos="true" lines="33"/>
+    <busStop id="3566306323" name="明水路口" lane="449395547#4_0" startPos="54.27" endPos="69.27" friendlyPos="true" lines="33"/>
+    <busStop id="3577916321" name="大佳疏散門(九號水門)" lane="352006355#1_0" startPos="0.00" endPos="10.57" friendlyPos="true"/>
+    <busStop id="3720461301" name="三重派出所 (福德北路)" lane="105778508#6_0" startPos="8.37" endPos="23.37" friendlyPos="true" lines="225區 225 274 226"/>
+    <busStop id="373400210" name="中山國中" lane="195696237_0" startPos="0.00" endPos="99.78" friendlyPos="true">
+        <access lane="-50914316#0_0" pos="53.02" length="41.22" friendlyPos="1"/>
+        <access lane="264859962#3_0" pos="35.99" length="8.15" friendlyPos="1"/>
+        <access lane="401376480#4_0" pos="16.97" length="15.16" friendlyPos="1"/>
+        <access lane="50914316#0_0" pos="0.00" length="45.24" friendlyPos="1"/>
+        <access lane="827099040#4_0" pos="49.11" length="26.42" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3778328674" name="民生東路口" lane="308799570#14_0" startPos="3.83" endPos="18.83" friendlyPos="true" lines="市民小巴9"/>
+    <busStop id="3778518984" name="長春國小" lane="49134098#5_0" startPos="1.15" endPos="16.15" friendlyPos="true" lines="638 紅57 298"/>
+    <busStop id="3794154665" name="成淵高中" lane="312109408#11_0" startPos="32.20" endPos="47.20" friendlyPos="true" lines="292副 292"/>
+    <busStop id="3812564391" name="中山國小" lane="198281393_0" startPos="638.44" endPos="838.44" friendlyPos="true" lines="O">
+        <access lane="313235566#3_0" pos="44.86" length="10.82" friendlyPos="1"/>
+        <access lane="506597799#1_0" pos="74.19" length="13.29" friendlyPos="1"/>
+        <access lane="52248857#0_0" pos="0.00" length="78.04" friendlyPos="1"/>
+        <access lane="742681152_0" pos="73.40" length="26.84" friendlyPos="1"/>
+        <access lane="742681153#1_0" pos="52.93" length="25.79" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3812564394" name="南京三民" lane="196868577#0_0" startPos="1270.96" endPos="1470.96" friendlyPos="true" lines="G">
+        <access lane="265738682#3_0" pos="79.31" length="9.45" friendlyPos="1"/>
+        <access lane="310849376#1_0" pos="16.63" length="16.07" friendlyPos="1"/>
+        <access lane="466274668#4_0" pos="79.34" length="14.10" friendlyPos="1"/>
+        <access lane="759990578#6_0" pos="42.28" length="26.90" friendlyPos="1"/>
+        <access lane="810546529#1_0" pos="4.28" length="28.66" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3812564397" name="台北小巨蛋" lane="196868577#0_0" startPos="0.00" endPos="178.46" friendlyPos="true" lines="G">
+        <access lane="374427273#2_0" pos="46.57" length="11.12" friendlyPos="1"/>
+        <access lane="506359650#1_0" pos="94.43" length="27.99" friendlyPos="1"/>
+        <access lane="506359652#3_0" pos="32.93" length="23.69" friendlyPos="1"/>
+        <access lane="506359668#1_0" pos="93.37" length="13.61" friendlyPos="1"/>
+        <access lane="51268697#6_0" pos="1.64" length="56.60" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3812564398" name="大橋頭" lane="105689021_0" startPos="567.54" endPos="767.54" friendlyPos="true" lines="O">
+        <access lane="-50893543_0" pos="72.44" length="35.01" friendlyPos="1"/>
+        <access lane="300090401_0" pos="317.77" length="22.87" friendlyPos="1"/>
+        <access lane="368617668#0_0" pos="74.30" length="15.60" friendlyPos="1"/>
+        <access lane="50893543_0" pos="131.01" length="39.81" friendlyPos="1"/>
+        <access lane="677225460#1_0" pos="47.73" length="7.63" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3835833777" name="捷運大橋頭站" lane="265000159_0" startPos="152.42" endPos="167.42" friendlyPos="true" lines="2 1501 63"/>
+    <busStop id="3840862315" name="台北銀行" lane="308799570#23_0" startPos="15.86" endPos="30.86" friendlyPos="true" lines="市民小巴9"/>
+    <busStop id="3881368454" name="民族承德路口" lane="299804824#2_0" startPos="10.25" endPos="25.25" friendlyPos="true" lines="2 9"/>
+    <busStop id="3881368455" name="民族重慶路口" lane="368617667#1_0" startPos="2.78" endPos="17.78" friendlyPos="true" lines="636 2 9"/>
+    <busStop id="3881369157" name="涼州重慶路口" lane="312929529#3_0" startPos="8.80" endPos="23.80" friendlyPos="true" lines="9"/>
+    <busStop id="3881369162" name="蘭州國中" lane="368617667#4_0" startPos="9.65" endPos="24.65" friendlyPos="true" lines="636 2 9"/>
+    <busStop id="4066659498@3500859" name="建北站" lane="312879610#1_0" startPos="2.97" endPos="17.97" friendlyPos="true" lines="688 復興幹線"/>
+    <busStop id="4082319377" name="建國錦州街口" lane="310620430#3_0" startPos="26.72" endPos="41.72" friendlyPos="true" lines="1960"/>
+    <busStop id="4082319379" name="新生公園" lane="50202893#2_0" startPos="35.43" endPos="50.43" friendlyPos="true" lines="685吉林"/>
+    <busStop id="4082319380" name="新生公園" lane="241545653#1_0" startPos="144.97" endPos="159.97" friendlyPos="true" lines="685吉林"/>
+    <busStop id="4082319501" name="錦州街口" lane="308799570#5_0" startPos="11.97" endPos="26.97" friendlyPos="true" lines="市民小巴9"/>
+    <busStop id="4205229663" name="延平一站(長安)" lane="287316013#1_0" startPos="26.71" endPos="41.71" friendlyPos="true" lines="12 市民小巴9"/>
+    <busStop id="4205229668" name="捷運中山站(志仁高中)" lane="226831239#2_0" startPos="62.47" endPos="77.47" friendlyPos="true" lines="1501"/>
+    <busStop id="4205229669" name="捷運中山站(志仁高中)" lane="189615571#3_0" startPos="31.53" endPos="46.53" friendlyPos="true" lines="1501"/>
+    <busStop id="4205230046" name="基河二期國宅二" lane="244421750#2_0" startPos="19.44" endPos="34.44" friendlyPos="true"/>
+    <busStop id="4235856495" name="八號水門" lane="407513547#3_0" startPos="36.27" endPos="51.27" friendlyPos="true" lines="市民小巴9"/>
+    <busStop id="4235856496" name="大佳河濱公園" lane="424128313#0_0" startPos="0.00" endPos="7.50" friendlyPos="true" lines="市民小巴9"/>
+    <busStop id="4400929026" name="捷運圓山站(玉門街)" lane="241536984_0" startPos="44.35" endPos="59.33" friendlyPos="true" lines="內科圓山 21 208"/>
+    <busStop id="4653351590" name="台北車站" lane="170432840_0" startPos="0.00" endPos="181.80" friendlyPos="true">
+        <access lane="-33679832#1_0" pos="225.31" length="109.02" friendlyPos="1"/>
+        <access lane="288878925#0_0" pos="0.00" length="198.87" friendlyPos="1"/>
+        <access lane="33679832#0_0" pos="0.00" length="111.40" friendlyPos="1"/>
+        <access lane="4860359#7_0" pos="118.11" length="215.14" friendlyPos="1"/>
+        <access lane="837377226#0_0" pos="0.00" length="225.30" friendlyPos="1"/>
+    </busStop>
+    <busStop id="4653351591" name="台北車站" lane="198163706_0" startPos="0.00" endPos="181.77" friendlyPos="true">
+        <access lane="-33679832#1_0" pos="225.31" length="116.57" friendlyPos="1"/>
+        <access lane="288878925#0_0" pos="0.00" length="202.71" friendlyPos="1"/>
+        <access lane="33679832#0_0" pos="0.00" length="118.80" friendlyPos="1"/>
+        <access lane="4860359#7_0" pos="118.11" length="218.69" friendlyPos="1"/>
+        <access lane="837377226#0_0" pos="0.00" length="229.17" friendlyPos="1"/>
+    </busStop>
+    <busStop id="4836653431" name="大直抽水站" lane="330746961#3_0" startPos="23.81" endPos="38.81" friendlyPos="true" lines="21"/>
+    <busStop id="4838086676" name="捷運民權西路站" lane="299403732#0_0" startPos="17.28" endPos="32.28" friendlyPos="true" lines="520 638"/>
+    <busStop id="4838087748" name="捷運大橋頭站" lane="264986098#3_0" startPos="8.54" endPos="23.54" friendlyPos="true" lines="274"/>
+    <busStop id="4961039545" name="行天宮" lane="260789415#7_0" startPos="47.88" endPos="62.88" friendlyPos="true" lines="967直 967"/>
+    <busStop id="5455822704" name="基河二期國宅二" lane="244421750#0_0" startPos="147.19" endPos="162.19" friendlyPos="true"/>
+    <busStop id="6037086287" name="忠烈祠" lane="730830600#2_0" startPos="203.35" endPos="218.35" friendlyPos="true"/>
+    <busStop id="623059637" name="第二果菜市場" lane="238707596#10_0" startPos="15.06" endPos="30.06" friendlyPos="true"/>
+    <busStop id="632565244" name="下埤里" lane="238707596#14_0" startPos="91.64" endPos="106.64" friendlyPos="true"/>
+    <busStop id="6333316060" name="民權西路" lane="198281391_0" startPos="0.00" endPos="181.84" friendlyPos="true">
+        <access lane="299403731#0_0" pos="42.81" length="29.65" friendlyPos="1"/>
+        <access lane="378429450_0" pos="0.00" length="50.68" friendlyPos="1"/>
+        <access lane="494749370_0" pos="0.00" length="76.49" friendlyPos="1"/>
+        <access lane="506596678#1_0" pos="59.20" length="2.69" friendlyPos="1"/>
+        <access lane="506596678#2_0" pos="0.00" length="55.09" friendlyPos="1"/>
+    </busStop>
+    <busStop id="6333316062" name="民權西路" lane="198281393_0" startPos="0.00" endPos="185.88" friendlyPos="true">
+        <access lane="299403731#0_0" pos="47.45" length="7.85" friendlyPos="1"/>
+        <access lane="378429450_0" pos="0.00" length="62.35" friendlyPos="1"/>
+        <access lane="380944751#0_0" pos="0.00" length="75.34" friendlyPos="1"/>
+        <access lane="506596678#1_0" pos="54.59" length="19.12" friendlyPos="1"/>
+        <access lane="506596678#2_0" pos="0.00" length="64.82" friendlyPos="1"/>
+    </busStop>
+    <busStop id="6858306521" name="大同分局" lane="732390618#1_0" startPos="52.63" endPos="67.63" friendlyPos="true" lines="NH18"/>
+    <busStop id="7417264340" name="臺北漁市" lane="238707596#6_0" startPos="6.73" endPos="21.73" friendlyPos="true"/>
+    <busStop id="7417264341" name="建北站" lane="793234594_0" startPos="0.00" endPos="7.50" friendlyPos="true"/>
+    <busStop id="7478389982" name="南京三民" lane="196868572_0" startPos="1271.07" endPos="1471.07" friendlyPos="true">
+        <access lane="265738682#3_0" pos="79.60" length="4.11" friendlyPos="1"/>
+        <access lane="310849376#1_0" pos="16.33" length="21.41" friendlyPos="1"/>
+        <access lane="466274668#4_0" pos="79.58" length="8.76" friendlyPos="1"/>
+        <access lane="810546529#1_0" pos="4.28" length="28.74" friendlyPos="1"/>
+        <access lane="810546529#2_0" pos="0.00" length="28.84" friendlyPos="1"/>
+    </busStop>
+    <busStop id="7478389984" name="民權西路" lane="194618363_0" startPos="0.00" endPos="139.76" friendlyPos="true">
+        <access lane="380944751#0_0" pos="52.46" length="24.54" friendlyPos="1"/>
+        <access lane="380944751#1_0" pos="3.26" length="19.57" friendlyPos="1"/>
+        <access lane="382754638#1_0" pos="23.65" length="36.25" friendlyPos="1"/>
+        <access lane="382754645_0" pos="85.14" length="12.39" friendlyPos="1"/>
+        <access lane="52248901_0" pos="110.49" length="26.38" friendlyPos="1"/>
+    </busStop>
+    <busStop id="7629997059" name="北安國中" lane="330746961#9_0" startPos="51.74" endPos="66.74" friendlyPos="true" lines="21"/>
+    <busStop id="7629997060" name="明水路三" lane="330746961#1_0" startPos="14.14" endPos="29.14" friendlyPos="true" lines="21"/>
+    <busStop id="7629997061" name="堤頂大道口" lane="23766386#15_0" startPos="0.00" endPos="13.90" friendlyPos="true" lines="21"/>
+    <busStop id="7662035468" name="啟聰學校" lane="273012559#4_0" startPos="27.32" endPos="42.32" friendlyPos="true" lines="966"/>
+    <busStop id="925435435" name="聯合二村" lane="144500730#7_0" startPos="79.57" endPos="94.57" friendlyPos="true" lines="225 民生 612 905 905副 12 63"/>
+    <busStop id="925435451" name="廣合新村" lane="557553456#2_0" startPos="19.42" endPos="30.54" friendlyPos="true" lines="225 905 905副 278區 12"/>
+</additional>
