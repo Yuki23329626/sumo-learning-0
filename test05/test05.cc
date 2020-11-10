@@ -56,8 +56,12 @@ public:
     // SINR，感覺單位是分貝
     this->sinr = 10 * log10(sinr);
 
-    if (now >= 0 && now < 1 )
-      *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connected_eNB << endl;
+    if (now >= 0 && now < 1 ){
+        if (connected_eNB != -1)
+          *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connected_eNB << endl;
+        else
+          *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< "-1" << endl;
+      }
   }
 
   // When UE move change the UE position // 沒有人看得懂的英文
@@ -88,7 +92,7 @@ public:
 
 private:
   int imsi = -1;
-  int connected_eNB;
+  int connected_eNB=-1;
   double sinr = 0.0;
   double last_gt = 0.0; // 不知道是甚麼
   Vector position, enb_position;
