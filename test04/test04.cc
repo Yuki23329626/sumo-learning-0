@@ -107,7 +107,8 @@ int main(int argc, char *argv[])
   const int NODE_NUM = 300; // UE 數量
   const int BANDWIDTH = 100; // number of RB ,10MHz
   const int ENB_NUM = 35; // 設置的 eNB 數量
-  const int SELECTED_ENB = 1; // 要測試哪一個 enb
+
+  int SELECTED_ENB = 1; // 要測試哪一個 enb
 
   const double DURATION = 60;   // 貌似是秒數
   const double ENB_TX_POWER = 20; // Transimission power in doubleBm, doubleBm 不知道是甚麼
@@ -188,7 +189,7 @@ int main(int argc, char *argv[])
   MobilityHelper enbMobility;
   enbMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
   enbMobility.SetPositionAllocator();
-  enbMobility.Install(enbNode);enbPositionAlloc // 第一次見到這種寫法
+  enbMobility.Install(enbNode);
 
   // Install netdevice
   NetDeviceContainer enbDevs;
