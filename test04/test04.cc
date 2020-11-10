@@ -176,7 +176,7 @@ int main(int argc, char *argv[])
   // 不知道這個 allocation 的用法，待查證
   enbPositionAlloc->Add(Vector(500.0, 8.00, 0));
   
-  for (int j = 1; j < 6; i++)
+  for (int j = 1; j < 6; j++)
   {
     for (int i = 1; i < 8; i++)
     {
