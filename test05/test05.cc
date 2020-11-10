@@ -57,11 +57,7 @@ public:
     this->sinr = 10 * log10(sinr);
 
     if (now >= 0 && now < 1 ){
-        if (connected_eNB != -1)
-          *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connected_eNB << endl;
-        else
-          *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< "-1" << endl;
-      }
+      *os1 << now << "," << imsi << "," << this->sinr  << "," << position.x << "," << position.y << "," << connected_eNB << endl;
   }
 
   // When UE move change the UE position // 沒有人看得懂的英文
@@ -101,7 +97,7 @@ private:
 
 int main(int argc, char *argv[])
 {
-  string TRACE_FILE = "scratch/test04.tcl";
+  string TRACE_FILE = "scratch/test05.tcl";
 
   int NODE_NUM = 300; // UE 數量
   int BANDWIDTH = 100; // number of RB ,10MHz
@@ -132,7 +128,7 @@ int main(int argc, char *argv[])
   cmd.AddValue("selectedEnb", "Select eNB ID", SELECTED_ENB);
   cmd.Parse(argc, argv);
 
-  OUTPUT_FILE = OUTPUT_FILE + SELECTED_ENB + ".csv";
+  OUTPUT_FILE = OUTPUT_FILE + to_string(SELECTED_ENB) + ".csv";
 
   outputfile1.open(OUTPUT_FILE);
   outputfile1 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
