@@ -8,5 +8,5 @@ python traceExporter.py --fcd-input test05.xml --ns2mobility-output test05.tcl
 
 會產生 tcl 檔
 
-3. ./waf --run "test05 --traceFile=scratch/test05.tcl --NODE_NUM=300 --duration=60"
+3. ./waf --run "test05 --traceFile=scratch/test05.tcl --NODE_NUM=300 --duration=360"
 產生結果

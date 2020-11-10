@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
 
   int SELECTED_ENB = 0; // 要測試哪一個 enb
 
-  double DURATION = 60;   // 貌似是秒數
+  double DURATION = 360;   // 貌似是秒數
   double ENB_TX_POWER = 20; // Transimission power in doubleBm, doubleBm 不知道是甚麼
 
   Ptr<LteUePhy> uephy;
