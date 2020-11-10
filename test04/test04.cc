@@ -184,7 +184,7 @@ int main(int argc, char *argv[])
   // Install mobility
   MobilityHelper enbMobility;
   enbMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
-  enbMobility.SetPositionAllocator();
+  enbMobility.SetPositionAllocator(enbPositionAlloc);
   enbMobility.Install(enbNode);
 
   // Install netdevice
