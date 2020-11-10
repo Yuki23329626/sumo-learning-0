@@ -56,13 +56,9 @@ public:
     // SINR，感覺單位是分貝
     this->sinr = 10 * log10(sinr);
 
-    if (now >= 10 && now < 11)
-      *os1 << "Current time: " << now << endl;
-      *os1 << "IMSI: " << imsi << endl;
-      *os1 << "SINR: " << this->sinr << endl;
-      *os1 << "X: " << position.x << endl;
-      *os1 << "Y: " << position.y << endl;
-      *os1 << "Connected eNB: " << connected_eNB << endl;
+    if (now >= 10 && now < 11){
+      *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
+    }
   }
 
   // When UE move change the UE position // 沒有人看得懂的英文
@@ -231,7 +227,7 @@ int main(int argc, char *argv[])
 
     // 設置 callback function，當 SINR 或是 position 有變動的時候，會分別呼叫這兩個 member function
     // 請確認，SINR 變動是怎麼偵測的，是偵測 eNB 的 SINR 嗎，如果是的話，有針對哪個 eNB 嗎?
-    // uephy->TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback(&UEs_Info::GetUeSinr, &ues_info[i]));
+    uephy->TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback(&UEs_Info::GetUeSinr, &ues_info[i]));
     ueMobilityModel->TraceConnectWithoutContext("CourseChange", MakeCallback(&UEs_Info::CourseChange1, &ues_info[i]));
   }
 
