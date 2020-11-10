@@ -120,17 +120,21 @@ int main(int argc, char *argv[])
   AsciiTraceHelper asciiTraceHelper;
   std::ofstream outputfile1;
 
-  outputfile1.open("test05_enb18.csv");
-  outputfile1 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
+  string OUTPUT_FILE = "test05_enb18.csv"
 
   // Enable logging from the ns2 helper
   LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
 
   CommandLine cmd; // 不知道是甚麼
   cmd.AddValue("traceFile", "Ns2 movement trace file", TRACE_FILE);
-  cmd.AddValue("NODE_NUM", "Number of nodes", NODE_NUM);
+  cmd.AddValue("nodeNum", "Number of nodes", NODE_NUM);
   cmd.AddValue("duration", "Duration of Simulation", DURATION);
+  cmd.AddValue("selectedEnb", "Select eNB ID", SELECTED_ENB);
+  cmd.AddValue("outputFile", "String of output file", OUTPUT_FILE);
   cmd.Parse(argc, argv);
+
+  outputfile1.open(OUTPUT_FILE);
+  outputfile1 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
 
   // Set the default Configure
   Config::SetDefault("ns3::LteEnbPhy::TxPower", DoubleValue(ENB_TX_POWER));
