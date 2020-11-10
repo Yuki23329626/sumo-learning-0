@@ -99,14 +99,14 @@ int main(int argc, char *argv[])
 {
   string TRACE_FILE = "scratch/test04.tcl";
 
-  const int NODE_NUM = 300; // UE 數量
-  const int BANDWIDTH = 100; // number of RB ,10MHz
-  const int ENB_NUM = 35; // 設置的 eNB 數量
+  int NODE_NUM = 300; // UE 數量
+  int BANDWIDTH = 100; // number of RB ,10MHz
+  int ENB_NUM = 35; // 設置的 eNB 數量
 
   int SELECTED_ENB = 1; // 要測試哪一個 enb
 
-  const double DURATION = 60;   // 貌似是秒數
-  const double ENB_TX_POWER = 20; // Transimission power in doubleBm, doubleBm 不知道是甚麼
+  double DURATION = 60;   // 貌似是秒數
+  double ENB_TX_POWER = 20; // Transimission power in doubleBm, doubleBm 不知道是甚麼
 
   Ptr<LteUePhy> uephy;
   Ptr<LteHelper> lteHelper = CreateObject<LteHelper>();
