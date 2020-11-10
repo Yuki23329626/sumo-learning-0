@@ -226,7 +226,7 @@ int main(int argc, char *argv[])
     ues_info[i].set_Position(ueMobilityModel->GetPosition());
 
     // 不知道為什麼要 +1，應該是 eNB 的編號，車輛在 SUMO 裡應該也是 1 開始編號
-    ues_info[i].setConnectedENB(SELECTED_ENB + 1);
+    ues_info[i].setConnectedENB(SELECTED_ENB);
     ues_info[i].set_output(&outputfile1);
 
     // 車輛 IMSI，車輛編號
