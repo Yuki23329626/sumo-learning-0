@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
   AsciiTraceHelper asciiTraceHelper;
   std::ofstream outputfile1;
 
-  outputfile1.open("test04.csv");
+  outputfile1.open("test05.csv");
   outputfile1 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
 
   // Enable logging from the ns2 helper
