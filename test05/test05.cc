@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
   int BANDWIDTH = 100; // number of RB ,10MHz
   int ENB_NUM = 35; // 設置的 eNB 數量
 
-  int SELECTED_ENB = 0; // 要測試哪一個 enb
+  int SELECTED_ENB = 17; // 要測試哪一個 enb
 
   double DURATION = 360;   // 貌似是秒數
   double ENB_TX_POWER = 20; // Transimission power in doubleBm, doubleBm 不知道是甚麼
@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
   AsciiTraceHelper asciiTraceHelper;
   std::ofstream outputfile1;
 
-  outputfile1.open("test05_enb0.csv");
+  outputfile1.open("test05_enb18.csv");
   outputfile1 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
 
   // Enable logging from the ns2 helper
