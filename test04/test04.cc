@@ -57,7 +57,7 @@ public:
     this->sinr = 10 * log10(sinr);
 
     if (now >= 10 && now < 11 )
-            *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connected_eNB << endl;
+      *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connected_eNB << endl;
   }
 
   // When UE move change the UE position // 沒有人看得懂的英文
@@ -90,7 +90,7 @@ private:
   int imsi = -1;
   int connected_eNB;
   double sinr = 0.0;
-  // double last_gt = 0.0; // 不知道是甚麼
+  double last_gt = 0.0; // 不知道是甚麼
   Vector position, enb_position;
   std::ofstream *os1;
 };
