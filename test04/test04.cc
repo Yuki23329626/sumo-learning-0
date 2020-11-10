@@ -57,7 +57,7 @@ public:
     this->sinr = 10 * log10(sinr);
 
     if (now >= 10 && now < 11){
-      *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
+      *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connected_eNB << endl;
     }
   }
 
