@@ -56,7 +56,7 @@ public:
     // SINR，感覺單位是分貝
     this->sinr = 10 * log10(sinr);
 
-    if (now >= 10 && now < 11 )
+    if (now >= 0 && now < 1 )
       *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connected_eNB << endl;
   }
 
