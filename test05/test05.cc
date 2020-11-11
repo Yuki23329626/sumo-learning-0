@@ -123,8 +123,8 @@ int main(int argc, char *argv[])
   std::ofstream outputfile1;
 
   string OUTPUT_FILE = "test05_enb.csv";
-  string OUTPUT_DIR = string::to_srting(timeinfo->tm_year + 1900) + "-" + string::to_srting(tm_mon + 1) + "-" + string::to_srting(tm_mday) + "-" + string::to_srting(tm_hour) + "-" + string::to_srting(tm_min) + "-" + string::to_srting(tm_sec);
-  _mkdir(OUTPUT_DIR);
+  string OUTPUT_DIR = to_srting(timeinfo->tm_year + 1900) + "-" + to_srting(tm_mon + 1) + "-" + to_srting(tm_mday) + "-" + to_srting(tm_hour) + "-" + to_srting(tm_min) + "-" + to_srting(tm_sec);
+  mkdir(OUTPUT_DIR);
 
   // Enable logging from the ns2 helper
   LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
