@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
   cmd.AddValue("outputDir", "output directory", OUTPUT_DIR);
   cmd.Parse(argc, argv);
 
-  OUTPUT_FILE = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE;
+  // OUTPUT_FILE = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE;
 
   outputfile1.open(OUTPUT_FILE);
   outputfile1 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
