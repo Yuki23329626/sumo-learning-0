@@ -3,6 +3,8 @@
 #include <sstream>
 #include <math.h>
 #include <string>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include "ns3/core-module.h"
 #include "ns3/mobility-module.h"
 #include "ns3/ns2-mobility-helper.h"
@@ -131,7 +133,7 @@ int main(int argc, char *argv[])
   cmd.AddValue("outputDir", "output directory", OUTPUT_DIR);
   cmd.Parse(argc, argv);
 
-  mkdir(OUTPUT_DIR);
+  mkdir(OUTPUT_DIR, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
   OUTPUT_FILE = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE;
 
   outputfile1.open(OUTPUT_FILE);
