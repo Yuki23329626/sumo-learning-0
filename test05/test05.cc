@@ -123,7 +123,7 @@ int main(int argc, char *argv[])
   std::ofstream outputfile1;
 
   string OUTPUT_FILE = "test05_enb.csv";
-  string OUTPUT_DIR = "output_csv"
+  string OUTPUT_DIR = "output_csv";
 
   // Enable logging from the ns2 helper
   LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
