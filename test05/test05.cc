@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
   cmd.AddValue("outputDir", "output directory", OUTPUT_DIR);
   cmd.Parse(argc, argv);
 
-  mkdir(OUTPUT_DIR, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+  mkdir(OUTPUT_DIR.ToCharArray(0,OUTPUT_DIR.Length), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
   OUTPUT_FILE = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE;
 
   outputfile1.open(OUTPUT_FILE);
