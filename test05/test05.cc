@@ -98,10 +98,6 @@ private:
 
 int main(int argc, char *argv[])
 {
-  time_t now = time(0);
-  struct tm * timeinfo;
-  timeinfo = localtime ( &now );
-
   string TRACE_FILE = "scratch/test05.tcl";
 
   // 以下部分變數不能加上 const，因為 cmd 那邊要進行設定
