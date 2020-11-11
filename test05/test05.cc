@@ -3,7 +3,6 @@
 #include <sstream>
 #include <math.h>
 #include <string>
-#include <time.h>
 #include "ns3/core-module.h"
 #include "ns3/mobility-module.h"
 #include "ns3/ns2-mobility-helper.h"
