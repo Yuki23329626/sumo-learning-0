@@ -18,3 +18,6 @@ cp test05/test05.tcl ../scratch/
 cd ..
 
 ./waf --run "test05 --traceFile=scratch/test05.tcl --nodeNum=100 --duration=60 --selectedEnb=0"
+
+CXXFLAGS="-std=c++0x" ./waf configure
+./waf clean

@@ -123,8 +123,7 @@ int main(int argc, char *argv[])
   std::ofstream outputfile1;
 
   string OUTPUT_FILE = "test05_enb.csv";
-  string OUTPUT_DIR = to_srting(timeinfo->tm_year + 1900) + "-" + to_srting(tm_mon + 1) + "-" + to_srting(tm_mday) + "-" + to_srting(tm_hour) + "-" + to_srting(tm_min) + "-" + to_srting(tm_sec);
-  mkdir(OUTPUT_DIR);
+  string OUTPUT_DIR = "output_csv"
 
   // Enable logging from the ns2 helper
   LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
@@ -134,6 +133,7 @@ int main(int argc, char *argv[])
   cmd.AddValue("nodeNum", "Number of nodes", NODE_NUM);
   cmd.AddValue("duration", "Duration of Simulation", DURATION);
   cmd.AddValue("selectedEnb", "Select eNB ID", SELECTED_ENB);
+  cmd.AddValue("outputDir", "output directory", OUTPUT_DIR);
   cmd.Parse(argc, argv);
 
   OUTPUT_FILE = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE;
