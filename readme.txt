@@ -28,3 +28,5 @@ cd ..
 ./waf --run "test05 --traceFile=scratch/test05.tcl --nodeNum=100 --duration=60 --selectedEnb=3"
 CXXFLAGS="-std=c++0x" ./waf configure
 ./waf clean
+
+top -n 1 | grep nxshen | cut -c 1-15

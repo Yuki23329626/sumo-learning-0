@@ -147,10 +147,10 @@ int main(int argc, char *argv[])
   OUTPUT_FILE2 = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE2;
 
   outputfile1.open(OUTPUT_FILE);
+  outputfile2.open(OUTPUT_FILE2);
   outputfile1 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
   outputfile2 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
 
-  outputfile2.open(OUTPUT_FILE2);
 
   // Set the default Configure
   Config::SetDefault("ns3::LteEnbPhy::TxPower", DoubleValue(ENB_TX_POWER));
