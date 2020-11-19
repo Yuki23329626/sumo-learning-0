@@ -198,7 +198,7 @@ int main(int argc, char *argv[])
   {
     for (int i = 1; i < 8; i++)
     {
-      Vector enbPosition(1300 + 500*i, 1900 + 400*j, 0);
+      Vector enbPosition(1300 + 200*i, 250 + 200*j, 0);
       enbPositionAlloc->Add(enbPosition);
     }
   }
