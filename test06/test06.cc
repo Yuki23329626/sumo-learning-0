@@ -68,6 +68,7 @@ public:
   {
     Vector pos = mobility->GetPosition(); // Get position
     position = pos;
+    double now = Simulator::Now().GetSeconds();
     if (now >= 30 && now < 31 )
       *os2 << now << "," << position.x << "," << position.y << "," << connected_eNB << endl;
   }
@@ -187,7 +188,7 @@ int main(int argc, char *argv[])
 
   // Create enbNode
   NodeContainer enbNode;
-  enbNode.Create(ENB_NUM);ZAx    
+  enbNode.Create(ENB_NUM);
 
   // Set eNB position
   Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator>();
