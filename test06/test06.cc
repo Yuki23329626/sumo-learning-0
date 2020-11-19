@@ -58,7 +58,6 @@ public:
     // SINR，感覺單位是分貝
     this->sinr = 10 * log10(sinr);
 
-    if (now >= 30 && now < 31 )
       *os1 << now << "," << imsi << "," << this->sinr  << "," << position.x << "," << position.y << "," << connected_eNB << endl;
   }
 
@@ -69,7 +68,7 @@ public:
     Vector pos = mobility->GetPosition(); // Get position
     position = pos;
     double now = Simulator::Now().GetSeconds();
-    if (now >= 30 && now < 31 )
+    
       *os2 << now << "," << position.x << "," << position.y << "," << connected_eNB << endl;
   }
 
