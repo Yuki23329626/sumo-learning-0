@@ -148,6 +148,7 @@ int main(int argc, char *argv[])
 
   outputfile1.open(OUTPUT_FILE);
   outputfile1 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
+  outputfile2 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
 
   outputfile2.open(OUTPUT_FILE2);
 
