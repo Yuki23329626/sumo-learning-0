@@ -68,8 +68,8 @@ public:
     Vector pos = mobility->GetPosition(); // Get position
     position = pos;
     double now = Simulator::Now().GetSeconds();
-    
-      *os2 << now << "," << position.x << "," << position.y << "," << connected_eNB << endl;
+    this->sinr = 10 * log10(sinr);
+    *os2 << now << "," << imsi << "," << this->sinr  << "," << position.x << "," << position.y << "," << connected_eNB << endl;
   }
 
   // 要連哪個 ENB

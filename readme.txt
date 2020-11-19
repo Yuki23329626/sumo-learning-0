@@ -1,5 +1,5 @@
 1. generate a bundle file from created scenario
-sumo -c test06.sumocfg --fcd-output test06.xml --step-length 1000
+sumo -c test06.sumocfg --fcd-output test06.xml --step-length 1
 
 會產生 xml 檔
 
