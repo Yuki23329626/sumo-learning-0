@@ -1,5 +1,5 @@
 1. generate a bundle file from created scenario
-sumo -c test06.sumocfg --fcd-output test06.xml --step-length time(1)
+sumo -c test06.sumocfg --fcd-output test06.xml --step-length 1000
 
 會產生 xml 檔
 
@@ -16,7 +16,9 @@ git pull
 cp test06/test06.cc ../scratch/
 cp test06/test06.tcl ../scratch/
 cd ..
-./waf --run "test06 --traceFile=scratch/test06.tcl --nodeNum=100 --duration=60 --selectedEnb=0 --outputDir=test06-1"
+./waf --run "test06 --traceFile=scratch/test06.tcl --nodeNum=100 --duration=120 --selectedEnb=0 --outputDir=test06-1"
+
+
 
 ./waf --run "test05 --traceFile=scratch/test05.tcl --nodeNum=100 --duration=60 --selectedEnb=3"
 CXXFLAGS="-std=c++0x" ./waf configure
