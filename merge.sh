@@ -10,7 +10,7 @@ echo "Time_sec,IMSI,SINR,X,Y,Selected_eNB" > total.csv
 for num in `seq 0 ${all_num}`
 do
 {
-    cat ${num}${postfix} | tail -n +2 >> total.csv
+    cat ${num}${postfix} | tail -n +3 >> total.csv
     echo ${num}
 }
 done
