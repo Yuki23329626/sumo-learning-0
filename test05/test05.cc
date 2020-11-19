@@ -93,6 +93,7 @@ private:
   double last_gt = 0.0; // 不知道是甚麼
   Vector position, enb_position;
   std::ofstream *os1;
+  std::ofstream *os2;
 };
 
 int main(int argc, char *argv[])
@@ -169,7 +170,7 @@ int main(int argc, char *argv[])
 
   // Create enbNode
   NodeContainer enbNode;
-  enbNode.Create(ENB_NUM);
+  enbNode.Create(ENB_NUM);ZAx    
 
   // Set eNB position
   Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator>();

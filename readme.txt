@@ -17,4 +17,4 @@ cp test05/test05.cc ../scratch/
 cp test05/test05.tcl ../scratch/
 cd ..
 
-./waf --run "test05 --traceFile=scratch/test05.tcl --nodeNum=100 --duration=60 --selectedEnb=1"
+./waf --run "test05 --traceFile=scratch/test05.tcl --nodeNum=100 --duration=60 --selectedEnb=3"
