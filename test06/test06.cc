@@ -58,7 +58,7 @@ public:
     // SINR，感覺單位是分貝
     this->sinr = 10 * log10(sinr);
 
-      *os1 << now << "," << imsi << "," << this->sinr  << "," << position.x << "," << position.y << "," << connected_eNB << endl;
+    *os1 << now << "," << imsi << "," << this->sinr  << "," << position.x << "," << position.y << "," << connected_eNB << endl;
   }
 
   // When UE move change the UE position // 沒有人看得懂的英文
@@ -124,8 +124,8 @@ int main(int argc, char *argv[])
   std::ofstream outputfile1;
   std::ofstream outputfile2;
 
-  string OUTPUT_FILE = "test06_enb.csv";
-  string OUTPUT_FILE2 = "test06_enb.txt";
+  string OUTPUT_FILE = "test06_enb0.csv";
+  string OUTPUT_FILE2 = "test06_enb1.csv";
   string OUTPUT_DIR = "output_csv";
 
   // Enable logging from the ns2 helper
@@ -250,7 +250,7 @@ int main(int argc, char *argv[])
 
     // 設置 callback function，當 SINR 或是 position 有變動的時候，會分別呼叫這兩個 member function
     // 請確認，SINR 變動是怎麼偵測的，是偵測 eNB 的 SINR 嗎，如果是的話，有針對哪個 eNB 嗎?
-    // uephy->TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback(&UEs_Info::GetUeSinr, &ues_info[i]));
+    uephy->TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback(&UEs_Info::GetUeSinr, &ues_info[i]));
     ueMobilityModel->TraceConnectWithoutContext("CourseChange", MakeCallback(&UEs_Info::CourseChange1, &ues_info[i]));
   }
 

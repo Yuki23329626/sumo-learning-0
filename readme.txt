@@ -19,6 +19,11 @@ cd ..
 ./waf --run "test06 --traceFile=scratch/test06.tcl --nodeNum=100 --duration=120 --selectedEnb=0 --outputDir=test06-1"
 
 
+./waf clean
+./waf configure --build-profile=optimized --enable-examples --enable-tests
+
+./waf clean
+./waf configure --build-profile=debug --enable-examples --enable-tests
 
 ./waf --run "test05 --traceFile=scratch/test05.tcl --nodeNum=100 --duration=60 --selectedEnb=3"
 CXXFLAGS="-std=c++0x" ./waf configure
