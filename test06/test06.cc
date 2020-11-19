@@ -104,7 +104,7 @@ private:
 
 int main(int argc, char *argv[])
 {
-  string TRACE_FILE = "scratch/test05.tcl";
+  string TRACE_FILE = "scratch/test06.tcl";
 
   // 以下部分變數不能加上 const，因為 cmd 那邊要進行設定
   int NODE_NUM = 300; // UE 數量
@@ -125,8 +125,8 @@ int main(int argc, char *argv[])
   std::ofstream outputfile1;
   std::ofstream outputfile2;
 
-  string OUTPUT_FILE = "test05_enb.csv";
-  string OUTPUT_FILE2 = "test05_enb.txt";
+  string OUTPUT_FILE = "test06_enb.csv";
+  string OUTPUT_FILE2 = "test06_enb.txt";
   string OUTPUT_DIR = "output_csv";
 
   // Enable logging from the ns2 helper

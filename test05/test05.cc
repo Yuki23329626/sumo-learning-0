@@ -3,8 +3,6 @@
 #include <sstream>
 #include <math.h>
 #include <string>
-#include <sys/stat.h>
-#include <sys/types.h>
 #include "ns3/core-module.h"
 #include "ns3/mobility-module.h"
 #include "ns3/ns2-mobility-helper.h"
@@ -68,8 +66,6 @@ public:
   {
     Vector pos = mobility->GetPosition(); // Get position
     position = pos;
-    if (now >= 30 && now < 31 )
-      *os2 << now << "," << position.x << "," << position.y << "," << connected_eNB << endl;
   }
 
   // 要連哪個 ENB
@@ -85,10 +81,9 @@ public:
   }
 
   // 使用 object 的 output stream
-  void set_output(std::ofstream *os1, std::ofstream *os2)
+  void set_output(std::ofstream *os1)
   {
     this->os1 = os1;
-    this->os2 = os2;
   }
 
 private:
@@ -98,14 +93,12 @@ private:
   double last_gt = 0.0; // 不知道是甚麼
   Vector position, enb_position;
   std::ofstream *os1;
-  std::ofstream *os2;
 };
 
 int main(int argc, char *argv[])
 {
   string TRACE_FILE = "scratch/test05.tcl";
 
-  // 以下部分變數不能加上 const，因為 cmd 那邊要進行設定
   int NODE_NUM = 300; // UE 數量
   int BANDWIDTH = 100; // number of RB ,10MHz
   int ENB_NUM = 35; // 設置的 eNB 數量
@@ -122,11 +115,8 @@ int main(int argc, char *argv[])
 
   AsciiTraceHelper asciiTraceHelper;
   std::ofstream outputfile1;
-  std::ofstream outputfile2;
 
-  string OUTPUT_FILE = "test05_enb.csv";
-  string OUTPUT_FILE2 = "test05_enb.txt";
-  string OUTPUT_DIR = "output_csv";
+  string OUTPUT_FILE = "test05_enb";
 
   // Enable logging from the ns2 helper
   LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
@@ -136,20 +126,12 @@ int main(int argc, char *argv[])
   cmd.AddValue("nodeNum", "Number of nodes", NODE_NUM);
   cmd.AddValue("duration", "Duration of Simulation", DURATION);
   cmd.AddValue("selectedEnb", "Select eNB ID", SELECTED_ENB);
-  cmd.AddValue("outputDir", "output directory", OUTPUT_DIR);
   cmd.Parse(argc, argv);
 
-  char CHAR_OUTPUT_DIR[OUTPUT_DIR.length()+1];
-  strcpy(CHAR_OUTPUT_DIR, OUTPUT_DIR.c_str());
-  mkdir(CHAR_OUTPUT_DIR, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-
-  OUTPUT_FILE = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE;
-  OUTPUT_FILE2 = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE2;
+  OUTPUT_FILE = OUTPUT_FILE + to_string(SELECTED_ENB) + ".csv";
 
   outputfile1.open(OUTPUT_FILE);
   outputfile1 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
-
-  outputfile2.open(OUTPUT_FILE2);
 
   // Set the default Configure
   Config::SetDefault("ns3::LteEnbPhy::TxPower", DoubleValue(ENB_TX_POWER));
@@ -187,7 +169,7 @@ int main(int argc, char *argv[])
 
   // Create enbNode
   NodeContainer enbNode;
-  enbNode.Create(ENB_NUM);ZAx    
+  enbNode.Create(ENB_NUM);
 
   // Set eNB position
   Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator>();
@@ -241,7 +223,7 @@ int main(int argc, char *argv[])
 
     // 不知道為什麼要 +1，應該是 eNB 的編號，車輛在 SUMO 裡應該也是 1 開始編號
     ues_info[i].setConnectedENB(SELECTED_ENB);
-    ues_info[i].set_output(&outputfile1, &outputfile2);
+    ues_info[i].set_output(&outputfile1);
 
     // 車輛 IMSI，車輛編號
     uephy = ueDevs.Get(i)->GetObject<LteUeNetDevice>()->GetPhy();
