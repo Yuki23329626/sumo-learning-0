@@ -68,6 +68,8 @@ public:
   {
     Vector pos = mobility->GetPosition(); // Get position
     position = pos;
+    if (now >= 30 && now < 31 )
+      *os2 << now << "," << position.x << "," << position.y << "," << connected_eNB << endl;
   }
 
   // 要連哪個 ENB
@@ -83,9 +85,10 @@ public:
   }
 
   // 使用 object 的 output stream
-  void set_output(std::ofstream *os1)
+  void set_output(std::ofstream *os1, std::ofstream *os2)
   {
     this->os1 = os1;
+    this->os2 = os2;
   }
 
 private:
@@ -119,8 +122,10 @@ int main(int argc, char *argv[])
 
   AsciiTraceHelper asciiTraceHelper;
   std::ofstream outputfile1;
+  std::ofstream outputfile2;
 
   string OUTPUT_FILE = "test05_enb.csv";
+  string OUTPUT_FILE2 = "test05_enb.txt";
   string OUTPUT_DIR = "output_csv";
 
   // Enable logging from the ns2 helper
@@ -137,10 +142,14 @@ int main(int argc, char *argv[])
   char CHAR_OUTPUT_DIR[OUTPUT_DIR.length()+1];
   strcpy(CHAR_OUTPUT_DIR, OUTPUT_DIR.c_str());
   mkdir(CHAR_OUTPUT_DIR, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+
   OUTPUT_FILE = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE;
+  OUTPUT_FILE2 = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE2;
 
   outputfile1.open(OUTPUT_FILE);
   outputfile1 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
+
+  outputfile2.open(OUTPUT_FILE2);
 
   // Set the default Configure
   Config::SetDefault("ns3::LteEnbPhy::TxPower", DoubleValue(ENB_TX_POWER));
@@ -232,7 +241,7 @@ int main(int argc, char *argv[])
 
     // 不知道為什麼要 +1，應該是 eNB 的編號，車輛在 SUMO 裡應該也是 1 開始編號
     ues_info[i].setConnectedENB(SELECTED_ENB);
-    ues_info[i].set_output(&outputfile1);
+    ues_info[i].set_output(&outputfile1, &outputfile2);
 
     // 車輛 IMSI，車輛編號
     uephy = ueDevs.Get(i)->GetObject<LteUeNetDevice>()->GetPhy();
