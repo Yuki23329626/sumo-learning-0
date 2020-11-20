@@ -41,7 +41,7 @@ handover 考慮 prepare time 跟 completion time，也許可以比較
  |    |    |    |    |     10.1.1.0     |    |    |    |    |    |    |    |    |    |
 n4 - n3 - n2 - n1 - n0 --------------  n35  n36  n37  n38  n39  n40  n41  n42  n43  n44
                               LAN       |    |    |    |    |    |    |    |    |    |
-                                       ===============================================
+                                       ================================================
                                                          LAN 10.1.8.0
 */
 
@@ -267,31 +267,31 @@ int main(int argc, char *argv[])
   address.SetBase ("10.1.1.0", "255.255.255.0");
   Ipv4InterfaceContainer csmaInterfaces[7];
   csmaInterfaces[0] = address.Assign (csmaDevices[0]);
-  address.Assign (csmaCoreDevices.Get(0));
+  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(0)));
 
   address.SetBase ("10.1.2.0", "255.255.255.0");
   csmaInterfaces[1] = address.Assign (csmaDevices[1]);
-  address.Assign (csmaCoreDevices.Get(1));
+  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(1)));
 
   address.SetBase ("10.1.3.0", "255.255.255.0");
   csmaInterfaces[2] = address.Assign (csmaDevices[2]);
-  address.Assign (csmaCoreDevices.Get(2));
+  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(2)));
 
   address.SetBase ("10.1.4.0", "255.255.255.0");
   csmaInterfaces[3] = address.Assign (csmaDevices[3]);
-  address.Assign (csmaCoreDevices.Get(3));
+  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(3)));
 
   address.SetBase ("10.1.5.0", "255.255.255.0");
   csmaInterfaces[4] = address.Assign (csmaDevices[4]);
-  address.Assign (csmaCoreDevices.Get(4));
+  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(4)));
 
   address.SetBase ("10.1.6.0", "255.255.255.0");
   csmaInterfaces[5] = address.Assign (csmaDevices[5]);
-  address.Assign (csmaCoreDevices.Get(5));
+  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(5)));
 
   address.SetBase ("10.1.7.0", "255.255.255.0");
   csmaInterfaces[6] = address.Assign (csmaDevices[6]);
-  address.Assign (csmaCoreDevices.Get(6));
+  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(6)));
 
   UdpEchoServerHelper echoServerIPFS (9);
 
