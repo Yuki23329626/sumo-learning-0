@@ -194,7 +194,7 @@ int main(int argc, char *argv[])
   csmaCoreNodes.Create (10);
 
   NodeContainer csmaNodes[7];
-  for(i=0;i++;i<7){
+  for(int i=0;i++;i<7){
     csmaNodes[i].Add(csmaCoreNodes.Get(i));
     csmaNodes[i].Create(6);
   }
@@ -216,7 +216,7 @@ int main(int argc, char *argv[])
   lte.SetEnbAntennaModelAttribute("Gain", DoubleValue(1.0));
 
   NodeContainer lteEnbNodes[7];
-  for(i=0;i++;i<5){
+  for(int i=0;i++;i<5){
     lteEnbNodes[0].Add(csmaNodes.Get(i + 5*0));
     lteEnbNodes[1].Add(csmaNodes.Get(i + 5*1));
     lteEnbNodes[2].Add(csmaNodes.Get(i + 5*2));
@@ -225,12 +225,12 @@ int main(int argc, char *argv[])
     lteEnbNodes[5].Add(csmaNodes.Get(i + 5*5));
     lteEnbNodes[6].Add(csmaNodes.Get(i + 5*6));
   }
-  for(i=0;i++;i<7){
+  for(int i=0;i++;i<7){
     lteEnbNodes[i].Create(5);
   }
 
   NetDeviceContainer lteEnbDevices[7];
-  for(i=0;i++;i<7){
+  for(int i=0;i++;i<7){
     lteEnbDevices[i].InstallEnbDevice(lteEnbNodes[i]);
   }
 
@@ -238,14 +238,14 @@ int main(int argc, char *argv[])
   csmaCoreDevices.Install(csmaCoreNodes);
 
   NetDeviceContainer csmaDevices[7];
-  for(i=0;i++;i<7){
+  for(int i=0;i++;i<7){
     csmaDevices.Install(csmaNodes[i]);
   }
 
   InternetStackHelper stack;
   stack.Install (csmaCoreNodes);
   stack.Install (csmaNodes);
-  for(i=0;i++;i<7){
+  for(int i=0;i++;i<7){
     stack.Install (lteEnbNodes[i]);
   }
 
