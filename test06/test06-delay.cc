@@ -234,15 +234,15 @@ int main(int argc, char *argv[])
 
   NetDeviceContainer lteEnbDevices[7];
   for(int i=0;i<7;i++){
-    lteEnbDevices[i].Install(lteEnbNodes[i]);
+    lteEnbDevices[i] = lte.InstallEnbDevice(lteEnbNodes[i]);
   }
 
   NetDeviceContainer csmaCoreDevices;
-  csmaCoreDevices.Install(csmaCoreNodes);
+  csmaCoreDevices = csma.Install(csmaCoreNodes);
 
   NetDeviceContainer csmaDevices[7];
   for(int i=0;i<7;i++){
-    csmaDevices.Install(csmaNodes[i]);
+    csmaDevices = csma.Install(csmaNodes[i]);
   }
 
   InternetStackHelper stack;
