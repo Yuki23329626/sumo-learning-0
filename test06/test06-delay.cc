@@ -187,12 +187,30 @@ int main(int argc, char *argv[])
   // Config::SetDefault("ns3::LteUePowerControl::Alpha", DoubleValue(1.0));
   // Config::SetDefault("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue(320)); // he SRS periodicity in num TTIs
 
+  NodeContainer p2pNodes[7];
+  for(int i=0;i<7;i++){
+    p2pNodes[i].create(2);
+  }
+
+  PointToPointHelper pointToPoint;
+  pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
+  pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
+
+  NetDeviceContainer p2pDevices[7];
+  for(int i=0;i<7;i++){
+    p2pDevices[i] = pointToPoint.Install (p2pNodes[i]);
+  }
+
   NodeContainer csmaCoreNodes;
-  csmaCoreNodes.Create (10);
+  for(int i=0;i<7;i++){
+    csmaCoreNodes.Add(p2pNodes[i].Get(0));
+  }
+  csmaCoreNodes.Create (3);
 
   NodeContainer csmaNodes[7];
   for(int i=0;i<7;i++){
-    csmaNodes[i].Create(5);
+    csmaNodes[i].Add(p2pNodes[i].Get(1));
+    csmaNodes[i].Create(4);
   }
 
   CsmaHelper csma;
@@ -207,20 +225,6 @@ int main(int argc, char *argv[])
     csmaDevices[i] = csma.Install (csmaNodes[i]);
   }
 
-  NodeContainer p2pNodes[7];
-  for(int i=0;i<7;i++){
-    p2pNodes[i].Add(csmaCoreNodes.Get(i));
-    p2pNodes[i].Add(csmaNodes[i].Get(0));
-  }
-
-  PointToPointHelper pointToPoint;
-  pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
-  pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
-
-  NetDeviceContainer p2pDevices[7];
-  for(int i=0;i<7;i++){
-    p2pDevices[i] = pointToPoint.Install (p2pNodes[i]);
-  }
   // LteHelper lte;
   // lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
   // lte.SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
