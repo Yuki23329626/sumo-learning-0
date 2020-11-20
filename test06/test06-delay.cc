@@ -212,7 +212,7 @@ int main(int argc, char *argv[])
     csmaDevices = csma.Install (csmaNodes[i]);
   }
 
-  lteHelper lte;
+  LteHelper lte;
   lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
   lte.SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
   lte.SetEnbAntennaModelType("ns3::IsotropicAntennaModel");
