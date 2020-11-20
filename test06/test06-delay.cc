@@ -227,7 +227,7 @@ int main(int argc, char *argv[])
 
   NetDeviceContainer lteEnbDevices[7];
   for(int i=0;i<7;i++){
-    lteEnbDevices[i] = lte.InstallEnbDevice(lteEnbNodes[i]);
+    lteEnbDevices[i] = lteHelper->InstallEnbDevice(lteEnbNodes[i]);
   }
 
   // InternetStackHelper stack;
