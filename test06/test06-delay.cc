@@ -127,6 +127,9 @@ int main(int argc, char *argv[])
   double DURATION = 1000;   // 貌似是秒數
   double ENB_TX_POWER = 20; // Transimission power in doubleBm, doubleBm 不知道是甚麼
 
+  uint32_t nCsma = 3;
+  uint32_t nWifi = 3;
+
   Ptr<LteUePhy> uephy;
   Ptr<LteHelper> lteHelper = CreateObject<LteHelper>();
 
@@ -135,11 +138,9 @@ int main(int argc, char *argv[])
 
 
   AsciiTraceHelper asciiTraceHelper;
-  std::ofstream outputfile1;
-  std::ofstream outputfile2;
+  std::ofstream outputfile3;
 
-  string OUTPUT_FILE = "test06_enb0.csv";
-  string OUTPUT_FILE2 = "test06_enb1.csv";
+  string OUTPUT_FILE3 = "test06_delay.csv";
   string OUTPUT_DIR = "output_csv";
 
   // Enable logging from the ns2 helper
@@ -157,13 +158,10 @@ int main(int argc, char *argv[])
   strcpy(CHAR_OUTPUT_DIR, OUTPUT_DIR.c_str());
   mkdir(CHAR_OUTPUT_DIR, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 
-  OUTPUT_FILE = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE;
-  OUTPUT_FILE2 = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE2;
+  OUTPUT_FILE3 = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE3;
 
-  outputfile1.open(OUTPUT_FILE);
-  outputfile2.open(OUTPUT_FILE2);
-  outputfile1 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
-  outputfile2 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
+  outputfile3.open(OUTPUT_FILE3);
+  outputfile2 << "From,To,delay" << endl;
 
 
   // Set the default Configure
@@ -183,6 +181,13 @@ int main(int argc, char *argv[])
   Config::SetDefault("ns3::LteUePowerControl::AccumulationEnabled", BooleanValue(true));
   Config::SetDefault("ns3::LteUePowerControl::Alpha", DoubleValue(1.0));
   Config::SetDefault("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue(320)); // he SRS periodicity in num TTIs
+
+  NodeContainer nodes;
+  p2pNodes.Create (2);
+
+  CsmaHelper csma;
+  csma.SetChannelAttribute ("DataRate", StringValue ("100Mbps"));
+  csma.SetChannelAttribute ("Delay", TimeValue (NanoSeconds (6560)));
 
   lteHelper->SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
   lteHelper->SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
