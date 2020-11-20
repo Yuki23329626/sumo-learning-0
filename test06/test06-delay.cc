@@ -142,8 +142,8 @@ int main(int argc, char *argv[])
   // string OUTPUT_FILE2 = "test06_enb1.csv";
   // string OUTPUT_DIR = "output_csv";
 
-  // // Enable logging from the ns2 helper
-  // LogComponentEnable("Ns2MobilityHelper", LOG_ALL);
+  // Enable logging from the ns2 helper
+  LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
 
   // CommandLine cmd; // 不知道是甚麼
   // cmd.AddValue("traceFile", "Ns2 movement trace file", TRACE_FILE);
