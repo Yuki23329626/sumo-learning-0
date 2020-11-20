@@ -239,7 +239,9 @@ int main(int argc, char *argv[])
 
   InternetStackHelper stack;
   stack.Install (csmaCoreNodes);
-  stack.Install (csmaNodes);
+  for(int i=0;i<7;i++){
+    stack.Install (csmaNodes[i]);
+  }
   for(int i=0;i<7;i++){
     stack.Install (lteEnbNodes[i]);
   }
