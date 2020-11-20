@@ -205,82 +205,82 @@ int main(int argc, char *argv[])
     csmaDevices[i] = csma.Install (csmaNodes[i]);
   }
 
-  LteHelper lte;
-  lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
-  lte.SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
-  lte.SetEnbAntennaModelType("ns3::IsotropicAntennaModel");
-  lte.SetEnbAntennaModelAttribute("Gain", DoubleValue(1.0));
+  // LteHelper lte;
+  // lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
+  // lte.SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
+  // lte.SetEnbAntennaModelType("ns3::IsotropicAntennaModel");
+  // lte.SetEnbAntennaModelAttribute("Gain", DoubleValue(1.0));
 
-  NodeContainer lteEnbNodes[7];
-  for(int i=0;i<5;i++){
-    lteEnbNodes[0].Add(csmaNodes[0].Get(i));
-    lteEnbNodes[1].Add(csmaNodes[1].Get(i));
-    lteEnbNodes[2].Add(csmaNodes[2].Get(i));
-    lteEnbNodes[3].Add(csmaNodes[3].Get(i));
-    lteEnbNodes[4].Add(csmaNodes[4].Get(i));
-    lteEnbNodes[5].Add(csmaNodes[5].Get(i));
-    lteEnbNodes[6].Add(csmaNodes[6].Get(i));
-  }
-  for(int i=0;i<7;i++){
-    lteEnbNodes[i].Create(5);
-  }
-
-  NetDeviceContainer lteEnbDevices[7];
-  for(int i=0;i<7;i++){
-    lteEnbDevices[i] = lte.InstallEnbDevice(lteEnbNodes[i]);
-  }
-
-  // InternetStackHelper stack;
-  // stack.Install (csmaCoreNodes);
-  // for(int i=0;i<7;i++){
-  //   stack.Install (csmaNodes[i]);
+  // NodeContainer lteEnbNodes[7];
+  // for(int i=0;i<5;i++){
+  //   lteEnbNodes[0].Add(csmaNodes[0].Get(i));
+  //   lteEnbNodes[1].Add(csmaNodes[1].Get(i));
+  //   lteEnbNodes[2].Add(csmaNodes[2].Get(i));
+  //   lteEnbNodes[3].Add(csmaNodes[3].Get(i));
+  //   lteEnbNodes[4].Add(csmaNodes[4].Get(i));
+  //   lteEnbNodes[5].Add(csmaNodes[5].Get(i));
+  //   lteEnbNodes[6].Add(csmaNodes[6].Get(i));
   // }
   // for(int i=0;i<7;i++){
-  //   stack.Install (lteEnbNodes[i]);
+  //   lteEnbNodes[i].Create(5);
   // }
 
-  // Ipv4AddressHelper address;
+  // NetDeviceContainer lteEnbDevices[7];
+  // for(int i=0;i<7;i++){
+  //   lteEnbDevices[i] = lte.InstallEnbDevice(lteEnbNodes[i]);
+  // }
 
-  // address.SetBase ("10.1.8.0", "255.255.255.0");
-  // Ipv4InterfaceContainer csmaCoreInterfaces;
-  // csmaCoreInterfaces = address.Assign (csmaCoreDevices);
+  InternetStackHelper stack;
+  stack.Install (csmaCoreNodes);
+  for(int i=0;i<7;i++){
+    stack.Install (csmaNodes[i]);
+  }
+  for(int i=0;i<7;i++){
+    stack.Install (lteEnbNodes[i]);
+  }
 
-  // address.SetBase ("10.1.1.0", "255.255.255.0");
-  // Ipv4InterfaceContainer csmaInterfaces[7];
-  // csmaInterfaces[0] = address.Assign (csmaDevices[0]);
+  Ipv4AddressHelper address;
 
-  // address.SetBase ("10.1.2.0", "255.255.255.0");
-  // csmaInterfaces[1] = address.Assign (csmaDevices[1]);
+  address.SetBase ("10.1.8.0", "255.255.255.0");
+  Ipv4InterfaceContainer csmaCoreInterfaces;
+  csmaCoreInterfaces = address.Assign (csmaCoreDevices);
 
-  // address.SetBase ("10.1.3.0", "255.255.255.0");
-  // csmaInterfaces[2] = address.Assign (csmaDevices[2]);
+  address.SetBase ("10.1.1.0", "255.255.255.0");
+  Ipv4InterfaceContainer csmaInterfaces[7];
+  csmaInterfaces[0] = address.Assign (csmaDevices[0]);
 
-  // address.SetBase ("10.1.4.0", "255.255.255.0");
-  // csmaInterfaces[3] = address.Assign (csmaDevices[3]);
+  address.SetBase ("10.1.2.0", "255.255.255.0");
+  csmaInterfaces[1] = address.Assign (csmaDevices[1]);
 
-  // address.SetBase ("10.1.5.0", "255.255.255.0");
-  // csmaInterfaces[4] = address.Assign (csmaDevices[4]);
+  address.SetBase ("10.1.3.0", "255.255.255.0");
+  csmaInterfaces[2] = address.Assign (csmaDevices[2]);
 
-  // address.SetBase ("10.1.6.0", "255.255.255.0");
-  // csmaInterfaces[5] = address.Assign (csmaDevices[5]);
+  address.SetBase ("10.1.4.0", "255.255.255.0");
+  csmaInterfaces[3] = address.Assign (csmaDevices[3]);
 
-  // address.SetBase ("10.1.7.0", "255.255.255.0");
-  // csmaInterfaces[6] = address.Assign (csmaDevices[6]);
+  address.SetBase ("10.1.5.0", "255.255.255.0");
+  csmaInterfaces[4] = address.Assign (csmaDevices[4]);
 
-  // UdpEchoServerHelper echoServerIPFS (9);
+  address.SetBase ("10.1.6.0", "255.255.255.0");
+  csmaInterfaces[5] = address.Assign (csmaDevices[5]);
 
-  // ApplicationContainer serverApps = echoServerIPFS.Install (csmaCoreNodes.Get (8));
-  // serverApps.Start (Seconds (1.0));
-  // serverApps.Stop (Seconds (10.0));
+  address.SetBase ("10.1.7.0", "255.255.255.0");
+  csmaInterfaces[6] = address.Assign (csmaDevices[6]);
 
-  // UdpEchoClientHelper echoClient (csmaCoreInterfaces.GetAddress(8), 9);
-  // echoClient.SetAttribute ("MaxPackets", UintegerValue (1));
-  // echoClient.SetAttribute ("Interval", TimeValue (Seconds (1.0)));
-  // echoClient.SetAttribute ("PacketSize", UintegerValue (1024));
+  UdpEchoServerHelper echoServerIPFS (9);
 
-  // ApplicationContainer clientApps = echoClient.Install(csmaNodes[0].Get (0));
-  // clientApps.Start (Seconds (2.0));
-  // clientApps.Stop (Seconds (10.0));
+  ApplicationContainer serverApps = echoServerIPFS.Install (csmaCoreNodes.Get (8));
+  serverApps.Start (Seconds (1.0));
+  serverApps.Stop (Seconds (10.0));
+
+  UdpEchoClientHelper echoClient (csmaCoreInterfaces.GetAddress(8), 9);
+  echoClient.SetAttribute ("MaxPackets", UintegerValue (1));
+  echoClient.SetAttribute ("Interval", TimeValue (Seconds (1.0)));
+  echoClient.SetAttribute ("PacketSize", UintegerValue (1024));
+
+  ApplicationContainer clientApps = echoClient.Install(csmaNodes[0].Get (0));
+  clientApps.Start (Seconds (2.0));
+  clientApps.Stop (Seconds (10.0));
 
   lteHelper->SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
   lteHelper->SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
