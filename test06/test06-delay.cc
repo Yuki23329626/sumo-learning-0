@@ -184,26 +184,26 @@ int main(int argc, char *argv[])
   Config::SetDefault("ns3::LteUePowerControl::Alpha", DoubleValue(1.0));
   Config::SetDefault("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue(320)); // he SRS periodicity in num TTIs
 
-  // NodeContainer csmaCoreNodes;
-  // csmaCoreNodes.Create (10);
+  NodeContainer csmaCoreNodes;
+  csmaCoreNodes.Create (10);
 
-  // NodeContainer csmaNodes[7];
-  // for(int i=0;i<7;i++){
-  //   csmaNodes[i].Add(csmaCoreNodes.Get(i));
-  //   csmaNodes[i].Create(6);
-  // }
+  NodeContainer csmaNodes[7];
+  for(int i=0;i<7;i++){
+    csmaNodes[i].Add(csmaCoreNodes.Get(i));
+    csmaNodes[i].Create(6);
+  }
 
-  // CsmaHelper csma;
-  // csma.SetChannelAttribute ("DataRate", StringValue ("100Mbps"));
-  // csma.SetChannelAttribute ("Delay", TimeValue (NanoSeconds (6560)));
+  CsmaHelper csma;
+  csma.SetChannelAttribute ("DataRate", StringValue ("100Mbps"));
+  csma.SetChannelAttribute ("Delay", TimeValue (NanoSeconds (6560)));
 
-  // NetDeviceContainer csmaCoreDevices;
-  // csmaCoreDevices = csma.Install (csmaCoreNodes);
+  NetDeviceContainer csmaCoreDevices;
+  csmaCoreDevices = csma.Install (csmaCoreNodes);
 
-  // NetDeviceContainer csmaDevices[7];
-  // for(int i=0;i<7;i++){
-  //   csmaDevices[i] = csma.Install (csmaNodes[i]);
-  // }
+  NetDeviceContainer csmaDevices[7];
+  for(int i=0;i<7;i++){
+    csmaDevices[i] = csma.Install (csmaNodes[i]);
+  }
 
   // LteHelper lte;
   // lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
