@@ -144,6 +144,9 @@ int main(int argc, char *argv[])
 
   // // Enable logging from the ns2 helper
   // LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
+  Time::SetResolution (Time::NS);
+  LogComponentEnable ("UdpEchoClientApplication", LOG_LEVEL_INFO);
+  LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_INFO);
 
   // CommandLine cmd; // 不知道是甚麼
   // cmd.AddValue("traceFile", "Ns2 movement trace file", TRACE_FILE);
