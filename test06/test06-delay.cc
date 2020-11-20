@@ -237,9 +237,6 @@ int main(int argc, char *argv[])
     lteEnbDevices[i] = lte.InstallEnbDevice(lteEnbNodes[i]);
   }
 
-  NetDeviceContainer csmaCoreDevices;
-  csmaCoreDevices = csma.Install(csmaCoreNodes);
-
   NetDeviceContainer csmaDevices[7];
   for(int i=0;i<7;i++){
     csmaDevices = csma.Install(csmaNodes[i]);
