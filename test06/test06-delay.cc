@@ -16,6 +16,7 @@
 #include "ns3/spectrum-module.h"
 #include "ns3/animation-interface.h"
 #include "ns3/csma-module.h"
+#include "ns3/applications-module.h"
 
 using namespace ns3;
 using namespace std;
@@ -207,9 +208,9 @@ int main(int argc, char *argv[])
   NetDeviceContainer csmaCoreDevices;
   csmaCoreDevices = csma.Install (csmaCoreNodes);
 
-  NetDeviceContainer csmaDevices;
+  NetDeviceContainer csmaDevices[7];
   for(int i=0;i<7;i++){
-    csmaDevices = csma.Install (csmaNodes[i]);
+    csmaDevices[i] = csma.Install (csmaNodes[i]);
   }
 
   LteHelper lte;
