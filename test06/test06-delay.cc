@@ -221,11 +221,6 @@ int main(int argc, char *argv[])
   for(int i=0;i<7;i++){
     p2pDevices[i] = pointToPoint.Install (p2pNodes[i]);
   }
-
-  NetDeviceContainer csmaDevices[7];
-  for(int i=0;i<7;i++){
-    csmaDevices[i] = csma.Install (csmaNodes[i]);
-  }
   // LteHelper lte;
   // lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
   // lte.SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
