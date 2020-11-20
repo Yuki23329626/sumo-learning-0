@@ -205,11 +205,11 @@ int main(int argc, char *argv[])
     csmaDevices[i] = csma.Install (csmaNodes[i]);
   }
 
-  // LteHelper lte;
-  // lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
-  // lte.SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
-  // lte.SetEnbAntennaModelType("ns3::IsotropicAntennaModel");
-  // lte.SetEnbAntennaModelAttribute("Gain", DoubleValue(1.0));
+  LteHelper lte;
+  lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
+  lte.SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
+  lte.SetEnbAntennaModelType("ns3::IsotropicAntennaModel");
+  lte.SetEnbAntennaModelAttribute("Gain", DoubleValue(1.0));
 
   // NodeContainer lteEnbNodes[7];
   // for(int i=0;i<5;i++){
