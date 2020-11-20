@@ -129,8 +129,7 @@ int main(int argc, char *argv[])
   double DURATION = 1000;   // 貌似是秒數
   double ENB_TX_POWER = 20; // Transimission power in doubleBm, doubleBm 不知道是甚麼
 
-  uint32_t nCsma = 3;
-  uint32_t nENB = 3;
+  uint32_t nCsmaCore = 10;
 
   Ptr<LteUePhy> uephy;
   Ptr<LteHelper> lteHelper = CreateObject<LteHelper>();
@@ -193,7 +192,7 @@ int main(int argc, char *argv[])
   Config::SetDefault("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue(320)); // he SRS periodicity in num TTIs
 
   NodeContainer csmaCoreNodes;
-  csmaCoreNodes.Create (10);
+  csmaCoreNodes.Create (nCsmaCore);
 
   NodeContainer csmaNodes[7];
   for(int i=0;i<7;i++){
