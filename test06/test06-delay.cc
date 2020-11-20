@@ -234,7 +234,7 @@ int main(int argc, char *argv[])
 
   NetDeviceContainer lteEnbDevices[7];
   for(int i=0;i<7;i++){
-    lteEnbDevices[i].InstallEnbDevice(lteEnbNodes[i]);
+    lteEnbDevices[i].Install(lteEnbNodes[i]);
   }
 
   NetDeviceContainer csmaCoreDevices;
