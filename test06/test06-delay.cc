@@ -207,20 +207,25 @@ int main(int argc, char *argv[])
     csmaDevices[i] = csma.Install (csmaNodes[i]);
   }
 
-  // NodeContainer p2pNodes[7];
-  // for(int i=0;i<7;i++){
-  //   p2pNodes[i].Add(csmaCoreNodes.Get(i));
-  //   p2pNodes[i].Add(csmaNodes[i].Get(0));
-  // }
+  NodeContainer p2pNodes[7];
+  for(int i=0;i<7;i++){
+    p2pNodes[i].Add(csmaCoreNodes.Get(i));
+    p2pNodes[i].Add(csmaNodes[i].Get(0));
+  }
 
-  // PointToPointHelper pointToPoint;
-  // pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
-  // pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
+  PointToPointHelper pointToPoint;
+  pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
+  pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
 
-  // NetDeviceContainer p2pDevices[7];
-  // for(int i=0;i<7;i++){
-  //   p2pDevices[i] = pointToPoint.Install (p2pNodes[i]);
-  // }
+  NetDeviceContainer p2pDevices[7];
+  for(int i=0;i<7;i++){
+    p2pDevices[i] = pointToPoint.Install (p2pNodes[i]);
+  }
+
+  NetDeviceContainer csmaDevices[7];
+  for(int i=0;i<7;i++){
+    csmaDevices[i] = csma.Install (csmaNodes[i]);
+  }
   // LteHelper lte;
   // lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
   // lte.SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
@@ -251,9 +256,9 @@ int main(int argc, char *argv[])
   for(int i=0;i<7;i++){
     stack.Install (csmaNodes[i]);
   }
-  // for(int i=0;i<7;i++){
-  //   stack.Install (p2pNodes[i]);
-  // }
+  for(int i=0;i<7;i++){
+    stack.Install (p2pNodes[i]);
+  }
   // for(int i=0;i<7;i++){
   //   stack.Install (lteEnbNodes[i]);
   // }
@@ -265,33 +270,47 @@ int main(int argc, char *argv[])
   csmaCoreInterfaces = address.Assign (csmaCoreDevices);
 
   address.SetBase ("10.1.1.0", "255.255.255.0");
-  Ipv4InterfaceContainer csmaInterfaces[7];
-  csmaInterfaces[0] = address.Assign (csmaDevices[0]);
-  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(0)));
+  Ipv4InterfaceContainer p2pInterface[7];
+  p2pInterface[0] = address.Assign (p2pDevices[0]);
 
   address.SetBase ("10.1.2.0", "255.255.255.0");
-  csmaInterfaces[1] = address.Assign (csmaDevices[1]);
-  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(1)));
+  p2pInterface[1] = address.Assign (p2pDevices[1]);
 
   address.SetBase ("10.1.3.0", "255.255.255.0");
-  csmaInterfaces[2] = address.Assign (csmaDevices[2]);
-  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(2)));
+  p2pInterface[2] = address.Assign (p2pDevices[2]);
 
   address.SetBase ("10.1.4.0", "255.255.255.0");
-  csmaInterfaces[3] = address.Assign (csmaDevices[3]);
-  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(3)));
+  p2pInterface[3] = address.Assign (p2pDevices[3]);
 
   address.SetBase ("10.1.5.0", "255.255.255.0");
-  csmaInterfaces[4] = address.Assign (csmaDevices[4]);
-  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(4)));
+  p2pInterface[4] = address.Assign (p2pDevices[4]);
 
   address.SetBase ("10.1.6.0", "255.255.255.0");
-  csmaInterfaces[5] = address.Assign (csmaDevices[5]);
-  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(5)));
+  p2pInterface[5] = address.Assign (p2pDevices[5]);
 
   address.SetBase ("10.1.7.0", "255.255.255.0");
-  csmaInterfaces[6] = address.Assign (csmaDevices[6]);
-  csmaInterfaces[0].Add(address.Assign (csmaCoreDevices.Get(6)));
+  p2pInterface[6] = address.Assign (p2pDevices[6]);
+
+  address.SetBase ("10.1.9.0", "255.255.255.0");
+  address.Assign (csmaDevices[0]);
+
+  address.SetBase ("10.1.10.0", "255.255.255.0");
+  address.Assign (csmaDevices[1]);
+
+  address.SetBase ("10.1.11.0", "255.255.255.0");
+  address.Assign (csmaDevices[2]);
+
+  address.SetBase ("10.1.12.0", "255.255.255.0");
+  address.Assign (csmaDevices[3]);
+
+  address.SetBase ("10.1.13.0", "255.255.255.0");
+  address.Assign (csmaDevices[4]);
+
+  address.SetBase ("10.1.14.0", "255.255.255.0");
+  address.Assign (csmaDevices[5]);
+
+  address.SetBase ("10.1.15.0", "255.255.255.0");
+  address.Assign (csmaDevices[6]);
 
   UdpEchoServerHelper echoServerIPFS (9);
 
