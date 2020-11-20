@@ -267,44 +267,37 @@ int main(int argc, char *argv[])
   address.SetBase ("10.1.1.0", "255.255.255.0");
   Ipv4InterfaceContainer csmaInterfaces[7];
   csmaInterfaces[0] = address.Assign (csmaDevices[0]);
-  csmaInterfaces[0] = address.Assign (csmaCoreDevices.Get(0));
 
   address.SetBase ("10.1.2.0", "255.255.255.0");
   csmaInterfaces[1] = address.Assign (csmaDevices[1]);
-  csmaInterfaces[1] = address.Assign (csmaCoreDevices.Get(1));
 
   address.SetBase ("10.1.3.0", "255.255.255.0");
   csmaInterfaces[2] = address.Assign (csmaDevices[2]);
-  csmaInterfaces[2] = address.Assign (csmaCoreDevices.Get(2));
 
   address.SetBase ("10.1.4.0", "255.255.255.0");
   csmaInterfaces[3] = address.Assign (csmaDevices[3]);
-  csmaInterfaces[3] = address.Assign (csmaCoreDevices.Get(3));
 
   address.SetBase ("10.1.5.0", "255.255.255.0");
   csmaInterfaces[4] = address.Assign (csmaDevices[4]);
-  csmaInterfaces[4] = address.Assign (csmaCoreDevices.Get(4));
 
   address.SetBase ("10.1.6.0", "255.255.255.0");
   csmaInterfaces[5] = address.Assign (csmaDevices[5]);
-  csmaInterfaces[5] = address.Assign (csmaCoreDevices.Get(5));
 
   address.SetBase ("10.1.7.0", "255.255.255.0");
   csmaInterfaces[6] = address.Assign (csmaDevices[6]);
-  csmaInterfaces[6] = address.Assign (csmaCoreDevices.Get(6));
 
   UdpEchoServerHelper echoServerIPFS (9);
 
-  ApplicationContainer serverApps = echoServerIPFS.Install (csmaNodes[0].Get(3));
+  ApplicationContainer serverApps = echoServerIPFS.Install (csmaCoreNodes.Get(8));
   serverApps.Start (Seconds (1.0));
   serverApps.Stop (Seconds (10.0));
 
-  UdpEchoClientHelper echoClient (csmaInterfaces[0].GetAddress(3), 9);
+  UdpEchoClientHelper echoClient (csmaCoreInterfaces.GetAddress(8), 9);
   echoClient.SetAttribute ("MaxPackets", UintegerValue (1));
   echoClient.SetAttribute ("Interval", TimeValue (Seconds (1.0)));
   echoClient.SetAttribute ("PacketSize", UintegerValue (1024));
 
-  ApplicationContainer clientApps = echoClient.Install(csmaNodes[0].Get (0));
+  ApplicationContainer clientApps = echoClient.Install(csmaCoreNodes.Get (0));
   clientApps.Start (Seconds (2.0));
   clientApps.Stop (Seconds (10.0));
 
