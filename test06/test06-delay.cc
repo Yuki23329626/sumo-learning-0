@@ -286,7 +286,7 @@ int main(int argc, char *argv[])
   echoClient.SetAttribute ("Interval", TimeValue (Seconds (1.0)));
   echoClient.SetAttribute ("PacketSize", UintegerValue (1024));
 
-  ApplicationContainer clientApps = echoClient.Install (csmaDevices.Get (0));
+  ApplicationContainer clientApps = echoClient.Install (csmaDevices[0].Get (0));
   clientApps.Start (Seconds (2.0));
   clientApps.Stop (Seconds (10.0));
 
