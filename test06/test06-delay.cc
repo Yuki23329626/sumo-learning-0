@@ -264,10 +264,6 @@ int main(int argc, char *argv[])
 
   Ipv4AddressHelper address;
 
-  address.SetBase ("10.1.8.0", "255.255.255.0");
-  Ipv4InterfaceContainer csmaCoreInterfaces;
-  csmaCoreInterfaces = address.Assign (csmaCoreDevices);
-
   address.SetBase ("10.1.1.0", "255.255.255.0");
   Ipv4InterfaceContainer p2pInterface[7];
   p2pInterface[0] = address.Assign (p2pDevices[0]);
@@ -289,6 +285,10 @@ int main(int argc, char *argv[])
 
   address.SetBase ("10.1.7.0", "255.255.255.0");
   p2pInterface[6] = address.Assign (p2pDevices[6]);
+
+  address.SetBase ("10.1.8.0", "255.255.255.0");
+  Ipv4InterfaceContainer csmaCoreInterfaces;
+  csmaCoreInterfaces = address.Assign (csmaCoreDevices);
 
   address.SetBase ("10.1.9.0", "255.255.255.0");
   address.Assign (csmaDevices[0]);
