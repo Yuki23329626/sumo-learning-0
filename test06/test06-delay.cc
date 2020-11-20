@@ -184,60 +184,60 @@ int main(int argc, char *argv[])
   Config::SetDefault("ns3::LteUePowerControl::Alpha", DoubleValue(1.0));
   Config::SetDefault("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue(320)); // he SRS periodicity in num TTIs
 
-  NodeContainer csmaCoreNodes;
-  csmaCoreNodes.Create (10);
+  // NodeContainer csmaCoreNodes;
+  // csmaCoreNodes.Create (10);
 
-  NodeContainer csmaNodes[7];
-  for(int i=0;i<7;i++){
-    csmaNodes[i].Add(csmaCoreNodes.Get(i));
-    csmaNodes[i].Create(6);
-  }
+  // NodeContainer csmaNodes[7];
+  // for(int i=0;i<7;i++){
+  //   csmaNodes[i].Add(csmaCoreNodes.Get(i));
+  //   csmaNodes[i].Create(6);
+  // }
 
-  CsmaHelper csma;
-  csma.SetChannelAttribute ("DataRate", StringValue ("100Mbps"));
-  csma.SetChannelAttribute ("Delay", TimeValue (NanoSeconds (6560)));
+  // CsmaHelper csma;
+  // csma.SetChannelAttribute ("DataRate", StringValue ("100Mbps"));
+  // csma.SetChannelAttribute ("Delay", TimeValue (NanoSeconds (6560)));
 
-  NetDeviceContainer csmaCoreDevices;
-  csmaCoreDevices = csma.Install (csmaCoreNodes);
+  // NetDeviceContainer csmaCoreDevices;
+  // csmaCoreDevices = csma.Install (csmaCoreNodes);
 
-  NetDeviceContainer csmaDevices[7];
-  for(int i=0;i<7;i++){
-    csmaDevices[i] = csma.Install (csmaNodes[i]);
-  }
+  // NetDeviceContainer csmaDevices[7];
+  // for(int i=0;i<7;i++){
+  //   csmaDevices[i] = csma.Install (csmaNodes[i]);
+  // }
 
-  LteHelper lte;
-  lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
-  lte.SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
-  lte.SetEnbAntennaModelType("ns3::IsotropicAntennaModel");
-  lte.SetEnbAntennaModelAttribute("Gain", DoubleValue(1.0));
+  // LteHelper lte;
+  // lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
+  // lte.SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
+  // lte.SetEnbAntennaModelType("ns3::IsotropicAntennaModel");
+  // lte.SetEnbAntennaModelAttribute("Gain", DoubleValue(1.0));
 
-  NodeContainer lteEnbNodes[7];
-  for(int i=0;i<5;i++){
-    lteEnbNodes[0].Add(csmaNodes[0].Get(i));
-    lteEnbNodes[1].Add(csmaNodes[1].Get(i));
-    lteEnbNodes[2].Add(csmaNodes[2].Get(i));
-    lteEnbNodes[3].Add(csmaNodes[3].Get(i));
-    lteEnbNodes[4].Add(csmaNodes[4].Get(i));
-    lteEnbNodes[5].Add(csmaNodes[5].Get(i));
-    lteEnbNodes[6].Add(csmaNodes[6].Get(i));
-  }
-  for(int i=0;i<7;i++){
-    lteEnbNodes[i].Create(5);
-  }
+  // NodeContainer lteEnbNodes[7];
+  // for(int i=0;i<5;i++){
+  //   lteEnbNodes[0].Add(csmaNodes[0].Get(i));
+  //   lteEnbNodes[1].Add(csmaNodes[1].Get(i));
+  //   lteEnbNodes[2].Add(csmaNodes[2].Get(i));
+  //   lteEnbNodes[3].Add(csmaNodes[3].Get(i));
+  //   lteEnbNodes[4].Add(csmaNodes[4].Get(i));
+  //   lteEnbNodes[5].Add(csmaNodes[5].Get(i));
+  //   lteEnbNodes[6].Add(csmaNodes[6].Get(i));
+  // }
+  // for(int i=0;i<7;i++){
+  //   lteEnbNodes[i].Create(5);
+  // }
 
-  NetDeviceContainer lteEnbDevices[7];
-  for(int i=0;i<7;i++){
-    lteEnbDevices[i] = lte.InstallEnbDevice(lteEnbNodes[i]);
-  }
+  // NetDeviceContainer lteEnbDevices[7];
+  // for(int i=0;i<7;i++){
+  //   lteEnbDevices[i] = lte.InstallEnbDevice(lteEnbNodes[i]);
+  // }
 
-  InternetStackHelper stack;
-  stack.Install (csmaCoreNodes);
-  for(int i=0;i<7;i++){
-    stack.Install (csmaNodes[i]);
-  }
-  for(int i=0;i<7;i++){
-    stack.Install (lteEnbNodes[i]);
-  }
+  // InternetStackHelper stack;
+  // stack.Install (csmaCoreNodes);
+  // for(int i=0;i<7;i++){
+  //   stack.Install (csmaNodes[i]);
+  // }
+  // for(int i=0;i<7;i++){
+  //   stack.Install (lteEnbNodes[i]);
+  // }
 
   // Ipv4AddressHelper address;
 
