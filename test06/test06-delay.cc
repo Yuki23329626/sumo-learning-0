@@ -33,14 +33,14 @@ handover 考慮 prepare time 跟 completion time，也許可以比較
 */
 
 /*
-   LTE 10.1.3.0
-                 AP
-  *    *    *    *                 SW   SW   SW   SW   SW   SW   SW  SDNC IPFS ORACLE
-  |    |    |    |     10.1.1.0     |    |    |    |    |    |    |    |    |    |
- n3   n2   n1   n0 --------------  n35  n36  n37  n38  n39  n40  n41  n42  n43  n44
-                          LTE       |    |    |    |    |    |    |    |    |    |
-                                   ===============================================
-                                     LAN 10.1.2.0
+          LTE
+                    eNB
+ *    *    *    *    *                 SW   SW   SW   SW   SW   SW   SW  SDNC IPFS ORACLE
+ |    |    |    |    |     10.1.1.0     |    |    |    |    |    |    |    |    |    |
+n4 - n3 - n2 - n1 - n0 --------------  n35  n36  n37  n38  n39  n40  n41  n42  n43  n44
+                              LAN       |    |    |    |    |    |    |    |    |    |
+                                       ===============================================
+                                                         LAN 10.1.8.0
 */
 
 class UEs_Info
@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
   double ENB_TX_POWER = 20; // Transimission power in doubleBm, doubleBm 不知道是甚麼
 
   uint32_t nCsma = 3;
-  uint32_t nWifi = 3;
+  uint32_t nENB = 3;
 
   Ptr<LteUePhy> uephy;
   Ptr<LteHelper> lteHelper = CreateObject<LteHelper>();
@@ -182,12 +182,53 @@ int main(int argc, char *argv[])
   Config::SetDefault("ns3::LteUePowerControl::Alpha", DoubleValue(1.0));
   Config::SetDefault("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue(320)); // he SRS periodicity in num TTIs
 
-  NodeContainer nodes;
-  p2pNodes.Create (2);
+  NodeContainer csmaCoreNodes;
+  csmaCoreNodes.Create (10);
+
+  NodeContainer csmaNodes;
+  csmaNodes.Create (35);
 
   CsmaHelper csma;
   csma.SetChannelAttribute ("DataRate", StringValue ("100Mbps"));
   csma.SetChannelAttribute ("Delay", TimeValue (NanoSeconds (6560)));
+
+  NetDeviceContainer csmaCoreDevices;
+  csmaCoreDevices = csma.Install (csmaCoreNodes);
+
+  NetDeviceContainer csmaDevices;
+  csmaDevices = csma.Install (csmaNodes);
+
+  lteHelper lte;
+  lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
+  lte.SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
+  lte.SetEnbAntennaModelType("ns3::IsotropicAntennaModel");
+  lte.SetEnbAntennaModelAttribute("Gain", DoubleValue(1.0));
+
+  NodeContainer lteEnbNodes[7];
+  for(i=0;i++;i<5){
+    lteEnbNodes[0].Add(csmaNodes.Get(i + 5*0));
+    lteEnbNodes[1].Add(csmaNodes.Get(i + 5*1));
+    lteEnbNodes[2].Add(csmaNodes.Get(i + 5*2));
+    lteEnbNodes[3].Add(csmaNodes.Get(i + 5*3));
+    lteEnbNodes[4].Add(csmaNodes.Get(i + 5*4));
+    lteEnbNodes[5].Add(csmaNodes.Get(i + 5*5));
+    lteEnbNodes[6].Add(csmaNodes.Get(i + 5*6));
+  }
+  for(i=0;i++;i<7){
+    lteEnbNodes[i].Create(5);
+  }
+
+  NetDeviceContainer lteEnbDevices[7];
+  for(i=0;i++;i<7){
+    lteEnbDevices[i].InstallEnbDevice(lteEnbNodes[i]);
+  }
+
+  NodeContainer csmaBridge[7];
+  for(i=0;i++;i<7){
+    csmaBridge[i].Add(csmaCoreNodes.Get(i));
+    csmaBridge[i].Add(lteEnbNodes[i].Get(0));
+    csmaBridge[i].Create(2);
+  }
 
   lteHelper->SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
   lteHelper->SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
