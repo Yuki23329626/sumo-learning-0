@@ -34,7 +34,7 @@ handover 考慮 prepare time 跟 completion time，也許可以比較
 
 /*
           LTE
-                    eNB
+                    eNB                 0    1    2    3    4    5    6    7    8    9
  *    *    *    *    *                 SW   SW   SW   SW   SW   SW   SW  SDNC IPFS ORACLE
  |    |    |    |    |     10.1.1.0     |    |    |    |    |    |    |    |    |    |
 n4 - n3 - n2 - n1 - n0 --------------  n35  n36  n37  n38  n39  n40  n41  n42  n43  n44
@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
   string OUTPUT_DIR = "output_csv";
 
   // Enable logging from the ns2 helper
-  LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
+  LogComponentEnable("Ns2MobilityHelper", LOG_ALL);
 
   CommandLine cmd; // 不知道是甚麼
   cmd.AddValue("traceFile", "Ns2 movement trace file", TRACE_FILE);
@@ -185,8 +185,11 @@ int main(int argc, char *argv[])
   NodeContainer csmaCoreNodes;
   csmaCoreNodes.Create (10);
 
-  NodeContainer csmaNodes;
-  csmaNodes.Create (35);
+  NodeContainer csmaNodes[7];
+  for(i=0;i++;i<7){
+    csmaNodes[i].Add(csmaCoreNodes.Get(i));
+    csmaNodes[i].Create(6);
+  }
 
   CsmaHelper csma;
   csma.SetChannelAttribute ("DataRate", StringValue ("100Mbps"));
@@ -223,12 +226,63 @@ int main(int argc, char *argv[])
     lteEnbDevices[i].InstallEnbDevice(lteEnbNodes[i]);
   }
 
-  NodeContainer csmaBridge[7];
+  NetDeviceContainer csmaCoreDevices;
+  csmaCoreDevices.Install(csmaCoreNodes);
+
+  NetDeviceContainer csmaDevices[7];
   for(i=0;i++;i<7){
-    csmaBridge[i].Add(csmaCoreNodes.Get(i));
-    csmaBridge[i].Add(lteEnbNodes[i].Get(0));
-    csmaBridge[i].Create(2);
+    csmaDevices.Install(csmaNodes[i]);
   }
+
+  InternetStackHelper stack;
+  stack.Install (csmaCoreNodes);
+  stack.Install (csmaNodes);
+  for(i=0;i++;i<7){
+    stack.Install (lteEnbNodes[i]);
+  }
+
+  Ipv4AddressHelper address;
+
+  address.SetBase ("10.1.8.0", "255.255.255.0");
+  Ipv4InterfaceContainer csmaCoreInterfaces;
+  csmaCoreInterfaces = address.Assign (csmaCoreDevices);
+
+  address.SetBase ("10.1.1.0", "255.255.255.0");
+  Ipv4InterfaceContainer csmaInterfaces[7];
+  csmaInterfaces[0] = address.Assign (csmaDevices[0]);
+
+  address.SetBase ("10.1.2.0", "255.255.255.0");
+  csmaInterfaces[1] = address.Assign (csmaDevices[1]);
+
+  address.SetBase ("10.1.3.0", "255.255.255.0");
+  csmaInterfaces[2] = address.Assign (csmaDevices[2]);
+
+  address.SetBase ("10.1.4.0", "255.255.255.0");
+  csmaInterfaces[3] = address.Assign (csmaDevices[3]);
+
+  address.SetBase ("10.1.5.0", "255.255.255.0");
+  csmaInterfaces[4] = address.Assign (csmaDevices[4]);
+
+  address.SetBase ("10.1.6.0", "255.255.255.0");
+  csmaInterfaces[5] = address.Assign (csmaDevices[5]);
+
+  address.SetBase ("10.1.7.0", "255.255.255.0");
+  csmaInterfaces[6] = address.Assign (csmaDevices[6]);
+
+  UdpEchoServerHelper echoServerIPFS (9);
+
+  ApplicationContainer serverApps = echoServerIPFS.Install (csmaCoreNodes.Get (8));
+  serverApps.Start (Seconds (1.0));
+  serverApps.Stop (Seconds (10.0));
+
+  UdpEchoClientHelper echoClient (csmaCoreInterfaces.GetAddress(8), 9);
+  echoClient.SetAttribute ("MaxPackets", UintegerValue (1));
+  echoClient.SetAttribute ("Interval", TimeValue (Seconds (1.0)));
+  echoClient.SetAttribute ("PacketSize", UintegerValue (1024));
+
+  ApplicationContainer clientApps = echoClient.Install (csmaDevices.Get (0));
+  clientApps.Start (Seconds (2.0));
+  clientApps.Stop (Seconds (10.0));
 
   lteHelper->SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
   lteHelper->SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
@@ -300,7 +354,7 @@ int main(int argc, char *argv[])
     ueMobilityModel = ueNode.Get(i)->GetObject<MobilityModel>();
     ues_info[i].set_Position(ueMobilityModel->GetPosition());
 
-    // 不知道為什麼要 +1，應該是 eNB 的編號，車輛在 SUMO 裡應該也是 1 開始編號
+    // 不知道為什麼要 +1，應該是 eNB 的編號，車輛在 SUMO 裡應該也是 1 開始編號 // 是從 0 開始編號
     ues_info[i].setConnectedENB(SELECTED_ENB);
     ues_info[i].set_output(&outputfile1, &outputfile2);
 

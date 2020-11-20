@@ -16,7 +16,7 @@ git pull
 cp test06/test06.cc ../scratch/
 cp test06/test06.tcl ../scratch/
 cd ..
-./waf --run "test06 --traceFile=scratch/test06.tcl --nodeNum=100 --duration=1000 --selectedEnb=0 --outputDir=test06-2"
+./waf --run "test06-delay --traceFile=scratch/test06.tcl --nodeNum=100 --duration=1000 --selectedEnb=0 --outputDir=test06-2"
 
 
 ./waf clean
