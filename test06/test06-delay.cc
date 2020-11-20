@@ -208,7 +208,9 @@ int main(int argc, char *argv[])
   csmaCoreDevices = csma.Install (csmaCoreNodes);
 
   NetDeviceContainer csmaDevices;
-  csmaDevices = csma.Install (csmaNodes);
+  for(int i=0;i<7;i++){
+    csmaDevices = csma.Install (csmaNodes[i]);
+  }
 
   lteHelper lte;
   lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
