@@ -1,15 +1,18 @@
 #/bin/bash
 
 all_num=34
+postfix=_test06_enb1.csv
 
 a=$(date +%H%M%S)
+
+echo "Time_sec,IMSI,SINR,X,Y,Selected_eNB" > total.csv
 
 for num in `seq 0 ${all_num}`
 do
 {
-    ./waf --run "test06 --traceFile=scratch/test06.tcl --nodeNum=100 --duration=120 --selectedEnb=${num} --outputDir=test06-1"
+    cat ${num}${postfix} | tail -n +3 >> total.csv
     echo ${num}
-} &
+}
 done
 
 wait
