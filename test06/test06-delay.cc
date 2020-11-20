@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 
   NodeContainer p2pNodes[7];
   for(int i=0;i<7;i++){
-    p2pNodes[i].create(2);
+    p2pNodes[i].Create(2);
   }
 
   PointToPointHelper pointToPoint;
