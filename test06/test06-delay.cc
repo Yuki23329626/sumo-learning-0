@@ -15,6 +15,7 @@
 #include "ns3/point-to-point-module.h"
 #include "ns3/spectrum-module.h"
 #include "ns3/animation-interface.h"
+#include "ns3/csma-module.h"
 
 using namespace ns3;
 using namespace std;
