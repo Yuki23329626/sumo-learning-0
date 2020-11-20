@@ -204,20 +204,20 @@ int main(int argc, char *argv[])
     csmaDevices[i] = csma.Install (csmaNodes[i]);
   }
 
-  NodeContainer p2pNodes[7];
-  for(int i=0;i<7;i++){
-    p2pNodes[i].Add(csmaCoreNodes.Get(i));
-    p2pNodes[i].Add(csmaNodes[i].Get(0));
-  }
+  // NodeContainer p2pNodes[7];
+  // for(int i=0;i<7;i++){
+  //   p2pNodes[i].Add(csmaCoreNodes.Get(i));
+  //   p2pNodes[i].Add(csmaNodes[i].Get(0));
+  // }
 
-  PointToPointHelper pointToPoint;
-  pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
-  pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
+  // PointToPointHelper pointToPoint;
+  // pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
+  // pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
 
-  NetDeviceContainer p2pDevices[i];
-  for(int i=0;i<7;i++){
-    p2pDevices[i] = pointToPoint.Install (p2pNodes[i]);
-  }
+  // NetDeviceContainer p2pDevices[7];
+  // for(int i=0;i<7;i++){
+  //   p2pDevices[i] = pointToPoint.Install (p2pNodes[i]);
+  // }
   // LteHelper lte;
   // lte.SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
   // lte.SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
@@ -248,9 +248,9 @@ int main(int argc, char *argv[])
   for(int i=0;i<7;i++){
     stack.Install (csmaNodes[i]);
   }
-  for(int i=0;i<7;i++){
-    stack.Install (p2pNodes[i]);
-  }
+  // for(int i=0;i<7;i++){
+  //   stack.Install (p2pNodes[i]);
+  // }
   // for(int i=0;i<7;i++){
   //   stack.Install (lteEnbNodes[i]);
   // }
@@ -264,24 +264,31 @@ int main(int argc, char *argv[])
   address.SetBase ("10.1.1.0", "255.255.255.0");
   Ipv4InterfaceContainer csmaInterfaces[7];
   csmaInterfaces[0] = address.Assign (csmaDevices[0]);
+  csmaInterfaces[0] = address.Assign (csmaCoreDevices.Get(0));
 
   address.SetBase ("10.1.2.0", "255.255.255.0");
   csmaInterfaces[1] = address.Assign (csmaDevices[1]);
+  csmaInterfaces[1] = address.Assign (csmaCoreDevices.Get(1));
 
   address.SetBase ("10.1.3.0", "255.255.255.0");
   csmaInterfaces[2] = address.Assign (csmaDevices[2]);
+  csmaInterfaces[2] = address.Assign (csmaCoreDevices.Get(2));
 
   address.SetBase ("10.1.4.0", "255.255.255.0");
   csmaInterfaces[3] = address.Assign (csmaDevices[3]);
+  csmaInterfaces[3] = address.Assign (csmaCoreDevices.Get(3));
 
   address.SetBase ("10.1.5.0", "255.255.255.0");
   csmaInterfaces[4] = address.Assign (csmaDevices[4]);
+  csmaInterfaces[4] = address.Assign (csmaCoreDevices.Get(4));
 
   address.SetBase ("10.1.6.0", "255.255.255.0");
   csmaInterfaces[5] = address.Assign (csmaDevices[5]);
+  csmaInterfaces[5] = address.Assign (csmaCoreDevices.Get(5));
 
   address.SetBase ("10.1.7.0", "255.255.255.0");
   csmaInterfaces[6] = address.Assign (csmaDevices[6]);
+  csmaInterfaces[6] = address.Assign (csmaCoreDevices.Get(6));
 
   UdpEchoServerHelper echoServerIPFS (9);
 
@@ -298,11 +305,11 @@ int main(int argc, char *argv[])
   clientApps.Start (Seconds (2.0));
   clientApps.Stop (Seconds (10.0));
 
-  lteHelper->SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
-  lteHelper->SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
-  // Set antenna type
-  lteHelper->SetEnbAntennaModelType("ns3::IsotropicAntennaModel");
-  lteHelper->SetEnbAntennaModelAttribute("Gain", DoubleValue(1.0));
+  // lteHelper->SetEnbDeviceAttribute("DlBandwidth", UintegerValue(BANDWIDTH));
+  // lteHelper->SetEnbDeviceAttribute("UlBandwidth", UintegerValue(BANDWIDTH));
+  // // Set antenna type
+  // lteHelper->SetEnbAntennaModelType("ns3::IsotropicAntennaModel");
+  // lteHelper->SetEnbAntennaModelAttribute("Gain", DoubleValue(1.0));
 
   // UEs_Info *ues_info = (UEs_Info *)malloc(sizeof(UEs_Info) * NODE_NUM);
   // Ns2MobilityHelper ns2 = Ns2MobilityHelper(TRACE_FILE);
