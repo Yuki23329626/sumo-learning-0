@@ -235,9 +235,9 @@ int main(int argc, char *argv[])
   for(int i=0;i<7;i++){
     stack.Install (csmaNodes[i]);
   }
-  for(int i=0;i<7;i++){
-    stack.Install (lteEnbNodes[i]);
-  }
+  // for(int i=0;i<7;i++){
+  //   stack.Install (lteEnbNodes[i]);
+  // }
 
   Ipv4AddressHelper address;
 
