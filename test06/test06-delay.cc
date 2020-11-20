@@ -211,19 +211,19 @@ int main(int argc, char *argv[])
   lte.SetEnbAntennaModelType("ns3::IsotropicAntennaModel");
   lte.SetEnbAntennaModelAttribute("Gain", DoubleValue(1.0));
 
-  // NodeContainer lteEnbNodes[7];
-  // for(int i=0;i<5;i++){
-  //   lteEnbNodes[0].Add(csmaNodes[0].Get(i));
-  //   lteEnbNodes[1].Add(csmaNodes[1].Get(i));
-  //   lteEnbNodes[2].Add(csmaNodes[2].Get(i));
-  //   lteEnbNodes[3].Add(csmaNodes[3].Get(i));
-  //   lteEnbNodes[4].Add(csmaNodes[4].Get(i));
-  //   lteEnbNodes[5].Add(csmaNodes[5].Get(i));
-  //   lteEnbNodes[6].Add(csmaNodes[6].Get(i));
-  // }
-  // for(int i=0;i<7;i++){
-  //   lteEnbNodes[i].Create(5);
-  // }
+  NodeContainer lteEnbNodes[7];
+  for(int i=0;i<5;i++){
+    lteEnbNodes[0].Add(csmaNodes[0].Get(i));
+    lteEnbNodes[1].Add(csmaNodes[1].Get(i));
+    lteEnbNodes[2].Add(csmaNodes[2].Get(i));
+    lteEnbNodes[3].Add(csmaNodes[3].Get(i));
+    lteEnbNodes[4].Add(csmaNodes[4].Get(i));
+    lteEnbNodes[5].Add(csmaNodes[5].Get(i));
+    lteEnbNodes[6].Add(csmaNodes[6].Get(i));
+  }
+  for(int i=0;i<7;i++){
+    lteEnbNodes[i].Create(5);
+  }
 
   // NetDeviceContainer lteEnbDevices[7];
   // for(int i=0;i<7;i++){
