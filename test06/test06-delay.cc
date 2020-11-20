@@ -137,11 +137,9 @@ int main(int argc, char *argv[])
   AsciiTraceHelper asciiTraceHelper;
   std::ofstream outputfile1;
   std::ofstream outputfile2;
-  std::ofstream outputfile3;
 
   string OUTPUT_FILE = "test06_enb0.csv";
   string OUTPUT_FILE2 = "test06_enb1.csv";
-  string OUTPUT_FILE3 = "test06_delay.csv";
   string OUTPUT_DIR = "output_csv";
 
   // Enable logging from the ns2 helper
@@ -161,14 +159,11 @@ int main(int argc, char *argv[])
 
   OUTPUT_FILE = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE;
   OUTPUT_FILE2 = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE2;
-  OUTPUT_FILE3 = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE3;
 
   outputfile1.open(OUTPUT_FILE);
   outputfile2.open(OUTPUT_FILE2);
-  outputfile3.open(OUTPUT_FILE3);
   outputfile1 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
   outputfile2 << "Time_sec,IMSI,SINR,X,Y,Selected_eNB" << endl;
-  outputfile3 << "From,To,time" << endl;
 
 
   // Set the default Configure
