@@ -295,11 +295,11 @@ int main(int argc, char *argv[])
 
   UdpEchoServerHelper echoServerIPFS (9);
 
-  ApplicationContainer serverApps = echoServerIPFS.Install (csmaNodes[0].Get(8));
+  ApplicationContainer serverApps = echoServerIPFS.Install (csmaNodes[0].Get(3));
   serverApps.Start (Seconds (1.0));
   serverApps.Stop (Seconds (10.0));
 
-  UdpEchoClientHelper echoClient (csmaInterfaces[0].GetAddress(8), 9);
+  UdpEchoClientHelper echoClient (csmaInterfaces[0].GetAddress(3), 9);
   echoClient.SetAttribute ("MaxPackets", UintegerValue (1));
   echoClient.SetAttribute ("Interval", TimeValue (Seconds (1.0)));
   echoClient.SetAttribute ("PacketSize", UintegerValue (1024));
