@@ -117,17 +117,17 @@ private:
 
 int main(int argc, char *argv[])
 {
-  // string TRACE_FILE = "scratch/test06.tcl";
+  string TRACE_FILE = "scratch/test06.tcl";
 
-  // // 以下部分變數不能加上 const，因為 cmd 那邊要進行設定
-  // int NODE_NUM = 100; // UE 數量
-  // int BANDWIDTH = 100; // number of RB ,10MHz
-  // int ENB_NUM = 35; // 設置的 eNB 數量
+  // 以下部分變數不能加上 const，因為 cmd 那邊要進行設定
+  int NODE_NUM = 100; // UE 數量
+  int BANDWIDTH = 100; // number of RB ,10MHz
+  int ENB_NUM = 35; // 設置的 eNB 數量
 
-  // int SELECTED_ENB = 0; // 要測試哪一個 enb
+  int SELECTED_ENB = 0; // 要測試哪一個 enb
 
-  // double DURATION = 1000;   // 貌似是秒數
-  // double ENB_TX_POWER = 20; // Transimission power in doubleBm, doubleBm 不知道是甚麼
+  double DURATION = 1000;   // 貌似是秒數
+  double ENB_TX_POWER = 20; // Transimission power in doubleBm, doubleBm 不知道是甚麼
 
   // Ptr<LteUePhy> uephy;
   // Ptr<LteHelper> lteHelper = CreateObject<LteHelper>();
@@ -138,27 +138,27 @@ int main(int argc, char *argv[])
   // std::ofstream outputfile1;
   // std::ofstream outputfile2;
 
-  // string OUTPUT_FILE = "test06_enb0.csv";
-  // string OUTPUT_FILE2 = "test06_enb1.csv";
-  // string OUTPUT_DIR = "output_csv";
+  string OUTPUT_FILE = "test06_enb0.csv";
+  string OUTPUT_FILE2 = "test06_enb1.csv";
+  string OUTPUT_DIR = "output_csv";
 
   // Enable logging from the ns2 helper
   LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
 
-  // CommandLine cmd; // 不知道是甚麼
-  // cmd.AddValue("traceFile", "Ns2 movement trace file", TRACE_FILE);
-  // cmd.AddValue("nodeNum", "Number of nodes", NODE_NUM);
-  // cmd.AddValue("duration", "Duration of Simulation", DURATION);
-  // cmd.AddValue("selectedEnb", "Select eNB ID", SELECTED_ENB);
-  // cmd.AddValue("outputDir", "output directory", OUTPUT_DIR);
-  // cmd.Parse(argc, argv);
+  CommandLine cmd; // 不知道是甚麼
+  cmd.AddValue("traceFile", "Ns2 movement trace file", TRACE_FILE);
+  cmd.AddValue("nodeNum", "Number of nodes", NODE_NUM);
+  cmd.AddValue("duration", "Duration of Simulation", DURATION);
+  cmd.AddValue("selectedEnb", "Select eNB ID", SELECTED_ENB);
+  cmd.AddValue("outputDir", "output directory", OUTPUT_DIR);
+  cmd.Parse(argc, argv);
 
-  // char CHAR_OUTPUT_DIR[OUTPUT_DIR.length()+1];
-  // strcpy(CHAR_OUTPUT_DIR, OUTPUT_DIR.c_str());
-  // mkdir(CHAR_OUTPUT_DIR, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+  char CHAR_OUTPUT_DIR[OUTPUT_DIR.length()+1];
+  strcpy(CHAR_OUTPUT_DIR, OUTPUT_DIR.c_str());
+  mkdir(CHAR_OUTPUT_DIR, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 
-  // OUTPUT_FILE = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE;
-  // OUTPUT_FILE2 = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE2;
+  OUTPUT_FILE = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE;
+  OUTPUT_FILE2 = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + OUTPUT_FILE2;
 
   // outputfile1.open(OUTPUT_FILE);
   // outputfile2.open(OUTPUT_FILE2);
