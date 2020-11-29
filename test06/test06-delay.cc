@@ -187,6 +187,7 @@ int main(int argc, char *argv[])
   // Config::SetDefault("ns3::LteUePowerControl::Alpha", DoubleValue(1.0));
   // Config::SetDefault("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue(320)); // he SRS periodicity in num TTIs
 
+  // 建立
   NodeContainer p2pNodes[7];
   for(int i=0;i<7;i++){
     p2pNodes[i].Create(2);
@@ -201,18 +202,21 @@ int main(int argc, char *argv[])
     p2pDevices[i] = pointToPoint.Install (p2pNodes[i]);
   }
 
+  // 建立 csma sdn controller 跟 switch，IPFS，ORACLE 相關的節點 container
   NodeContainer csmaCoreNodes;
   for(int i=0;i<7;i++){
     csmaCoreNodes.Add(p2pNodes[i].Get(0));
   }
   csmaCoreNodes.Create (3);
 
+  // eNB 相關的節點 container
   NodeContainer csmaNodes[7];
   for(int i=0;i<7;i++){
     csmaNodes[i].Add(p2pNodes[i].Get(1));
     csmaNodes[i].Create(4);
   }
 
+  // 乙太網路常用的 CSMA/CA 方法，應該是 mac layer 層的 protocol
   CsmaHelper csma;
   csma.SetChannelAttribute ("DataRate", StringValue ("100Mbps"));
   csma.SetChannelAttribute ("Delay", TimeValue (NanoSeconds (6560)));

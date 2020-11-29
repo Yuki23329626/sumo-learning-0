@@ -22,11 +22,11 @@ cd ..
 
 cd sumo-learning
 git pull
-cp test06/test06.cc ../scratch/
-cp test06/test06-delay.cc ../scratch/
-cp test06/test06.tcl ../scratch/
+cp test07/test07.cc ../scratch/
+cp test07/test07-delay.cc ../scratch/
+cp test07/test07.tcl ../scratch/
 cd ..
-./waf --run test06-delay
+./waf --run test07-delay
 
 
 ./waf clean
