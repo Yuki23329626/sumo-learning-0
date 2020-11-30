@@ -213,7 +213,7 @@ int main(int argc, char *argv[])
   {
     for (int i = 1; i < 8; i++)
     {
-      Vector enbPosition(1300 + 200*i, 250 + 200*j, 0);
+      Vector enbPosition(0 + 300*i, 0 + 300*j, 0);
       enbPositionAlloc->Add(enbPosition);
     }
   }
