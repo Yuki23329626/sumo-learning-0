@@ -139,7 +139,7 @@ int main(int argc, char *argv[])
   std::ofstream outputfile2;
 
   string OUTPUT_FILE = "test08_enb0.csv";
-  string OUTPUT_FILE2 = "test06_enb1.csv";
+  string OUTPUT_FILE2 = "test08_enb1.csv";
   string OUTPUT_DIR = "output_csv";
 
   // Enable logging from the ns2 helper
