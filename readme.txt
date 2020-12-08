@@ -8,7 +8,7 @@ python traceExporter.py --fcd-input test08.xml --ns2mobility-output test08.tcl
 
 會產生 tcl 檔
 
-3. ./waf --run "test08 --traceFile=scratch/test08.tcl --nodeNum=100 --duration=60 --selectedEnb=0 --outputDir=test08-1"
+3. ./waf --run "test08 --traceFile=scratch/test08.tcl --nodeNum=100 --duration=60 --selectedEnb=0 --outputDir=test08-4"
 產生結果
 
 cd sumo-learning
@@ -16,10 +16,10 @@ git pull
 cp test08/test08.cc ../scratch/
 cp test08/test08.tcl ../scratch/
 cd ..
-./waf --run "test08 --traceFile=scratch/test08.tcl --nodeNum=100 --duration=1000 --selectedEnb=0 --outputDir=test08-3"
+./waf --run "test08 --traceFile=scratch/test08.tcl --nodeNum=100 --duration=1000 --selectedEnb=0 --outputDir=test08-4"
 
 
-./waf --run "test08-delay --traceFile=scratch/test08.tcl --nodeNum=100 --duration=1000 --selectedEnb=0 --outputDir=test08-1"
+./waf --run "test08-delay --traceFile=scratch/test08.tcl --nodeNum=100 --duration=1000 --selectedEnb=0 --outputDir=test08-4"
 
 
 cd sumo-learning
