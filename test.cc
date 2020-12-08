@@ -97,7 +97,7 @@ main (int argc, char *argv[])
     clientApps.Stop (Seconds (10.0));
 
     AsciiTraceHelper ascii;
-    pointToPoint.EnableAsciiAll (ascii.CreateFileStream ("test.tr"));
+    pointToPoint.EnableAsciiAll (ascii.CreateFileStream ("mytest.tr"));
     
     Simulator::Run ();
     Simulator::Destroy ();
