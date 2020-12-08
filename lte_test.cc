@@ -18,7 +18,7 @@
 #include <ns3/network-module.h>
 #include <ns3/mobility-module.h>
 #include <ns3/lte-module.h>
-#include <ns3/internet-stack-helper.h>
+#include "ns3/internet-module.h"
 
 // Default Network Topology
 //
