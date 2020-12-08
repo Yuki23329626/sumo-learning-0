@@ -35,7 +35,7 @@ NS_LOG_COMPONENT_DEFINE ("FirstScriptExample");
 int
 main (int argc, char *argv[])
 {
-    cout << "The value of x is " << x << endl;
+    cout << "The value of x is " << endl;
 
     CommandLine cmd (__FILE__);
     cmd.Parse (argc, argv);
