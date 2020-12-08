@@ -38,6 +38,24 @@ NS_LOG_COMPONENT_DEFINE ("ThirdScriptExample");
 int main (int argc, char *argv[])
 {
     Ptr<LteHelper> lteHelper = CreateObject<LteHelper> ();
+    // LTE MAC Schesular
+    // lteHelper->SetSchedulerType ("ns3::FdMtFfMacScheduler");    // FD-MT scheduler
+    // lteHelper->SetSchedulerType ("ns3::TdMtFfMacScheduler");    // TD-MT scheduler
+    // lteHelper->SetSchedulerType ("ns3::TtaFfMacScheduler");     // TTA scheduler
+    // lteHelper->SetSchedulerType ("ns3::FdBetFfMacScheduler");   // FD-BET scheduler
+    // lteHelper->SetSchedulerType ("ns3::TdBetFfMacScheduler");   // TD-BET scheduler
+    // lteHelper->SetSchedulerType ("ns3::FdTbfqFfMacScheduler");  // FD-TBFQ scheduler
+    // lteHelper->SetSchedulerType ("ns3::TdTbfqFfMacScheduler");  // TD-TBFQ scheduler
+    // lteHelper->SetSchedulerType ("ns3::PssFfMacScheduler");     //PSS scheduler
+    // lteHelper->SetSchedulerAttribute("DebtLimit", IntegerValue(yourvalue)); // default value -625000 bytes (-5Mb)
+    // lteHelper->SetSchedulerAttribute("CreditLimit", UintegerValue(yourvalue)); // default value 625000 bytes (5Mb)
+    // lteHelper->SetSchedulerAttribute("TokenPoolSize", UintegerValue(yourvalue)); // default value 1 byte
+    // lteHelper->SetSchedulerAttribute("CreditableThreshold", UintegerValue(yourvalue)); // default value 0
+
+    lteHelper->EnablePhyTraces ();
+    lteHelper->EnableMacTraces ();
+    lteHelper->EnableRlcTraces ();
+    lteHelper->EnablePdcpTraces ();
 
     NodeContainer enbNodes;
     enbNodes.Create (1);
