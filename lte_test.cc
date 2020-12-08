@@ -81,11 +81,11 @@ int main (int argc, char *argv[])
     lteHelper->ActivateDataRadioBearer (ueDevs, bearer);
 
     
-    InternetStackHelper stack;
-    stack.Install (enbNodes);
-    stack.Install (ueNodes);
+    // InternetStackHelper stack;
+    // stack.Install (enbNodes);
+    // stack.Install (ueNodes);
 
-    Ipv4AddressHelper address;
+    // Ipv4AddressHelper address;
 
     Simulator::Stop (Seconds (0.005));
 
