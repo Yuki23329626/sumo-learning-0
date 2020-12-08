@@ -35,8 +35,6 @@ int
 main (int argc, char *argv[])
 {
 
-  NS_LOG_COMPONENT_DEFINE("FirstScriptExample");
-
   CommandLine cmd (__FILE__);
   cmd.Parse (argc, argv);
   

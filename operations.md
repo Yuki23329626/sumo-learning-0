@@ -20,13 +20,17 @@ cd ..
 
 ./waf --run "test08-delay --traceFile=scratch/test08.tcl --nodeNum=100 --duration=1000 --selectedEnb=0 --outputDir=test08-1"
 
+```bash
+
 cd sumo-learning
 git pull
-cp first.cc ../scratch/
+cp test.cc ../scratch/
 cd ..
-./waf
-export NS_LOG=
-./waf --run "scratch/first"
+# ./waf
+# export NS_LOG=FirstScriptExample=info
+./waf --run "scratch/test"
+
+```
 
 
 cd sumo-learning
