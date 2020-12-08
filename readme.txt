@@ -26,7 +26,7 @@ cp first.cc ../scratch/
 cd ..
 ./waf
 export NS_LOG=
-./waf --run "sumo-learning/first"
+./waf --run "scratch/first"
 
 
 cd sumo-learning
