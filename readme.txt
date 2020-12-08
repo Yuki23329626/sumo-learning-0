@@ -18,8 +18,15 @@ cp test08/test08.tcl ../scratch/
 cd ..
 ./waf --run "test08 --traceFile=scratch/test08.tcl --nodeNum=100 --duration=1000 --selectedEnb=0 --outputDir=test08-3"
 
-
 ./waf --run "test08-delay --traceFile=scratch/test08.tcl --nodeNum=100 --duration=1000 --selectedEnb=0 --outputDir=test08-1"
+
+cd sumo-learning
+git pull
+cp first.cc ../scratch/
+cd ..
+./waf
+export NS_LOG=
+./waf --run "sumo-learning/first"
 
 
 cd sumo-learning
