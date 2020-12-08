@@ -24,11 +24,11 @@ cd ..
 
 cd sumo-learning
 git pull
-cp test.cc ../scratch/
+cp lte_test.cc ../scratch/
 cd ..
 # ./waf
 # export NS_LOG=FirstScriptExample=info
-./waf --run "scratch/test"
+./waf --run "scratch/lte_test"
 
 ```
 
