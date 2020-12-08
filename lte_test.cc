@@ -14,14 +14,10 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#include "ns3/core-module.h"
-#include "ns3/point-to-point-module.h"
-#include "ns3/network-module.h"
-#include "ns3/applications-module.h"
-#include "ns3/wifi-module.h"
-#include "ns3/mobility-module.h"
-#include "ns3/csma-module.h"
-#include "ns3/internet-module.h"
+#include <ns3/core-module.h>
+#include <ns3/network-module.h>
+#include <ns3/mobility-module.h>
+#include <ns3/lte-module.h>
 
 // Default Network Topology
 //
