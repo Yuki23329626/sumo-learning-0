@@ -53,10 +53,10 @@ int main (int argc, char *argv[])
     // lteHelper->SetSchedulerAttribute("TokenPoolSize", UintegerValue(yourvalue)); // default value 1 byte
     // lteHelper->SetSchedulerAttribute("CreditableThreshold", UintegerValue(yourvalue)); // default value 0
 
-    lteHelper->EnablePhyTraces ();
-    lteHelper->EnableMacTraces ();
-    lteHelper->EnableRlcTraces ();
-    lteHelper->EnablePdcpTraces ();
+    // lteHelper->EnablePhyTraces ();
+    // lteHelper->EnableMacTraces ();
+    // lteHelper->EnableRlcTraces ();
+    // lteHelper->EnablePdcpTraces ();
 
     NodeContainer enbNodes;
     enbNodes.Create (1);
