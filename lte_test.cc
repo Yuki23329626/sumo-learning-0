@@ -61,6 +61,13 @@ int main (int argc, char *argv[])
     EpsBearer bearer (q);
     lteHelper->ActivateDataRadioBearer (ueDevs, bearer);
 
+    
+    InternetStackHelper stack;
+    stack.Install (enbNodes);
+    stack.Install (ueNodes);
+
+    Ipv4AddressHelper address;
+
     Simulator::Stop (Seconds (0.005));
 
     Simulator::Run ();
