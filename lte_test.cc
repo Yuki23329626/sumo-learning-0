@@ -90,8 +90,8 @@ int main (int argc, char *argv[])
 
     address.SetBase ("10.1.1.0", "255.255.255.0");
     Ipv4InterfaceContainer lteInterfaces;
-    lteInterfaces = address.Assign (enbNodes);
-    lteInterfaces = address.Assign (ueNodes);
+    lteInterfaces = address.Assign (enbDevs);
+    lteInterfaces = address.Assign (ueDevs);
 
     UdpEchoServerHelper echoServer (9);
 
