@@ -84,8 +84,8 @@ int main (int argc, char *argv[])
     LteHelper lte;
 
     NetDeviceContainer ueDevs, enbDevs;
-    ueDevs = lte.Install (ueNodes, LteHelper::DEVICE_TYPE_USER_EQUIPMENT);
-    enbDevs = lte.Install (enbNodes, LteHelper::DEVICE_TYPE_ENODEB);
+    ueDevs = lte.InstallUeDevice (ueNodes);
+    enbDevs = lte.InstallEnbDevice (enbNodes);
 
     InternetStackHelper stack;
     stack.Install (ueNodes);
