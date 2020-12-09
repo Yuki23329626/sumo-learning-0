@@ -123,7 +123,7 @@ int main (int argc, char *argv[])
     echoClient.SetAttribute ("PacketSize", UintegerValue (1024));
 
     ApplicationContainer clientApps =
-    echoClient.Install (ueNodes.Get (1));
+    echoClient.Install (ueNodes.Get (0));
     clientApps.Start (Seconds (2.0));
     clientApps.Stop (Seconds (10.0));
 
