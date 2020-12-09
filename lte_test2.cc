@@ -21,7 +21,6 @@
 #include "ns3/internet-module.h"
 #include "ns3/applications-module.h"
 #include <ns3/lte-helper.h>
-#include <ns3/enb-net-device.h>
 
 // Default Network Topology
 //
@@ -98,29 +97,11 @@ int main (int argc, char *argv[])
     Ipv4InterfaceContainer UEinterfaces = address.Assign (ueDevs);
     Ipv4InterfaceContainer ENBinterface = address.Assign (enbDevs);
 
-    // register UE to a given eNB:
-    Ptr<EnbNetDevice> enb = enbDevs.Get (0)->GetObject<EnbNetDevice> ();
-    Ptr<UeNetDevice> ue = ueDevs.Get (i)->GetObject<UeNetDevice> ();
-    lte.RegisterUeToTheEnb (ue, enb);
+    lteHelper->Attach (ueDevs, enbDevs.Get (0));
 
-    // define a set of sub channels to use for dl and ul transmission:
-    std::vector<int> dlSubChannels;
-    for (int i = 0; i < 25; i++)
-    {
-        dlSubChannels.push_back (i);
-    }
-    std::vector<int> ulSubChannels;
-    for (int i = 50; i < 100; i++)
-    {
-        ulSubChannels.push_back (i);
-    }
-
-    enb->GetPhy ()->SetDownlinkSubChannels (dlSubChannels);
-    enb->GetPhy ()->SetUplinkSubChannels (ulSubChannels);
-    ue->GetPhy ()->SetDownlinkSubChannels (dlSubChannels);
-    ue->GetPhy ()->SetUplinkSubChannels (ulSubChannels);
-
-    lte.AddDownlinkChannelRealization (enbMobility, ueMobility, ue->GetPhy ());
+    enum EpsBearer::Qci q = EpsBearer::GBR_CONV_VOICE;
+    EpsBearer bearer (q);
+    lteHelper->ActivateDataRadioBearer (ueDevs, bearer);
 
     // udp echo server
     // server
