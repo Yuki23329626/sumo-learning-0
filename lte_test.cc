@@ -39,6 +39,23 @@ NS_LOG_COMPONENT_DEFINE ("ThirdScriptExample");
 
 int main (int argc, char *argv[])
 {
+    bool verbose = true;
+    uint32_t nEnb = 1;
+    uint32_t nUe = 2;
+
+    CommandLine cmd;
+    cmd.AddValue ("nEnb", "Number of \"extra\" ENB nodes/devices", nEnb);
+    cmd.AddValue ("nUe", "Number of wifi UE devices", nUe);
+    cmd.AddValue ("verbose", "Tell echo applications to log if true", verbose);
+
+    cmd.Parse (argc, argv);
+
+    if (verbose)
+    {
+        LogComponentEnable("UdpEchoClientApplication", LOG_LEVEL_INFO);
+        LogComponentEnable("UdpEchoServerApplication", LOG_LEVEL_INFO);
+    }
+
     Ptr<LteHelper> lteHelper = CreateObject<LteHelper> ();
     // LTE MAC Schesular
     // lteHelper->SetSchedulerType ("ns3::FdMtFfMacScheduler");    // FD-MT scheduler
