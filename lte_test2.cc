@@ -21,6 +21,7 @@
 #include "ns3/internet-module.h"
 #include "ns3/applications-module.h"
 #include <ns3/lte-helper.h>
+#include <ns3/enb-net-device.h>
 
 // Default Network Topology
 //
