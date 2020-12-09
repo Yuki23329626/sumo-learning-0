@@ -19,7 +19,7 @@
 #include <ns3/mobility-module.h>
 #include <ns3/lte-module.h>
 #include "ns3/internet-module.h"
-#include "udp-echo-helper.h"
+#include "ns3/applications-module.h"
 
 // Default Network Topology
 //
