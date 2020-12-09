@@ -106,9 +106,10 @@ int main (int argc, char *argv[])
     Ipv4AddressHelper address;
 
     address.SetBase ("10.1.1.0", "255.255.255.0");
-    Ipv4InterfaceContainer lteInterfaces;
-    lteInterfaces = address.Assign (enbDevs);
-    lteInterfaces = address.Assign (ueDevs);
+    Ipv4InterfaceContainer lteEnbInterfaces;
+    lteEnbInterfaces = address.Assign (enbDevs);
+    Ipv4InterfaceContainer lteUeInterfaces;
+    lteUeInterfaces = address.Assign (ueDevs);
 
     UdpEchoServerHelper echoServer (9);
 
@@ -116,7 +117,7 @@ int main (int argc, char *argv[])
     serverApps.Start (Seconds (1.0));
     serverApps.Stop (Seconds (10.0));
 
-    UdpEchoClientHelper echoClient (lteInterfaces.GetAddress (1), 9);
+    UdpEchoClientHelper echoClient (lteUeInterfaces.GetAddress (0), 9);
     echoClient.SetAttribute ("MaxPackets", UintegerValue (1));
     echoClient.SetAttribute ("Interval", TimeValue (Seconds (1.0)));
     echoClient.SetAttribute ("PacketSize", UintegerValue (1024));
