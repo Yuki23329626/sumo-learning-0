@@ -127,6 +127,8 @@ int main (int argc, char *argv[])
     clientApps.Start (Seconds (2.0));
     clientApps.Stop (Seconds (10.0));
 
+    cout << lteEnbInterfaces.GetAddress (0) << ',' << lteUeInterfaces.GetAddress (0) << ',' << lteUeInterfaces.GetAddress (1);
+
     Simulator::Stop (Seconds (10.0));
 
     Simulator::Run ();
