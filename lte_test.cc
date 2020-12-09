@@ -109,6 +109,8 @@ int main (int argc, char *argv[])
     clientApps.Start (Seconds (2.0));
     clientApps.Stop (Seconds (10.0));
 
+    Simulator::Stop (Seconds (10.0));
+
     Simulator::Run ();
     Simulator::Destroy ();
     return 0;
