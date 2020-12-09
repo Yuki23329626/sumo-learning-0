@@ -82,6 +82,12 @@ int main (int argc, char *argv[])
     NodeContainer ueNodes;
     ueNodes.Create (1);
 
+    MobilityHelper mobility;
+    mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
+    mobility.Install (enbNodes);
+    mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
+    mobility.Install (ueNodes);
+
     LteHelper lte;
 
     NetDeviceContainer ueDevs, enbDevs;
