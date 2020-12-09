@@ -117,7 +117,7 @@ int main (int argc, char *argv[])
     serverApps.Start (Seconds (1.0));
     serverApps.Stop (Seconds (10.0));
 
-    UdpEchoClientHelper echoClient (lteUeInterfaces.GetAddress (0), 9);
+    UdpEchoClientHelper echoClient (lteUeInterfaces.GetAddress (1), 9);
     echoClient.SetAttribute ("MaxPackets", UintegerValue (1));
     echoClient.SetAttribute ("Interval", TimeValue (Seconds (1.0)));
     echoClient.SetAttribute ("PacketSize", UintegerValue (1024));
