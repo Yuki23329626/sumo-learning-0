@@ -22,7 +22,6 @@
 #include "ns3/mobility-module.h"
 #include "ns3/csma-module.h"
 #include "ns3/internet-module.h"
-#include "udp-echo-server.h"
 
 // Default Network Topology
 //
