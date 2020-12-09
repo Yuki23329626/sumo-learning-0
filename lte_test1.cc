@@ -41,7 +41,7 @@ int main (int argc, char *argv[])
 {
     bool verbose = true;
     uint32_t nEnb = 1;
-    uint32_t nUe = 2;
+    uint32_t nUe = 1;
 
     CommandLine cmd;
     cmd.AddValue ("nEnb", "Number of \"extra\" ENB nodes/devices", nEnb);
@@ -79,45 +79,56 @@ int main (int argc, char *argv[])
     NodeContainer enbNodes;
     enbNodes.Create (1);
     NodeContainer ueNodes;
-    ueNodes.Create (2);
+    ueNodes.Create (1);
 
-    MobilityHelper mobility;
-    mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
-    mobility.Install (enbNodes);
-    mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
-    mobility.Install (ueNodes);
+    LteHelper lte;
 
-    NetDeviceContainer enbDevs;
-    enbDevs = lteHelper->InstallEnbDevice (enbNodes);
-    NetDeviceContainer ueDevs;
-    ueDevs = lteHelper->InstallUeDevice (ueNodes);
+    NetDeviceContainer ueDevs, enbDevs;
+    ueDevs = lte.Install (ueNodes, LteHelper::DEVICE_TYPE_USER_EQUIPMENT);
+    enbDevs = lte.Install (enbNodes, LteHelper::DEVICE_TYPE_ENODEB);
 
-    lteHelper->Attach (ueDevs, enbDevs.Get (0));
-
-    enum EpsBearer::Qci q = EpsBearer::GBR_CONV_VOICE;
-    EpsBearer bearer (q);
-    lteHelper->ActivateDataRadioBearer (ueDevs, bearer);
-
-    
     InternetStackHelper stack;
-    stack.Install (enbNodes);
     stack.Install (ueNodes);
+    stack.Install (enbNodes);
 
     Ipv4AddressHelper address;
-
     address.SetBase ("10.1.1.0", "255.255.255.0");
-    Ipv4InterfaceContainer lteEnbInterfaces;
-    lteEnbInterfaces = address.Assign (enbDevs);
-    Ipv4InterfaceContainer lteUeInterfaces;
-    lteUeInterfaces = address.Assign (ueDevs);
+    Ipv4InterfaceContainer UEinterfaces = address.Assign (ueDevs);
+    Ipv4InterfaceContainer ENBinterface = address.Assign (enbDevs);
 
+    // register UE to a given eNB:
+    Ptr<EnbNetDevice> enb = enbDevs.Get (0)->GetObject<EnbNetDevice> ();
+    Ptr<UeNetDevice> ue = ueDevs.Get (i)->GetObject<UeNetDevice> ();
+    lte.RegisterUeToTheEnb (ue, enb);
+
+    // define a set of sub channels to use for dl and ul transmission:
+    std::vector<int> dlSubChannels;
+    for (int i = 0; i < 25; i++)
+    {
+        dlSubChannels.push_back (i);
+    }
+    std::vector<int> ulSubChannels;
+    for (int i = 50; i < 100; i++)
+    {
+        ulSubChannels.push_back (i);
+    }
+
+    enb->GetPhy ()->SetDownlinkSubChannels (dlSubChannels);
+    enb->GetPhy ()->SetUplinkSubChannels (ulSubChannels);
+    ue->GetPhy ()->SetDownlinkSubChannels (dlSubChannels);
+    ue->GetPhy ()->SetUplinkSubChannels (ulSubChannels);
+
+    lte.AddDownlinkChannelRealization (enbMobility, ueMobility, ue->GetPhy ());
+
+    // udp echo server
+    // server
     UdpEchoServerHelper echoServer (9);
-
-    ApplicationContainer serverApps = echoServer.Install (ueNodes.Get (1));
+    ApplicationContainer serverApps = echoServer.Install (enbNodes.Get (0));
     serverApps.Start (Seconds (1.0));
     serverApps.Stop (Seconds (10.0));
 
-    UdpEchoClientHelper echoClient (lteUeInterfaces.GetAddress (1), 9);
+    // client
+    UdpEchoClientHelper echoClient (ENBinterface.GetAddress (0), 9);
     echoClient.SetAttribute ("MaxPackets", UintegerValue (1));
     echoClient.SetAttribute ("Interval", TimeValue (Seconds (1.0)));
     echoClient.SetAttribute ("PacketSize", UintegerValue (1024));
@@ -126,8 +137,6 @@ int main (int argc, char *argv[])
     echoClient.Install (ueNodes.Get (0));
     clientApps.Start (Seconds (2.0));
     clientApps.Stop (Seconds (10.0));
-
-    // cout << lteEnbInterfaces.GetAddress (0) << ',' << lteUeInterfaces.GetAddress (0) << ',' << lteUeInterfaces.GetAddress (1);
 
     Simulator::Stop (Seconds (10.0));
 
