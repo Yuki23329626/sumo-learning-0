@@ -112,7 +112,7 @@ int main (int argc, char *argv[])
 
     UdpEchoServerHelper echoServer (9);
 
-    ApplicationContainer serverApps = echoServer.Install (ueNodes.Get (0));
+    ApplicationContainer serverApps = echoServer.Install (ueNodes.Get (1));
     serverApps.Start (Seconds (1.0));
     serverApps.Stop (Seconds (10.0));
 
