@@ -80,7 +80,7 @@ int main (int argc, char *argv[])
     NodeContainer enbNodes;
     enbNodes.Create (1);
     NodeContainer ueNodes;
-    ueNodes.Create (1);
+    ueNodes.Create (2);
 
     MobilityHelper mobility;
     mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
@@ -90,9 +90,11 @@ int main (int argc, char *argv[])
 
     LteHelper lte;
 
-    NetDeviceContainer ueDevs, enbDevs;
-    ueDevs = lte.InstallUeDevice (ueNodes);
-    enbDevs = lte.InstallEnbDevice (enbNodes);
+    NetDeviceContainer enbDevs;
+    enbDevs = lteHelper->InstallEnbDevice (enbNodes);
+
+    NetDeviceContainer ueDevs;
+    ueDevs = lteHelper->InstallUeDevice (ueNodes);
 
     InternetStackHelper stack;
     stack.Install (ueNodes);
