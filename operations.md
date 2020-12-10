@@ -31,11 +31,13 @@ cd ..
 
 cd sumo-learning
 git pull
-cp wifi_test3.cc ../scratch/
+cp test08/test08.cc ../scratch/
+cp test08/test08.tcl ../scratch/
 cd ..
 # ./waf
 # export NS_LOG=FirstScriptExample=info
-./waf --run "scratch/wifi_test3"
+./waf --run "scratch/test08"
+
 
 ```
 

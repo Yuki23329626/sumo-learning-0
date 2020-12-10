@@ -119,17 +119,35 @@ int main(int argc, char *argv[])
   Ns2MobilityHelper ns2 = Ns2MobilityHelper(traceFile);
   ns2.Install();
 
-  NodeContainer p2pNodes;
-  p2pNodes.Create (15);
+  NodeContainer p2pNodes[12];
+  for (int i = 0; i < 12; i++)
+  {
+    p2pNodes[i].Create (2);
+  }
 
   PointToPointHelper pointToPoint;
-  NetDeviceContainer p2pDevices;
-  p2pDevices = pointToPoint.Install (p2pNodes);
+  pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
+  pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
+
+  NetDeviceContainer p2pDevices[12];
+  for (int i = 0; i < 12; i++)
+  {
+    p2pDevices[i].Install (p2pNodes[i]);
+  }
 
   NodeContainer csmaNodes;
-  csmaNodes.Add (p2pNodes.Get (12));
-  csmaNodes.Add (p2pNodes.Get (13));
-  csmaNodes.Add (p2pNodes.Get (14));
+  csmaNodes.Add (p2pNodes[0].Get (0));
+  csmaNodes.Add (p2pNodes[1].Get (0));
+  csmaNodes.Add (p2pNodes[2].Get (0));
+  csmaNodes.Add (p2pNodes[3].Get (0));
+  csmaNodes.Add (p2pNodes[4].Get (0));
+  csmaNodes.Add (p2pNodes[5].Get (0));
+  csmaNodes.Add (p2pNodes[6].Get (0));
+  csmaNodes.Add (p2pNodes[7].Get (0));
+  csmaNodes.Add (p2pNodes[8].Get (0));
+  csmaNodes.Add (p2pNodes[9].Get (0));
+  csmaNodes.Add (p2pNodes[10].Get (0));
+  csmaNodes.Add (p2pNodes[11].Get (0));
   csmaNodes.Create(nCsma);
 
   CsmaHelper csma;
@@ -140,18 +158,18 @@ int main(int argc, char *argv[])
   ueNodes.Create(nNode);
 
   NodeContainer enbNodes;
-  enbNodes.Add(p2pNodes.Get (0));
-  enbNodes.Add(p2pNodes.Get (1));
-  enbNodes.Add(p2pNodes.Get (2));
-  enbNodes.Add(p2pNodes.Get (3));
-  enbNodes.Add(p2pNodes.Get (4));
-  enbNodes.Add(p2pNodes.Get (5));
-  enbNodes.Add(p2pNodes.Get (6));
-  enbNodes.Add(p2pNodes.Get (7));
-  enbNodes.Add(p2pNodes.Get (8));
-  enbNodes.Add(p2pNodes.Get (9));
-  enbNodes.Add(p2pNodes.Get (10));
-  enbNodes.Add(p2pNodes.Get (11));
+  enbNodes.Add (p2pNodes[0].Get (1));
+  enbNodes.Add (p2pNodes[1].Get (1));
+  enbNodes.Add (p2pNodes[2].Get (1));
+  enbNodes.Add (p2pNodes[3].Get (1));
+  enbNodes.Add (p2pNodes[4].Get (1));
+  enbNodes.Add (p2pNodes[5].Get (1));
+  enbNodes.Add (p2pNodes[6].Get (1));
+  enbNodes.Add (p2pNodes[7].Get (1));
+  enbNodes.Add (p2pNodes[8].Get (1));
+  enbNodes.Add (p2pNodes[9].Get (1));
+  enbNodes.Add (p2pNodes[10].Get (1));
+  enbNodes.Add (p2pNodes[11].Get (1));
 
   NetDeviceContainer csmaDevices;
   csmaDevices = csma.Install (csmaNodes);
@@ -193,10 +211,10 @@ int main(int argc, char *argv[])
   enbPositionAlloc->Add(Vector(1107, 953, 0));
   enbPositionAlloc->Add(Vector(1317, 950, 0));
 
-  MobilityHelper enbMobility;
-  enbMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
-  enbMobility.SetPositionAllocator(enbPositionAlloc);
-  enbMobility.Install(csmaNodes);
+  MobilityHelper mobility;
+  mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
+  mobility.SetPositionAllocator(enbPositionAlloc);
+  mobility.Install(enbNodes);
   
   Ptr<MobilityModel> ueMobilityModel;
   Ptr<LteUePhy> uephy;
@@ -227,7 +245,9 @@ int main(int argc, char *argv[])
 
   address.SetBase ("10.1.2.0", "255.255.255.0");
   Ipv4InterfaceContainer p2pInterfaces;
-  p2pInterfaces = address.Assign (p2pDevices);
+  for(int i = 0; i < 12; i++){
+    p2pInterfaces = address.Assign (p2pDevices[i]);
+  }
 
   address.SetBase ("10.1.3.0", "255.255.255.0");
   address.Assign (ueDevices);
