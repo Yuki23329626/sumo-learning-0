@@ -105,10 +105,10 @@ int main(int argc, char *argv[])
   // Enable logging from the ns2 helper
   LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
 
-  char CHAR_OUTPUT_DIR[outputDir.length()+1];
-  strcpy(CHAR_OUTPUT_DIR, outputDir.c_str());
-  mkdir(CHAR_OUTPUT_DIR, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-  outputFileName = OUTPUT_DIR + "/" + to_string(SELECTED_ENB) + "_" + outputFileName;
+  char char_output_dir[outputDir.length()+1];
+  strcpy(char_output_dir, outputDir.c_str());
+  mkdir(char_output_dir, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+  outputFileName = outputDir + "/" + outputFileName;
   
   std::ofstream ofstream1;
   ofstream1.open(outputFileName);
