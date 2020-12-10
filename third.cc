@@ -93,6 +93,7 @@ main (int argc, char *argv[])
 
   NodeContainer wifiStaNodes;
   wifiStaNodes.Create (nWifi);
+  
   NodeContainer wifiApNode = p2pNodes.Get (0);
 
   YansWifiChannelHelper channel = YansWifiChannelHelper::Default ();

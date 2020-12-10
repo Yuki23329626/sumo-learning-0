@@ -7,6 +7,9 @@ sumo -c test09.sumocfg --fcd-output test09.xml --step-length 1
 python traceExporter.py --fcd-input test09.xml --ns2mobility-output test09.tcl
 python D:\SUMO\tools\traceExporter.py --fcd-input D:\github\sumo-learning\test09\test09.xml --ns2mobility-output D:\github\sumo-learning\test09\test09.tcl
 
+3. 產生 excel 黨
+python D:\SUMO\tools\traceExporter.py traceExporter.py --fcd-input D:\github\sumo-learning\test09\test09.xml --gpsdat-output D:\github\sumo-learning\test09\test09.csv
+
 D:
 cd git
 
@@ -33,6 +36,18 @@ cd ..
 # ./waf
 # export NS_LOG=FirstScriptExample=info
 ./waf --run "scratch/wifi_test3"
+
+```
+
+```bash
+
+cd sumo-learning
+git pull
+cp test09-course.cc ../scratch/
+cd ..
+# ./waf
+# export NS_LOG=FirstScriptExample=info
+./waf --run "scratch/test09-course"
 
 ```
 
