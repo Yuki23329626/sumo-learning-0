@@ -211,7 +211,7 @@ int main(int argc, char *argv[])
     ue_info[i].set_imsi(ueDevices.Get(i)->GetObject<LteUeNetDevice>()->GetImsi());
 
     // uephy->TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback(&UEs_Info::GetUeSinr, &ues_info[i]));
-    ueMobilityModel->TraceConnectWithoutContext("CourseChange", MakeCallback(&UEs_Info::CourseChange, &ue_info[i]));
+    ueMobilityModel->TraceConnectWithoutContext("CourseChange", MakeCallback(&UE_Info::CourseChange, &ue_info[i]));
   }
 
   InternetStackHelper stack;
@@ -230,8 +230,8 @@ int main(int argc, char *argv[])
   p2pInterfaces = address.Assign (p2pDevices);
 
   address.SetBase ("10.1.3.0", "255.255.255.0");
-  address.Assign (staDevices);
-  address.Assign (apDevices);
+  address.Assign (ueDevices);
+  address.Assign (enbDevices);
 
   // udp server
   UdpEchoServerHelper echoServer (9);
