@@ -15,6 +15,9 @@
 #include "ns3/point-to-point-module.h"
 #include "ns3/spectrum-module.h"
 #include "ns3/animation-interface.h"
+#include "ns3/applications-module.h"
+#include "ns3/yans-wifi-helper.h"
+#include "ns3/ssid.h"
 
 using namespace ns3;
 using namespace std;
@@ -89,8 +92,8 @@ int main(int argc, char *argv[])
   int nCsma = 3;
   int nNode = 100;
   int duration = 1001;
-  string outputDir = "test09-course-1"
-  string outputFileName = "test09-course.csv"
+  string outputDir = "test09-course-1";
+  string outputFileName = "test09-course.csv";
 
   CommandLine cmd;
   cmd.AddValue("traceFile", "Ns2 movement trace file", traceFile);
