@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
   NetDeviceContainer p2pDevices[12];
   for (int i = 0; i < 12; i++)
   {
-    p2pDevices[i].Install (p2pNodes[i]);
+    p2pDevices[i] = pointToPoint.Install (p2pNodes[i]);
   }
 
   NodeContainer csmaNodes;
