@@ -43,7 +43,7 @@ cd ..
 
 cd sumo-learning
 git pull
-cp test09-course.cc ../scratch/
+cp test09/test09-course.cc ../scratch/
 cd ..
 # ./waf
 # export NS_LOG=FirstScriptExample=info

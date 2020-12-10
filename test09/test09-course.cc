@@ -62,7 +62,7 @@ public:
     Vector pos = mobility->GetPosition(); // Get position
     position = pos;
     double now = Simulator::Now().GetSeconds();
-    *os1 << now << "," << imsi  << "," << position.x << "," << position.y << endl;
+    *ofstream1 << now << "," << imsi  << "," << position.x << "," << position.y << endl;
   }
 
   // 拿到 UE 當前座標 position.x, position.y
