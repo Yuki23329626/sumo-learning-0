@@ -41,7 +41,7 @@ NS_LOG_COMPONENT_DEFINE ("ThirdScriptExample");
 int main (int argc, char *argv[])
 {
     bool verbose = true;
-    uint32_t nEnb = 1;
+    uint32_t nEnb = 2;
     uint32_t nUe = 1;
 
     CommandLine cmd;

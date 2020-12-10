@@ -1,34 +1,38 @@
 1. generate a bundle file from created scenario
-sumo -c test08.sumocfg --fcd-output test08.xml --step-length 1
+sumo -c test09.sumocfg --fcd-output test09.xml --step-length 1
 
 會產生 xml 檔
 
 2. create mobility tract to import for NS3
-python traceExporter.py --fcd-input test08.xml --ns2mobility-output test08.tcl
+python traceExporter.py --fcd-input test09.xml --ns2mobility-output test09.tcl
+python D:\SUMO\tools\traceExporter.py --fcd-input D:\github\sumo-learning\test09\test09.xml --ns2mobility-output D:\github\sumo-learning\test09\test09.tcl
+
+D:
+cd git
 
 會產生 tcl 檔
 
-3. ./waf --run "test08 --traceFile=scratch/test08.tcl --nodeNum=100 --duration=60 --selectedEnb=0 --outputDir=test08-4"
+3. ./waf --run "test09 --traceFile=scratch/test09.tcl --nodeNum=100 --duration=60 --selectedEnb=0 --outputDir=test09-4"
 產生結果
 
 cd sumo-learning
 git pull
-cp test08/test08.cc ../scratch/
-cp test08/test08.tcl ../scratch/
+cp test09/test09.cc ../scratch/
+cp test09/test09.tcl ../scratch/
 cd ..
-./waf --run "test08 --traceFile=scratch/test08.tcl --nodeNum=100 --duration=1000 --selectedEnb=0 --outputDir=test08-4"
+./waf --run "test09 --traceFile=scratch/test09.tcl --nodeNum=100 --duration=1000 --selectedEnb=0 --outputDir=test09-4"
 
-./waf --run "test08-delay --traceFile=scratch/test08.tcl --nodeNum=100 --duration=1000 --selectedEnb=0 --outputDir=test08-4"
+./waf --run "test09-delay --traceFile=scratch/test09.tcl --nodeNum=100 --duration=1000 --selectedEnb=0 --outputDir=test09-4"
 
 ```bash
 
 cd sumo-learning
 git pull
-cp lte_test2.cc ../scratch/
+cp wifi_test3.cc ../scratch/
 cd ..
 # ./waf
 # export NS_LOG=FirstScriptExample=info
-./waf --run "scratch/lte_test2"
+./waf --run "scratch/wifi_test3"
 
 ```
 

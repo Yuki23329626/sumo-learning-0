@@ -45,34 +45,20 @@ n4 - n3 - n2 - n1 - n0 --------------  n35  n36  n37  n38  n39  n40  n41  n42  n
                                                          LAN 10.1.8.0
 */
 
+using namespace ns3;
+
+NS_LOG_COMPONENT_DEFINE ("test08-delay");
+
 int main(int argc, char *argv[])
 {
-  double DURATION = 10;   // 是秒數
-  
-  Time::SetResolution (Time::NS);
-  LogComponentEnable ("UdpEchoClientApplication", LOG_LEVEL_INFO);
-  LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_INFO);
+    bool verbose = true;
+    uint32_t nCsma = 3;
+    uint32_t nEnb = 7;
+    uint32_t nUe = 5;
+    bool tracing = false;
 
-  NodeContainer csmaCoreNodes;
-  csmaCoreNodes.Create(2);
-
-  csmaHelper csma;
-  csma.SetChannelAttribute ("DataRate", StringValue ("100Mbps"));
-  csma.SetChannelAttribute ("Delay", TimeValue (NanoSeconds (6560)));
-
-  NetDeviceContainer csmaCoreDevices;
-  csma.Install(csmaCoreNodes);
-
-  InternetStackHelper stack;
-  stack.Install (csmaCoreNodes);
-
-  Ipv4AddressHelper address;
-  address.SetBase ("10.1.1.0", "255.255.255.0");
-
-  Ipv4InterfaceContainer csmaCoreInterface;
-
-  Simulator::Stop(Seconds(DURATION));
-  Simulator::Run();
-  Simulator::Destroy();
-  return 0;
+    Simulator::Stop(Seconds(DURATION));
+    Simulator::Run();
+    Simulator::Destroy();
+    return 0;
 }
