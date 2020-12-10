@@ -242,16 +242,48 @@ int main(int argc, char *argv[])
   address.SetBase ("10.1.1.0", "255.255.255.0");
   Ipv4InterfaceContainer csmaInterfaces;
   csmaInterfaces = address.Assign (csmaDevices);
-
+  
   address.SetBase ("10.1.2.0", "255.255.255.0");
-  Ipv4InterfaceContainer p2pInterfaces;
-  for(int i = 0; i < 12; i++){
-    p2pInterfaces = address.Assign (p2pDevices[i]);
-  }
-
-  address.SetBase ("10.1.3.0", "255.255.255.0");
   address.Assign (ueDevices);
   address.Assign (enbDevices);
+
+  address.SetBase ("10.1.3.0", "255.255.255.0");
+  Ipv4InterfaceContainer p2pInterfaces;
+  p2pInterfaces = address.Assign (p2pDevices[0]);
+  address.SetBase ("10.1.4.0", "255.255.255.0");
+  Ipv4InterfaceContainer p2pInterfaces;
+  p2pInterfaces = address.Assign (p2pDevices[1]);
+  address.SetBase ("10.1.5.0", "255.255.255.0");
+  Ipv4InterfaceContainer p2pInterfaces;
+  p2pInterfaces = address.Assign (p2pDevices[2]);
+  address.SetBase ("10.1.6.0", "255.255.255.0");
+  Ipv4InterfaceContainer p2pInterfaces;
+  p2pInterfaces = address.Assign (p2pDevices[3]);
+  address.SetBase ("10.1.7.0", "255.255.255.0");
+  Ipv4InterfaceContainer p2pInterfaces;
+  p2pInterfaces = address.Assign (p2pDevices[4]);
+  address.SetBase ("10.1.8.0", "255.255.255.0");
+  Ipv4InterfaceContainer p2pInterfaces;
+  p2pInterfaces = address.Assign (p2pDevices[5]);
+  address.SetBase ("10.1.9.0", "255.255.255.0");
+  Ipv4InterfaceContainer p2pInterfaces;
+  p2pInterfaces = address.Assign (p2pDevices[6]);
+  address.SetBase ("10.1.10.0", "255.255.255.0");
+  Ipv4InterfaceContainer p2pInterfaces;
+  p2pInterfaces = address.Assign (p2pDevices[7]);
+  address.SetBase ("10.1.11.0", "255.255.255.0");
+  Ipv4InterfaceContainer p2pInterfaces;
+  p2pInterfaces = address.Assign (p2pDevices[8]);
+  address.SetBase ("10.1.12.0", "255.255.255.0");
+  Ipv4InterfaceContainer p2pInterfaces;
+  p2pInterfaces = address.Assign (p2pDevices[9]);
+  address.SetBase ("10.1.13.0", "255.255.255.0");
+  Ipv4InterfaceContainer p2pInterfaces;
+  p2pInterfaces = address.Assign (p2pDevices[10]);
+  address.SetBase ("10.1.14.0", "255.255.255.0");
+  Ipv4InterfaceContainer p2pInterfaces;
+  p2pInterfaces = address.Assign (p2pDevices[11]);
+
 
   // udp server
   UdpEchoServerHelper echoServer (9);
