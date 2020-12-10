@@ -89,7 +89,7 @@ private:
 
 int main(int argc, char *argv[])
 {
-  string traceFile = "test09.tcl";
+  string traceFile = "scratch/test09.tcl";
   int nCsma = 3;
   int nNode = 100;
   int duration = 1001;
