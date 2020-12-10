@@ -17,6 +17,7 @@
 #include "ns3/animation-interface.h"
 #include "ns3/applications-module.h"
 #include "ns3/yans-wifi-helper.h"
+#include "ns3/csma-module.h"
 #include "ns3/ssid.h"
 
 using namespace ns3;
