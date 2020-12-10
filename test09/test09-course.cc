@@ -105,6 +105,8 @@ int main(int argc, char *argv[])
 
   // Enable logging from the ns2 helper
   LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
+  LogComponentEnable ("UdpEchoClientApplication", LOG_LEVEL_INFO);
+  LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_INFO);
 
   char char_output_dir[outputDir.length()+1];
   strcpy(char_output_dir, outputDir.c_str());
