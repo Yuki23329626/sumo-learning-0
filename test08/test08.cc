@@ -264,7 +264,7 @@ int main(int argc, char *argv[])
 
     // 設置 callback function，當 SINR 或是 position 有變動的時候，會分別呼叫這兩個 member function
     // 請確認，SINR 變動是怎麼偵測的，是偵測 eNB 的 SINR 嗎，如果是的話，有針對哪個 eNB 嗎?
-    uephy->TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback(&UEs_Info::GetUeSinr, &ues_info[i]));
+    // uephy->TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback(&UEs_Info::GetUeSinr, &ues_info[i]));
     ueMobilityModel->TraceConnectWithoutContext("CourseChange", MakeCallback(&UEs_Info::CourseChange1, &ues_info[i]));
   }
 
