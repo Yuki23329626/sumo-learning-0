@@ -230,10 +230,11 @@ int main(int argc, char *argv[])
   {
     ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
     ue_info[i].set_Position(ueMobilityModel->GetPosition());
+    // ue_info[i].setConnectedENB(SELECTED_ENB);
     ue_info[i].set_output(&ofstream1);
 
-    uephy = ueDevices.Get(i)->GetObject<LteUeNetDevice>()->GetPhy();
-    ue_info[i].set_imsi(ueDevices.Get(i)->GetObject<LteUeNetDevice>()->GetImsi());
+    // uephy = ueDevices.Get(i)->GetObject<LteUeNetDevice>()->GetPhy();
+    // ue_info[i].set_imsi(ueDevices.Get(i)->GetObject<LteUeNetDevice>()->GetImsi());
 
     // uephy->TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback(&UEs_Info::GetUeSinr, &ues_info[i]));
     ueMobilityModel->TraceConnectWithoutContext("CourseChange", MakeCallback(&UE_Info::CourseChange, &ue_info[i]));
