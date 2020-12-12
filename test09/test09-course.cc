@@ -120,8 +120,12 @@ int main(int argc, char *argv[])
   ofstream1.open(outputFileName);
   ofstream1 << "time(s),IMSI,X,Y" << endl;
 
-  // UE_Info *ue_info = (UE_Info *)malloc(sizeof(UE_Info) * nNode);
+  UE_Info *ue_info = (UE_Info *)malloc(sizeof(UE_Info) * nNode);
   Ns2MobilityHelper ns2 = Ns2MobilityHelper(traceFile);
+
+  NodeContainer ueNodes;
+  ueNodes.Create(nNode);
+  
   ns2.Install();
 
   NodeContainer p2pNodes[12];
@@ -158,9 +162,6 @@ int main(int argc, char *argv[])
   CsmaHelper csma;
   csma.SetChannelAttribute ("DataRate", StringValue ("100Mbps"));
   csma.SetChannelAttribute ("Delay", TimeValue (NanoSeconds (6560)));
-
-  NodeContainer ueNodes;
-  ueNodes.Create(nNode);
 
   NodeContainer enbNodes;
   enbNodes.Add (p2pNodes[0].Get (1));

@@ -50,7 +50,7 @@ cp test09/test09.tcl ../scratch/
 cd ..
 # ./waf
 # export NS_LOG=FirstScriptExample=info
-./waf --run "scratch/test09-course" --gdb
+./waf --run "scratch/test09-course"
 
 ```
 
