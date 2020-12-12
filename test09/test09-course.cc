@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
   ofstream1.open(outputFileName);
   ofstream1 << "time(s),IMSI,X,Y" << endl;
 
-  UE_Info *ue_info = (UE_Info *)malloc(sizeof(UE_Info) * nNode);
+  // UE_Info *ue_info = (UE_Info *)malloc(sizeof(UE_Info) * nNode);
   Ns2MobilityHelper ns2 = Ns2MobilityHelper(traceFile);
   ns2.Install();
 
