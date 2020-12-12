@@ -95,6 +95,9 @@ int main(int argc, char *argv[])
   int duration = 1001;
   string outputDir = "test09-course-1";
   string outputFileName = "test09-course.csv";
+  
+  Ptr<MobilityModel> ueMobilityModel;
+  Ptr<LteUePhy> uephy;
 
   CommandLine cmd;
   cmd.AddValue("traceFile", "Ns2 movement trace file", traceFile);
@@ -217,28 +220,25 @@ int main(int argc, char *argv[])
   mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
   mobility.SetPositionAllocator(enbPositionAlloc);
   mobility.Install(enbNodes);
-  
-  Ptr<MobilityModel> ueMobilityModel;
-  Ptr<LteUePhy> uephy;
 
   InternetStackHelper stack;
   stack.Install (csmaNodes);
   stack.Install (ueNodes);
   stack.Install (enbNodes);
 
-  // for (int i = 0; i < nNode; i++)
-  // {
-  //   ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
-  //   ue_info[i].set_Position(ueMobilityModel->GetPosition());
-  //   // ue_info[i].setConnectedENB(SELECTED_ENB);
-  //   ue_info[i].set_output(&ofstream1);
+  for (int i = 0; i < nNode; i++)
+  {
+    ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
+    ue_info[i].set_Position(ueMobilityModel->GetPosition());
+    // ue_info[i].setConnectedENB(SELECTED_ENB);
+    ue_info[i].set_output(&ofstream1);
 
-  //   // uephy = ueDevices.Get(i)->GetObject<LteUeNetDevice>()->GetPhy();
-  //   // ue_info[i].set_imsi(ueDevices.Get(i)->GetObject<LteUeNetDevice>()->GetImsi());
+    // uephy = ueDevices.Get(i)->GetObject<LteUeNetDevice>()->GetPhy();
+    // ue_info[i].set_imsi(ueDevices.Get(i)->GetObject<LteUeNetDevice>()->GetImsi());
 
-  //   // uephy->TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback(&UEs_Info::GetUeSinr, &ues_info[i]));
-  //   ueMobilityModel->TraceConnectWithoutContext("CourseChange", MakeCallback(&UE_Info::CourseChange, &ue_info[i]));
-  // }
+    // uephy->TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback(&UEs_Info::GetUeSinr, &ues_info[i]));
+    ueMobilityModel->TraceConnectWithoutContext("CourseChange", MakeCallback(&UE_Info::CourseChange, &ue_info[i]));
+  }
 
   Ipv4AddressHelper address;
 
