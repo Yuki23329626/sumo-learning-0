@@ -221,11 +221,16 @@ int main(int argc, char *argv[])
   Ptr<MobilityModel> ueMobilityModel;
   Ptr<LteUePhy> uephy;
 
+  InternetStackHelper stack;
+  stack.Install (csmaNodes);
+  stack.Install (ueNodes);
+  stack.Install (enbNodes);
+
   for (int i = 0; i < nNode; i++)
   {
     ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
     ue_info[i].set_Position(ueMobilityModel->GetPosition());
-    // ue_info[i].set_output(&ofstream1);
+    ue_info[i].set_output(&ofstream1);
 
     uephy = ueDevices.Get(i)->GetObject<LteUeNetDevice>()->GetPhy();
     ue_info[i].set_imsi(ueDevices.Get(i)->GetObject<LteUeNetDevice>()->GetImsi());
@@ -233,11 +238,6 @@ int main(int argc, char *argv[])
     // uephy->TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback(&UEs_Info::GetUeSinr, &ues_info[i]));
     ueMobilityModel->TraceConnectWithoutContext("CourseChange", MakeCallback(&UE_Info::CourseChange, &ue_info[i]));
   }
-
-  InternetStackHelper stack;
-  stack.Install (csmaNodes);
-  stack.Install (ueNodes);
-  stack.Install (enbNodes);
 
   Ipv4AddressHelper address;
 
