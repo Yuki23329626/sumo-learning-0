@@ -284,7 +284,7 @@ main (int argc, char *argv[])
   csma.SetChannelAttribute("Delay", StringValue ("0.5ms"));
 //  csma.SetChannelAttribute("FullDuplex", BooleanValue("True"));
   csma.SetDeviceAttribute("Mtu", UintegerValue(1500));
-  csma.SetQueue("ns3::DropTailQueue", "MaxPackets", UintegerValue(100));
+//   csma.SetQueue("ns3::DropTailQueue", "MaxPackets", UintegerValue(100));
 
   //Define point to point
 //  PointToPointHelper csma;
@@ -382,7 +382,7 @@ main (int argc, char *argv[])
 
   //Animation
   AnimationInterface anim("ecmp_test");
-  anim.SetMaxPktsPerTraceFile(100000);
+  anim.SetMaxPktsPerTraceFile(10000000);
   for (uint32_t i = 1; i < 12; i++)
         anim.UpdateNodeColor(nodes.Get(i), 0, 128, 0);
   anim.EnablePacketMetadata(true);
