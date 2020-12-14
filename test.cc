@@ -68,14 +68,14 @@ int main (int argc, char *argv[])
     pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
     pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
 
-    NetDeviceContainer p2pDevices;
-    p2pDevices = pointToPoint.Install (p2pNodes);
+    // NetDeviceContainer p2pDevices;
+    // p2pDevices = pointToPoint.Install (p2pNodes);
 
     NetDeviceContainer p2pDevices2;
     p2pDevices2 = pointToPoint.Install (p2pNodes2);
 
     NodeContainer csmaNodes;
-    csmaNodes.Add (p2pNodes.Get (1));
+    // csmaNodes.Add (p2pNodes.Get (1));
     csmaNodes.Add (p2pNodes2.Get (1));
     csmaNodes.Create (nCsma);
 
@@ -90,7 +90,7 @@ int main (int argc, char *argv[])
     NodeContainer wifiStaNodes;
     wifiStaNodes.Create (nWifi);
 
-    NodeContainer wifiApNode = p2pNodes.Get (0);
+    // NodeContainer wifiApNode = p2pNodes.Get (0);
     NodeContainer wifiApNode2 = p2pNodes2.Get (0);
 
     YansWifiChannelHelper channel = YansWifiChannelHelper::Default ();
@@ -114,8 +114,8 @@ int main (int argc, char *argv[])
     mac.SetType ("ns3::ApWifiMac",
              "Ssid", SsidValue (ssid));
     
-    NetDeviceContainer apDevices;
-    apDevices = wifi.Install (phy, mac, wifiApNode);
+    // NetDeviceContainer apDevices;
+    // apDevices = wifi.Install (phy, mac, wifiApNode);
 
     NetDeviceContainer apDevices2;
     apDevices2 = wifi.Install (phy, mac, wifiApNode2);
@@ -136,8 +136,8 @@ int main (int argc, char *argv[])
     mobility.Install (wifiStaNodes);
 
     // wifi ap constant position
-    // mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
-    // mobility.Install (wifiApNode);
+    mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
+    mobility.Install (wifiApNode);
 
     mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
     mobility.Install (wifiApNode2);
@@ -145,15 +145,17 @@ int main (int argc, char *argv[])
     // internet settings
     InternetStackHelper stack;
     stack.Install (csmaNodes);
-    // stack.Install (wifiApNode);
+    stack.Install (wifiApNode);
     stack.Install (wifiApNode2);
     stack.Install (wifiStaNodes);
 
     Ipv4AddressHelper address;
 
     address.SetBase ("10.1.1.0", "255.255.255.0");
-    Ipv4InterfaceContainer p2pInterfaces;
-    p2pInterfaces = address.Assign (p2pDevices);
+    // Ipv4InterfaceContainer p2pInterfaces;
+    // p2pInterfaces = address.Assign (p2pDevices);
+    Ipv4InterfaceContainer p2pInterfaces2;
+    p2pInterfaces2 = address.Assign (p2pDevices2);
 
     address.SetBase ("10.1.2.0", "255.255.255.0");
     Ipv4InterfaceContainer csmaInterfaces;
