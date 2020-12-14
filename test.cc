@@ -136,8 +136,8 @@ int main (int argc, char *argv[])
     mobility.Install (wifiStaNodes);
 
     // wifi ap constant position
-    mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
-    mobility.Install (wifiApNode);
+    // mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
+    // mobility.Install (wifiApNode);
 
     mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
     mobility.Install (wifiApNode2);
@@ -187,7 +187,7 @@ int main (int argc, char *argv[])
     Simulator::Stop (Seconds (10.0));
 
     pointToPoint.EnablePcapAll ("third");
-    phy.EnablePcap ("third", apDevices.Get (0));
+    phy.EnablePcap ("third", apDevices2.Get (0));
     csma.EnablePcap ("third", csmaDevices.Get (0), true);
 
     Simulator::Run ();
