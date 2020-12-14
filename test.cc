@@ -61,6 +61,9 @@ int main (int argc, char *argv[])
     NodeContainer p2pNodes;
     p2pNodes.Create (2);
 
+    NodeContainer p2pNodes2;
+    p2pNodes.Create (2);
+
     PointToPointHelper pointToPoint;
     pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
     pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
@@ -68,8 +71,12 @@ int main (int argc, char *argv[])
     NetDeviceContainer p2pDevices;
     p2pDevices = pointToPoint.Install (p2pNodes);
 
+    NetDeviceContainer p2pDevices2;
+    p2pDevices2 = pointToPoint.Install (p2pNodes2);
+
     NodeContainer csmaNodes;
     csmaNodes.Add (p2pNodes.Get (1));
+    csmaNodes.Add (p2pNodes2.Get (1));
     csmaNodes.Create (nCsma);
 
     CsmaHelper csma;
@@ -84,6 +91,7 @@ int main (int argc, char *argv[])
     wifiStaNodes.Create (nWifi);
 
     NodeContainer wifiApNode = p2pNodes.Get (0);
+    NodeContainer wifiApNode2 = p2pNodes2.Get (0);
 
     YansWifiChannelHelper channel = YansWifiChannelHelper::Default ();
     YansWifiPhyHelper phy = YansWifiPhyHelper::Default ();
@@ -109,6 +117,9 @@ int main (int argc, char *argv[])
     NetDeviceContainer apDevices;
     apDevices = wifi.Install (phy, mac, wifiApNode);
 
+    NetDeviceContainer apDevices2;
+    apDevices2 = wifi.Install (phy, mac, wifiApNode2);
+
     // wifi sta mobility
     MobilityHelper mobility;
 
@@ -127,6 +138,9 @@ int main (int argc, char *argv[])
     // wifi ap constant position
     mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
     mobility.Install (wifiApNode);
+
+    mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
+    mobility.Install (wifiApNode2);
 
     // internet settings
     InternetStackHelper stack;
@@ -147,6 +161,7 @@ int main (int argc, char *argv[])
     address.SetBase ("10.1.3.0", "255.255.255.0");
     address.Assign (staDevices);
     address.Assign (apDevices);
+    address.Assign (apDevices2);
 
     UdpEchoServerHelper echoServer (9);
 
