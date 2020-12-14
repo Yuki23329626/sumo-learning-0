@@ -145,7 +145,7 @@ int main (int argc, char *argv[])
     // internet settings
     InternetStackHelper stack;
     stack.Install (csmaNodes);
-    stack.Install (wifiApNode);
+    // stack.Install (wifiApNode);
     stack.Install (wifiApNode2);
     stack.Install (wifiStaNodes);
 
