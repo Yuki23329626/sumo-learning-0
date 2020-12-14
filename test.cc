@@ -136,8 +136,8 @@ int main (int argc, char *argv[])
     mobility.Install (wifiStaNodes);
 
     // wifi ap constant position
-    mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
-    mobility.Install (wifiApNode);
+    // mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
+    // mobility.Install (wifiApNode);
 
     mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
     mobility.Install (wifiApNode2);
