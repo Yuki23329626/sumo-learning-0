@@ -62,7 +62,7 @@ int main (int argc, char *argv[])
     p2pNodes.Create (2);
 
     NodeContainer p2pNodes2;
-    p2pNodes.Create (2);
+    p2pNodes2.Create (2);
 
     PointToPointHelper pointToPoint;
     pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
