@@ -232,14 +232,7 @@ int main (int argc, char *argv[])
 	Ptr<Node> remoteHost = remoteHostContainer.Get (0);
 	InternetStackHelper internet;
 	internet.Install (remoteHostContainer);
-    
-	// Set square range where all nodes which move 
-	Ptr<ListPositionAllocator> positionAlloc1 = CreateObject<ListPositionAllocator>();
-	positionAlloc1->Add(Vector(500.0, -100.0, 20.0));
-	MobilityHelper mobility1;
-	mobility1.SetPositionAllocator (positionAlloc1);
-	mobility1.Install (remoteHostContainer);
-    
+
 	// Create Internet connection: PPP connection between PGW and Remote host
 	PointToPointHelper p2ph;
 	p2ph.SetDeviceAttribute ("DataRate", DataRateValue (DataRate ("150Mb/s")));
@@ -261,6 +254,16 @@ int main (int argc, char *argv[])
 	enbNodes.Create (numberOfNodesENB);
 	NodeContainer ueNodes;
 	ueNodes.Create (numberOfNodesEU);
+
+	ns2.Install();
+    
+    // Set square range where all nodes which move 
+	Ptr<ListPositionAllocator> positionAlloc1 = CreateObject<ListPositionAllocator>();
+	positionAlloc1->Add(Vector(500.0, -100.0, 20.0));
+	MobilityHelper mobility1;
+	mobility1.SetPositionAllocator (positionAlloc1);
+	mobility1.Install (remoteHostContainer);
+    
 
 	//set the position and movement of the nodes
 
@@ -295,7 +298,6 @@ int main (int argc, char *argv[])
 	gridBuildingAllocator->Create (6);
 
 	
-	ns2.Install();
 	MobilityHelper mobility;
 	mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
 	mobility.SetPositionAllocator("ns3::GridPositionAllocator",
