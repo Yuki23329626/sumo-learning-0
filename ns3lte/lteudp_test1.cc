@@ -222,6 +222,10 @@ int main (int argc, char *argv[])
 	//creation EPC Object epcHelper.
 	Ptr<PointToPointEpcHelper>  epcHelper = CreateObject<PointToPointEpcHelper> ();
 	lteHelper->SetEpcHelper (epcHelper);
+
+    NodeContainer ueNodes;
+	ueNodes.Create (numberOfNodesEU);
+	ns2.Install();
     
 	// Create PGW object
 	Ptr<Node> pgw = epcHelper->GetPgwNode (); 
@@ -249,13 +253,10 @@ int main (int argc, char *argv[])
 	Ipv4StaticRoutingHelper ipv4RoutingHelper;
 	Ptr<Ipv4StaticRouting> remoteHostStaticRouting = ipv4RoutingHelper.GetStaticRouting (remoteHost->GetObject<Ipv4> ());
 	remoteHostStaticRouting->AddNetworkRouteTo (Ipv4Address ("7.0.0.0"), Ipv4Mask ("255.0.0.0"), 1);
+
 	// Create nodes for EnodeB and UE
 	NodeContainer enbNodes;
 	enbNodes.Create (numberOfNodesENB);
-	NodeContainer ueNodes;
-	ueNodes.Create (numberOfNodesEU);
-
-	ns2.Install();
     
     // Set square range where all nodes which move 
 	Ptr<ListPositionAllocator> positionAlloc1 = CreateObject<ListPositionAllocator>();
