@@ -169,7 +169,7 @@ int main (int argc, char *argv[])
 	LogComponentEnable ("UdpEchoServerApplication", LOG_ALL);
 
 	// EnodeB = 3, UE = 20
-	string TRACE_FILE = "scratch/test04.tcl";
+	string TRACE_FILE = "scratch/test09.tcl";
 	uint16_t numberOfNodesENB = 3;
 	uint16_t numberOfNodesEU = 20;
 	double simTime = 0.05;
