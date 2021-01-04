@@ -71,6 +71,7 @@
 #include <ns3/string.h>
 #include <fstream>
 #include <string>
+#include <chrono>
 
 using namespace ns3;
 NS_LOG_COMPONENT_DEFINE ("LenaFrequencyReuse");
@@ -154,7 +155,7 @@ using namespace std;
 
 int main (int argc, char *argv[])
 {
-    auto t1 = std::chrono::high_resolution_clock::now();
+    auto t1 = chrono::high_resolution_clock::now();
 	// Set default value for LTE Network
 	Config::SetDefault ("ns3::LteSpectrumPhy::CtrlErrorModelEnabled", BooleanValue (true));
 	Config::SetDefault ("ns3::LteSpectrumPhy::DataErrorModelEnabled", BooleanValue (true));
@@ -444,8 +445,8 @@ int main (int argc, char *argv[])
 	Simulator::Destroy ();
 	delete pAnim;
 
-    auto t2 = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
+    auto t2 = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
     cout << "time spent: " << duration <<endl;
 
 	return 0;
