@@ -223,13 +223,13 @@ int main (int argc, char *argv[])
 	Ptr<PointToPointEpcHelper>  epcHelper = CreateObject<PointToPointEpcHelper> ();
 	lteHelper->SetEpcHelper (epcHelper);
 
+	// Create PGW object
+	Ptr<Node> pgw = epcHelper->GetPgwNode (); 
+
     NodeContainer ueNodes;
 	ueNodes.Create (numberOfNodesEU);
 	ns2.Install();
     
-	// Create PGW object
-	Ptr<Node> pgw = epcHelper->GetPgwNode (); 
-
    // creation  RemoteHost .
 	NodeContainer remoteHostContainer;
 	remoteHostContainer.Create (1);
@@ -429,7 +429,7 @@ int main (int argc, char *argv[])
 	// Create the animation object and configure for specific output
 	pAnim = new AnimationInterface (animFile.c_str ());
 	// Provide the absolute path to the resource
-		resourceId2 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/policecar.png");
+	resourceId2 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/policecar.png");
 	resourceId1 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/enodeb.png");
 	resourceId3 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/server.png");
 	resourceId4 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/remotehost.png");
