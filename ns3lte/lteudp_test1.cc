@@ -311,7 +311,7 @@ int main (int argc, char *argv[])
 
 	// Set movement attributes for all EU nodes
 	for (uint16_t i = 0; i < numberOfNodesEU; i++){
-		
+		 ueNodes.Get(i)->GetObject<MobilityModel>();
 	//    mobility.SetPositionAllocator ("ns3::GridPositionAllocator",
 	// 							   "MinX", DoubleValue (-900.0),
 	// 							   "MinY", DoubleValue (-250.0),
