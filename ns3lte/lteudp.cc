@@ -305,22 +305,21 @@ int main (int argc, char *argv[])
 
 	// Set movement attributes for all EU nodes
 	for (uint16_t i = 0; i < numberOfNodesEU; i++){
-		cout << "i = " << i << endl;
-	//    mobility.SetPositionAllocator ("ns3::GridPositionAllocator",
-	// 							   "MinX", DoubleValue (-900.0),
-	// 							   "MinY", DoubleValue (-250.0),
-	// 							   "DeltaX", DoubleValue (120.0),
-	// 							   "DeltaY", DoubleValue (150.0),
-	// 							   "GridWidth", UintegerValue (4),
-	// 							   "LayoutType", StringValue ("RowFirst"));
+	   mobility.SetPositionAllocator ("ns3::GridPositionAllocator",
+								   "MinX", DoubleValue (-900.0),
+								   "MinY", DoubleValue (-250.0),
+								   "DeltaX", DoubleValue (120.0),
+								   "DeltaY", DoubleValue (150.0),
+								   "GridWidth", UintegerValue (4),
+								   "LayoutType", StringValue ("RowFirst"));
 
-	//    mobility.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",
-	// 						   "Mode", StringValue ("Time"),
-	// 						   "Time", StringValue ("0.5s"),
-	// 						   "Speed", StringValue ("ns3::ConstantRandomVariable[Constant=50.0]"),
-	// 						   "Bounds", RectangleValue (Rectangle (-12000.0, 12000.0, -12000.0, 12000.0)));
+	   mobility.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",
+							   "Mode", StringValue ("Time"),
+							   "Time", StringValue ("0.5s"),
+							   "Speed", StringValue ("ns3::ConstantRandomVariable[Constant=50.0]"),
+							   "Bounds", RectangleValue (Rectangle (-12000.0, 12000.0, -12000.0, 12000.0)));
 	}
-	// mobility.Install (ueNodes);
+	mobility.Install (ueNodes);
 	AsciiTraceHelper ascii;
 	MobilityHelper::EnableAsciiAll (ascii.CreateFileStream ("mobility-trace-example.mob"));
 

@@ -295,6 +295,7 @@ int main (int argc, char *argv[])
 	gridBuildingAllocator->Create (6);
 
 	
+	ns2.Install();
 	MobilityHelper mobility;
 	mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
 	mobility.SetPositionAllocator("ns3::GridPositionAllocator",
@@ -324,7 +325,6 @@ int main (int argc, char *argv[])
 	// 						   "Speed", StringValue ("ns3::ConstantRandomVariable[Constant=50.0]"),
 	// 						   "Bounds", RectangleValue (Rectangle (-12000.0, 12000.0, -12000.0, 12000.0)));
 	}
-	ns2.Install();
 	// mobility.Install (ueNodes);
 	AsciiTraceHelper ascii;
 	MobilityHelper::EnableAsciiAll (ascii.CreateFileStream ("mobility-trace-example.mob"));
