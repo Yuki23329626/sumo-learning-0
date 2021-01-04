@@ -172,7 +172,7 @@ int main (int argc, char *argv[])
 	string TRACE_FILE = "scratch/test09.tcl";
 	uint16_t numberOfNodesENB = 3;
 	uint16_t numberOfNodesEU = 20;
-	double simTime = 0.05;
+	double simTime = 100;
 	double distance = 250.0;
 	double interPacketInterval = 150.0;
 
