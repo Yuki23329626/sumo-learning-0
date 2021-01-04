@@ -178,7 +178,6 @@ int main (int argc, char *argv[])
 
 	std::string animFile = "lte_udp.xml";
 	Ns2MobilityHelper ns2 = Ns2MobilityHelper(TRACE_FILE);
-	ns2.Install();
 
 	CommandLine cmd;
 	cmd.AddValue("numberOfNodes", "Number of eNodeBs + UE pairs", numberOfNodesENB);
@@ -311,7 +310,6 @@ int main (int argc, char *argv[])
 
 	// Set movement attributes for all EU nodes
 	for (uint16_t i = 0; i < numberOfNodesEU; i++){
-		 ueNodes.Get(i)->GetObject<MobilityModel>();
 	//    mobility.SetPositionAllocator ("ns3::GridPositionAllocator",
 	// 							   "MinX", DoubleValue (-900.0),
 	// 							   "MinY", DoubleValue (-250.0),
@@ -326,8 +324,8 @@ int main (int argc, char *argv[])
 	// 						   "Speed", StringValue ("ns3::ConstantRandomVariable[Constant=50.0]"),
 	// 						   "Bounds", RectangleValue (Rectangle (-12000.0, 12000.0, -12000.0, 12000.0)));
 	}
-    cout << "SHIT" << endl;
-	mobility.Install (ueNodes);
+	ns2.Install();
+	// mobility.Install (ueNodes);
 	AsciiTraceHelper ascii;
 	MobilityHelper::EnableAsciiAll (ascii.CreateFileStream ("mobility-trace-example.mob"));
 
