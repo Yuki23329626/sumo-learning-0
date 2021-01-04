@@ -150,6 +150,8 @@ void modify ()
 
 }
 
+using namespace std;
+
 int main (int argc, char *argv[])
 {
 	// Set default value for LTE Network
