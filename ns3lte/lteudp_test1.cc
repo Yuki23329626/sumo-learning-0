@@ -219,16 +219,16 @@ int main (int argc, char *argv[])
 	lteHelper->SetEnbDeviceAttribute ("DlEarfcn", UintegerValue (100));
 	lteHelper->SetEnbDeviceAttribute ("UlEarfcn", UintegerValue (18100));
 
+    NodeContainer ueNodes;
+	ueNodes.Create (numberOfNodesEU);
+	ns2.Install();
+
 	//creation EPC Object epcHelper.
 	Ptr<PointToPointEpcHelper>  epcHelper = CreateObject<PointToPointEpcHelper> ();
 	lteHelper->SetEpcHelper (epcHelper);
 
 	// Create PGW object
 	Ptr<Node> pgw = epcHelper->GetPgwNode (); 
-
-    NodeContainer ueNodes;
-	ueNodes.Create (numberOfNodesEU);
-	ns2.Install();
     
    // creation  RemoteHost .
 	NodeContainer remoteHostContainer;
