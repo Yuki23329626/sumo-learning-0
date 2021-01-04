@@ -429,6 +429,7 @@ int main (int argc, char *argv[])
 	// Create the animation object and configure for specific output
 	pAnim = new AnimationInterface (animFile.c_str ());
 	// Provide the absolute path to the resource
+    pAnim->SetMaxPktsPerTraceFile(99999999999999);
 	resourceId2 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/policecar.png");
 	resourceId1 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/enodeb.png");
 	resourceId3 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/server.png");
