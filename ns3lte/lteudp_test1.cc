@@ -326,7 +326,8 @@ int main (int argc, char *argv[])
 	// 						   "Speed", StringValue ("ns3::ConstantRandomVariable[Constant=50.0]"),
 	// 						   "Bounds", RectangleValue (Rectangle (-12000.0, 12000.0, -12000.0, 12000.0)));
 	}
-	// mobility.Install (ueNodes);
+    cout << "SHIT" << endl;
+	mobility.Install (ueNodes);
 	AsciiTraceHelper ascii;
 	MobilityHelper::EnableAsciiAll (ascii.CreateFileStream ("mobility-trace-example.mob"));
 
