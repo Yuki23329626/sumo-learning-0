@@ -446,7 +446,7 @@ int main (int argc, char *argv[])
 	delete pAnim;
 
     auto t2 = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
+    auto duration = chrono::duration_cast<std::chrono::seconds>( t2 - t1 ).count();
     cout << "time spent: " << duration <<endl;
 
 	return 0;
