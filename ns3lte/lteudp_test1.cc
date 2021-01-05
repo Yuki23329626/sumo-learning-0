@@ -164,7 +164,6 @@ int main (int argc, char *argv[])
 	Config::SetDefault ("ns3::LteUePhy::EnableUplinkPowerControl", BooleanValue (true));
 	Config::SetDefault ("ns3::LteUePowerControl::ClosedLoop", BooleanValue (true));
 	Config::SetDefault ("ns3::LteUePowerControl::AccumulationEnabled", BooleanValue (false));
-	Config::SetDefault ("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue (3200));
 
 
 	Time::SetResolution (Time::NS);
@@ -175,7 +174,7 @@ int main (int argc, char *argv[])
 	string TRACE_FILE = "scratch/test09.tcl";
 	uint16_t numberOfNodesENB = 3;
 	uint16_t numberOfNodesEU = 100;
-	double simTime = 10;
+	double simTime = 0.05;
 	double distance = 250.0;
 	double interPacketInterval = 150.0;
 
