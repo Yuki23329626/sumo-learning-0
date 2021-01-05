@@ -423,6 +423,7 @@ int main (int argc, char *argv[])
 	Config::SetDefault ("ns3::LteAmc::AmcModel", EnumValue (LteAmc::PiroEW2010));
 	Config::SetDefault ("ns3::LteAmc::AmcModel", EnumValue (LteAmc::MiErrorModel));
 	Config::SetDefault ("ns3::LteAmc::Ber", DoubleValue (0.00005));
+	Config::SetDefault ("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue (320));
 
 	lteHelper->EnablePhyTraces ();
 	lteHelper->EnableMacTraces ();
