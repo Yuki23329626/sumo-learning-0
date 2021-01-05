@@ -164,6 +164,7 @@ int main (int argc, char *argv[])
 	Config::SetDefault ("ns3::LteUePhy::EnableUplinkPowerControl", BooleanValue (true));
 	Config::SetDefault ("ns3::LteUePowerControl::ClosedLoop", BooleanValue (true));
 	Config::SetDefault ("ns3::LteUePowerControl::AccumulationEnabled", BooleanValue (false));
+	Config::SetDefault ("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue (3200));
 
 
 	Time::SetResolution (Time::NS);
@@ -423,7 +424,6 @@ int main (int argc, char *argv[])
 	Config::SetDefault ("ns3::LteAmc::AmcModel", EnumValue (LteAmc::PiroEW2010));
 	Config::SetDefault ("ns3::LteAmc::AmcModel", EnumValue (LteAmc::MiErrorModel));
 	Config::SetDefault ("ns3::LteAmc::Ber", DoubleValue (0.00005));
-	Config::SetDefault ("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue (320));
 
 	lteHelper->EnablePhyTraces ();
 	lteHelper->EnableMacTraces ();
