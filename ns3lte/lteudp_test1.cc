@@ -445,7 +445,7 @@ int main (int argc, char *argv[])
 	resourceId4 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/remotehost.png");
 	resourceId5 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/phone.png");
 	resourceId6 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/car.png");
-	pAnim->SetBackgroundImage ("/home/john/ns-allinone-3.26/ns-3.26/scratch/4g-lte.jpg", -1, 1, 0.5, 0.5, 1);
+	pAnim->SetBackgroundImage ("/home/john/ns-allinone-3.26/ns-3.26/scratch/background.jpg", -1, 1, 0.5, 0.5, 1);
 	
 	Simulator::Schedule (Seconds (simTime), modify);
 	Simulator::Run ();
