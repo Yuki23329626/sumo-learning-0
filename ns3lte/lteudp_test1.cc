@@ -174,7 +174,7 @@ int main (int argc, char *argv[])
 	string TRACE_FILE = "scratch/test09.tcl";
 	uint16_t numberOfNodesENB = 3;
 	uint16_t numberOfNodesEU = 40;
-	double simTime = 10;
+	double simTime = 0.05;
 	double distance = 250.0;
 	double interPacketInterval = 150.0;
 
@@ -439,13 +439,13 @@ int main (int argc, char *argv[])
 	pAnim = new AnimationInterface (animFile.c_str ());
 	// Provide the absolute path to the resource
     pAnim->SetMaxPktsPerTraceFile(99999999999999);
-	resourceId2 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/policecar.png");
-	resourceId1 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/enodeb.png");
-	resourceId3 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/server.png");
-	resourceId4 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/remotehost.png");
-	resourceId5 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/phone.png");
-	resourceId6 = pAnim->AddResource ("/home/john/ns-allinone-3.26/ns-3.26/scratch/car.png");
-	pAnim->SetBackgroundImage ("/home/john/ns-allinone-3.26/ns-3.26/scratch/background.jpg", -1, 1, 0.5, 0.5, 1);
+	resourceId2 = pAnim->AddResource ("/home/nxshen/ns-allinone-3.26/ns-3.26/scratch/policecar.png");
+	resourceId1 = pAnim->AddResource ("/home/nxshen/ns-allinone-3.26/ns-3.26/scratch/enodeb.png");
+	resourceId3 = pAnim->AddResource ("/home/nxshen/ns-allinone-3.26/ns-3.26/scratch/server.png");
+	resourceId4 = pAnim->AddResource ("/home/nxshen/ns-allinone-3.26/ns-3.26/scratch/remotehost.png");
+	resourceId5 = pAnim->AddResource ("/home/nxshen/ns-allinone-3.26/ns-3.26/scratch/phone.png");
+	resourceId6 = pAnim->AddResource ("/home/nxshen/ns-allinone-3.26/ns-3.26/scratch/car.png");
+	pAnim->SetBackgroundImage ("/home/nxshen/ns-allinone-3.26/ns-3.26/scratch/background.jpg", -1, 1, 0.5, 0.5, 1);
 	
 	Simulator::Schedule (Seconds (simTime), modify);
 	Simulator::Run ();
