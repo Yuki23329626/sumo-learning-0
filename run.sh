@@ -9,6 +9,5 @@ cp ./test09/test09.tcl ../scratch/
 echo "cp ./test09/background.png ../scratch/"
 cp ./test09/background.png ../scratch/
 cd ..
-cd ..
-echo "./waf --run "scratch/lteudp_test1""
+echo "./waf --run \"scratch/lteudp_test1\""
 ./waf --run "scratch/lteudp_test1"
