@@ -174,7 +174,7 @@ int main (int argc, char *argv[])
 	string TRACE_FILE = "scratch/test09.tcl";
 	uint16_t numberOfNodesENB = 3;
 	uint16_t numberOfNodesEU = 40;
-	double simTime = 0.05;
+	double simTime = 10;
 	double distance = 250.0;
 	double interPacketInterval = 150.0;
 
@@ -300,16 +300,22 @@ int main (int argc, char *argv[])
 	gridBuildingAllocator->SetAttribute ("MinY", DoubleValue (0));
 	gridBuildingAllocator->Create (6);
 
+    Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator>();
+    enbPositionAlloc->Add(Vector(760.0, 725.00, 0));
+    enbPositionAlloc->Add(Vector(1123.0, 716.00, 0));
+    enbPositionAlloc->Add(Vector(1110.0, 350.00, 0));
+
 	
 	MobilityHelper mobility;
 	mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
-	mobility.SetPositionAllocator("ns3::GridPositionAllocator",
-								   "MinX", DoubleValue (-350.0),
-								   "MinY", DoubleValue (-200.0),
-								   "DeltaX", DoubleValue (0.0),
-								   "DeltaY", DoubleValue (150.0),
-								   "GridWidth", UintegerValue (1),
-								   "LayoutType", StringValue ("RowFirst"));
+	// mobility.SetPositionAllocator("ns3::GridPositionAllocator",
+	// 							   "MinX", DoubleValue (-350.0),
+	// 							   "MinY", DoubleValue (-200.0),
+	// 							   "DeltaX", DoubleValue (0.0),
+	// 							   "DeltaY", DoubleValue (150.0),
+	// 							   "GridWidth", UintegerValue (1),
+	// 							   "LayoutType", StringValue ("RowFirst"));
+    mobility.SetPositionAllocator(enbPositionAlloc);
 
 	mobility.Install (enbNodes);
 	BuildingsHelper::Install (enbNodes);
@@ -377,6 +383,7 @@ int main (int argc, char *argv[])
     uint16_t otherPort = 3000;
     ApplicationContainer clientApps;
     ApplicationContainer serverApps;
+
 	// generate traffic request to remote server
     for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
 	  ++ulPort;
@@ -409,7 +416,7 @@ int main (int argc, char *argv[])
 		{
 		  clientApps.Add (client.Install (ueNodes.Get(0)));
 		}
-	 }
+	}
 
 
 	// Install and start applications on UEs and remote host
