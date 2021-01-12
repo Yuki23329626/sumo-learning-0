@@ -172,7 +172,7 @@ int main (int argc, char *argv[])
 
 	// EnodeB = 3, UE = 20
 	string TRACE_FILE = "scratch/test09.tcl";
-	uint16_t numberOfNodesENB = 10;
+	uint16_t numberOfNodesENB = 12;
 	uint16_t numberOfNodesEU = 100;
 	double simTime = 0.05;
 	double distance = 250.0;
@@ -301,10 +301,21 @@ int main (int argc, char *argv[])
 	gridBuildingAllocator->Create (6);
 
     Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator>();
-    enbPositionAlloc->Add(Vector(760.0, 725.00, 0));
-    enbPositionAlloc->Add(Vector(1123.0, 716.00, 0));
-    enbPositionAlloc->Add(Vector(1110.0, 350.00, 0));
-
+    // enbPositionAlloc->Add(Vector(760.0, 725.00, 0));
+    // enbPositionAlloc->Add(Vector(1123.0, 716.00, 0));
+    // enbPositionAlloc->Add(Vector(1110.0, 350.00, 0));
+	enbPositionAlloc->Add(Vector(583, 365, 0));
+	enbPositionAlloc->Add(Vector(885, 338, 0));
+	enbPositionAlloc->Add(Vector(1187, 328, 0));
+	enbPositionAlloc->Add(Vector(1305, 322, 0));
+	enbPositionAlloc->Add(Vector(596, 703, 0));
+	enbPositionAlloc->Add(Vector(895, 690, 0));
+	enbPositionAlloc->Add(Vector(1100, 682, 0));
+	enbPositionAlloc->Add(Vector(1317, 679, 0));
+	enbPositionAlloc->Add(Vector(602, 972, 0));
+	enbPositionAlloc->Add(Vector(908, 955, 0));
+	enbPositionAlloc->Add(Vector(1107, 953, 0));
+	enbPositionAlloc->Add(Vector(1317, 950, 0));
 	
 	MobilityHelper mobility;
 	mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
