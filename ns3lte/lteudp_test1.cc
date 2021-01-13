@@ -178,7 +178,7 @@ int main (int argc, char *argv[])
 	double distance = 250.0;
 	double interPacketInterval = 150.0;
 
-	std::string animFile = "lte_udp.xml";
+	std::string animFile = "lte_udp_test5.xml";
 	Ns2MobilityHelper ns2 = Ns2MobilityHelper(TRACE_FILE);
 
 	CommandLine cmd;
