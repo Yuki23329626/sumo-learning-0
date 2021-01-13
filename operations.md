@@ -6,9 +6,11 @@ sumo -c test09.sumocfg --fcd-output test09.xml --step-length 1
 2. create mobility tract to import for NS3
 python traceExporter.py --fcd-input test09.xml --ns2mobility-output test09.tcl
 python D:\SUMO\tools\traceExporter.py --fcd-input D:\github\sumo-learning\test09\test09.xml --ns2mobility-output D:\github\sumo-learning\test09\test09.tcl
+python D:\SUMO\tools\traceExporter.py --fcd-input D:\github\sumo-learning\test10\test10.xml --ns2mobility-output D:\github\sumo-learning\test10\test10.tcl --begin 240 --end 300
 
 3. 產生 excel 黨
 python D:\SUMO\tools\traceExporter.py traceExporter.py --fcd-input D:\github\sumo-learning\test09\test09.xml --gpsdat-output D:\github\sumo-learning\test09\test09.csv
+python D:\SUMO\tools\traceExporter.py --fcd-input D:\github\sumo-learning\test10\test10.xml --gpsdat-output D:\github\sumo-learning\test10\test10.csv --begin 240 --end 300
 
 D:
 cd git
