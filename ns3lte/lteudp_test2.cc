@@ -239,11 +239,14 @@
     positionAlloc->Add(Vector(0, 0, 0));
     positionAlloc->Add(Vector(0, 0, 0));
     positionAlloc->Add(Vector(0, 0, 0));
+    positionAlloc->Add(Vector(0, 0, 0));
+    positionAlloc->Add(Vector(0, 0, 0));
     
     MobilityHelper mobility;
     mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
     mobility.SetPositionAllocator (positionAlloc);
     mobility.Install (pgw);
+    mobility.Install (remoteHostContainer);
 
     InternetStackHelper internet;
     internet.Install (remoteHostContainer);
