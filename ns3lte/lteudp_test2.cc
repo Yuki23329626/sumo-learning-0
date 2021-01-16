@@ -270,7 +270,7 @@
     NodeContainer enbNodes;
     enbNodes.Create (numberOfEnbs);
     ueNodes.Create (numberOfUes);
-    ns2.Install(ueNodes.Begin(), ueNodes.End())
+    ns2.Install(ueNodes.Begin(), ueNodes.End());
   
     // Install Mobility Model in eNB
     Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator> ();
