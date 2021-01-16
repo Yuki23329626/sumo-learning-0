@@ -265,7 +265,7 @@
     
     NodeContainer ueNodes;
     ueNodes.Create (numberOfUes);
-    ns2.Install(ueNodes.Begin(), ueNodes.End());
+    ns2.Install();
 
     NodeContainer enbNodes;
     enbNodes.Create (numberOfEnbs);
