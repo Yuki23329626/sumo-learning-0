@@ -538,10 +538,10 @@ int main (int argc, char *argv[])
 	p2ph.EnablePcapAll("pgw-hostudp");
 
 	// connect custom trace sinks for RRC connection establishment and handover notification
-    Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/ConnectionEstablished",
-                        MakeCallback (&NotifyConnectionEstablishedEnb));
-    Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/ConnectionEstablished",
-                        MakeCallback (&NotifyConnectionEstablishedUe));
+    // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/ConnectionEstablished",
+    //                     MakeCallback (&NotifyConnectionEstablishedEnb));
+    // Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/ConnectionEstablished",
+    //                     MakeCallback (&NotifyConnectionEstablishedUe));
     Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverStart",
                         MakeCallback (&NotifyHandoverStartEnb));
     Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
