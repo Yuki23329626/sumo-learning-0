@@ -267,7 +267,7 @@ int main (int argc, char *argv[])
 	// EnodeB = 3, UE = 20
 	string TRACE_FILE = "scratch/test10.tcl";
 	uint16_t numberOfNodesENB = 2;
-	uint16_t numberOfNodesEU = 20;
+	uint16_t numberOfNodesEU = 2;
 	double simTime = 60;
 	double distance = 250.0;
 	double interPacketInterval = 150.0;
@@ -432,7 +432,19 @@ int main (int argc, char *argv[])
 	BuildingsHelper::Install (enbNodes);
 
 	// Set movement attributes for all EU nodes
-	for (uint16_t i = 0; i < numberOfNodesEU; i++){
+	Ptr<ListPositionAllocator> uePosAllocator = CreateObject <ListPositionAllocator>();
+	uePosAllocator->Add(Vector(583, 365, 0));
+	mobility.SetPositionAllocator(uePosAllocator);
+	mobility.SetMobilityModel("ns3::ConstantVelocityMobilityModel");
+	mobility.Install(ueNodes);
+	Vector vSpeed = Vector( 20, 0, 0 ); // moves along the x axis
+	for(uint32_t u=0 ; u < ueNodes.GetN() ; u++) {
+		Ptr<ConstantVelocityMobilityModel> p = ueNodes.Get(u)->GetObject<ConstantVelocityMobilityModel> ();
+		p->SetVelocity (20);
+	}
+
+	// Set movement attributes for all EU nodes
+	// for (uint16_t i = 0; i < numberOfNodesEU; i++){
 	//    mobility.SetPositionAllocator ("ns3::GridPositionAllocator",
 	// 							   "MinX", DoubleValue (-900.0),
 	// 							   "MinY", DoubleValue (-250.0),
@@ -446,7 +458,7 @@ int main (int argc, char *argv[])
 	// 						   "Time", StringValue ("0.5s"),
 	// 						   "Speed", StringValue ("ns3::ConstantRandomVariable[Constant=50.0]"),
 	// 						   "Bounds", RectangleValue (Rectangle (-12000.0, 12000.0, -12000.0, 12000.0)));
-	}
+	// }
 	// mobility.Install (ueNodes);
 	AsciiTraceHelper ascii;
 	MobilityHelper::EnableAsciiAll (ascii.CreateFileStream ("mobility-trace-example.mob"));
