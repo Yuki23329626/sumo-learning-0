@@ -268,10 +268,21 @@
     ueIpIfaces = epcHelper->AssignUeIpv4Address (NetDeviceContainer (ueLteDevs));
   
     // Attach all UEs to the first eNodeB
-    for (uint16_t i = 0; i < numberOfUes; i++)
-      {
-        lteHelper->Attach (ueLteDevs.Get (i), enbLteDevs.Get (0));
+    // for (uint16_t i = 0; i < numberOfUes; i++)
+    //   {
+    //     lteHelper->Attach (ueLteDevs.Get (i), enbLteDevs.Get (0));
+    //   }
+    uint16_t j = 0;
+    for (uint16_t i = 0; i < numberOfUes; i++){  
+      if (j < numberOfEnbs){
+          lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(j));
+          j++;
       }
+      else{
+          j = 0;
+          lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(j));
+      }   
+    }
   
   
     NS_LOG_LOGIC ("setting up applications");
@@ -344,6 +355,8 @@
   
     // Uncomment to enable PCAP tracing
     // p2ph.EnablePcapAll("lena-x2-handover-measures");
+    p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace.tr"));
+	  p2ph.EnablePcapAll("pgw-hostudp");
   
     lteHelper->EnablePhyTraces ();
     lteHelper->EnableMacTraces ();
