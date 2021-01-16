@@ -266,7 +266,7 @@ int main (int argc, char *argv[])
 
 	// EnodeB = 3, UE = 20
 	string TRACE_FILE = "scratch/test10.tcl";
-	uint16_t numberOfNodesENB = 3;
+	uint16_t numberOfNodesENB = 2;
 	uint16_t numberOfNodesEU = 1;
 	double simTime = 60;
 	double distance = 250.0;
@@ -290,16 +290,16 @@ int main (int argc, char *argv[])
 	//create LTE Object by lteHelper.
 	Ptr<LteHelper> lteHelper = CreateObject<LteHelper> ();
 
-	lteHelper->SetAttribute ("FadingModel", StringValue ("ns3::TraceFadingLossModel"));
+	// lteHelper->SetAttribute ("FadingModel", StringValue ("ns3::TraceFadingLossModel"));
     
-	// Load sample distribution [ Check LTE Module at Ns3 to see at the end of page]
-	std::ifstream ifTraceFile;
-	ifTraceFile.open ("src/lte/model/fading-traces/fading_trace_EPA_3kmph.fad", std::ifstream::in);
-	if (ifTraceFile.good ()){
-	  lteHelper->SetFadingModelAttribute ("TraceFilename", StringValue ("src/lte/model/fading-traces/fading_trace_EPA_3kmph.fad"));
-	}else{
-	  lteHelper->SetFadingModelAttribute ("TraceFilename", StringValue ("src/lte/model/fading-traces/fading_trace_EPA_3kmph.fad"));
-	} 
+	// // Load sample distribution [ Check LTE Module at Ns3 to see at the end of page]
+	// std::ifstream ifTraceFile;
+	// ifTraceFile.open ("src/lte/model/fading-traces/fading_trace_EPA_3kmph.fad", std::ifstream::in);
+	// if (ifTraceFile.good ()){
+	//   lteHelper->SetFadingModelAttribute ("TraceFilename", StringValue ("src/lte/model/fading-traces/fading_trace_EPA_3kmph.fad"));
+	// }else{
+	//   lteHelper->SetFadingModelAttribute ("TraceFilename", StringValue ("src/lte/model/fading-traces/fading_trace_EPA_3kmph.fad"));
+	// } 
 		
 	// these parameters have to setted only in case of the trace format 
 	// differs from the standard one, that is
@@ -307,13 +307,13 @@ int main (int argc, char *argv[])
 	// - 10,000 samples
 	// - 0.5 seconds for window size
 	// - 100 RB
-	lteHelper->SetFadingModelAttribute ("TraceLength", TimeValue (Seconds (10.0)));
-	lteHelper->SetFadingModelAttribute ("SamplesNum", UintegerValue (10000));
-	lteHelper->SetFadingModelAttribute ("WindowSize", TimeValue (Seconds (0.5)));
-	lteHelper->SetFadingModelAttribute ("RbNum", UintegerValue (100));
+	// lteHelper->SetFadingModelAttribute ("TraceLength", TimeValue (Seconds (10.0)));
+	// lteHelper->SetFadingModelAttribute ("SamplesNum", UintegerValue (10000));
+	// lteHelper->SetFadingModelAttribute ("WindowSize", TimeValue (Seconds (0.5)));
+	// lteHelper->SetFadingModelAttribute ("RbNum", UintegerValue (100));
 
-	lteHelper->SetEnbDeviceAttribute ("DlEarfcn", UintegerValue (100));
-	lteHelper->SetEnbDeviceAttribute ("UlEarfcn", UintegerValue (18100));
+	// lteHelper->SetEnbDeviceAttribute ("DlEarfcn", UintegerValue (100));
+	// lteHelper->SetEnbDeviceAttribute ("UlEarfcn", UintegerValue (18100));
 
     NodeContainer ueNodes;
 	ueNodes.Create (numberOfNodesEU);
@@ -368,37 +368,37 @@ int main (int argc, char *argv[])
 	mobility1.Install (remoteHostContainer);
     
 
-	//set the position and movement of the nodes
+	// //set the position and movement of the nodes
 
-	double x_min = 0.0;
-	double x_max = 10.0;
-	double y_min = 0.0;
-	double y_max = 20.0;
-	double z_min = 0.0;
-	double z_max = 10.0;
-	Ptr<Building> b = CreateObject <Building> ();
-	b->SetBoundaries (Box (x_min, x_max, y_min, y_max, z_min, z_max));
-	b->SetBuildingType (Building::Residential);
-	b->SetExtWallsType (Building::ConcreteWithWindows); // standard type for wall
-	b->SetNFloors (3);
-	b->SetNRoomsX (3);
-	b->SetNRoomsY (2);
+	// double x_min = 0.0;
+	// double x_max = 10.0;
+	// double y_min = 0.0;
+	// double y_max = 20.0;
+	// double z_min = 0.0;
+	// double z_max = 10.0;
+	// Ptr<Building> b = CreateObject <Building> ();
+	// b->SetBoundaries (Box (x_min, x_max, y_min, y_max, z_min, z_max));
+	// b->SetBuildingType (Building::Residential);
+	// b->SetExtWallsType (Building::ConcreteWithWindows); // standard type for wall
+	// b->SetNFloors (3);
+	// b->SetNRoomsX (3);
+	// b->SetNRoomsY (2);
 	
-    // Create building to allocate nodes
-	Ptr<GridBuildingAllocator> gridBuildingAllocator;
-	gridBuildingAllocator = CreateObject<GridBuildingAllocator> ();
-	gridBuildingAllocator->SetAttribute ("GridWidth", UintegerValue (3));
-	gridBuildingAllocator->SetAttribute ("LengthX", DoubleValue (7));
-	gridBuildingAllocator->SetAttribute ("LengthY", DoubleValue (13));
-	gridBuildingAllocator->SetAttribute ("DeltaX", DoubleValue (3));
-	gridBuildingAllocator->SetAttribute ("DeltaY", DoubleValue (3));
-	gridBuildingAllocator->SetAttribute ("Height", DoubleValue (6));
-	gridBuildingAllocator->SetBuildingAttribute ("NRoomsX", UintegerValue (2));
-	gridBuildingAllocator->SetBuildingAttribute ("NRoomsY", UintegerValue (4));
-	gridBuildingAllocator->SetBuildingAttribute ("NFloors", UintegerValue (2));
-	gridBuildingAllocator->SetAttribute ("MinX", DoubleValue (0));
-	gridBuildingAllocator->SetAttribute ("MinY", DoubleValue (0));
-	gridBuildingAllocator->Create (6);
+    // // Create building to allocate nodes
+	// Ptr<GridBuildingAllocator> gridBuildingAllocator;
+	// gridBuildingAllocator = CreateObject<GridBuildingAllocator> ();
+	// gridBuildingAllocator->SetAttribute ("GridWidth", UintegerValue (3));
+	// gridBuildingAllocator->SetAttribute ("LengthX", DoubleValue (7));
+	// gridBuildingAllocator->SetAttribute ("LengthY", DoubleValue (13));
+	// gridBuildingAllocator->SetAttribute ("DeltaX", DoubleValue (3));
+	// gridBuildingAllocator->SetAttribute ("DeltaY", DoubleValue (3));
+	// gridBuildingAllocator->SetAttribute ("Height", DoubleValue (6));
+	// gridBuildingAllocator->SetBuildingAttribute ("NRoomsX", UintegerValue (2));
+	// gridBuildingAllocator->SetBuildingAttribute ("NRoomsY", UintegerValue (4));
+	// gridBuildingAllocator->SetBuildingAttribute ("NFloors", UintegerValue (2));
+	// gridBuildingAllocator->SetAttribute ("MinX", DoubleValue (0));
+	// gridBuildingAllocator->SetAttribute ("MinY", DoubleValue (0));
+	// gridBuildingAllocator->Create (6);
 
     Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator>();
     // enbPositionAlloc->Add(Vector(760.0, 725.00, 0));
@@ -409,7 +409,7 @@ int main (int argc, char *argv[])
 	// enbPositionAlloc->Add(Vector(1187, 328, 0));
 	// enbPositionAlloc->Add(Vector(1305, 322, 0));
 	// enbPositionAlloc->Add(Vector(596, 703, 0));
-	enbPositionAlloc->Add(Vector(895, 690, 0));
+	// enbPositionAlloc->Add(Vector(895, 690, 0));
 	// enbPositionAlloc->Add(Vector(1100, 682, 0));
 	// enbPositionAlloc->Add(Vector(1317, 679, 0));
 	// enbPositionAlloc->Add(Vector(602, 972, 0));
