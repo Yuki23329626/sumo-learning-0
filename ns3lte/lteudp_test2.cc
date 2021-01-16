@@ -223,11 +223,7 @@
     //                                            DoubleValue (3.0));
     //  lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
     //                                            TimeValue (MilliSeconds (256)));
-
-    NodeContainer ueNodes;
-    ueNodes.Create (numberOfUes);
-    // ns2.Install();
-
+  
     Ptr<Node> pgw = epcHelper->GetPgwNode ();
   
     // Create a single RemoteHost
@@ -269,9 +265,11 @@
       *      |     |                                             d = distance
       *            o (0, 0, 0)                                   y = yForUe
       */
-
+  
+    NodeContainer ueNodes;
     NodeContainer enbNodes;
     enbNodes.Create (numberOfEnbs);
+    ueNodes.Create (numberOfUes);
   
     // Install Mobility Model in eNB
     Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator> ();
@@ -406,7 +404,7 @@
   
   
     // Add X2 interface
-    // lteHelper->AddX2Interface (enbNodes);
+    lteHelper->AddX2Interface (enbNodes);
   
     // X2-based Handover
     //lteHelper->HandoverRequest (Seconds (0.100), ueLteDevs.Get (0), enbLteDevs.Get (0), enbLteDevs.Get (1));
