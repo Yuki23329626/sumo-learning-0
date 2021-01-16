@@ -169,7 +169,7 @@
     // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
     // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
   
-    uint16_t numberOfUes = 1;
+    uint16_t numberOfUes = 20;
     uint16_t numberOfEnbs = 12;
     double distance = 500.0; // m
     double speed = 20;       // m/s
@@ -299,9 +299,9 @@
     enbMobility.Install (enbNodes);
   
     // Install Mobility Model in UE
-    MobilityHelper ueMobility;
-    ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
-    ueMobility.Install (ueNodes);
+    // MobilityHelper ueMobility;
+    // ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
+    // ueMobility.Install (ueNodes);
     // // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (0, yForUe, 0));
     // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (583, 365, 0));
     // ueNodes.Get (0)->GetObject<ConstantVelocityMobilityModel> ()->SetVelocity (Vector (734/60, 585/60, 0));
