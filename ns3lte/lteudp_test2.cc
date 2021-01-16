@@ -191,6 +191,7 @@
     Config::SetDefault ("ns3::UdpClient::MaxPackets", UintegerValue (1000000));
     Config::SetDefault ("ns3::LteHelper::UseIdealRrc", BooleanValue (true));
     Config::SetDefault ("ns3::LteEnbMac::NumberOfRaPreambles", UintegerValue (20));
+    Config::SetDefault ("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue (320));
   
     // Command line arguments
     CommandLine cmd (__FILE__);
