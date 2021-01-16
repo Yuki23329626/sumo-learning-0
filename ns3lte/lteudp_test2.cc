@@ -163,6 +163,7 @@
     double speed = 20;       // m/s
     double simTime = (double)(numberOfEnbs + 1) * distance / speed; // 1500 m / 20 m/s = 75 secs
     double enbTxPowerDbm = 46.0;
+	double interPacketInterval = 150.0;
 
     std::string animFile = "lte_udp_test6.xml";
     AsciiTraceHelper ascii;
@@ -180,7 +181,13 @@
     cmd.AddValue ("simTime", "Total duration of the simulation (in seconds)", simTime);
     cmd.AddValue ("speed", "Speed of the UE (default = 20 m/s)", speed);
     cmd.AddValue ("enbTxPowerDbm", "TX power [dBm] used by HeNBs (default = 46.0)", enbTxPowerDbm);
-  
+    
+    cmd.AddValue("numberOfNodes", "Number of eNodeBs + UE pairs", numberOfEnbs);
+	cmd.AddValue("simTime", "Total duration of the simulation [s])", simTime);
+	cmd.AddValue("distance", "Distance between eNBs [m]", distance);
+	cmd.AddValue("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
+	cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
+
     cmd.Parse (argc, argv);
   
   
@@ -334,7 +341,7 @@
 	pf.localPortStart = 1234;
 	pf.localPortEnd = 1234;
 	tft->Add (pf);
-	lteHelper->ActivateDedicatedEpsBearer (ueDevs, EpsBearer (EpsBearer::NGBR_VIDEO_TCP_DEFAULT), tft);
+	lteHelper->ActivateDedicatedEpsBearer (ueLteDevs, EpsBearer (EpsBearer::NGBR_VIDEO_TCP_DEFAULT), tft);
 
 	uint16_t dlPort = 1234;
 	uint16_t ulPort = 2000;
@@ -353,7 +360,7 @@
         serverApps.Add (ulPacketSinkHelper.Install (remoteHost));
         serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
-        UdpClientHelper dlClient (ueIpIface.GetAddress (u), dlPort);
+        UdpClientHelper dlClient (ueIpIfaces.GetAddress (u), dlPort);
         dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
         dlClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
 
@@ -361,7 +368,7 @@
         ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
         ulClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
 
-        UdpClientHelper client (ueIpIface.GetAddress (u), otherPort);
+        UdpClientHelper client (ueIpIfaces.GetAddress (u), otherPort);
         client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
         client.SetAttribute ("MaxPackets", UintegerValue(1000000));
 
