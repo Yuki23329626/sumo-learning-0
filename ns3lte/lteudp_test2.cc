@@ -223,12 +223,12 @@
     //                                            DoubleValue (3.0));
     //  lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
     //                                            TimeValue (MilliSeconds (256)));
+    
+    Ptr<Node> pgw = epcHelper->GetPgwNode ();
 
     NodeContainer ueNodes;
     ueNodes.Create (numberOfUes);
     ns2.Install();
-  
-    Ptr<Node> pgw = epcHelper->GetPgwNode ();
   
     // Create a single RemoteHost
     NodeContainer remoteHostContainer;
