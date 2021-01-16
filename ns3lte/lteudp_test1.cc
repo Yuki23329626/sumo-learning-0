@@ -289,6 +289,14 @@ int main (int argc, char *argv[])
 
 	//create LTE Object by lteHelper.
 	Ptr<LteHelper> lteHelper = CreateObject<LteHelper> ();
+	
+    lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
+    
+    lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
+    lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold",
+                                                UintegerValue (30));
+    lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset",
+                                                UintegerValue (1));
 
 	lteHelper->SetAttribute ("FadingModel", StringValue ("ns3::TraceFadingLossModel"));
     
