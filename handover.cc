@@ -64,6 +64,8 @@
                                     uint16_t cellid,
                                     uint16_t rnti)
     {
+    double now = Simulator::Now().GetSeconds();
+    std::cout << "now: " << now;
     std::cout << context
                 << " UE IMSI " << imsi
                 << ": connected to CellId " << cellid
@@ -78,6 +80,8 @@
                             uint16_t rnti,
                             uint16_t targetCellId)
     {
+    double now = Simulator::Now().GetSeconds();
+    std::cout << "now: " << now;
     std::cout << context
                 << " UE IMSI " << imsi
                 << ": previously connected to CellId " << cellid
@@ -92,6 +96,8 @@
                             uint16_t cellid,
                             uint16_t rnti)
     {
+    double now = Simulator::Now().GetSeconds();
+    std::cout << "now: " << now;
     std::cout << context
                 << " UE IMSI " << imsi
                 << ": successful handover to CellId " << cellid
@@ -105,6 +111,8 @@
                                     uint16_t cellid,
                                     uint16_t rnti)
     {
+    double now = Simulator::Now().GetSeconds();
+    std::cout << "now: " << now;
     std::cout << context
                 << " eNB CellId " << cellid
                 << ": successful connection of UE with IMSI " << imsi
@@ -119,6 +127,8 @@
                             uint16_t rnti,
                             uint16_t targetCellId)
     {
+    double now = Simulator::Now().GetSeconds();
+    std::cout << "now: " << now;
     std::cout << context
                 << " eNB CellId " << cellid
                 << ": start handover of UE with IMSI " << imsi
@@ -133,6 +143,8 @@
                             uint16_t cellid,
                             uint16_t rnti)
     {
+    double now = Simulator::Now().GetSeconds();
+    std::cout << "now: " << now;
     std::cout << context
                 << " eNB CellId " << cellid
                 << ": completed handover of UE with IMSI " << imsi
