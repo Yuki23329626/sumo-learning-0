@@ -267,9 +267,11 @@
       */
   
     NodeContainer ueNodes;
+    ueNodes.Create (numberOfUes);
+    ns2.Install();
+    
     NodeContainer enbNodes;
     enbNodes.Create (numberOfEnbs);
-    ueNodes.Create (numberOfUes);
   
     // Install Mobility Model in eNB
     Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator> ();
@@ -297,7 +299,6 @@
     enbMobility.Install (enbNodes);
   
     // Install Mobility Model in UE
-	ns2.Install();
     // MobilityHelper ueMobility;
     // ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
     // ueMobility.Install (ueNodes);
