@@ -178,6 +178,9 @@
 	double interPacketInterval = 150.0;
 
     std::string animFile = "lte_udp_test6.xml";
+	string TRACE_FILE = "scratch/test10.tcl";
+	Ns2MobilityHelper ns2 = Ns2MobilityHelper(TRACE_FILE);
+
     AsciiTraceHelper ascii;
 	MobilityHelper::EnableAsciiAll (ascii.CreateFileStream ("mobility-trace-example.mob"));
   
@@ -294,12 +297,13 @@
     enbMobility.Install (enbNodes);
   
     // Install Mobility Model in UE
-    MobilityHelper ueMobility;
-    ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
-    ueMobility.Install (ueNodes);
-    // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (0, yForUe, 0));
-    ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (583, 365, 0));
-    ueNodes.Get (0)->GetObject<ConstantVelocityMobilityModel> ()->SetVelocity (Vector (734/60, 585/60, 0));
+	ns2.Install();
+    // MobilityHelper ueMobility;
+    // ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
+    // ueMobility.Install (ueNodes);
+    // // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (0, yForUe, 0));
+    // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (583, 365, 0));
+    // ueNodes.Get (0)->GetObject<ConstantVelocityMobilityModel> ()->SetVelocity (Vector (734/60, 585/60, 0));
   
     // Install LTE Devices in eNB and UEs
     Config::SetDefault ("ns3::LteEnbPhy::TxPower", DoubleValue (enbTxPowerDbm));
@@ -409,7 +413,7 @@
     // Uncomment to enable PCAP tracing
     // p2ph.EnablePcapAll("lena-x2-handover-measures");
     p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace.tr"));
-	  p2ph.EnablePcapAll("pgw-hostudp");
+	p2ph.EnablePcapAll("pgw-hostudp");
   
     lteHelper->EnablePhyTraces ();
     lteHelper->EnableMacTraces ();
