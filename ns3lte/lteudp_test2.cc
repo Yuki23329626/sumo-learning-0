@@ -269,7 +269,7 @@
     NodeContainer ueNodes;
     ueNodes.Create (numberOfUes);
     ns2.Install();
-    
+
     NodeContainer enbNodes;
     enbNodes.Create (numberOfEnbs);
   
@@ -406,7 +406,7 @@
   
   
     // Add X2 interface
-    lteHelper->AddX2Interface (enbNodes);
+    // lteHelper->AddX2Interface (enbNodes);
   
     // X2-based Handover
     //lteHelper->HandoverRequest (Seconds (0.100), ueLteDevs.Get (0), enbLteDevs.Get (0), enbLteDevs.Get (1));
