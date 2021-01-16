@@ -557,6 +557,8 @@ int main (int argc, char *argv[])
 	Config::SetDefault ("ns3::LteAmc::AmcModel", EnumValue (LteAmc::MiErrorModel));
 	Config::SetDefault ("ns3::LteAmc::Ber", DoubleValue (0.00005));
 
+	lteHelper->AddX2Interface (enbNodes);
+
 	lteHelper->EnablePhyTraces ();
 	lteHelper->EnableMacTraces ();
 	lteHelper->EnableRlcTraces ();
