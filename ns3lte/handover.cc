@@ -163,13 +163,13 @@
    Ptr<PointToPointEpcHelper> epcHelper = CreateObject<PointToPointEpcHelper> ();
    
    lteHelper->SetEpcHelper (epcHelper);
-  //  lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
+   lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
  
-  //  lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
-  //  lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold",
-  //                                            UintegerValue (30));
-  //  lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset",
-  //                                            UintegerValue (1));
+   lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
+   lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold",
+                                             UintegerValue (30));
+   lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset",
+                                             UintegerValue (1));
  
    //  lteHelper->SetHandoverAlgorithmType ("ns3::A3RsrpHandoverAlgorithm");
    //  lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",

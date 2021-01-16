@@ -267,7 +267,7 @@ int main (int argc, char *argv[])
 	// EnodeB = 3, UE = 20
 	string TRACE_FILE = "scratch/test10.tcl";
 	uint16_t numberOfNodesENB = 12;
-	uint16_t numberOfNodesEU = 100;
+	uint16_t numberOfNodesEU = 1;
 	double simTime = 60;
 	double distance = 250.0;
 	double interPacketInterval = 150.0;
@@ -324,10 +324,10 @@ int main (int argc, char *argv[])
 	lteHelper->SetEpcHelper (epcHelper);
 	
 	// from handover.cc
-    lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
-    lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
-    lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold", UintegerValue (30));
-    lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset", UintegerValue (1));
+    // lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
+    // lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
+    // lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold", UintegerValue (30));
+    // lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset", UintegerValue (1));
 
 	// Create PGW object
 	Ptr<Node> pgw = epcHelper->GetPgwNode (); 
