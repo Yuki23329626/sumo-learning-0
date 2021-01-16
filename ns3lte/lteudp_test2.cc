@@ -265,7 +265,6 @@
     
     NodeContainer ueNodes;
     ueNodes.Create (numberOfUes);
-    ns2.Install();
 
     NodeContainer enbNodes;
     enbNodes.Create (numberOfEnbs);
@@ -296,12 +295,12 @@
     enbMobility.Install (enbNodes);
   
     // Install Mobility Model in UE
-    // MobilityHelper ueMobility;
-    // ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
-    // ueMobility.Install (ueNodes);
-    // // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (0, yForUe, 0));
-    // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (583, 365, 0));
-    // ueNodes.Get (0)->GetObject<ConstantVelocityMobilityModel> ()->SetVelocity (Vector (734/60, 585/60, 0));
+    MobilityHelper ueMobility;
+    ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
+    ueMobility.Install (ueNodes);
+    // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (0, yForUe, 0));
+    ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (583, 365, 0));
+    ueNodes.Get (0)->GetObject<ConstantVelocityMobilityModel> ()->SetVelocity (Vector (734/60, 585/60, 0));
     
   
     // Install LTE Devices in eNB and UEs
