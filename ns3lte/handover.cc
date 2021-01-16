@@ -113,6 +113,7 @@
               << std::endl;
   }
   
+  AnimationInterface * pAnim = 0;
   
   int
   main (int argc, char *argv[])
@@ -380,8 +381,12 @@
                       MakeCallback (&NotifyHandoverEndOkEnb));
     Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
                       MakeCallback (&NotifyHandoverEndOkUe));
-  
-  
+
+    // Create the animation object and configure for specific output
+    pAnim = new AnimationInterface (animFile.c_str ());
+    // Provide the absolute path to the resource
+    pAnim->SetMaxPktsPerTraceFile(99999999999999);
+    
     Simulator::Stop (Seconds (simTime));
     Simulator::Run ();
   
@@ -389,6 +394,12 @@
     // config.ConfigureAttributes ();
   
     Simulator::Destroy ();
+    delete pAnim;
+
+    auto t2 = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<std::chrono::seconds>( t2 - t1 ).count();
+    cout << "time spent: " << duration / 3600 << ":" << duration / 60 << ":" << duration % 60 <<endl;
+
     return 0;
   
   }
