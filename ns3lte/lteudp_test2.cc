@@ -210,13 +210,6 @@
     lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
     lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold", UintegerValue (30));
     lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset", UintegerValue (1));
-
-    NodeContainer ueNodes;
-    ueNodes.Create (numberOfUes);
-    MobilityHelper ueMobility;
-    ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
-    ueMobility.Install (ueNodes);
-    ns2.Install();
       
     Ptr<PointToPointEpcHelper> epcHelper = CreateObject<PointToPointEpcHelper> ();
     lteHelper->SetEpcHelper (epcHelper);
@@ -269,6 +262,10 @@
       *      |     |                                             d = distance
       *            o (0, 0, 0)                                   y = yForUe
       */
+    
+    NodeContainer ueNodes;
+    ueNodes.Create (numberOfUes);
+    ns2.Install(ueNodes.Get(0), ueNodes.GetN());
 
     NodeContainer enbNodes;
     enbNodes.Create (numberOfEnbs);
