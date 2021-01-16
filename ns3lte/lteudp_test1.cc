@@ -76,6 +76,100 @@
 using namespace ns3;
 NS_LOG_COMPONENT_DEFINE ("LenaFrequencyReuse");
 
+void
+NotifyConnectionEstablishedUe (std::string context,
+								uint64_t imsi,
+								uint16_t cellid,
+								uint16_t rnti)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "now: " << now;
+std::cout << context
+			<< " UE IMSI " << imsi
+			<< ": connected to CellId " << cellid
+			<< " with RNTI " << rnti
+			<< std::endl;
+}
+
+void
+NotifyHandoverStartUe (std::string context,
+						uint64_t imsi,
+						uint16_t cellid,
+						uint16_t rnti,
+						uint16_t targetCellId)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "now: " << now;
+std::cout << context
+			<< " UE IMSI " << imsi
+			<< ": previously connected to CellId " << cellid
+			<< " with RNTI " << rnti
+			<< ", doing handover to CellId " << targetCellId
+			<< std::endl;
+}
+
+void
+NotifyHandoverEndOkUe (std::string context,
+						uint64_t imsi,
+						uint16_t cellid,
+						uint16_t rnti)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "now: " << now;
+std::cout << context
+			<< " UE IMSI " << imsi
+			<< ": successful handover to CellId " << cellid
+			<< " with RNTI " << rnti
+			<< std::endl;
+}
+
+void
+NotifyConnectionEstablishedEnb (std::string context,
+								uint64_t imsi,
+								uint16_t cellid,
+								uint16_t rnti)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "now: " << now;
+std::cout << context
+			<< " eNB CellId " << cellid
+			<< ": successful connection of UE with IMSI " << imsi
+			<< " RNTI " << rnti
+			<< std::endl;
+}
+
+void
+NotifyHandoverStartEnb (std::string context,
+						uint64_t imsi,
+						uint16_t cellid,
+						uint16_t rnti,
+						uint16_t targetCellId)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "now: " << now;
+std::cout << context
+			<< " eNB CellId " << cellid
+			<< ": start handover of UE with IMSI " << imsi
+			<< " RNTI " << rnti
+			<< " to CellId " << targetCellId
+			<< std::endl;
+}
+
+void
+NotifyHandoverEndOkEnb (std::string context,
+						uint64_t imsi,
+						uint16_t cellid,
+						uint16_t rnti)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "now: " << now;
+std::cout << context
+			<< " eNB CellId " << cellid
+			<< ": completed handover of UE with IMSI " << imsi
+			<< " RNTI " << rnti
+			<< std::endl;
+}
+
 AnimationInterface * pAnim = 0;
 
 // Create different type of nodes : EnodeB, UE, Remote host...
@@ -431,11 +525,25 @@ int main (int argc, char *argv[])
 
 
 	// Install and start applications on UEs and remote host
-	serverApps.Start (Seconds (0.01));
-	clientApps.Start (Seconds (0.01));
+	// serverApps.Start (Seconds (0.01));
+	// clientApps.Start (Seconds (0.01));
 
-         p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace.tr"));
-         p2ph.EnablePcapAll("pgw-hostudp");
+	p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace.tr"));
+	p2ph.EnablePcapAll("pgw-hostudp");
+
+	// connect custom trace sinks for RRC connection establishment and handover notification
+    Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/ConnectionEstablished",
+                        MakeCallback (&NotifyConnectionEstablishedEnb));
+    Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/ConnectionEstablished",
+                        MakeCallback (&NotifyConnectionEstablishedUe));
+    Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverStart",
+                        MakeCallback (&NotifyHandoverStartEnb));
+    Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
+                        MakeCallback (&NotifyHandoverStartUe));
+    Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverEndOk",
+                        MakeCallback (&NotifyHandoverEndOkEnb));
+    Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
+                        MakeCallback (&NotifyHandoverEndOkUe));
 
 	Simulator::Stop (Seconds (simTime));
 	Config::SetDefault ("ns3::LteAmc::AmcModel", EnumValue (LteAmc::PiroEW2010));
