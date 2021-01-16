@@ -226,7 +226,7 @@
 
     NodeContainer ueNodes;
     ueNodes.Create (numberOfUes);
-    ns2.Install();
+    // ns2.Install();
 
     Ptr<Node> pgw = epcHelper->GetPgwNode ();
   
