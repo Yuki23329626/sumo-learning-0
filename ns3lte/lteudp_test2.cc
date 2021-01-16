@@ -223,17 +223,30 @@
     //                                            DoubleValue (3.0));
     //  lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
     //                                            TimeValue (MilliSeconds (256)));
-    
-    Ptr<Node> pgw = epcHelper->GetPgwNode ();
 
     NodeContainer ueNodes;
     ueNodes.Create (numberOfUes);
     ns2.Install();
+    
+    Ptr<Node> pgw = epcHelper->GetPgwNode ();
   
     // Create a single RemoteHost
     NodeContainer remoteHostContainer;
     remoteHostContainer.Create (1);
     Ptr<Node> remoteHost = remoteHostContainer.Get (0);
+
+    Ptr<ListPositionAllocator> positionAlloc = CreateObject<ListPositionAllocator> ();
+    positionAlloc->Add(Vector(0, 0, 0));
+    positionAlloc->Add(Vector(0, 0, 0));
+    positionAlloc->Add(Vector(0, 0, 0));
+    positionAlloc->Add(Vector(0, 0, 0));
+    
+    MobilityHelper mobility;
+    mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
+    mobility.SetPositionAllocator (positionAlloc);
+    mobility.Install (remoteHostContainer);
+    mobility.Install (pgw);
+
     InternetStackHelper internet;
     internet.Install (remoteHostContainer);
   
