@@ -204,29 +204,32 @@
 	cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
 
     cmd.Parse (argc, argv);
-
+  
+  
     Ptr<LteHelper> lteHelper = CreateObject<LteHelper> ();
-    lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
-    lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
-    lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold", UintegerValue (30));
-    lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset", UintegerValue (1));
-      
     Ptr<PointToPointEpcHelper> epcHelper = CreateObject<PointToPointEpcHelper> ();
+    
     lteHelper->SetEpcHelper (epcHelper);
+    lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
+  
+    lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
+    lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold",
+                                              UintegerValue (30));
+    lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset",
+                                              UintegerValue (1));
   
     //  lteHelper->SetHandoverAlgorithmType ("ns3::A3RsrpHandoverAlgorithm");
     //  lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",
     //                                            DoubleValue (3.0));
     //  lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
     //                                            TimeValue (MilliSeconds (256)));
-    
+  
     Ptr<Node> pgw = epcHelper->GetPgwNode ();
   
     // Create a single RemoteHost
     NodeContainer remoteHostContainer;
     remoteHostContainer.Create (1);
     Ptr<Node> remoteHost = remoteHostContainer.Get (0);
-
     InternetStackHelper internet;
     internet.Install (remoteHostContainer);
   
@@ -262,12 +265,11 @@
       *      |     |                                             d = distance
       *            o (0, 0, 0)                                   y = yForUe
       */
-    
+  
     NodeContainer ueNodes;
-    ueNodes.Create (numberOfUes);
-
     NodeContainer enbNodes;
     enbNodes.Create (numberOfEnbs);
+    ueNodes.Create (numberOfUes);
   
     // Install Mobility Model in eNB
     Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator> ();
@@ -301,7 +303,6 @@
     // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (0, yForUe, 0));
     ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (583, 365, 0));
     ueNodes.Get (0)->GetObject<ConstantVelocityMobilityModel> ()->SetVelocity (Vector (734/60, 585/60, 0));
-    
   
     // Install LTE Devices in eNB and UEs
     Config::SetDefault ("ns3::LteEnbPhy::TxPower", DoubleValue (enbTxPowerDbm));
@@ -403,7 +404,7 @@
   
   
     // Add X2 interface
-    // lteHelper->AddX2Interface (enbNodes);
+    lteHelper->AddX2Interface (enbNodes);
   
     // X2-based Handover
     //lteHelper->HandoverRequest (Seconds (0.100), ueLteDevs.Get (0), enbLteDevs.Get (0), enbLteDevs.Get (1));
