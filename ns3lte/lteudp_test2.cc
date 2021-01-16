@@ -175,7 +175,7 @@
     double speed = 20;       // m/s
     double simTime = 60; // 1500 m / 20 m/s = 75 secs
     double enbTxPowerDbm = 46.0;
-	double interPacketInterval = 150.0;
+	double interPacketInterval = 1000.0;
 
     std::string animFile = "lte_udp_test6.xml";
 	string TRACE_FILE = "scratch/test10.tcl";
@@ -399,8 +399,8 @@
             }
 	}
     // Install and start applications on UEs and remote host
-	// serverApps.Start (Seconds (0.01));
-	// clientApps.Start (Seconds (0.01));
+	serverApps.Start (Seconds (1));
+	clientApps.Start (Seconds (1));
 
   
   
