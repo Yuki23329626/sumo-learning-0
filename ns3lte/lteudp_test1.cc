@@ -317,7 +317,7 @@ int main (int argc, char *argv[])
 
     NodeContainer ueNodes;
 	ueNodes.Create (numberOfNodesEU);
-	ns2.Install();
+	// ns2.Install();
 
 	//creation EPC Object epcHelper.
 	Ptr<PointToPointEpcHelper>  epcHelper = CreateObject<PointToPointEpcHelper> ();
@@ -439,7 +439,7 @@ int main (int argc, char *argv[])
 	mobility.SetPositionAllocator(uePosAllocator);
 	mobility.SetMobilityModel("ns3::ConstantVelocityMobilityModel");
 	mobility.Install(ueNodes);
-	Vector vSpeed = Vector( 1000, 0, 0 ); // moves along the x axis
+	Vector vSpeed = Vector( 1000, 1000, 0 ); // moves along the x axis
 	for(uint32_t u=0 ; u < ueNodes.GetN() ; u++) {
 		Ptr<ConstantVelocityMobilityModel> p = ueNodes.Get(u)->GetObject<ConstantVelocityMobilityModel> ();
 		p->SetVelocity (vSpeed);
