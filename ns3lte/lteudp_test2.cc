@@ -18,14 +18,34 @@
     * Author: Manuel Requena <manuel.requena@cttc.es>
     */
   
-  #include "ns3/core-module.h"
-  #include "ns3/network-module.h"
-  #include "ns3/internet-module.h"
-  #include "ns3/mobility-module.h"
-  #include "ns3/lte-module.h"
-  #include "ns3/applications-module.h"
-  #include "ns3/point-to-point-module.h"
-  #include "ns3/config-store-module.h"
+#include "ns3/core-module.h"
+#include "ns3/network-module.h"
+#include "ns3/internet-module.h"
+#include "ns3/mobility-module.h"
+#include "ns3/lte-module.h"
+#include "ns3/applications-module.h"
+#include "ns3/point-to-point-module.h"
+#include "ns3/config-store-module.h"
+
+#include <iostream>
+#include "ns3/lte-helper.h"
+#include "ns3/epc-helper.h"
+#include "ns3/ipv4-global-routing-helper.h"
+#include "ns3/point-to-point-helper.h"
+#include "ns3/config-store.h"
+#include <ns3/buildings-module.h>
+#include "ns3/netanim-module.h"
+
+#include "ns3/flow-monitor-module.h"
+#include "ns3/log.h"
+#include <sys/timeb.h>
+#include <ns3/internet-trace-helper.h>
+#include <ns3/spectrum-module.h>
+#include <ns3/log.h>
+#include <ns3/string.h>
+#include <fstream>
+#include <string>
+#include <chrono>
   
   using namespace ns3;
   
@@ -137,9 +157,7 @@
   
     uint16_t numberOfUes = 1;
     uint16_t numberOfEnbs = 12;
-    uint16_t numBearersPerUe = 0;
     double distance = 500.0; // m
-    double yForUe = 500.0;   // m
     double speed = 20;       // m/s
     double simTime = (double)(numberOfEnbs + 1) * distance / speed; // 1500 m / 20 m/s = 75 secs
     double enbTxPowerDbm = 46.0;
@@ -287,10 +305,6 @@
   
   
     NS_LOG_LOGIC ("setting up applications");
-  
-    // Install and start applications on UEs and remote host
-    uint16_t dlPort = 10000;
-    uint16_t ulPort = 20000;
   
     // randomize a bit start times to avoid simulation artifacts
     // (e.g., buffer overflows due to packet transmissions happening
