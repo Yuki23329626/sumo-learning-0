@@ -298,7 +298,7 @@
     enbMobility.SetPositionAllocator (enbPositionAlloc);
     enbMobility.Install (enbNodes);
   
-    Install Mobility Model in UE
+    // Install Mobility Model in UE
     MobilityHelper ueMobility;
     ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
     ueMobility.Install (ueNodes);
