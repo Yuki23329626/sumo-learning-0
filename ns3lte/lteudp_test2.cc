@@ -226,9 +226,6 @@
 
     NodeContainer ueNodes;
     ueNodes.Create (numberOfUes);
-    MobilityHelper ueMobility;
-    ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
-    ueMobility.Install (ueNodes);
     ns2.Install();
   
     Ptr<Node> pgw = epcHelper->GetPgwNode ();
