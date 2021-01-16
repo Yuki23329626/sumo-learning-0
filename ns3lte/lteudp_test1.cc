@@ -405,16 +405,16 @@ int main (int argc, char *argv[])
     // enbPositionAlloc->Add(Vector(1123.0, 716.00, 0));
     // enbPositionAlloc->Add(Vector(1110.0, 350.00, 0));
 	enbPositionAlloc->Add(Vector(583, 365, 0));
-	enbPositionAlloc->Add(Vector(885, 338, 0));
-	enbPositionAlloc->Add(Vector(1187, 328, 0));
-	enbPositionAlloc->Add(Vector(1305, 322, 0));
-	enbPositionAlloc->Add(Vector(596, 703, 0));
-	enbPositionAlloc->Add(Vector(895, 690, 0));
-	enbPositionAlloc->Add(Vector(1100, 682, 0));
-	enbPositionAlloc->Add(Vector(1317, 679, 0));
-	enbPositionAlloc->Add(Vector(602, 972, 0));
-	enbPositionAlloc->Add(Vector(908, 955, 0));
-	enbPositionAlloc->Add(Vector(1107, 953, 0));
+	// enbPositionAlloc->Add(Vector(885, 338, 0));
+	// enbPositionAlloc->Add(Vector(1187, 328, 0));
+	// enbPositionAlloc->Add(Vector(1305, 322, 0));
+	// enbPositionAlloc->Add(Vector(596, 703, 0));
+	// enbPositionAlloc->Add(Vector(895, 690, 0));
+	// enbPositionAlloc->Add(Vector(1100, 682, 0));
+	// enbPositionAlloc->Add(Vector(1317, 679, 0));
+	// enbPositionAlloc->Add(Vector(602, 972, 0));
+	// enbPositionAlloc->Add(Vector(908, 955, 0));
+	// enbPositionAlloc->Add(Vector(1107, 953, 0));
 	enbPositionAlloc->Add(Vector(1317, 950, 0));
 	
 	MobilityHelper mobility;
