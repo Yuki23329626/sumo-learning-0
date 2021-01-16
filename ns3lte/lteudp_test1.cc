@@ -266,7 +266,7 @@ int main (int argc, char *argv[])
 
 	// EnodeB = 3, UE = 20
 	string TRACE_FILE = "scratch/test10.tcl";
-	uint16_t numberOfNodesENB = 2;
+	uint16_t numberOfNodesENB = 3;
 	uint16_t numberOfNodesEU = 1;
 	double simTime = 60;
 	double distance = 250.0;
@@ -409,7 +409,7 @@ int main (int argc, char *argv[])
 	// enbPositionAlloc->Add(Vector(1187, 328, 0));
 	// enbPositionAlloc->Add(Vector(1305, 322, 0));
 	// enbPositionAlloc->Add(Vector(596, 703, 0));
-	// enbPositionAlloc->Add(Vector(895, 690, 0));
+	enbPositionAlloc->Add(Vector(895, 690, 0));
 	// enbPositionAlloc->Add(Vector(1100, 682, 0));
 	// enbPositionAlloc->Add(Vector(1317, 679, 0));
 	// enbPositionAlloc->Add(Vector(602, 972, 0));
