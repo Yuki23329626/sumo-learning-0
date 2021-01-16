@@ -315,8 +315,8 @@
            lteHelper->ActivateDedicatedEpsBearer (ueLteDevs.Get (u), bearer, tft);
  
            Time startTime = Seconds (startTimeSeconds->GetValue ());
-           serverApps.Start (startTime);
-           clientApps.Start (startTime);
+          //  serverApps.Start (startTime);
+          //  clientApps.Start (startTime);
  
          } // end for b
      }
