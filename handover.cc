@@ -355,6 +355,7 @@
                     
 
     std::string animFile = "handover.xml";
+    AnimationInterface * pAnim = 0;
     pAnim = new AnimationInterface (animFile.c_str ());
     pAnim->SetMaxPktsPerTraceFile(99999999999999);
 
