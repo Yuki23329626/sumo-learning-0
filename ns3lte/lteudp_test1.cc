@@ -440,7 +440,7 @@ int main (int argc, char *argv[])
 	Vector vSpeed = Vector( 20, 0, 0 ); // moves along the x axis
 	for(uint32_t u=0 ; u < ueNodes.GetN() ; u++) {
 		Ptr<ConstantVelocityMobilityModel> p = ueNodes.Get(u)->GetObject<ConstantVelocityMobilityModel> ();
-		p->SetVelocity (20);
+		p->SetVelocity (vSpeed);
 	}
 
 	// Set movement attributes for all EU nodes
