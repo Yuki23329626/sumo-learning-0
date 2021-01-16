@@ -456,6 +456,7 @@ int main (int argc, char *argv[])
 	enbDevs = lteHelper->InstallEnbDevice (enbNodes);
 	NetDeviceContainer ueDevs;
 	ueDevs = lteHelper->InstallUeDevice (ueNodes);
+	
 	// Install the IP stack on the UEs
 	internet.Install (ueNodes);
 	Ipv4InterfaceContainer ueIpIface;
