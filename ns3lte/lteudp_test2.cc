@@ -320,12 +320,65 @@
     startTimeSeconds->SetAttribute ("Max", DoubleValue (0.010));
   
     for (uint32_t u = 0; u < numberOfUes; ++u)
-      {
+    {
         Ptr<Node> ue = ueNodes.Get (u);
         // Set the default gateway for the UE
         Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting (ue->GetObject<Ipv4> ());
         ueStaticRouting->SetDefaultRoute (epcHelper->GetUeDefaultGatewayAddress (), 1);
-      }
+    }
+
+    
+	//enter radio range support that carries data between UE and EnodeB
+	Ptr<EpcTft> tft = Create<EpcTft> ();
+	EpcTft::PacketFilter pf;
+	pf.localPortStart = 1234;
+	pf.localPortEnd = 1234;
+	tft->Add (pf);
+	lteHelper->ActivateDedicatedEpsBearer (ueDevs, EpsBearer (EpsBearer::NGBR_VIDEO_TCP_DEFAULT), tft);
+
+	uint16_t dlPort = 1234;
+	uint16_t ulPort = 2000;
+    uint16_t otherPort = 3000;
+    ApplicationContainer clientApps;
+    ApplicationContainer serverApps;
+
+	// generate traffic request to remote server
+    for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
+        ++ulPort;
+        ++otherPort;
+        PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
+        PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
+        PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
+        serverApps.Add (dlPacketSinkHelper.Install (ueNodes.Get(u)));
+        serverApps.Add (ulPacketSinkHelper.Install (remoteHost));
+        serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
+
+        UdpClientHelper dlClient (ueIpIface.GetAddress (u), dlPort);
+        dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+        dlClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
+
+        UdpClientHelper ulClient (remoteHostAddr, ulPort);
+        ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+        ulClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
+
+        UdpClientHelper client (ueIpIface.GetAddress (u), otherPort);
+        client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+        client.SetAttribute ("MaxPackets", UintegerValue(1000000));
+
+        clientApps.Add (dlClient.Install (remoteHost));
+        clientApps.Add (ulClient.Install (ueNodes.Get(u)));
+        if (u+1 < ueNodes.GetN ()){
+            clientApps.Add (client.Install (ueNodes.Get(u+1)));
+        }
+        else
+            {
+            clientApps.Add (client.Install (ueNodes.Get(0)));
+            }
+	}
+    // Install and start applications on UEs and remote host
+	// serverApps.Start (Seconds (0.01));
+	// clientApps.Start (Seconds (0.01));
+
   
   
     // Add X2 interface
