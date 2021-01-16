@@ -204,8 +204,11 @@
 	cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
 
     cmd.Parse (argc, argv);
-  
-  
+
+    NodeContainer ueNodes;
+    ueNodes.Create (numberOfUes);
+    ns2.Install();
+      
     Ptr<LteHelper> lteHelper = CreateObject<LteHelper> ();
     Ptr<PointToPointEpcHelper> epcHelper = CreateObject<PointToPointEpcHelper> ();
     
@@ -223,10 +226,6 @@
     //                                            DoubleValue (3.0));
     //  lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
     //                                            TimeValue (MilliSeconds (256)));
-
-    NodeContainer ueNodes;
-    ueNodes.Create (numberOfUes);
-    ns2.Install();
     
     Ptr<Node> pgw = epcHelper->GetPgwNode ();
   
@@ -234,19 +233,6 @@
     NodeContainer remoteHostContainer;
     remoteHostContainer.Create (1);
     Ptr<Node> remoteHost = remoteHostContainer.Get (0);
-
-    Ptr<ListPositionAllocator> positionAlloc = CreateObject<ListPositionAllocator> ();
-    positionAlloc->Add(Vector(0, 0, 0));
-    positionAlloc->Add(Vector(0, 0, 0));
-    positionAlloc->Add(Vector(0, 0, 0));
-    positionAlloc->Add(Vector(0, 0, 0));
-    positionAlloc->Add(Vector(0, 0, 0));
-    
-    MobilityHelper mobility;
-    mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
-    mobility.SetPositionAllocator (positionAlloc);
-    mobility.Install (pgw);
-    mobility.Install (remoteHostContainer);
 
     InternetStackHelper internet;
     internet.Install (remoteHostContainer);
