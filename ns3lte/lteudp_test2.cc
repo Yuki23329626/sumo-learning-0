@@ -206,7 +206,6 @@
     cmd.Parse (argc, argv);
 
     Ptr<LteHelper> lteHelper = CreateObject<LteHelper> ();
-    lteHelper->SetEpcHelper (epcHelper);
     lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
     lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
     lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold", UintegerValue (30));
@@ -220,6 +219,7 @@
     ns2.Install();
       
     Ptr<PointToPointEpcHelper> epcHelper = CreateObject<PointToPointEpcHelper> ();
+    lteHelper->SetEpcHelper (epcHelper);
   
     //  lteHelper->SetHandoverAlgorithmType ("ns3::A3RsrpHandoverAlgorithm");
     //  lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",
