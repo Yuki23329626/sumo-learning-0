@@ -190,7 +190,7 @@
     Config::SetDefault ("ns3::UdpClient::Interval", TimeValue (MilliSeconds (10)));
     Config::SetDefault ("ns3::UdpClient::MaxPackets", UintegerValue (1000000));
     Config::SetDefault ("ns3::LteHelper::UseIdealRrc", BooleanValue (true));
-    Config::SetDefault ("ns3::LteEnbMac::PreambleTransMax",UintegerValue (50));
+    Config::SetDefault ("ns3::LteEnbMac::PreambleTransMax",UintegerValue (1000));
   
     // Command line arguments
     CommandLine cmd (__FILE__);
