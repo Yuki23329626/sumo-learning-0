@@ -170,7 +170,7 @@
     // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
   
     uint16_t numberOfUes = 20;
-    uint16_t numberOfEnbs = 12;
+    uint16_t numberOfEnbs = 2;
     double distance = 500.0; // m
     double speed = 20;       // m/s
     double simTime = 60; // 1500 m / 20 m/s = 75 secs
@@ -277,16 +277,16 @@
     //      enbPositionAlloc->Add (enbPosition);
     //    }
     enbPositionAlloc->Add(Vector(583, 365, 0));
-    enbPositionAlloc->Add(Vector(885, 338, 0));
-    enbPositionAlloc->Add(Vector(1187, 328, 0));
-    enbPositionAlloc->Add(Vector(1305, 322, 0));
-    enbPositionAlloc->Add(Vector(596, 703, 0));
-    enbPositionAlloc->Add(Vector(895, 690, 0));
-    enbPositionAlloc->Add(Vector(1100, 682, 0));
-    enbPositionAlloc->Add(Vector(1317, 679, 0));
-    enbPositionAlloc->Add(Vector(602, 972, 0));
-    enbPositionAlloc->Add(Vector(908, 955, 0));
-    enbPositionAlloc->Add(Vector(1107, 953, 0));
+    // enbPositionAlloc->Add(Vector(885, 338, 0));
+    // enbPositionAlloc->Add(Vector(1187, 328, 0));
+    // enbPositionAlloc->Add(Vector(1305, 322, 0));
+    // enbPositionAlloc->Add(Vector(596, 703, 0));
+    // enbPositionAlloc->Add(Vector(895, 690, 0));
+    // enbPositionAlloc->Add(Vector(1100, 682, 0));
+    // enbPositionAlloc->Add(Vector(1317, 679, 0));
+    // enbPositionAlloc->Add(Vector(602, 972, 0));
+    // enbPositionAlloc->Add(Vector(908, 955, 0));
+    // enbPositionAlloc->Add(Vector(1107, 953, 0));
     enbPositionAlloc->Add(Vector(1317, 950, 0));
     
     MobilityHelper enbMobility;
