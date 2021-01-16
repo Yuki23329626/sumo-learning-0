@@ -267,7 +267,7 @@ int main (int argc, char *argv[])
 	// EnodeB = 3, UE = 20
 	string TRACE_FILE = "scratch/test10.tcl";
 	uint16_t numberOfNodesENB = 2;
-	uint16_t numberOfNodesEU = 2;
+	uint16_t numberOfNodesEU = 1;
 	double simTime = 60;
 	double distance = 250.0;
 	double interPacketInterval = 150.0;
@@ -433,7 +433,9 @@ int main (int argc, char *argv[])
 
 	// Set movement attributes for all EU nodes
 	Ptr<ListPositionAllocator> uePosAllocator = CreateObject <ListPositionAllocator>();
-	uePosAllocator->Add(Vector(583, 365, 0));
+	for(int i=0 ; i < numberOfNodesEU ; i++) {
+		uePosAllocator->Add(Vector(583, 365, 0));
+	}
 	mobility.SetPositionAllocator(uePosAllocator);
 	mobility.SetMobilityModel("ns3::ConstantVelocityMobilityModel");
 	mobility.Install(ueNodes);
