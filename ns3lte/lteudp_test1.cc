@@ -561,6 +561,13 @@ int main (int argc, char *argv[])
 	lteHelper->EnableMacTraces ();
 	lteHelper->EnableRlcTraces ();
 
+	// from handover.cc
+	lteHelper->EnablePdcpTraces ();
+	Ptr<RadioBearerStatsCalculator> rlcStats = lteHelper->GetRlcStats ();
+	rlcStats->SetAttribute ("EpochDuration", TimeValue (Seconds (1.0)));
+	Ptr<RadioBearerStatsCalculator> pdcpStats = lteHelper->GetPdcpStats ();
+	pdcpStats->SetAttribute ("EpochDuration", TimeValue (Seconds (1.0)));
+
 	// Create the animation object and configure for specific output
 	pAnim = new AnimationInterface (animFile.c_str ());
 	// Provide the absolute path to the resource
