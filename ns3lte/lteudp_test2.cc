@@ -169,7 +169,7 @@
     // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
     // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
   
-    uint16_t numberOfUes = 20;
+    uint16_t numberOfUes = 1;
     uint16_t numberOfEnbs = 2;
     double distance = 500.0; // m
     double speed = 20;       // m/s
