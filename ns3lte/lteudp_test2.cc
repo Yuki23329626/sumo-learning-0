@@ -139,6 +139,7 @@
   int
   main (int argc, char *argv[])
   {
+    auto t1 = chrono::high_resolution_clock::now();
     // LogLevel logLevel = (LogLevel)(LOG_PREFIX_ALL | LOG_LEVEL_ALL);
   
     // LogComponentEnable ("LteHelper", logLevel);
@@ -162,6 +163,10 @@
     double speed = 20;       // m/s
     double simTime = (double)(numberOfEnbs + 1) * distance / speed; // 1500 m / 20 m/s = 75 secs
     double enbTxPowerDbm = 46.0;
+
+    std::string animFile = "lte_udp_test6.xml";
+    AsciiTraceHelper ascii;
+	MobilityHelper::EnableAsciiAll (ascii.CreateFileStream ("mobility-trace-example.mob"));
   
     // change some default attributes so that they are reasonable for
     // this scenario, but do this before processing command line
