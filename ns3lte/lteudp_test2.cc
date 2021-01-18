@@ -169,8 +169,8 @@
     // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
     // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
   
-    uint16_t numberOfUes = 100;
-    uint16_t numberOfEnbs = 12;
+    uint16_t numberOfUes = 1;
+    uint16_t numberOfEnbs = 2;
     double distance = 500.0; // m
     double speed = 20;       // m/s
     double simTime = 60; // 1500 m / 20 m/s = 75 secs
@@ -272,7 +272,15 @@
     NodeContainer enbNodes;
     enbNodes.Create (numberOfEnbs);
     ueNodes.Create (numberOfUes);
-    ns2.Install(ueNodes.Begin(), ueNodes.End());
+    // ns2.Install(ueNodes.Begin(), ueNodes.End());
+
+    // // Install Mobility Model in UE
+    MobilityHelper ueMobility;
+    ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
+    ueMobility.Install (ueNodes);
+    // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (0, yForUe, 0));
+    ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (583, 365, 0));
+    ueNodes.Get (0)->GetObject<ConstantVelocityMobilityModel> ()->SetVelocity (Vector (734/60, 585/60, 0));
   
     // Install Mobility Model in eNB
     Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator> ();
@@ -298,14 +306,6 @@
     enbMobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
     enbMobility.SetPositionAllocator (enbPositionAlloc);
     enbMobility.Install (enbNodes);
-  
-    // // Install Mobility Model in UE
-    // MobilityHelper ueMobility;
-    // ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
-    // ueMobility.Install (ueNodes);
-    // // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (0, yForUe, 0));
-    // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (583, 365, 0));
-    // ueNodes.Get (0)->GetObject<ConstantVelocityMobilityModel> ()->SetVelocity (Vector (734/60, 585/60, 0));
   
     // Install LTE Devices in eNB and UEs
     Config::SetDefault ("ns3::LteEnbPhy::TxPower", DoubleValue (enbTxPowerDbm));
