@@ -77,3 +77,16 @@ CXXFLAGS="-std=c++0x" ./waf configure
 ./waf clean
 
 top -n 1 | grep nxshen | cut -c 1-15
+
+列出 NS_LOG_COMPONENT_DEFINE
+find . -name '*.cc' | xargs grep NS_LOG_COMPONENT_DEFINE
+
+搜尋特定 component 
+find . -name '*.cc' | xargs grep NS_LOG_COMPONENT_DEFINE | grep -i sink
+
+grep -i 為 忽略大小寫
+
+測試用的變數設定
+export NS_LOG=UdpL4Protocol
+./waf --run first
+
