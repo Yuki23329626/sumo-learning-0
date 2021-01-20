@@ -187,7 +187,7 @@ class UEs_Info{
         CourseChange1 ( Ptr<const MobilityModel> mobility)
         {
            Vector pos = mobility->GetPosition (); // Get position
-           cout << "position: " << pos << endl;
+           cout << "CourseChange" << endl;
            position = pos ;
         }
 
