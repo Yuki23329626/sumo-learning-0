@@ -290,6 +290,7 @@ class UEs_Info{
 	  double interPacketInterval = 1000.0;
     Ptr<LteUePhy> uephy;
     Ptr<MobilityModel> ueMobilityModel;
+    UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
 
     std::string animFile = "lte_udp_test6.xml";
 	  string TRACE_FILE = "scratch/test10.tcl";
