@@ -146,18 +146,7 @@
               << std::endl;
   }
 
-  void
-  Show (std::string context,
-                          uint64_t imsi,
-                          uint16_t cellid,
-                          uint16_t rnti)
-  {
-    double now = Simulator::Now().GetSeconds();
-    std::cout << "now: " << now << "\t";
-  }
-
-  AnimationInterface * pAnim = 0;
-
+AnimationInterface * pAnim = 0;
   
 class UEs_Info{
   public:
