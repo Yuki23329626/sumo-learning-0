@@ -459,7 +459,7 @@
 
     for(int i = 0; i < numberOfUes; i++){
       uephy = ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetPhy ();
-      ueMobilityModel = ueNode.Get(i)->GetObject<MobilityModel>();
+      ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
       uephy -> TraceConnectWithoutContext("ReportUeSinr", MakeCallback (&Show));
       ueMobilityModel -> TraceConnectWithoutContext("CourseChange", MakeCallback (&Show));
     }
