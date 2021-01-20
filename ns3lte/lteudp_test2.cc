@@ -206,7 +206,7 @@ class UEs_Info{
           this->sinr = 10*log10(sinr);
           //if ( counter %1000 == 0 ){
 
-          if (now >= 223 && now < 224 )
+          if (now >= 0 && now < 60 )
             *os4 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
           else if ( now >= 266 && now < 267) 
             *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
