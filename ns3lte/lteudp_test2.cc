@@ -206,7 +206,7 @@ static void
 CourseChange (std::string context, Ptr<const MobilityModel> position)
 {
   Vector pos = position->GetPosition ();
-  std::cout << Simulator::Now () << ", pos=" << position << ", x=" << pos.x << ", y=" << pos.y
+  std::cout << Simulator::Now ().GetSeconds() << ", pos=" << position << ", x=" << pos.x << ", y=" << pos.y
             << ", z=" << pos.z << std::endl;
 }
   
@@ -503,8 +503,8 @@ clientApps.Start (Seconds (1));
                     MakeCallback (&NotifyHandoverEndOkEnb));
   Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
                     MakeCallback (&NotifyHandoverEndOkUe));
-  // Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
-  //                 MakeCallback (&CourseChange));
+  Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
+                  MakeCallback (&CourseChange));
 
   // Create the animation object and configure for specific output
   pAnim = new AnimationInterface (animFile.c_str ());
