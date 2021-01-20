@@ -533,7 +533,7 @@ clientApps.Start (Seconds (1));
 
   auto t2 = chrono::high_resolution_clock::now();
   auto duration = chrono::duration_cast<std::chrono::seconds>( t2 - t1 ).count();
-  cout << "time spent: " << duration / 3600 << ":" << duration / 60 << ":" << duration % 60 <<endl;
+  cout << "time spent: " << duration / 3600 << ":" << duration / 60 % 60 << ":" << duration % 60 <<endl;
 
   return 0;
 
