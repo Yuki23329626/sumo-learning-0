@@ -408,13 +408,13 @@ cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
   startTimeSeconds->SetAttribute ("Min", DoubleValue (0));
   startTimeSeconds->SetAttribute ("Max", DoubleValue (0.010));
 
-  // for (uint32_t u = 0; u < numberOfUes; ++u)
-  // {
-  //     Ptr<Node> ue = ueNodes.Get (u);
-  //     // Set the default gateway for the UE
-  //     Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting (ue->GetObject<Ipv4> ());
-  //     ueStaticRouting->SetDefaultRoute (epcHelper->GetUeDefaultGatewayAddress (), 1);
-  // }
+  for (uint32_t u = 0; u < numberOfUes; ++u)
+  {
+      Ptr<Node> ue = ueNodes.Get (u);
+      // Set the default gateway for the UE
+      Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting (ue->GetObject<Ipv4> ());
+      ueStaticRouting->SetDefaultRoute (epcHelper->GetUeDefaultGatewayAddress (), 1);
+  }
 
   
 //enter radio range support that carries data between UE and EnodeB
@@ -511,16 +511,16 @@ clientApps.Start (Seconds (1));
   // Provide the absolute path to the resource
   pAnim->SetMaxPktsPerTraceFile(99999999999999);
 
-  for(int i = 0; i < numberOfUes; i++){
-    // uephy = ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetPhy ();
-    // ues_info[i].set_imsi(ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetImsi ());
+  // for(int i = 0; i < numberOfUes; i++){
+  //   // uephy = ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetPhy ();
+  //   // ues_info[i].set_imsi(ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetImsi ());
 
-    ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
-    ues_info[i].set_Position(ueMobilityModel->GetPosition());
+  //   ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
+  //   ues_info[i].set_Position(ueMobilityModel->GetPosition());
 
-    // uephy -> TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback (&UEs_Info::GetUeSinr, &ues_info[i]));
-    ueMobilityModel -> TraceConnectWithoutContext("CourseChange", MakeCallback (&UEs_Info::CourseChange1, &ues_info[i]));
-  }
+  //   // uephy -> TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback (&UEs_Info::GetUeSinr, &ues_info[i]));
+  //   ueMobilityModel -> TraceConnectWithoutContext("CourseChange", MakeCallback (&UEs_Info::CourseChange1, &ues_info[i]));
+  // }
   
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
