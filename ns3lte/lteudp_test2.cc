@@ -160,58 +160,58 @@
 
   
 class UEs_Info{
-    public:
+  public:
 
-        void
-        set_imsi(int imsi){
-            if(imsi >= 0)
-                this->imsi = imsi;
-        }
+    void
+    set_imsi(int imsi){
+      if(imsi >= 0)
+        this->imsi = imsi;
+    }
 
-        void
-        set_Position(Vector position){
-            this->position = position;
-        }
+    void
+    set_Position(Vector position){
+      this->position = position;
+    }
 
-        /////TraceFunction
-        void
-        GetUeSinr(uint16_t cellId, uint16_t rnti, double rsrp, double sinr, uint8_t componentCarrierId){
-          double now = Simulator::Now().GetSeconds();
-          this->sinr = 10*log10(sinr);
+    /////TraceFunction
+    void
+    GetUeSinr(uint16_t cellId, uint16_t rnti, double rsrp, double sinr, uint8_t componentCarrierId){
+      double now = Simulator::Now().GetSeconds();
+      this->sinr = 10*log10(sinr);
 
-          cout << "GetUeSinr: " << now << "," << imsi << "," << this->sinr  << "," << position.x << "," <<position.y<< "," << connectenb << endl;
-        }
+      cout << "GetUeSinr: " << now << "," << imsi << "," << this->sinr  << "," << position.x << "," <<position.y<< "," << connectenb << endl;
+    }
 
-        //When ue move change the ue position
-        void
-        CourseChange1 ( Ptr<const MobilityModel> mobility)
-        {
-           Vector pos = mobility->GetPosition (); // Get position
-           cout << "CourseChange" << endl;
-           position = pos ;
-        }
+    //When ue move change the ue position
+    void
+    CourseChange1 ( Ptr<const MobilityModel> mobility)
+    {
+      Vector pos = position->GetPosition ();
+      std::cout << Simulator::Now () << ", pos=" << position << ", x=" << pos.x << ", y=" << pos.y << ", z=" << pos.z << std::endl;
+      position = pos ;
+    }
 
-        void setConnectenb(int c){
-          connectenb = c;
-        }
+    void setConnectenb(int c){
+      connectenb = c;
+    }
 
-        Vector get_Position(){
-            return position;
-        }
+    Vector get_Position(){
+      return position;
+    }
 
-        void set_output(std::ofstream *os){
-          this->os = os;
-        }
-       
-    private:
-        int imsi = -1;
-        //int counter;
-        int connectenb;
-        //double distance = 0.0;
-        double sinr = 0.0;
-        double last_gt = 0.0 ;
-        Vector position ,enb_position;
-        std::ofstream *os;
+    void set_output(std::ofstream *os){
+      this->os = os;
+    }
+      
+  private:
+    int imsi = -1;
+    //int counter;
+    int connectenb;
+    //double distance = 0.0;
+    double sinr = 0.0;
+    double last_gt = 0.0 ;
+    Vector position ,enb_position;
+    std::ofstream *os;
 };
 
 static void 
