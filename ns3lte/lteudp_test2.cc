@@ -518,7 +518,7 @@ class UEs_Info{
 
     for(int i = 0; i < numberOfUes; i++){
       uephy = ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetPhy ();
-      ues_info[i].set_imsi(ueDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetImsi ());
+      ues_info[i].set_imsi(ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetImsi ());
 
       ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
       ues_info[i].set_Position(ueMobilityModel->GetPosition());
