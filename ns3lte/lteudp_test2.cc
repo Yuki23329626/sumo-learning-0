@@ -214,13 +214,13 @@ class UEs_Info{
     std::ofstream *os;
 };
 
-static void 
- CourseChange (std::string context, Ptr<const MobilityModel> position)
- {
-   Vector pos = position->GetPosition ();
-   std::cout << Simulator::Now () << ", pos=" << position << ", x=" << pos.x << ", y=" << pos.y
-             << ", z=" << pos.z << std::endl;
- }
+// static void 
+//  CourseChange (std::string context, Ptr<const MobilityModel> position)
+//  {
+//    Vector pos = position->GetPosition ();
+//    std::cout << Simulator::Now () << ", pos=" << position << ", x=" << pos.x << ", y=" << pos.y
+//              << ", z=" << pos.z << std::endl;
+//  }
   
   int
   main (int argc, char *argv[])
