@@ -185,14 +185,15 @@
     double speed = 20;       // m/s
     double simTime = 60; // 1500 m / 20 m/s = 75 secs
     double enbTxPowerDbm = 46.0;
-	double interPacketInterval = 1000.0;
+	  double interPacketInterval = 1000.0;
+    Ptr<LteUePhy> uephy;
 
     std::string animFile = "lte_udp_test6.xml";
-	string TRACE_FILE = "scratch/test10.tcl";
-	Ns2MobilityHelper ns2 = Ns2MobilityHelper(TRACE_FILE);
+	  string TRACE_FILE = "scratch/test10.tcl";
+	  Ns2MobilityHelper ns2 = Ns2MobilityHelper(TRACE_FILE);
 
     AsciiTraceHelper ascii;
-	MobilityHelper::EnableAsciiAll (ascii.CreateFileStream ("mobility-trace-example.mob"));
+	  MobilityHelper::EnableAsciiAll (ascii.CreateFileStream ("mobility-trace-example.mob"));
   
     // change some default attributes so that they are reasonable for
     // this scenario, but do this before processing command line
