@@ -146,6 +146,16 @@
               << std::endl;
   }
 
+  void
+  Show (std::string context,
+                          uint64_t imsi,
+                          uint16_t cellid,
+                          uint16_t rnti)
+  {
+    double now = Simulator::Now().GetSeconds();
+    std::cout << "now: " << now << "\t";
+  }
+
   AnimationInterface * pAnim = 0;
   
   int
@@ -444,6 +454,11 @@
     pAnim = new AnimationInterface (animFile.c_str ());
     // Provide the absolute path to the resource
     pAnim->SetMaxPktsPerTraceFile(99999999999999);
+
+    for(int i = 0; i < numberOfUes; i++){
+      uephy = ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetPhy ();
+      uephy -> TraceConnectWithoutContext("ReportUeSinr", MakeCallback (&Show));
+    }
     
     Simulator::Stop (Seconds (simTime));
     Simulator::Run ();
