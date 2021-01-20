@@ -525,13 +525,13 @@ static void
     pAnim->SetMaxPktsPerTraceFile(99999999999999);
 
     for(int i = 0; i < numberOfUes; i++){
-      uephy = ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetPhy ();
-      ues_info[i].set_imsi(ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetImsi ());
+      // uephy = ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetPhy ();
+      // ues_info[i].set_imsi(ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetImsi ());
 
       ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
       ues_info[i].set_Position(ueMobilityModel->GetPosition());
 
-      uephy -> TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback (&UEs_Info::GetUeSinr, &ues_info[i]));
+      // uephy -> TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback (&UEs_Info::GetUeSinr, &ues_info[i]));
       ueMobilityModel -> TraceConnectWithoutContext("CourseChange", MakeCallback (&UEs_Info::CourseChange1, &ues_info[i]));
     }
     
