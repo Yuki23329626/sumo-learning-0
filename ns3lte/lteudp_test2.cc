@@ -173,49 +173,13 @@ class UEs_Info{
             this->position = position;
         }
 
-        /*double
-        get_sinr(){
-            return sinr;
-        }
-
-        double
-        get_distance(){
-            return distance;
-        }
-
-        double
-        get_imsi(){
-            return imsi;
-        }
-
-        double
-        get_x(){
-            return position.x;
-        }
-
-        double
-        get_y(){
-            return position.y;
-        }*/
-
         /////TraceFunction
         void
         GetUeSinr(uint16_t cellId, uint16_t rnti, double rsrp, double sinr, uint8_t componentCarrierId){
           double now = Simulator::Now().GetSeconds();
-          //bool print = false ;
           this->sinr = 10*log10(sinr);
-          //if ( counter %1000 == 0 ){
 
-          if (now >= 0 && now < 60 )
-            *os4 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
-          else if ( now >= 266 && now < 267) 
-            *os1 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
-          else if ( now >= 267 && now < 268)
-            *os2 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
-          else if ( now >= 268 && now < 269)
-            *os3 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
-          /*else if ( now >= 406 && now < 406)
-            *os5 <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;*/
+          cout <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
 
 
         }
@@ -225,12 +189,10 @@ class UEs_Info{
         CourseChange1 ( Ptr<const MobilityModel> mobility)
         {
            Vector pos = mobility->GetPosition (); // Get position
+           cout << "position: " << pos << endl;
            position = pos ;
         }
 
-        /*void setCounter(int c){
-          counter = c;
-        }*/
         void setConnectenb(int c){
           connectenb = c;
         }
@@ -239,11 +201,8 @@ class UEs_Info{
             return position;
         }
 
-        void set_output(std::ofstream *os1, std::ofstream *os2, std::ofstream *os3 ,std::ofstream *os4){
-          this->os1 = os1;
-          this->os2 = os2;
-          this->os3 = os3;
-          this->os4 = os4;
+        void set_output(std::ofstream *os){
+          this->os = os;
         }
        
     private:
@@ -254,10 +213,7 @@ class UEs_Info{
         double sinr = 0.0;
         double last_gt = 0.0 ;
         Vector position ,enb_position;
-        std::ofstream *os1;
-        std::ofstream *os2;
-        std::ofstream *os3;
-        std::ofstream *os4;
+        std::ofstream *os;
 };
   
   int
@@ -562,7 +518,11 @@ class UEs_Info{
 
     for(int i = 0; i < numberOfUes; i++){
       uephy = ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetPhy ();
+      ues_info[i].set_imsi(ueDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetImsi ());
+
       ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
+      ues_info[i].set_Position(ueMobilityModel->GetPosition());
+
       uephy -> TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback (&UEs_Info::GetUeSinr, &ues_info[i]));
       ueMobilityModel -> TraceConnectWithoutContext("CourseChange", MakeCallback (&UEs_Info::CourseChange1, &ues_info[i]));
     }
