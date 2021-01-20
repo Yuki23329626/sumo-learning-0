@@ -175,7 +175,7 @@ class UEs_Info{
     void CourseChange1 ( Ptr<const MobilityModel> mobility)
     {
         Vector pos = mobility->GetPosition (); // Get position
-        std::cout << Simulator::Now () << ", pos=" << position << ", x=" << pos.x << ", y=" << pos.y << ", z=" << pos.z << std::endl;
+        std::cout << Simulator::Now ().GetSeconds() << ", pos=" << position << ", x=" << pos.x << ", y=" << pos.y << ", z=" << pos.z << std::endl;
         position = pos ;
     }
 
