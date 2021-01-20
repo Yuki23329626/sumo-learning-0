@@ -461,7 +461,7 @@
       uephy = ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetPhy ();
       ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
       uephy -> TraceConnectWithoutContext("ReportUeSinr", MakeCallback (&Show));
-      ueMobilityModel -> TraceConnectWithoutContext("CourseChange", MakeCallback (&Show));
+      // ueMobilityModel -> TraceConnectWithoutContext("CourseChange", MakeCallback (&Show));
     }
     
     Simulator::Stop (Seconds (simTime));
