@@ -504,8 +504,8 @@ static void
                       MakeCallback (&NotifyHandoverEndOkEnb));
     Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
                       MakeCallback (&NotifyHandoverEndOkUe));
-    Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
-                    MakeCallback (&CourseChange));
+    // Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
+    //                 MakeCallback (&CourseChange));
 
     // Create the animation object and configure for specific output
     pAnim = new AnimationInterface (animFile.c_str ());
