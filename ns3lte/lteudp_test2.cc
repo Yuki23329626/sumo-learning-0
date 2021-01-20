@@ -179,9 +179,7 @@ class UEs_Info{
           double now = Simulator::Now().GetSeconds();
           this->sinr = 10*log10(sinr);
 
-          cout <<now <<","<< imsi << "," << this->sinr  <<"," << position.x <<"," <<position.y<<","<< connectenb << endl;
-
-
+          cout << "GetUeSinr: " << now << "," << imsi << "," << this->sinr  << "," << position.x << "," <<position.y<< "," << connectenb << endl;
         }
 
         //When ue move change the ue position
