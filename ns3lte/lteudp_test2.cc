@@ -187,6 +187,7 @@
     double enbTxPowerDbm = 46.0;
 	  double interPacketInterval = 1000.0;
     Ptr<LteUePhy> uephy;
+    Ptr<MobilityModel> ueMobilityModel;
 
     std::string animFile = "lte_udp_test6.xml";
 	  string TRACE_FILE = "scratch/test10.tcl";
@@ -458,7 +459,9 @@
 
     for(int i = 0; i < numberOfUes; i++){
       uephy = ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetPhy ();
+      ueMobilityModel = ueNode.Get(i)->GetObject<MobilityModel>();
       uephy -> TraceConnectWithoutContext("ReportUeSinr", MakeCallback (&Show));
+      ueMobilityModel -> TraceConnectWithoutContext("CourseChange", MakeCallback (&Show));
     }
     
     Simulator::Stop (Seconds (simTime));
