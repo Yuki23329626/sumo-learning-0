@@ -210,9 +210,9 @@ AnimationInterface * pAnim = 0;
 //             << ", z=" << pos.z << std::endl;
 // }
 
-void attachToClosestEnb(Ptr<NodeContainer> ueNodes){
+void attachToClosestEnb(NodeContainer ueNodes){
   for(int i=0; i<1; i++){
-    Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
+    Ptr<const MobilityModel> ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
     Vector pos = ueMobilityModel->GetPosition ();
     std::cout << Simulator::Now ().GetSeconds() << ", pos=" << ueMobilityModel << ", x=" << pos.x << ", y=" << pos.y << ", z=" << pos.z << std::endl;
     for(int j=0; j<3; j++){
@@ -534,7 +534,7 @@ clientApps.Start (Seconds (1));
   // }
 
   for(int i=0; i<simTime; i++){
-    Simulator::Schedule (Seconds (i), attachToClosestEnb(&ueNodes));
+    Simulator::Schedule (Seconds (i), attachToClosestEnb(ueNodes));
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
