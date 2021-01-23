@@ -210,7 +210,9 @@ AnimationInterface * pAnim = 0;
 //             << ", z=" << pos.z << std::endl;
 // }
 
-void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, Ptr<LteHelper> lteHelper, uint16_t numberOfUes, uint16_t numberOfEnbs){
+Ptr<LteHelper> lteHelper;
+
+void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, uint16_t numberOfUes, uint16_t numberOfEnbs){
   for(int i=0; i<numberOfUes; i++){
     Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
     Vector pos = ueMobilityModel->GetPosition ();
@@ -286,7 +288,7 @@ cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
   cmd.Parse (argc, argv);
 
 
-  Ptr<LteHelper> lteHelper = CreateObject<LteHelper> ();
+  lteHelper = CreateObject<LteHelper> ();
   Ptr<PointToPointEpcHelper> epcHelper = CreateObject<PointToPointEpcHelper> ();
   
   lteHelper->SetEpcHelper (epcHelper);
@@ -536,7 +538,7 @@ clientApps.Start (Seconds (1));
   // }
 
   for(int i=0; i<simTime; i++){
-    Simulator::Schedule (Seconds (i), attachToClosestEnb, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, *lteHelper, numberOfUes, numberOfEnbs);
+    Simulator::Schedule (Seconds (i), attachToClosestEnb, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, numberOfUes, numberOfEnbs);
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
