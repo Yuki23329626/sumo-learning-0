@@ -210,12 +210,12 @@ AnimationInterface * pAnim = 0;
 //             << ", z=" << pos.z << std::endl;
 // }
 
-void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, Ptr<LteHelper> lteHelper, uint16_t numberOfUes, uint16_t numberOfEnbs){
-  for(int i=0; i<numberOfUes; i++){
+void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, Ptr<LteHelper> lteHelper){
+  for(int i=0; i<1; i++){
     Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
     Vector pos = ueMobilityModel->GetPosition ();
     std::cout << Simulator::Now ().GetSeconds() << ", pos=" << ueMobilityModel << ", x=" << pos.x << ", y=" << pos.y << ", z=" << pos.z << std::endl;
-    for(int j=0; j<numberOfEnbs; j++){
+    for(int j=0; j<3; j++){
       break;
     }
   }
@@ -534,7 +534,7 @@ clientApps.Start (Seconds (1));
   // }
 
   for(int i=0; i<simTime; i++){
-    Simulator::Schedule (Seconds (i), MakeCallback(&attachToClosestEnb, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, lteHelper, numberOfUes, numberOfEnbs));
+    Simulator::Schedule (Seconds (i), MakeCallback(&attachToClosestEnb, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, &lteHelper));
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
