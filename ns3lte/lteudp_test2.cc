@@ -202,13 +202,13 @@ AnimationInterface * pAnim = 0;
 //     std::ofstream *os;
 // };
 
-static void 
-CourseChange (std::string context, Ptr<const MobilityModel> position)
-{
-  Vector pos = position->GetPosition ();
-  std::cout << Simulator::Now ().GetSeconds() << ", pos=" << position << ", x=" << pos.x << ", y=" << pos.y
-            << ", z=" << pos.z << std::endl;
-}
+// static void 
+// CourseChange (std::string context, Ptr<const MobilityModel> position)
+// {
+//   Vector pos = position->GetPosition ();
+//   std::cout << Simulator::Now ().GetSeconds() << ", pos=" << position << ", x=" << pos.x << ", y=" << pos.y
+//             << ", z=" << pos.z << std::endl;
+// }
 
 static void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, Ptr<LteHelper> lteHelper, uint16_t numberOfUes, uint16_t numberOfEnbs){
   for(int i=0; i<numberOfUes; i++){
@@ -533,7 +533,7 @@ clientApps.Start (Seconds (1));
   //   ueMobilityModel -> TraceConnectWithoutContext("CourseChange", MakeCallback (&UEs_Info::CourseChange1, &ues_info[i]));
   // }
 
-  for(i=0; i<simTime; i++){
+  for(int i=0; i<simTime; i++){
     Simulator::Schedule (Seconds (simTime), attachToClosestEnb(ueNodes, ueLteDevs, enbNodes, enbLteDevs, lteHelper, numberOfUes, numberOfEnbs));
   }
   Simulator::Stop (Seconds (simTime));
