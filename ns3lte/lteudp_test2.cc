@@ -534,7 +534,7 @@ clientApps.Start (Seconds (1));
   // }
 
   for(int i=0; i<simTime; i++){
-    Simulator::Schedule (Seconds (i), MakeCallback(&attachToClosestEnb, &ueNodes));
+    Simulator::Schedule (Seconds (i), MakeCallback(&attachToClosestEnb));
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
