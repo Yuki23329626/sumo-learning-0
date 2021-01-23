@@ -437,7 +437,7 @@ cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
         std::cout << "enb:" << index << ", distance: " << min_distance << std::endl;
       }
     }
-    lteHelper->AttachToClosestEnb (ueLteDevs->Get(i), enbLteDevs->Get(index));
+    lteHelper->AttachToClosestEnb (ueLteDevs.Get(i), enbLteDevs.Get(index));
   }
 
 
