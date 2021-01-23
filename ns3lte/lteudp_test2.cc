@@ -209,6 +209,17 @@ CourseChange (std::string context, Ptr<const MobilityModel> position)
   std::cout << Simulator::Now ().GetSeconds() << ", pos=" << position << ", x=" << pos.x << ", y=" << pos.y
             << ", z=" << pos.z << std::endl;
 }
+
+void attachToClosestEnb(Nodecontainer* ueNodes, NetDeviceContainer* ueLteDevs, Nodecontainer* enbNodes, NetDeviceContainer* enbLteDevs, Ptr<LteHelper> lteHelper){
+  for(i=0; i<numberOfUes; i++){
+    Ptr<const MobilityModel> ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
+    Vector pos = ueMobilityModel->GetPosition ();
+    std::cout << Simulator::Now ().GetSeconds() << ", pos=" << position << ", x=" << pos.x << ", y=" << pos.y << ", z=" << pos.z << std::endl;
+    for(j=0; j<numberOfEnbs; j++){
+      break;
+    }
+  }
+}
   
 int main (int argc, char *argv[])
 {
@@ -503,8 +514,8 @@ clientApps.Start (Seconds (1));
                     MakeCallback (&NotifyHandoverEndOkEnb));
   Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
                     MakeCallback (&NotifyHandoverEndOkUe));
-  Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
-                  MakeCallback (&CourseChange));
+  // Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
+  //                 MakeCallback (&CourseChange));
 
   // Create the animation object and configure for specific output
   pAnim = new AnimationInterface (animFile.c_str ());
@@ -521,7 +532,10 @@ clientApps.Start (Seconds (1));
   //   // uephy -> TraceConnectWithoutContext("ReportCurrentCellRsrpSinr", MakeCallback (&UEs_Info::GetUeSinr, &ues_info[i]));
   //   ueMobilityModel -> TraceConnectWithoutContext("CourseChange", MakeCallback (&UEs_Info::CourseChange1, &ues_info[i]));
   // }
-  
+
+  for(i=0; i<simTime; i++){
+    Simulator::Schedule (Seconds (simTime), attachToClosestEnb(ueNodes, ueLteDevs, enbNodes, enbLteDevs, lteHelper));
+  }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
 
