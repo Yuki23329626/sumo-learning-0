@@ -230,6 +230,7 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
         std::cout << "enb:" << index << ", distance: " << min_distance << std::endl;
       }
     }
+    lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(index));
   }
 }
   
