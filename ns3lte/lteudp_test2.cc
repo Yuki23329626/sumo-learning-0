@@ -230,7 +230,7 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
         std::cout << "enb:" << index << ", distance: " << min_distance << std::endl;
       }
     }
-    lteHelper->AttachToClosestEnb (ueLteDevs->Get(i), enbLteDevs->Get(index));
+    lteHelper->Attach(ueLteDevs->Get(i), enbLteDevs->Get(index));
   }
 }
   
@@ -411,34 +411,34 @@ cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
   //     lteHelper->Attach (ueLteDevs.Get (i), enbLteDevs.Get (0));
   //   }
 
-  // uint16_t j = 0;
-  // for (uint16_t i = 0; i < numberOfUes; i++){  
-  //   if (j < numberOfEnbs){
-  //       lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(j));
-  //       j++;
-  //   }
-  //   else{
-  //       j = 0;
-  //       lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(j));
-  //   }   
-  // }
-
-  for(int i=0; i<numberOfUes; i++){
-    Ptr<const MobilityModel> ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
-    Vector pos_ue = ueMobilityModel->GetPosition ();
-    int index = -1;
-    unsigned long long int min_distance = std::numeric_limits<int>::max();
-    for(int j=0; j<numberOfEnbs; j++){
-      Ptr<const MobilityModel> enbMobilityModel = enbNodes.Get(j)->GetObject<MobilityModel>();
-      Vector pos_enb = enbMobilityModel->GetPosition ();
-      if((pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y)<min_distance){
-        min_distance = (pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y);
-        index = j;
-        std::cout << "enb:" << index << ", distance: " << min_distance << std::endl;
-      }
+  uint16_t j = 0;
+  for (uint16_t i = 0; i < numberOfUes; i++){  
+    if (j < numberOfEnbs){
+        lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(j));
+        j++;
     }
-    lteHelper->AttachToClosestEnb (ueLteDevs.Get(i), enbLteDevs.Get(index));
+    else{
+        j = 0;
+        lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(j));
+    }   
   }
+
+  // for(int i=0; i<numberOfUes; i++){
+  //   Ptr<const MobilityModel> ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
+  //   Vector pos_ue = ueMobilityModel->GetPosition ();
+  //   int index = -1;
+  //   unsigned long long int min_distance = std::numeric_limits<int>::max();
+  //   for(int j=0; j<numberOfEnbs; j++){
+  //     Ptr<const MobilityModel> enbMobilityModel = enbNodes.Get(j)->GetObject<MobilityModel>();
+  //     Vector pos_enb = enbMobilityModel->GetPosition ();
+  //     if((pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y)<min_distance){
+  //       min_distance = (pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y);
+  //       index = j;
+  //       std::cout << "enb:" << index << ", distance: " << min_distance << std::endl;
+  //     }
+  //   }
+  //   lteHelper->AttachToClosestEnb (ueLteDevs.Get(i), enbLteDevs.Get(index));
+  // }
 
 
   NS_LOG_LOGIC ("setting up applications");
