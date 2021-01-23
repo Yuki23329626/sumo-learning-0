@@ -210,7 +210,7 @@ CourseChange (std::string context, Ptr<const MobilityModel> position)
             << ", z=" << pos.z << std::endl;
 }
 
-static void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, Ptr<LteHelper> lteHelper){
+static void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, Ptr<LteHelper> lteHelper, uint16_t numberOfUes, uint16_t numberOfEnbs){
   for(int i=0; i<numberOfUes; i++){
     Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
     Vector pos = ueMobilityModel->GetPosition ();
@@ -534,7 +534,7 @@ clientApps.Start (Seconds (1));
   // }
 
   for(i=0; i<simTime; i++){
-    Simulator::Schedule (Seconds (simTime), attachToClosestEnb(ueNodes, ueLteDevs, enbNodes, enbLteDevs, lteHelper));
+    Simulator::Schedule (Seconds (simTime), attachToClosestEnb(ueNodes, ueLteDevs, enbNodes, enbLteDevs, lteHelper, numberOfUes, numberOfEnbs));
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
