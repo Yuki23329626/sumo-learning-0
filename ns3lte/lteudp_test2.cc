@@ -536,7 +536,7 @@ clientApps.Start (Seconds (1));
   // }
 
   for(int i=0; i<simTime; i++){
-    Simulator::Schedule (Seconds (i), attachToClosestEnb, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, &lteHelper, numberOfUes, numberOfEnbs);
+    Simulator::Schedule (Seconds (i), attachToClosestEnb, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, *lteHelper, numberOfUes, numberOfEnbs);
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
