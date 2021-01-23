@@ -212,7 +212,7 @@ AnimationInterface * pAnim = 0;
 
 void attachToClosestEnb(Ptr<NodeContainer> ueNodes){
   for(int i=0; i<1; i++){
-    Ptr<const MobilityModel> ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
+    Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
     Vector pos = ueMobilityModel->GetPosition ();
     std::cout << Simulator::Now ().GetSeconds() << ", pos=" << ueMobilityModel << ", x=" << pos.x << ", y=" << pos.y << ", z=" << pos.z << std::endl;
     for(int j=0; j<3; j++){
