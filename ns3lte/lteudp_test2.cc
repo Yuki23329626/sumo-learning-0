@@ -424,12 +424,12 @@ cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
   // }
 
   for(int i=0; i<numberOfUes; i++){
-    Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
+    Ptr<const MobilityModel> ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
     Vector pos_ue = ueMobilityModel->GetPosition ();
     int index = -1;
     unsigned long long int min_distance = std::numeric_limits<int>::max();
     for(int j=0; j<numberOfEnbs; j++){
-      Ptr<const MobilityModel> enbMobilityModel = enbNodes->Get(j)->GetObject<MobilityModel>();
+      Ptr<const MobilityModel> enbMobilityModel = enbNodes.Get(j)->GetObject<MobilityModel>();
       Vector pos_enb = enbMobilityModel->GetPosition ();
       if((pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y)<min_distance){
         min_distance = (pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y);
