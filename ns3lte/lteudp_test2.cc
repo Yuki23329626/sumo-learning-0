@@ -210,7 +210,7 @@ CourseChange (std::string context, Ptr<const MobilityModel> position)
             << ", z=" << pos.z << std::endl;
 }
 
-static void attachToClosestEnb(Nodecontainer* ueNodes, NetDeviceContainer* ueLteDevs, Nodecontainer* enbNodes, NetDeviceContainer* enbLteDevs, Ptr<LteHelper> lteHelper){
+static void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, Ptr<LteHelper> lteHelper){
   for(i=0; i<numberOfUes; i++){
     Ptr<const MobilityModel> ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
     Vector pos = ueMobilityModel->GetPosition ();
