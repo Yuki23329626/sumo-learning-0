@@ -210,13 +210,15 @@ AnimationInterface * pAnim = 0;
 //             << ", z=" << pos.z << std::endl;
 // }
 
-void attachToClosestEnb(NodeContainer* ueNodes){
-  for(int i=0; i<1; i++){
+void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, Ptr<LteHelper> lteHelper, uint16_t numberOfUes, uint16_t numberOfEnbs){
+  for(int i=0; i<numberOfUes; i++){
     Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
     Vector pos = ueMobilityModel->GetPosition ();
-    std::cout << Simulator::Now ().GetSeconds() << ", pos=" << ueMobilityModel << ", x=" << pos.x << ", y=" << pos.y << ", z=" << pos.z << std::endl;
-    for(int j=0; j<3; j++){
-      break;
+    std::cout << Simulator::Now ().GetSeconds() << ", ue_x=" << pos.x << ", ue_y=" << pos.y << std::endl;
+    for(int j=0; j<numberOfEnbs; j++){
+      Ptr<const MobilityModel> enbMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
+      Vector pos = enbMobilityModel->GetPosition ();
+      std::cout << Simulator::Now ().GetSeconds() << ", enb_x=" << pos.x << ", enb_y=" << pos.y << std::endl;
     }
   }
 }
@@ -534,7 +536,7 @@ clientApps.Start (Seconds (1));
   // }
 
   for(int i=0; i<simTime; i++){
-    Simulator::Schedule (Seconds (i), attachToClosestEnb, &ueNodes);
+    Simulator::Schedule (Seconds (i), attachToClosestEnb, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, lteHelper, numberOfUes, numberOfEnbs);
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
