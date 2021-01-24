@@ -235,13 +235,16 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
       }
     }
     if(last_index[i] != index){
+      bool hasRnti = false;
       for(int j=0; j<numberOfEnbs; j++){
         uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
-        cout << "ueRNTI: " << ueRNTI << endl;
+        // cout << "ueRNTI: " << ueRNTI << endl;
         if(ueRNTI > 0){
           last_index[i] = j;
+          hasRnti = true;
         }
       }
+      if(!hasRnti) return; 
       // uint16_t ueCellId = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetCellId ();
       // uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
       // uint16_t enbCellId = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetCellId ();
