@@ -215,7 +215,7 @@ AnimationInterface * pAnim = 0;
 Ptr<LteHelper> lteHelper;
 int *last_index;
 bool isAttachToClosestEnb;
-void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, uint16_t numberOfUes, uint16_t numberOfEnbs){
+void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, uint16_t numberOfUes, uint16_t numberOfEnbs){
   if(!isAttachToClosestEnb) return;
   for(int i=0; i<numberOfUes; i++){
     Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
@@ -238,7 +238,8 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
       // uint16_t ueCellId = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetCellId ();
       // uint16_t enbCellId = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetCellId ();
       cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ue: " << i << ", last_index: " << last_index[i] << ", next_index: " << index << endl;
-      lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
+      lteHelper->AttachToClosestEnb (ueLteDevs.Get (i), enbLteDevs.Get (index));
+      // lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
       last_index[i] = index;
     }
   }
@@ -589,7 +590,7 @@ clientApps.Start (Seconds (1));
   // }
 
   for(int i=0; i<simTime*10; i++){
-    Simulator::Schedule (MilliSeconds(i*100), attachToClosestEnb, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, numberOfUes, numberOfEnbs);
+    Simulator::Schedule (MilliSeconds(i*100), manualAttach, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, numberOfUes, numberOfEnbs);
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
