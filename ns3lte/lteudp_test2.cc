@@ -269,7 +269,7 @@ int main (int argc, char *argv[])
   last_index = (int*)malloc(sizeof(int)*numberOfUes);
   for(int i=0; i<numberOfUes; i++){
     last_index[i] = -1;
-    cout << last_index[i];
+    cout << "SHIT" << last_index[i];
   }
 
   std::string animFile = "lte_udp_test6.xml";
