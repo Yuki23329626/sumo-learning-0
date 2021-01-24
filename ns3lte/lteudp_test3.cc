@@ -247,6 +247,7 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
           if(ueIMSI == enbIMSI){
             last_index[i] = j;
             hasRnti = true;
+            break;
           }
         }
       }
