@@ -227,7 +227,7 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
       if((pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y)<min_distance){
         min_distance = (pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y);
         index = j;
-        std::cout << "enb:" << index << ", distance: " << min_distance << std::endl;
+        std::cout << "enb:" << index << ", distance: " << min_distance << endl << endl;
       }
     }
     if(last_index[i] != index){
