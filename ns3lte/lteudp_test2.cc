@@ -230,8 +230,9 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
         std::cout << "enb:" << index << ", distance: " << min_distance << std::endl;
       }
     }
-    // if()
-    // lteHelper->HandoverRequest(Simulator::Now ().GetSeconds(), ueLteDevs->Get(i), enbLteDevs->Get(index));
+    if(last_index[i] != index){
+      lteHelper->HandoverRequest(Seconds(Simulator::Now ().GetSeconds()+0.100), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
+    }
   }
 }
   
@@ -269,7 +270,6 @@ int main (int argc, char *argv[])
   last_index = (int*)malloc(sizeof(int)*numberOfUes);
   for(int i=0; i<numberOfUes; i++){
     last_index[i] = -1;
-    cout << "SHIT" << last_index[i];
   }
 
   std::string animFile = "lte_udp_test6.xml";
