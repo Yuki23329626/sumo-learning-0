@@ -589,7 +589,7 @@ clientApps.Start (Seconds (1));
   // }
 
   for(int i=0; i<simTime*10; i++){
-    Simulator::Schedule (milliseconds(i*100), attachToClosestEnb, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, numberOfUes, numberOfEnbs);
+    Simulator::Schedule (MilliSeconds(i*100), attachToClosestEnb, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, numberOfUes, numberOfEnbs);
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
