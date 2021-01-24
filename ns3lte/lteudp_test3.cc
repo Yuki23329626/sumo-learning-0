@@ -237,13 +237,14 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
     if(last_index[i] != index){
       for(int j=0; j<numberOfEnbs; j++){
         uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
+        cout << "ueRNTI: " << ueRNTI << endl;
         if(ueRNTI > 0){
           last_index[i] = j;
         }
       }
-      uint16_t ueCellId = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetCellId ();
+      // uint16_t ueCellId = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetCellId ();
       // uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
-      uint16_t enbCellId = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetCellId ();
+      // uint16_t enbCellId = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetCellId ();
       cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ue: " << i << ", last_index: " << last_index[i] << ", next_index: " << index << endl;
       cout << "ueCellId: " << ueCellId << ", ueRNTI: " << ueRNTI << ", enbCellId: " << enbCellId << endl;
       // lteHelper->AttachToClosestEnb (ueLteDevs->Get (i), enbLteDevs->Get (index));
