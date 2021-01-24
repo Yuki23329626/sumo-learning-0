@@ -479,7 +479,7 @@ int main (int argc, char *argv[])
         std::cout << "ue: " << i <<  ", enb: " << index << ", distance: " << min_distance << endl << endl;
       }
     }
-    lteHelper->AttachToClosestEnb (ueLteDevs.Get(i), enbLteDevs.Get(index));
+    lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(index));
     last_index[i] = index;
   }
 
