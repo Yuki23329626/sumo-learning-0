@@ -338,17 +338,17 @@ int main (int argc, char *argv[])
   lteHelper->SetEpcHelper (epcHelper);
   lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
 
-  lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
-  lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold",
-                                            UintegerValue (30));
-  lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset",
-                                            UintegerValue (1));
+  // lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
+  // lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold",
+  //                                           UintegerValue (30));
+  // lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset",
+  //                                           UintegerValue (1));
 
-  //  lteHelper->SetHandoverAlgorithmType ("ns3::A3RsrpHandoverAlgorithm");
-  //  lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",
-  //                                            DoubleValue (3.0));
-  //  lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
-  //                                            TimeValue (MilliSeconds (256)));
+   lteHelper->SetHandoverAlgorithmType ("ns3::A3RsrpHandoverAlgorithm");
+   lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",
+                                             DoubleValue (3.0));
+   lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
+                                             TimeValue (MilliSeconds (256)));
 
   Ptr<Node> pgw = epcHelper->GetPgwNode ();
 
