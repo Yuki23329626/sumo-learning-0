@@ -283,7 +283,7 @@ int main (int argc, char *argv[])
   // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
   // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
 
-  uint16_t numberOfUes = 10;
+  uint16_t numberOfUes = 100;
   uint16_t numberOfEnbs = 12;
   double distance = 500.0; // m
   double speed = 20;       // m/s
