@@ -239,7 +239,7 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
       bool hasRnti = false;
       for(int j=0; j<numberOfEnbs; j++){
         uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
-        bool hasUeManager = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetRrc()->HasUeManager(ueRNTI); 
+        bool hasUeManager = enbLteDevs->Get(j)->GetObject<LteEnbNetDevice>()->GetRrc()->HasUeManager(ueRNTI); 
         if(hasUeManager){
           uint16_t ueIMSI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetImsi();
           uint16_t enbIMSI = enbLteDevs->Get(j)->GetObject<LteEnbNetDevice>()->GetRrc()->GetUeManager(ueRNTI)->GetImsi();
