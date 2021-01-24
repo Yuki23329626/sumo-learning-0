@@ -239,14 +239,8 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
       bool hasRnti = false;
       for(int j=0; j<numberOfEnbs; j++){
         uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
-        Ptr<UeManager> ueManager;
-        try {
-          cout << "\n\n==========SHIT==========\n\n";
-          ueManager = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetRrc()->GetUeManager(ueRNTI);
-        } catch (exception& e){
-          cout << "error: " << e.what() << endl;
-        }
-        if(!ueManager){
+        bool hasUeManager = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetRrc()->HasUeManager(ueRNTI); 
+        if(hasUeManager){
           cout << "hasRnti, last_index: " << j << endl;
           last_index[i] = j;
           hasRnti = true;
