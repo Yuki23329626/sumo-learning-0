@@ -245,6 +245,7 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
           uint64_t ueImsi = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetImsi ();
           uint64_t enbImsi = ueManager->GetImsi ();
           if(ueImsi == enbImsi){
+            cout << "ueImsi: " << ueImsi << ", enbImsi: " << enbImsi << endl;
             last_index[i] = j;
             hasRnti = true;
           }
