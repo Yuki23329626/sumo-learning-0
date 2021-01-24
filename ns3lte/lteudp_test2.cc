@@ -213,7 +213,9 @@ AnimationInterface * pAnim = 0;
 
 Ptr<LteHelper> lteHelper;
 int *last_index;
+bool isAttachToClosestEnb;
 void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, uint16_t numberOfUes, uint16_t numberOfEnbs){
+  if(!isAttachToClosestEnb) return;
   for(int i=0; i<numberOfUes; i++){
     Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
     Vector pos_ue = ueMobilityModel->GetPosition ();
@@ -267,6 +269,7 @@ int main (int argc, char *argv[])
   double simTime = 60; // 1500 m / 20 m/s = 75 secs
   double enbTxPowerDbm = 46.0;
   double interPacketInterval = 1000.0;
+  isAttachToClosestEnb = false;
   // Ptr<LteUePhy> uephy;
   // Ptr<MobilityModel> ueMobilityModel;
   // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
