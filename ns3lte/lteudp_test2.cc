@@ -229,11 +229,11 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
         index = j;
         std::cout << "enb:" << index << ", distance: " << min_distance << endl << endl;
       }
-      if(last_index[i] != index){
-        cout << "\n\n====================\nlast_index: " << last_index[i] << ", index: " << i << endl;
-        lteHelper->HandoverRequest(Seconds(Simulator::Now ().GetSeconds()+0.100), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
-        last_index[i] = index;
-      }
+    }
+    if(last_index[i] != index){
+      cout << "\n\n====================\nlast_index: " << last_index[i] << ", index: " << index << endl;
+      lteHelper->HandoverRequest(Seconds(Simulator::Now ().GetSeconds()+0.100), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
+      last_index[i] = index;
     }
   }
 }
