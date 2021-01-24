@@ -232,6 +232,7 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
     }
     if(last_index[i] != index){
       lteHelper->HandoverRequest(Seconds(Simulator::Now ().GetSeconds()+0.100), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
+      last_index[i] = index;
     }
   }
 }
@@ -422,6 +423,7 @@ int main (int argc, char *argv[])
   for (uint16_t i = 0; i < numberOfUes; i++){  
     if (j < numberOfEnbs){
         lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(j));
+        last_index[i] = j;
         j++;
     }
     else{
