@@ -226,7 +226,7 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
     for(int j=0; j<numberOfEnbs; j++){
       Ptr<const MobilityModel> enbMobilityModel = enbNodes->Get(j)->GetObject<MobilityModel>();
       Vector pos_enb = enbMobilityModel->GetPosition ();
-      // std::cout << Simulator::Now ().GetSeconds() << ", enb_x=" << pos_enb.x << ", enb_y=" << pos_enb.y << std::endl;
+      std::cout << Simulator::Now ().GetSeconds() << ", enb_x=" << pos_enb.x << ", enb_y=" << pos_enb.y << std::endl;
       float current_distance = sqrt((pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y));
       if( current_distance < min_distance ){
         min_distance = current_distance;
@@ -235,9 +235,9 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
       }
     }
     if(last_index[i] != index){
-      // uint16_t ueCellId = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetCellId ();
-      // uint16_t enbCellId = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetCellId ();
-      // cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ueCellId: " << ueCellId << ", last_index: " << enbCellId << ", index: " << index << endl;
+      uint16_t ueCellId = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetCellId ();
+      uint16_t enbCellId = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetCellId ();
+      cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ueCellId: " << ueCellId << ", last_index: " << enbCellId << ", index: " << index << endl;
       lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
       last_index[i] = index;
     }
@@ -394,16 +394,20 @@ int main (int argc, char *argv[])
   //      enbPositionAlloc->Add (enbPosition);
   //    }
   enbPositionAlloc->Add(Vector(583, 365, 0));
+
   enbPositionAlloc->Add(Vector(885, 338, 0));
   enbPositionAlloc->Add(Vector(1187, 328, 0));
   enbPositionAlloc->Add(Vector(1305, 322, 0));
   enbPositionAlloc->Add(Vector(596, 703, 0));
+
   enbPositionAlloc->Add(Vector(895, 690, 0));
+
   enbPositionAlloc->Add(Vector(1100, 682, 0));
   enbPositionAlloc->Add(Vector(1317, 679, 0));
   enbPositionAlloc->Add(Vector(602, 972, 0));
   enbPositionAlloc->Add(Vector(908, 955, 0));
   enbPositionAlloc->Add(Vector(1107, 953, 0));
+
   enbPositionAlloc->Add(Vector(1317, 950, 0));
   
   MobilityHelper enbMobility;
