@@ -241,9 +241,13 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
         uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
         bool hasUeManager = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetRrc()->HasUeManager(ueRNTI); 
         if(hasUeManager){
-          cout << "hasRnti, last_index: " << j << endl;
-          last_index[i] = j;
-          hasRnti = true;
+          Ptr<UeManager> ueManager = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetRrc()->GetUeManager(ueRNTI);
+          uint64_t ueImsi = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetImsi ();
+          uint64_t enbImsi = ueManager->GetImsi ();
+          if(ueImsi == enbImsi){
+            last_index[i] = j;
+            hasRnti = true;
+          }
         }
       }
       if(!hasRnti) return; 
