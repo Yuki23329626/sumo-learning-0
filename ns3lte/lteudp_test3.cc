@@ -238,9 +238,7 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
       // uint16_t ueCellId = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetCellId ();
       // uint16_t enbCellId = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetCellId ();
       cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ue: " << i << ", last_index: " << last_index[i] << ", next_index: " << index << endl;
-      cout << "SHIT1" << endl;
       lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
-      cout << "SHIT2" << endl;
       last_index[i] = index;
     }
   }
@@ -321,17 +319,17 @@ int main (int argc, char *argv[])
   lteHelper->SetEpcHelper (epcHelper);
   lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
 
-  // lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
-  // lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold",
-  //                                           UintegerValue (30));
-  // lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset",
-  //                                           UintegerValue (1));
+  lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
+  lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold",
+                                            UintegerValue (30));
+  lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset",
+                                            UintegerValue (1));
 
-   lteHelper->SetHandoverAlgorithmType ("ns3::A3RsrpHandoverAlgorithm");
-   lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",
-                                             DoubleValue (3.0));
-   lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
-                                             TimeValue (MilliSeconds (256)));
+  //  lteHelper->SetHandoverAlgorithmType ("ns3::A3RsrpHandoverAlgorithm");
+  //  lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",
+  //                                            DoubleValue (3.0));
+  //  lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
+  //                                            TimeValue (MilliSeconds (256)));
 
   Ptr<Node> pgw = epcHelper->GetPgwNode ();
 
