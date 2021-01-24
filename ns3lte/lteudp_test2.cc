@@ -223,17 +223,17 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
     for(int j=0; j<numberOfEnbs; j++){
       Ptr<const MobilityModel> enbMobilityModel = enbNodes->Get(j)->GetObject<MobilityModel>();
       Vector pos_enb = enbMobilityModel->GetPosition ();
-      std::cout << Simulator::Now ().GetSeconds() << ", enb_x=" << pos_enb.x << ", enb_y=" << pos_enb.y << std::endl;
+      // std::cout << Simulator::Now ().GetSeconds() << ", enb_x=" << pos_enb.x << ", enb_y=" << pos_enb.y << std::endl;
       if((pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y)<min_distance){
         min_distance = (pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y);
         index = j;
-        std::cout << "enb:" << index << ", distance: " << min_distance << endl << endl;
+        // std::cout << "enb:" << index << ", distance: " << min_distance << endl << endl;
       }
     }
     if(last_index[i] != index){
-      uint16_t ueCellId = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetCellId ();
-      uint16_t enbCellId = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetCellId ();
-      cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ueCellId: " << ueCellId << ", last_index: " << enbCellId << ", index: " << index << endl;
+      // uint16_t ueCellId = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetCellId ();
+      // uint16_t enbCellId = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetCellId ();
+      // cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ueCellId: " << ueCellId << ", last_index: " << enbCellId << ", index: " << index << endl;
       lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
       last_index[i] = index;
     }
