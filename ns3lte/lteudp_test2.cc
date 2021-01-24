@@ -265,7 +265,7 @@ int main (int argc, char *argv[])
   // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
 
   uint16_t numberOfUes = 1;
-  uint16_t numberOfEnbs = 3;
+  uint16_t numberOfEnbs = 12;
   double distance = 500.0; // m
   double speed = 20;       // m/s
   double simTime = 60; // 1500 m / 20 m/s = 75 secs
