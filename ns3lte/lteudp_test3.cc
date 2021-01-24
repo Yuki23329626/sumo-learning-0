@@ -241,6 +241,7 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
         uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
         Ptr<UeManager> ueManager;
         try {
+          cout << "\n\n==========SHIT==========\n\n";
           ueManager = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetRrc()->GetUeManager(ueRNTI);
         } catch (exception& e){
           cout << "error: " << e.what() << endl;
