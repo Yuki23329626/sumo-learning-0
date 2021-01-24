@@ -48,6 +48,7 @@
 #include <chrono>
 #include <limits>
 #include<math.h>
+#include <exception>
   
   using namespace ns3;
   using namespace std;
@@ -238,7 +239,11 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
       bool hasRnti = false;
       for(int j=0; j<numberOfEnbs; j++){
         uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
-        Ptr<UeManager> ueManager = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetRrc()->GetUeManager(ueRNTI);
+        try {
+          Ptr<UeManager> ueManager = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetRrc()->GetUeManager(ueRNTI);
+        } catch (exception& e){
+          cout << "error: " << e.what() << endl;
+        }
         if(!ueManager){
           cout << "hasRnti, last_index: " << j << endl;
           last_index[i] = j;
