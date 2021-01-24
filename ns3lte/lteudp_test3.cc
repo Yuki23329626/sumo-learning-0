@@ -281,7 +281,7 @@ int main (int argc, char *argv[])
     last_index[i] = -1;
   }
 
-  std::string animFile = "lte_udp_test6.xml";
+  std::string animFile = "lte_udp_test3-1.xml";
   // string TRACE_FILE = "scratch/test10.tcl";
   string TRACE_FILE = "scratch/oneUE.tcl";
   Ns2MobilityHelper ns2 = Ns2MobilityHelper(TRACE_FILE);
