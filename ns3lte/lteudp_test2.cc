@@ -212,7 +212,7 @@ AnimationInterface * pAnim = 0;
 // }
 
 Ptr<LteHelper> lteHelper;
-
+int *last_index;
 void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, uint16_t numberOfUes, uint16_t numberOfEnbs){
   for(int i=0; i<numberOfUes; i++){
     Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
@@ -230,7 +230,8 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
         std::cout << "enb:" << index << ", distance: " << min_distance << std::endl;
       }
     }
-    lteHelper->Attach(ueLteDevs->Get(i), enbLteDevs->Get(index));
+    if()
+    lteHelper->HandoverRequest(Simulator::Now ().GetSeconds(), ueLteDevs->Get(i), enbLteDevs->Get(index));
   }
 }
   
@@ -265,6 +266,11 @@ int main (int argc, char *argv[])
   // Ptr<MobilityModel> ueMobilityModel;
   // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
 
+  last_index = malloc(sizeof(int)*numberOfUes);
+  for(int i=0; i<numberOfUes; i++){
+    last_index[i] = -1;
+  }
+
   std::string animFile = "lte_udp_test6.xml";
   // string TRACE_FILE = "scratch/test10.tcl";
   string TRACE_FILE = "scratch/oneUE.tcl";
@@ -289,10 +295,10 @@ int main (int argc, char *argv[])
   cmd.AddValue ("enbTxPowerDbm", "TX power [dBm] used by HeNBs (default = 46.0)", enbTxPowerDbm);
   
   cmd.AddValue("numberOfNodes", "Number of eNodeBs + UE pairs", numberOfEnbs);
-cmd.AddValue("simTime", "Total duration of the simulation [s])", simTime);
-cmd.AddValue("distance", "Distance between eNBs [m]", distance);
-cmd.AddValue("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
-cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
+  cmd.AddValue("simTime", "Total duration of the simulation [s])", simTime);
+  cmd.AddValue("distance", "Distance between eNBs [m]", distance);
+  cmd.AddValue("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
+  cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
 
   cmd.Parse (argc, argv);
 
