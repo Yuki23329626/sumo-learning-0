@@ -231,10 +231,11 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
       }
     }
     if(last_index[i] != index){
-      Ptr<LteUeRrc> ueRrc = ueNodes->Get(i)->GetRrc ();
+      Ptr<LteUeRrc> ueRrc = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc ();
       uint16_t ueCellId = ueRrc->GetCellId ();
-      uint16_t source_enbCellId = enbNodes->Get(i)->GetCellId ();
-      cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ueCellId: " << ueCellId << ", last_index: " << source_enbCellId << ", index: " << index << endl;
+      Ptr<LteEnbRrc> ueRrc = ueLteDevs->Get(i)->->GetObject<LteEnbNetDevice>()->GetRrc ();
+      uint16_t enbCellId = enbLteDevs.Get(index)->GetCellId ();
+      cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ueCellId: " << ueCellId << ", last_index: " << enbCellId << ", index: " << index << endl;
       lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
       last_index[i] = index;
     }
