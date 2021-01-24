@@ -231,7 +231,7 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
       if( current_distance < min_distance ){
         min_distance = current_distance;
         index = j;
-        std::cout << "enb:" << index << ", distance: " << min_distance << endl << endl;
+        std::cout << "ue: " << i <<  ", enb:" << index << ", distance: " << min_distance << endl << endl;
       }
     }
     if(last_index[i] != index){
