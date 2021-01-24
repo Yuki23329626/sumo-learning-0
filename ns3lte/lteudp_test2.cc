@@ -230,8 +230,8 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
         std::cout << "enb:" << index << ", distance: " << min_distance << std::endl;
       }
     }
-    if()
-    lteHelper->HandoverRequest(Simulator::Now ().GetSeconds(), ueLteDevs->Get(i), enbLteDevs->Get(index));
+    // if()
+    // lteHelper->HandoverRequest(Simulator::Now ().GetSeconds(), ueLteDevs->Get(i), enbLteDevs->Get(index));
   }
 }
   
