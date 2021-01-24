@@ -231,7 +231,7 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
       }
     }
     if(last_index[i] != index){
-      cout << "\n\n====================\ni: " << i << "last_index: " << last_index[i] << ", index: " << index << endl;
+      cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ",i: " << i << ", last_index: " << last_index[i] << ", index: " << index << endl;
       lteHelper->HandoverRequest(Seconds(Simulator::Now ().GetSeconds()+1), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
       last_index[i] = index;
     }
