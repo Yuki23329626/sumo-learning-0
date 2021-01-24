@@ -226,12 +226,12 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
     for(int j=0; j<numberOfEnbs; j++){
       Ptr<const MobilityModel> enbMobilityModel = enbNodes->Get(j)->GetObject<MobilityModel>();
       Vector pos_enb = enbMobilityModel->GetPosition ();
-      std::cout << Simulator::Now ().GetSeconds() << ", enb_x=" << pos_enb.x << ", enb_y=" << pos_enb.y << std::endl;
+      // std::cout << Simulator::Now ().GetSeconds() << ", enb_x=" << pos_enb.x << ", enb_y=" << pos_enb.y << std::endl;
       float current_distance = sqrt((pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y));
       if( current_distance < min_distance ){
         min_distance = current_distance;
         index = j;
-        std::cout << "ue: " << i <<  ", enb:" << index << ", distance: " << min_distance << endl << endl;
+        // std::cout << "ue: " << i <<  ", enb:" << index << ", distance: " << min_distance << endl << endl;
       }
     }
     if(last_index[i] != index){
