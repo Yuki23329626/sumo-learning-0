@@ -238,8 +238,8 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
       // uint16_t ueCellId = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetCellId ();
       // uint16_t enbCellId = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetCellId ();
       cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ue: " << i << ", last_index: " << last_index[i] << ", next_index: " << index << endl;
-      lteHelper->AttachToClosestEnb (ueLteDevs->Get (i), enbLteDevs->Get (index));
-      // lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
+      // lteHelper->AttachToClosestEnb (ueLteDevs->Get (i), enbLteDevs->Get (index));
+      lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
       last_index[i] = index;
     }
   }
@@ -265,7 +265,7 @@ int main (int argc, char *argv[])
   // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
   // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
 
-  uint16_t numberOfUes = 100;
+  uint16_t numberOfUes = 10;
   uint16_t numberOfEnbs = 12;
   double distance = 500.0; // m
   double speed = 20;       // m/s
