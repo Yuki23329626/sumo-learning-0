@@ -231,7 +231,7 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
       if( current_distance < min_distance ){
         min_distance = current_distance;
         index = j;
-        std::cout << "enb:" << index << ", distance: " << min_distance << endl << endl;
+        // std::cout << "enb:" << index << ", distance: " << min_distance << endl << endl;
       }
     }
     if(last_index[i] != index){
@@ -394,16 +394,16 @@ int main (int argc, char *argv[])
   //      enbPositionAlloc->Add (enbPosition);
   //    }
   enbPositionAlloc->Add(Vector(583, 365, 0));
-  // enbPositionAlloc->Add(Vector(885, 338, 0));
-  // enbPositionAlloc->Add(Vector(1187, 328, 0));
-  // enbPositionAlloc->Add(Vector(1305, 322, 0));
-  // enbPositionAlloc->Add(Vector(596, 703, 0));
+  enbPositionAlloc->Add(Vector(885, 338, 0));
+  enbPositionAlloc->Add(Vector(1187, 328, 0));
+  enbPositionAlloc->Add(Vector(1305, 322, 0));
+  enbPositionAlloc->Add(Vector(596, 703, 0));
   enbPositionAlloc->Add(Vector(895, 690, 0));
-  // enbPositionAlloc->Add(Vector(1100, 682, 0));
-  // enbPositionAlloc->Add(Vector(1317, 679, 0));
-  // enbPositionAlloc->Add(Vector(602, 972, 0));
-  // enbPositionAlloc->Add(Vector(908, 955, 0));
-  // enbPositionAlloc->Add(Vector(1107, 953, 0));
+  enbPositionAlloc->Add(Vector(1100, 682, 0));
+  enbPositionAlloc->Add(Vector(1317, 679, 0));
+  enbPositionAlloc->Add(Vector(602, 972, 0));
+  enbPositionAlloc->Add(Vector(908, 955, 0));
+  enbPositionAlloc->Add(Vector(1107, 953, 0));
   enbPositionAlloc->Add(Vector(1317, 950, 0));
   
   MobilityHelper enbMobility;
