@@ -266,7 +266,7 @@ int main (int argc, char *argv[])
   // Ptr<MobilityModel> ueMobilityModel;
   // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
 
-  last_index = malloc(sizeof(int)*numberOfUes);
+  last_index = (int*)malloc(sizeof(int)*numberOfUes);
   for(int i=0; i<numberOfUes; i++){
     last_index[i] = -1;
   }
