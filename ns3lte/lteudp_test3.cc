@@ -290,7 +290,7 @@ int main (int argc, char *argv[])
   double speed = 20;       // m/s
   double simTime = 60; // 1500 m / 20 m/s = 75 secs
   double enbTxPowerDbm = 46.0;
-  double interPacketInterval = 60000.0;
+  double interPacketInterval = 1000.0;
   isAttachToClosestEnb = true;
   // Ptr<LteUePhy> uephy;
   // Ptr<MobilityModel> ueMobilityModel;
@@ -502,6 +502,9 @@ int main (int argc, char *argv[])
       ueStaticRouting->SetDefaultRoute (epcHelper->GetUeDefaultGatewayAddress (), 1);
   }
 
+Ptr<FlowMonitor> flowMonitor;
+FlowMonitorHelper flowHelper;
+flowMonitor = flowHelper.InstallAll();
   
 //enter radio range support that carries data between UE and EnodeB
 Ptr<EpcTft> tft = Create<EpcTft> ();
@@ -613,6 +616,7 @@ clientApps.Start (Seconds (1));
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
+  flowMonitor->SerializeToXmlFile("flowMonitor3-2.xml", true, true);
 
   // GtkConfigStore config;
   // config.ConfigureAttributes ();
