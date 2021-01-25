@@ -284,7 +284,7 @@ int main (int argc, char *argv[])
   // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
   // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
 	LogComponentEnable ("UdpClient", LOG_ALL);
-	LogComponentEnable ("UdpServer", LOG_ALL);
+	LogComponentEnable ("PacketSink", LOG_ALL);
 
   uint16_t numberOfUes = 2;
   uint16_t numberOfEnbs = 12;
