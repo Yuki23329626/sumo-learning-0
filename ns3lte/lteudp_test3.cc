@@ -284,7 +284,7 @@ int main (int argc, char *argv[])
   // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
   // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
 
-  uint16_t numberOfUes = 100;
+  uint16_t numberOfUes = 2;
   uint16_t numberOfEnbs = 12;
   double distance = 500.0; // m
   double speed = 20;       // m/s
@@ -301,7 +301,7 @@ int main (int argc, char *argv[])
     last_index[i] = -1;
   }
 
-  std::string animFile = "lte_udp_test3-1.xml";
+  std::string animFile = "lte_udp_test3-2.xml";
   string TRACE_FILE = "scratch/test10.tcl";
   // string TRACE_FILE = "scratch/oneUE.tcl";
   Ns2MobilityHelper ns2 = Ns2MobilityHelper(TRACE_FILE);
@@ -564,7 +564,7 @@ clientApps.Start (Seconds (1));
 
   // Uncomment to enable PCAP tracing
   // p2ph.EnablePcapAll("lena-x2-handover-measures");
-  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace3-1.tr"));
+  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace3-2.tr"));
   p2ph.EnablePcapAll("pgw-hostudp");
 
   lteHelper->EnablePhyTraces ();
