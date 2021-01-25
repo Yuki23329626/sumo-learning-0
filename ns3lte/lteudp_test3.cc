@@ -526,11 +526,13 @@ uint16_t ulPort = 2000;
   for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
       ++ulPort;
       ++otherPort;
-      PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
-      PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
+      UdpServerHelper dlUdpServerHelper (dlPort);
+      UdpServerHelper ulUdpServerHelper (ulPort);
+      // PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
+      // PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
       // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
-      serverApps.Add (dlPacketSinkHelper.Install (ueNodes.Get(u)));
-      serverApps.Add (ulPacketSinkHelper.Install (remoteHost));
+      serverApps.Add (dlUdpServerHelper.Install (ueNodes.Get(u)));
+      serverApps.Add (ulUdpServerHelper.Install (remoteHost));
       // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
       UdpClientHelper dlClient (ueIpIfaces.GetAddress (u), dlPort);
