@@ -11,5 +11,5 @@ cp ./test10/oneUE.tcl ../scratch/
 # echo "cp ./test10/background.png ../scratch/"
 # cp ./test10/background.png ../scratch/
 cd ..
-echo "./waf --run \"scratch/lteudp_test3\" > lteudp_test3.log 2>&1"
-./waf --run "scratch/lteudp_test3" > lteudp_test3.log 2>&1
+echo "./waf --run \"scratch/lteudp_test3\" > log.lteudp_test3 2>&1"
+./waf --run "scratch/lteudp_test3" > log.lteudp_test3 2>&1
