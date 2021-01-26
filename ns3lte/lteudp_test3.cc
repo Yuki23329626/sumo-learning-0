@@ -286,7 +286,7 @@ int main (int argc, char *argv[])
 	LogComponentEnable ("UdpClient", LOG_ALL);
 	LogComponentEnable ("UdpServer", LOG_ALL);
 
-  uint16_t numberOfUes = 1;
+  uint16_t numberOfUes = 100;
   uint16_t numberOfEnbs = 12;
   double distance = 500.0; // m
   double speed = 20;       // m/s
@@ -304,8 +304,8 @@ int main (int argc, char *argv[])
   }
 
   std::string animFile = "lte_udp_test3-2.xml";
-  // string TRACE_FILE = "scratch/test10.tcl";
-  string TRACE_FILE = "scratch/oneUE.tcl";
+  string TRACE_FILE = "scratch/test10.tcl";
+  // string TRACE_FILE = "scratch/oneUE.tcl";
   Ns2MobilityHelper ns2 = Ns2MobilityHelper(TRACE_FILE);
 
   AsciiTraceHelper ascii;
