@@ -295,6 +295,7 @@ int main (int argc, char *argv[])
   double simTime = 60; // 1500 m / 20 m/s = 75 secs
   double enbTxPowerDbm = 46.0;
   double interPacketInterval = 1000.0;
+  uint16_t sdnInterval = 200; // millisecond
   isAttachToClosestEnb = true;
   // Ptr<LteUePhy> uephy;
   // Ptr<MobilityModel> ueMobilityModel;
@@ -618,8 +619,8 @@ clientApps.Start (Seconds (1));
   //   ueMobilityModel -> TraceConnectWithoutContext("CourseChange", MakeCallback (&UEs_Info::CourseChange1, &ues_info[i]));
   // }
 
-  for(int i=0; i<simTime*10; i++){
-    Simulator::Schedule (MilliSeconds(i*100), manualAttach, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, numberOfUes, numberOfEnbs);
+  for(int i=0; i*sdnInterval<simTime*10000; i++){
+    Simulator::Schedule (MilliSeconds(i*sdnInterval), manualAttach, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, numberOfUes, numberOfEnbs);
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
