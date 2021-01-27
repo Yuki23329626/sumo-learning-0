@@ -263,7 +263,7 @@ int main (int argc, char *argv[])
   // LogComponentEnable ("LteUeNetDevice", logLevel);
   // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
   // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
-	LogComponentEnable ("UdpClient", LOG_ALL);
+	// LogComponentEnable ("UdpClient", LOG_ALL);
 	LogComponentEnable ("UdpServer", LOG_ALL);
 
   uint16_t numberOfUes = 100;
@@ -561,18 +561,18 @@ clientApps.Start (Seconds (1));
   pdcpStats->SetAttribute ("EpochDuration", TimeValue (Seconds (1.0)));
 
   // connect custom trace sinks for RRC connection establishment and handover notification
-  Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/ConnectionEstablished",
-                    MakeCallback (&NotifyConnectionEstablishedEnb));
-  Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/ConnectionEstablished",
-                    MakeCallback (&NotifyConnectionEstablishedUe));
-  Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverStart",
-                    MakeCallback (&NotifyHandoverStartEnb));
-  Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
-                    MakeCallback (&NotifyHandoverStartUe));
-  Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverEndOk",
-                    MakeCallback (&NotifyHandoverEndOkEnb));
-  Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
-                    MakeCallback (&NotifyHandoverEndOkUe));
+  // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/ConnectionEstablished",
+  //                   MakeCallback (&NotifyConnectionEstablishedEnb));
+  // Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/ConnectionEstablished",
+  //                   MakeCallback (&NotifyConnectionEstablishedUe));
+  // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverStart",
+  //                   MakeCallback (&NotifyHandoverStartEnb));
+  // Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
+  //                   MakeCallback (&NotifyHandoverStartUe));
+  // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverEndOk",
+  //                   MakeCallback (&NotifyHandoverEndOkEnb));
+  // Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
+  //                   MakeCallback (&NotifyHandoverEndOkUe));
   // Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
   //                 MakeCallback (&CourseChange));
 
