@@ -5,3 +5,4 @@ lines = data.readlines()
 count = 0
 for line in lines:
     print("Line{}: {}".format(count, line.strip()))
+    count = count + 1
