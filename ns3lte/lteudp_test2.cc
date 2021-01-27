@@ -311,6 +311,7 @@ int main (int argc, char *argv[])
   cmd.AddValue("distance", "Distance between eNBs [m]", distance);
   cmd.AddValue("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
   cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
+  cmd.AddValue ("traceFile",  "File Name for Trace Input", traceFile);
 
   cmd.Parse (argc, argv);
 
