@@ -303,8 +303,7 @@ int main (int argc, char *argv[])
     last_index[i] = -1;
   }
 
-  string animFile = "lte_udp_test3-3.xml";
-  string p2phTraceFile = "serverpgw_trace3-3.tr";
+  std::string animFile = "lte_udp_test3-2.xml";
   string traceFile = "scratch/test10.tcl";
   // string traceFile = "scratch/oneUE.tcl";
   Ns2MobilityHelper ns2 = Ns2MobilityHelper(traceFile);
@@ -332,7 +331,7 @@ int main (int argc, char *argv[])
   cmd.AddValue("distance", "Distance between eNBs [m]", distance);
   cmd.AddValue("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
   cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
-  cmd.AddValue ("traceFile",  "File Name for Trace", traceFile);
+  cmd.AddValue ("traceFile",  "File Name for Trace Input", taceFile);
 
   cmd.Parse (argc, argv);
 
@@ -573,7 +572,7 @@ clientApps.Start (Seconds (1));
 
   // Uncomment to enable PCAP tracing
   // p2ph.EnablePcapAll("lena-x2-handover-measures");
-  p2ph.EnableAsciiAll (ascii.CreateFileStream (p2phTraceFile));
+  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace3-2.tr"));
   p2ph.EnablePcapAll("pgw-hostudp");
 
   lteHelper->EnablePhyTraces ();
@@ -586,18 +585,18 @@ clientApps.Start (Seconds (1));
   pdcpStats->SetAttribute ("EpochDuration", TimeValue (Seconds (1.0)));
 
   // connect custom trace sinks for RRC connection establishment and handover notification
-  Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/ConnectionEstablished",
-                    MakeCallback (&NotifyConnectionEstablishedEnb));
-  Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/ConnectionEstablished",
-                    MakeCallback (&NotifyConnectionEstablishedUe));
-  Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverStart",
-                    MakeCallback (&NotifyHandoverStartEnb));
-  Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
-                    MakeCallback (&NotifyHandoverStartUe));
-  Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverEndOk",
-                    MakeCallback (&NotifyHandoverEndOkEnb));
-  Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
-                    MakeCallback (&NotifyHandoverEndOkUe));
+  // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/ConnectionEstablished",
+  //                   MakeCallback (&NotifyConnectionEstablishedEnb));
+  // Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/ConnectionEstablished",
+  //                   MakeCallback (&NotifyConnectionEstablishedUe));
+  // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverStart",
+  //                   MakeCallback (&NotifyHandoverStartEnb));
+  // Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
+  //                   MakeCallback (&NotifyHandoverStartUe));
+  // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverEndOk",
+  //                   MakeCallback (&NotifyHandoverEndOkEnb));
+  // Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
+  //                   MakeCallback (&NotifyHandoverEndOkUe));
   // Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
   //                 MakeCallback (&CourseChange));
 
