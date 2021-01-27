@@ -48,6 +48,7 @@
 #include <chrono>
 #include <limits>
 #include<math.h>
+#include <exception>
   
   using namespace ns3;
   using namespace std;
@@ -215,7 +216,7 @@ AnimationInterface * pAnim = 0;
 Ptr<LteHelper> lteHelper;
 int *last_index;
 bool isAttachToClosestEnb;
-void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, uint16_t numberOfUes, uint16_t numberOfEnbs){
+void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, uint16_t numberOfUes, uint16_t numberOfEnbs){
   if(!isAttachToClosestEnb) return;
   for(int i=0; i<numberOfUes; i++){
     Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
@@ -235,9 +236,30 @@ void attachToClosestEnb(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, N
       }
     }
     if(last_index[i] != index){
+      bool hasRnti = false;
+      for(int j=0; j<numberOfEnbs; j++){
+        uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
+        bool hasUeManager = enbLteDevs->Get(j)->GetObject<LteEnbNetDevice>()->GetRrc()->HasUeManager(ueRNTI); 
+        if(hasUeManager){
+          uint16_t ueIMSI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetImsi();
+          uint16_t enbIMSI = enbLteDevs->Get(j)->GetObject<LteEnbNetDevice>()->GetRrc()->GetUeManager(ueRNTI)->GetImsi();
+          // cout << "j: " << j << ", ueIMSI: " << ueIMSI << ", enbIMSI: " << enbIMSI << endl;
+          if(ueIMSI == enbIMSI){
+            last_index[i] = j;
+            hasRnti = true;
+            break;
+          }
+        }
+      }
+      if(!hasRnti) return; 
       // uint16_t ueCellId = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetCellId ();
+      // uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
       // uint16_t enbCellId = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetCellId ();
-      cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ue: " << i << ", last_index: " << last_index[i] << ", next_index: " << index << endl;
+      // cout << "ueCellId: " << ueCellId << ", ueRNTI: " << ueRNTI << ", enbCellId: " << enbCellId << endl;
+      // lteHelper->AttachToClosestEnb (ueLteDevs->Get (i), enbLteDevs->Get (index));
+
+      // cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ue: " << i << ", last_index: " << last_index[i] << ", next_index: " << index << endl;
+      
       lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
       last_index[i] = index;
     }
@@ -463,7 +485,7 @@ int main (int argc, char *argv[])
         std::cout << "ue: " << i <<  ", enb: " << index << ", distance: " << min_distance << endl << endl;
       }
     }
-    lteHelper->AttachToClosestEnb (ueLteDevs.Get(i), enbLteDevs.Get(index));
+    lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(index));
     last_index[i] = index;
   }
 
@@ -485,6 +507,9 @@ int main (int argc, char *argv[])
       ueStaticRouting->SetDefaultRoute (epcHelper->GetUeDefaultGatewayAddress (), 1);
   }
 
+Ptr<FlowMonitor> flowMonitor;
+FlowMonitorHelper flowHelper;
+flowMonitor = flowHelper.InstallAll();
   
 //enter radio range support that carries data between UE and EnodeB
 Ptr<EpcTft> tft = Create<EpcTft> ();
@@ -501,7 +526,7 @@ uint16_t ulPort = 2000;
   ApplicationContainer serverApps;
 
 // generate traffic request to remote server
-for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
+  for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
       ++ulPort;
       ++otherPort;
       UdpServerHelper dlUdpServerHelper (dlPort);
@@ -594,10 +619,11 @@ clientApps.Start (Seconds (1));
   // }
 
   for(int i=0; i<simTime*10; i++){
-    Simulator::Schedule (MilliSeconds(i*100), attachToClosestEnb, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, numberOfUes, numberOfEnbs);
+    Simulator::Schedule (MilliSeconds(i*100), manualAttach, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, numberOfUes, numberOfEnbs);
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
+  flowMonitor->SerializeToXmlFile("flowMonitor2-2.xml", true, true);
 
   // GtkConfigStore config;
   // config.ConfigureAttributes ();
