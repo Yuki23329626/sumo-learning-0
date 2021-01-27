@@ -303,7 +303,7 @@ int main (int argc, char *argv[])
     last_index[i] = -1;
   }
 
-  std::string animFile = "lte_udp_test3-2.xml";
+  std::string animFile = "lte_udp_test3-3.xml";
   string traceFile = "scratch/test10.tcl";
   // string traceFile = "scratch/oneUE.tcl";
   Ns2MobilityHelper ns2 = Ns2MobilityHelper(traceFile);
@@ -572,7 +572,7 @@ clientApps.Start (Seconds (1));
 
   // Uncomment to enable PCAP tracing
   // p2ph.EnablePcapAll("lena-x2-handover-measures");
-  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace3-2.tr"));
+  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace3-3.tr"));
   p2ph.EnablePcapAll("pgw-hostudp");
 
   lteHelper->EnablePhyTraces ();
