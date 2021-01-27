@@ -10,7 +10,7 @@ with open("lteudp_test2-2.csv", 'w') as csvfile:
         #    break
         string1 = line.split(" ")
         if(string1[0] == "TraceDelay:"):
-            list1 = list(str(eval(string1[16][1:-3])/1000000000))
+            list1 = list(str(eval(string1[16][1:-3])/1000000000).split(" "))
             # print(str(eval(string1[16][1:-3])/1000000000))
             writer = csv.writer(csvfile)
             writer.writerow(list1)
