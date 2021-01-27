@@ -619,7 +619,7 @@ clientApps.Start (Seconds (1));
   //   ueMobilityModel -> TraceConnectWithoutContext("CourseChange", MakeCallback (&UEs_Info::CourseChange1, &ues_info[i]));
   // }
 
-  for(int i=0; i*sdnInterval<simTime*10000; i++){
+  for(int i=0; i*sdnInterval<simTime*1000; i++){
     Simulator::Schedule (MilliSeconds(i*sdnInterval), manualAttach, &ueNodes, &ueLteDevs, &enbNodes, &enbLteDevs, numberOfUes, numberOfEnbs);
   }
   Simulator::Stop (Seconds (simTime));
