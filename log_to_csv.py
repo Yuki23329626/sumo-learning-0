@@ -19,4 +19,4 @@ with open("lteudp_test2.csv", 'w') as csvfile:
             writer.writerow(list1)
             count = count + 1
 print("count: ", count)
-print("average delay(ms): ", sum/count)
+print("average delay(s): ", sum/count)
