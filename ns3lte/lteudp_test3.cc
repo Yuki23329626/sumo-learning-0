@@ -624,7 +624,7 @@ clientApps.Start (Seconds (1));
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
-  flowMonitor->SerializeToXmlFile("flowMonitor3-2.xml", true, true);
+  flowMonitor->SerializeToXmlFile("flowMonitor3.xml", true, true);
 
   // GtkConfigStore config;
   // config.ConfigureAttributes ();
