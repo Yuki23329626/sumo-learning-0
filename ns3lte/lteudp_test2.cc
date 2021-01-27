@@ -283,9 +283,9 @@ int main (int argc, char *argv[])
     last_index[i] = -1;
   }
 
-  string traceFile = "scratch/test10.tcl";
   string animFile = "lte_udp_test2-2.xml";
-  string p2phTraceFile = "serverpgw_trace2-2.tr";
+  string traceFile = "scratch/test10.tcl";
+  string p2phTraceFile = "serverpgw_trace2-2.tr"
   // string traceFile = "scratch/oneUE.tcl";
   Ns2MobilityHelper ns2 = Ns2MobilityHelper(traceFile);
 
@@ -550,7 +550,7 @@ clientApps.Start (Seconds (1));
 
   // Uncomment to enable PCAP tracing
   // p2ph.EnablePcapAll("lena-x2-handover-measures");
-  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace2-2.tr"));
+  p2ph.EnableAsciiAll (ascii.CreateFileStream (p2phTraceFile));
   p2ph.EnablePcapAll("pgw-hostudp");
 
   lteHelper->EnablePhyTraces ();
@@ -579,7 +579,7 @@ clientApps.Start (Seconds (1));
   //                 MakeCallback (&CourseChange));
 
   // Create the animation object and configure for specific output
-  pAnim = new AnimationInterface (animFile.c_str (p2phTraceFile));
+  pAnim = new AnimationInterface (animFile.c_str ());
   // Provide the absolute path to the resource
   pAnim->SetMaxPktsPerTraceFile(99999999999999);
 
