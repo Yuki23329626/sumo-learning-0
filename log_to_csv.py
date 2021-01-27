@@ -1,11 +1,11 @@
 import csv
 
-data = open("log.lteudp_test2-2", 'r')
+data = open("log.lteudp_test2", 'r')
 lines = data.readlines()
 
 count = 0
 sum = 0
-with open("lteudp_test2-2.csv", 'w') as csvfile:
+with open("lteudp_test2.csv", 'w') as csvfile:
     for line in lines:
         #if(count == 10):
         #    break
