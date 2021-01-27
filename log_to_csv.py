@@ -23,4 +23,4 @@ with open("lteudp_test2.csv", 'w') as csvfile:
             count = count + 1
 print("count_sent: ", count_sent/2)
 print("count: ", count)
-print("average delay(ms): ", sum/count)
+print("average delay(s): ", sum/count)
