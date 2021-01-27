@@ -285,7 +285,7 @@ int main (int argc, char *argv[])
   // LogComponentEnable ("LteUeNetDevice", logLevel);
   // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
   // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
-	// LogComponentEnable ("UdpClient", LOG_ALL);
+	LogComponentEnable ("UdpClient", LOG_ALL);
 	LogComponentEnable ("UdpServer", LOG_ALL);
 
   uint16_t numberOfUes = 100;
