@@ -531,21 +531,21 @@ uint16_t ulPort = 2000;
       ++ulPort;
       ++otherPort;
       UdpServerHelper dlUdpServerHelper (dlPort);
-      UdpServerHelper ulUdpServerHelper (ulPort);
+      // UdpServerHelper ulUdpServerHelper (ulPort);
       // PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
       // PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
       // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
       serverApps.Add (dlUdpServerHelper.Install (ueNodes.Get(u)));
-      serverApps.Add (ulUdpServerHelper.Install (remoteHost));
+      // serverApps.Add (ulUdpServerHelper.Install (remoteHost));
       // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
       UdpClientHelper dlClient (ueIpIfaces.GetAddress (u), dlPort);
       dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
       dlClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
 
-      UdpClientHelper ulClient (remoteHostAddr, ulPort);
-      ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
-      ulClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
+      // UdpClientHelper ulClient (remoteHostAddr, ulPort);
+      // ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+      // ulClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
 
       // UdpClientHelper client (ueIpIfaces.GetAddress (u), otherPort);
       // client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
@@ -562,8 +562,8 @@ uint16_t ulPort = 2000;
       //     }
 }
   // Install and start applications on UEs and remote host
-serverApps.Start (Seconds (3.2));
-clientApps.Start (Seconds (3.2));
+serverApps.Start (Seconds (4.2));
+clientApps.Start (Seconds (4.2));
 
 
 
