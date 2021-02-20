@@ -562,8 +562,8 @@ uint16_t ulPort = 2000;
       //     }
 }
   // Install and start applications on UEs and remote host
-serverApps.Start (Seconds (0.5));
-clientApps.Start (Seconds (0.5));
+serverApps.Start (Seconds (2.5));
+clientApps.Start (Seconds (2.5));
 
 
 
