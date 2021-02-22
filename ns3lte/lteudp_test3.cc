@@ -536,7 +536,7 @@ uint16_t ulPort = 2000;
       // PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
       // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
       serverApps.Add (dlUdpServerHelper.Install (ueNodes.Get(u)));
-      // serverApps.Add (ulUdpServerHelper.Install (remoteHost));
+      serverApps.Add (ulUdpServerHelper.Install (remoteHost));
       // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
       UdpClientHelper dlClient (ueIpIfaces.GetAddress (u), dlPort);
@@ -552,7 +552,7 @@ uint16_t ulPort = 2000;
       // client.SetAttribute ("MaxPackets", UintegerValue(1000000));
 
       clientApps.Add (dlClient.Install (remoteHost));
-      // clientApps.Add (ulClient.Install (ueNodes.Get(u)));
+      clientApps.Add (ulClient.Install (ueNodes.Get(u)));
       // if (u+1 < ueNodes.GetN ()){
       //     clientApps.Add (client.Install (ueNodes.Get(u+1)));
       // }
@@ -562,8 +562,8 @@ uint16_t ulPort = 2000;
       //     }
 }
   // Install and start applications on UEs and remote host
-serverApps.Start (Seconds (4.3));
-clientApps.Start (Seconds (4.3));
+serverApps.Start (Seconds (4.4));
+clientApps.Start (Seconds (4.4));
 
 
 
