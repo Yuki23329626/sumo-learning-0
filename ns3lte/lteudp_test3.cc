@@ -501,8 +501,8 @@ int main (int argc, char *argv[])
   // (e.g., buffer overflows due to packet transmissions happening
   // exactly at the same time)
   Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
-  startTimeSeconds->SetAttribute ("Min", DoubleValue (0));
-  startTimeSeconds->SetAttribute ("Max", DoubleValue (0.010));
+  startTimeSeconds->SetAttribute ("Min", DoubleValue (1));
+  startTimeSeconds->SetAttribute ("Max", DoubleValue (1.100));
 
   for (uint32_t u = 0; u < numberOfUes; ++u)
   {
@@ -529,10 +529,6 @@ uint16_t ulPort = 2000;
 uint16_t otherPort = 3000;
 ApplicationContainer clientApps;
 ApplicationContainer serverApps;
-
-Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
-startTimeSeconds->SetAttribute ("Min", DoubleValue (1));
-startTimeSeconds->SetAttribute ("Max", DoubleValue (1.100));
 
 // generate traffic request to remote server
 for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
