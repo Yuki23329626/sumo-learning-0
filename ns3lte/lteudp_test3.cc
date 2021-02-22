@@ -526,12 +526,16 @@ lteHelper->ActivateDedicatedEpsBearer (ueLteDevs, EpsBearer (EpsBearer::NGBR_VID
 
 uint16_t dlPort = 1234;
 uint16_t ulPort = 2000;
-  uint16_t otherPort = 3000;
-  ApplicationContainer clientApps;
-  ApplicationContainer serverApps;
+uint16_t otherPort = 3000;
+ApplicationContainer clientApps;
+ApplicationContainer serverApps;
+
+Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
+startTimeSeconds->SetAttribute ("Min", DoubleValue (1));
+startTimeSeconds->SetAttribute ("Max", DoubleValue (1.100));
 
 // generate traffic request to remote server
-  for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
+for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
       ++ulPort;
       ++otherPort;
       UdpServerHelper dlUdpServerHelper (dlPort);
@@ -564,10 +568,16 @@ uint16_t ulPort = 2000;
       //     {
       //     clientApps.Add (client.Install (ueNodes.Get(0)));
       //     }
+
+      // Install and start applications on UEs and remote host
+      Time startTime = Seconds (startTimeSeconds->GetValue ());
+      serverApps.Start (startTime);
+      clientApps.Start (startTime);
 }
-  // Install and start applications on UEs and remote host
-serverApps.Start (Seconds (4.5));
-clientApps.Start (Seconds (4.5));
+//   // Install and start applications on UEs and remote host
+// Time startTime = Seconds (startTimeSeconds->GetValue ());
+// serverApps.Start (Seconds (4.5));
+// clientApps.Start (Seconds (4.5));
 
 
 
