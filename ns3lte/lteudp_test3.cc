@@ -424,7 +424,7 @@ int main (int argc, char *argv[])
   // enbPositionAlloc->Add(Vector(885, 338, 0));
   // enbPositionAlloc->Add(Vector(1187, 328, 0));
 
-  enbPositionAlloc->Add(Vector(1305, 322, 0));
+  // enbPositionAlloc->Add(Vector(1305, 322, 0));
 
   // enbPositionAlloc->Add(Vector(596, 703, 0));
 
@@ -433,7 +433,7 @@ int main (int argc, char *argv[])
   // enbPositionAlloc->Add(Vector(1100, 682, 0));
   // enbPositionAlloc->Add(Vector(1317, 679, 0));
 
-  enbPositionAlloc->Add(Vector(602, 972, 0));
+  // enbPositionAlloc->Add(Vector(602, 972, 0));
 
   // enbPositionAlloc->Add(Vector(908, 955, 0));
   // enbPositionAlloc->Add(Vector(1107, 953, 0));
