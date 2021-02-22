@@ -326,12 +326,12 @@ int main (int argc, char *argv[])
   // Command line arguments
   CommandLine cmd (__FILE__);
   cmd.AddValue ("simTime", "Total duration of the simulation (in seconds)", simTime);
-  // cmd.AddValue ("speed", "Speed of the UE (default = 20 m/s)", speed);
+  cmd.AddValue ("speed", "Speed of the UE (default = 20 m/s)", speed);
   cmd.AddValue ("enbTxPowerDbm", "TX power [dBm] used by HeNBs (default = 46.0)", enbTxPowerDbm);
   
   cmd.AddValue("numberOfNodes", "Number of eNodeBs + UE pairs", numberOfEnbs);
   cmd.AddValue("simTime", "Total duration of the simulation [s])", simTime);
-  // cmd.AddValue("distance", "Distance between eNBs [m]", distance);
+  cmd.AddValue("distance", "Distance between eNBs [m]", distance);
   cmd.AddValue("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
   cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
   cmd.AddValue ("traceFile",  "File Name for Trace Input", traceFile);
