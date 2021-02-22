@@ -502,7 +502,7 @@ int main (int argc, char *argv[])
   // exactly at the same time)
   Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
   startTimeSeconds->SetAttribute ("Min", DoubleValue (1));
-  startTimeSeconds->SetAttribute ("Max", DoubleValue (1.100));
+  startTimeSeconds->SetAttribute ("Max", DoubleValue (1.010));
 
   for (uint32_t u = 0; u < numberOfUes; ++u)
   {
