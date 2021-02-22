@@ -320,18 +320,18 @@ int main (int argc, char *argv[])
   Config::SetDefault ("ns3::UdpClient::Interval", TimeValue (MilliSeconds (10)));
   Config::SetDefault ("ns3::UdpClient::MaxPackets", UintegerValue (1000000));
   Config::SetDefault ("ns3::LteHelper::UseIdealRrc", BooleanValue (true));
-  // Config::SetDefault ("ns3::LteEnbMac::NumberOfRaPreambles", UintegerValue (20));
-  // Config::SetDefault ("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue (320));
+  Config::SetDefault ("ns3::LteEnbMac::NumberOfRaPreambles", UintegerValue (20));
+  Config::SetDefault ("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue (320));
 
   // Command line arguments
   CommandLine cmd (__FILE__);
   cmd.AddValue ("simTime", "Total duration of the simulation (in seconds)", simTime);
-  cmd.AddValue ("speed", "Speed of the UE (default = 20 m/s)", speed);
+  // cmd.AddValue ("speed", "Speed of the UE (default = 20 m/s)", speed);
   cmd.AddValue ("enbTxPowerDbm", "TX power [dBm] used by HeNBs (default = 46.0)", enbTxPowerDbm);
   
   cmd.AddValue("numberOfNodes", "Number of eNodeBs + UE pairs", numberOfEnbs);
   cmd.AddValue("simTime", "Total duration of the simulation [s])", simTime);
-  cmd.AddValue("distance", "Distance between eNBs [m]", distance);
+  // cmd.AddValue("distance", "Distance between eNBs [m]", distance);
   cmd.AddValue("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
   cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
   cmd.AddValue ("traceFile",  "File Name for Trace Input", traceFile);
