@@ -306,7 +306,7 @@ int main (int argc, char *argv[])
     last_index[i] = -1;
   }
 
-  std::string animFile = "lte_udp_test2.xml";
+  std::string animFile = "lte_udp_test3.xml";
   string traceFile = "scratch/test10.tcl";
   // string traceFile = "scratch/oneUE.tcl";
   Ns2MobilityHelper ns2 = Ns2MobilityHelper(traceFile);
@@ -423,14 +423,18 @@ int main (int argc, char *argv[])
 
   enbPositionAlloc->Add(Vector(885, 338, 0));
   enbPositionAlloc->Add(Vector(1187, 328, 0));
+
   enbPositionAlloc->Add(Vector(1305, 322, 0));
+
   enbPositionAlloc->Add(Vector(596, 703, 0));
 
   enbPositionAlloc->Add(Vector(895, 690, 0));
 
   enbPositionAlloc->Add(Vector(1100, 682, 0));
   enbPositionAlloc->Add(Vector(1317, 679, 0));
+
   enbPositionAlloc->Add(Vector(602, 972, 0));
+
   enbPositionAlloc->Add(Vector(908, 955, 0));
   enbPositionAlloc->Add(Vector(1107, 953, 0));
 
@@ -496,9 +500,10 @@ int main (int argc, char *argv[])
   // randomize a bit start times to avoid simulation artifacts
   // (e.g., buffer overflows due to packet transmissions happening
   // exactly at the same time)
-  Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
-  startTimeSeconds->SetAttribute ("Min", DoubleValue (0));
-  startTimeSeconds->SetAttribute ("Max", DoubleValue (0.010));
+
+  // Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
+  // startTimeSeconds->SetAttribute ("Min", DoubleValue (1));
+  // startTimeSeconds->SetAttribute ("Max", DoubleValue (1.010));
 
   for (uint32_t u = 0; u < numberOfUes; ++u)
   {
@@ -522,48 +527,57 @@ lteHelper->ActivateDedicatedEpsBearer (ueLteDevs, EpsBearer (EpsBearer::NGBR_VID
 
 uint16_t dlPort = 1234;
 uint16_t ulPort = 2000;
-  uint16_t otherPort = 3000;
-  ApplicationContainer clientApps;
-  ApplicationContainer serverApps;
+uint16_t otherPort = 3000;
+ApplicationContainer clientApps[numberOfUes];
+ApplicationContainer serverApps[numberOfUes];
+float startTime = 1;
 
 // generate traffic request to remote server
-  for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
-      ++ulPort;
-      ++otherPort;
-      UdpServerHelper dlUdpServerHelper (dlPort);
-      UdpServerHelper ulUdpServerHelper (ulPort);
-      // PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
-      // PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
-      // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
-      serverApps.Add (dlUdpServerHelper.Install (ueNodes.Get(u)));
-      serverApps.Add (ulUdpServerHelper.Install (remoteHost));
-      // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
+for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
+  ++ulPort;
+  ++otherPort;
+  UdpServerHelper dlUdpServerHelper (dlPort);
+  UdpServerHelper ulUdpServerHelper (ulPort);
+  // PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
+  // PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
+  // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
+  serverApps[u].Add (dlUdpServerHelper.Install (ueNodes.Get(u)));
+  serverApps[u].Add (ulUdpServerHelper.Install (remoteHost));
+  // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
-      UdpClientHelper dlClient (ueIpIfaces.GetAddress (u), dlPort);
-      dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
-      dlClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
+  UdpClientHelper dlClient (ueIpIfaces.GetAddress (u), dlPort);
+  dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+  dlClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
 
-      UdpClientHelper ulClient (remoteHostAddr, ulPort);
-      ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
-      ulClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
+  UdpClientHelper ulClient (remoteHostAddr, ulPort);
+  ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+  ulClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
 
-      // UdpClientHelper client (ueIpIfaces.GetAddress (u), otherPort);
-      // client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
-      // client.SetAttribute ("MaxPackets", UintegerValue(1000000));
+  // UdpClientHelper client (ueIpIfaces.GetAddress (u), otherPort);
+  // client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+  // client.SetAttribute ("MaxPackets", UintegerValue(1000000));
 
-      clientApps.Add (dlClient.Install (remoteHost));
-      clientApps.Add (ulClient.Install (ueNodes.Get(u)));
-      // if (u+1 < ueNodes.GetN ()){
-      //     clientApps.Add (client.Install (ueNodes.Get(u+1)));
-      // }
-      // else
-      //     {
-      //     clientApps.Add (client.Install (ueNodes.Get(0)));
-      //     }
-}
+  clientApps[u].Add (dlClient.Install (remoteHost));
+  clientApps[u].Add (ulClient.Install (ueNodes.Get(u)));
+  // if (u+1 < ueNodes.GetN ()){
+  //     clientApps.Add (client.Install (ueNodes.Get(u+1)));
+  // }
+  // else
+  //     {
+  //     clientApps.Add (client.Install (ueNodes.Get(0)));
+  //     }
+
   // Install and start applications on UEs and remote host
-serverApps.Start (Seconds (1));
-clientApps.Start (Seconds (1));
+  // Time startTime = Seconds (startTimeSeconds->GetValue ());
+  serverApps[u].Start (Seconds(startTime));
+  clientApps[u].Start (Seconds(startTime));
+  startTime = startTime + 0.01;
+  cout << "\n\n===== SHIT =====\n\n";
+}
+//   // Install and start applications on UEs and remote host
+// Time startTime = Seconds (startTimeSeconds->GetValue ());
+// serverApps.Start (Seconds (4.5));
+// clientApps.Start (Seconds (4.5));
 
 
 
@@ -575,7 +589,7 @@ clientApps.Start (Seconds (1));
 
   // Uncomment to enable PCAP tracing
   // p2ph.EnablePcapAll("lena-x2-handover-measures");
-  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace2.tr"));
+  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace3.tr"));
   p2ph.EnablePcapAll("pgw-hostudp");
 
   lteHelper->EnablePhyTraces ();
@@ -594,12 +608,12 @@ clientApps.Start (Seconds (1));
   //                   MakeCallback (&NotifyConnectionEstablishedUe));
   // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverStart",
   //                   MakeCallback (&NotifyHandoverStartEnb));
-  // Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
-  //                   MakeCallback (&NotifyHandoverStartUe));
+  Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
+                    MakeCallback (&NotifyHandoverStartUe));
   // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverEndOk",
   //                   MakeCallback (&NotifyHandoverEndOkEnb));
-  // Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
-  //                   MakeCallback (&NotifyHandoverEndOkUe));
+  Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
+                    MakeCallback (&NotifyHandoverEndOkUe));
   // Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
   //                 MakeCallback (&CourseChange));
 
@@ -624,7 +638,7 @@ clientApps.Start (Seconds (1));
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
-  flowMonitor->SerializeToXmlFile("flowMonitor2.xml", true, true);
+  flowMonitor->SerializeToXmlFile("flowMonitor3.xml", true, true);
 
   // GtkConfigStore config;
   // config.ConfigureAttributes ();
