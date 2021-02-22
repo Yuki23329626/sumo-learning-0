@@ -289,7 +289,7 @@ int main (int argc, char *argv[])
 	LogComponentEnable ("UdpServer", LOG_ALL);
 
   uint16_t numberOfUes = 20;
-  uint16_t numberOfEnbs = 2;
+  uint16_t numberOfEnbs = 4;
   double distance = 500.0; // m
   double speed = 20;       // m/s
   double simTime = 60; // 1500 m / 20 m/s = 75 secs
