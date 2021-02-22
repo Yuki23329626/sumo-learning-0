@@ -598,12 +598,12 @@ clientApps.Start (Seconds (4.5));
   //                   MakeCallback (&NotifyConnectionEstablishedUe));
   // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverStart",
   //                   MakeCallback (&NotifyHandoverStartEnb));
-  // Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
-  //                   MakeCallback (&NotifyHandoverStartUe));
+  Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
+                    MakeCallback (&NotifyHandoverStartUe));
   // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverEndOk",
   //                   MakeCallback (&NotifyHandoverEndOkEnb));
-  // Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
-  //                   MakeCallback (&NotifyHandoverEndOkUe));
+  Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
+                    MakeCallback (&NotifyHandoverEndOkUe));
   // Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
   //                 MakeCallback (&CourseChange));
 
