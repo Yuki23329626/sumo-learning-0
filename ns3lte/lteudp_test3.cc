@@ -500,9 +500,10 @@ int main (int argc, char *argv[])
   // randomize a bit start times to avoid simulation artifacts
   // (e.g., buffer overflows due to packet transmissions happening
   // exactly at the same time)
-  Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
-  startTimeSeconds->SetAttribute ("Min", DoubleValue (1));
-  startTimeSeconds->SetAttribute ("Max", DoubleValue (1.010));
+
+  // Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
+  // startTimeSeconds->SetAttribute ("Min", DoubleValue (1));
+  // startTimeSeconds->SetAttribute ("Max", DoubleValue (1.010));
 
   for (uint32_t u = 0; u < numberOfUes; ++u)
   {
@@ -566,9 +567,9 @@ for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
       //     }
 
       // Install and start applications on UEs and remote host
-      Time startTime = Seconds (startTimeSeconds->GetValue ());
-      serverApps.Start (startTime);
-      clientApps.Start (startTime);
+      // Time startTime = Seconds (startTimeSeconds->GetValue ());
+      serverApps.Start (1);
+      clientApps.Start (1);
 }
 //   // Install and start applications on UEs and remote host
 // Time startTime = Seconds (startTimeSeconds->GetValue ());
