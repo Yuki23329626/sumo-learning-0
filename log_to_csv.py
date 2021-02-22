@@ -30,6 +30,6 @@ with open("csv_"+filename+".csv", 'w') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(list1)
             count = count + 1
-print("count_sent: ", count_sent)
-print("count: ", count)
+print("packet_sent: ", count_sent)
+print("packet_received: ", count)
 print("average delay(s): ", sum/count)
