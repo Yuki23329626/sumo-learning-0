@@ -572,6 +572,7 @@ for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
   serverApps[u].Start (Seconds(startTime));
   clientApps[u].Start (Seconds(startTime));
   startTime = startTime + 0.01;
+  cout << "\n\n===== SHIT =====\n\n";
 }
 //   // Install and start applications on UEs and remote host
 // Time startTime = Seconds (startTimeSeconds->GetValue ());
