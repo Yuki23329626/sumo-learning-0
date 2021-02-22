@@ -133,6 +133,8 @@
    // LogComponentEnable ("LteUeNetDevice", logLevel);
    // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
    // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
+  LogComponentEnable ("UdpClient", LOG_ALL);
+	LogComponentEnable ("PacketSink", LOG_ALL);
  
    uint16_t numberOfUes = 1;
    uint16_t numberOfEnbs = 2;
