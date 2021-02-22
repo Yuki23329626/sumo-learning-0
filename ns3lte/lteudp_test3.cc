@@ -528,8 +528,8 @@ lteHelper->ActivateDedicatedEpsBearer (ueLteDevs, EpsBearer (EpsBearer::NGBR_VID
 uint16_t dlPort = 1234;
 uint16_t ulPort = 2000;
 uint16_t otherPort = 3000;
-ApplicationContainer *clientApps = malloc(sizeof(ApplicationContainer)*numberOfUes);
-ApplicationContainer *serverApps = malloc(sizeof(ApplicationContainer)*numberOfUes);
+ApplicationContainer *clientApps = (ApplicationContainer*)malloc(sizeof(ApplicationContainer)*numberOfUes);
+ApplicationContainer *serverApps = (ApplicationContainer*)malloc(sizeof(ApplicationContainer)*numberOfUes);
 float startTime = 1;
 
 // generate traffic request to remote server
