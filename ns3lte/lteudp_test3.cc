@@ -288,7 +288,7 @@ int main (int argc, char *argv[])
 	LogComponentEnable ("UdpClient", LOG_ALL);
 	LogComponentEnable ("UdpServer", LOG_ALL);
 
-  uint16_t numberOfUes = 40;
+  uint16_t numberOfUes = 100;
   uint16_t numberOfEnbs = 12;
   double distance = 500.0; // m
   double speed = 20;       // m/s
