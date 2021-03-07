@@ -525,7 +525,7 @@ pf.localPortEnd = 1234;
 tft->Add (pf);
 lteHelper->ActivateDedicatedEpsBearer (ueLteDevs, EpsBearer (EpsBearer::NGBR_VIDEO_TCP_DEFAULT), tft);
 
-uint16_t dlPort = 1234;
+// uint16_t dlPort = 1234;
 uint16_t ulPort = 2000;
 uint16_t otherPort = 3000;
 ApplicationContainer clientApps[numberOfUes];
@@ -541,7 +541,7 @@ for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
   // PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
   // PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
   // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
-  serverApps[u].Add (dlUdpServerHelper.Install (ueNodes.Get(u)));
+  // serverApps[u].Add (dlUdpServerHelper.Install (ueNodes.Get(u)));
   serverApps[u].Add (ulUdpServerHelper.Install (remoteHost));
   // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
