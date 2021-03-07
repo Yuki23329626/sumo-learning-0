@@ -545,9 +545,9 @@ for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
   serverApps[u].Add (ulUdpServerHelper.Install (remoteHost));
   // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
-  // UdpClientHelper dlClient (ueIpIfaces.GetAddress (u), dlPort);
-  // dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
-  // dlClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
+  UdpClientHelper dlClient (ueIpIfaces.GetAddress (u), dlPort);
+  dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+  dlClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
 
   UdpClientHelper ulClient (remoteHostAddr, ulPort);
   ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
