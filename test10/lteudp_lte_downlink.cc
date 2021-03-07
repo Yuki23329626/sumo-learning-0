@@ -296,7 +296,7 @@ int main (int argc, char *argv[])
   double enbTxPowerDbm = 46.0;
   double interPacketInterval = 1000.0;
   uint16_t sdnInterval = 200; // millisecond
-  isAttachToClosestEnb = true;
+  isAttachToClosestEnb = false;
   // Ptr<LteUePhy> uephy;
   // Ptr<MobilityModel> ueMobilityModel;
   // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
