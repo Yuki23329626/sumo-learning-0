@@ -375,7 +375,7 @@ int main (int argc, char *argv[])
   Ipv4AddressHelper ipv4h;
   ipv4h.SetBase ("1.0.0.0", "255.0.0.0");
   Ipv4InterfaceContainer internetIpIfaces = ipv4h.Assign (internetDevices);
-  Ipv4Address remoteHostAddr = internetIpIfaces.GetAddress (1);
+  // Ipv4Address remoteHostAddr = internetIpIfaces.GetAddress (1);
 
 
   // Routing of the Internet Host (towards the LTE network)
