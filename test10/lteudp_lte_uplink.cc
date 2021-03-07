@@ -525,7 +525,7 @@ pf.localPortEnd = 1234;
 tft->Add (pf);
 lteHelper->ActivateDedicatedEpsBearer (ueLteDevs, EpsBearer (EpsBearer::NGBR_VIDEO_TCP_DEFAULT), tft);
 
-uint16_t dlPort = 1234;
+// uint16_t dlPort = 1234;
 uint16_t ulPort = 2000;
 uint16_t otherPort = 3000;
 ApplicationContainer clientApps[numberOfUes];
