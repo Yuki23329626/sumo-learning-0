@@ -548,12 +548,12 @@ for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
   UdpClientHelper dlClient (ueIpIfaces.GetAddress (u), dlPort);
   dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
   dlClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
-  dlClient.SetAttribute ("PacketSize", UintegerValue (1025));
+  // dlClient.SetAttribute ("PacketSize", UintegerValue (1025));
 
   UdpClientHelper ulClient (remoteHostAddr, ulPort);
   ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
   ulClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
-  dlClient.SetAttribute ("PacketSize", UintegerValue (1025));
+  // dlClient.SetAttribute ("PacketSize", UintegerValue (1025));
 
   // UdpClientHelper client (ueIpIfaces.GetAddress (u), otherPort);
   // client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
