@@ -75,7 +75,7 @@ for i in range(5):
     for j in range(3):
         onoffResponseDelay[i][j] = ((mu_[i][j] / (lambda_[i] + mu_[i][j])) * OurSchemeRequest) + (lambda_[i] / (lambda_[i] + mu_[i][j])) * ( (1 / mu_[i][j]) + OurSchemeRequest)
 
-print("===== OurSchemeRequestResponseDelay =====\n")
+print("\n===== OurSchemeRequestResponseDelay =====\n")
 print(OurSchemeRequest)
 print("\n")
 
@@ -88,4 +88,4 @@ for i in range(5):
     for j in range(3):
         print("\nT_online:", online_time[i], ",T_offline:", offline_time[i][j])
         print("Delay:", onoffResponseDelay[i][j])
-    print("\n")
+    # print("\n")
