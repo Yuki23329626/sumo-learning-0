@@ -514,9 +514,9 @@ int main (int argc, char *argv[])
       ueStaticRouting->SetDefaultRoute (epcHelper->GetUeDefaultGatewayAddress (), 1);
   }
 
-// Ptr<FlowMonitor> flowMonitor;
-// FlowMonitorHelper flowHelper;
-// flowMonitor = flowHelper.InstallAll();
+Ptr<FlowMonitor> flowMonitor;
+FlowMonitorHelper flowHelper;
+flowMonitor = flowHelper.InstallAll();
   
 //enter radio range support that carries data between UE and EnodeB
 Ptr<EpcTft> tft = Create<EpcTft> ();
