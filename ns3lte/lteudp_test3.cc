@@ -571,8 +571,8 @@ for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
   //     }
 
   // Install and start applications on UEs and remote host
-  Time startTime = Seconds (startTimeSeconds->GetValue ());
-  serverApps[u].Start (Seconds(startTime));
+  float startTime = Seconds (startTimeSeconds->GetValue ());
+  serverApps[u].Start (Seconds(0));
   clientApps[u].Start (Seconds(startTime));
   // startTime = startTime + 0.01;
 }
