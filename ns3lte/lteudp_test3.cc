@@ -215,9 +215,9 @@ AnimationInterface * pAnim = 0;
 
 Ptr<LteHelper> lteHelper;
 int *last_index;
-bool isAttachToClosestEnb;
+bool isSdnEnabled;
 void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, uint16_t numberOfUes, uint16_t numberOfEnbs){
-  if(!isAttachToClosestEnb) return;
+  if(!isSdnEnabled) return;
   for(int i=0; i<numberOfUes; i++){
     Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
     Vector pos_ue = ueMobilityModel->GetPosition ();
@@ -294,9 +294,10 @@ int main (int argc, char *argv[])
   double speed = 20;       // m/s
   double simTime = 60; // 1500 m / 20 m/s = 75 secs
   double enbTxPowerDbm = 46.0;
-  double interPacketInterval = 1000.0;
+  double interPacketInterval = 0.0;
   uint16_t sdnInterval = 200; // millisecond
-  isAttachToClosestEnb = true;
+  uint16_t nMaxPackets = 1024;
+  isSdnEnabled = true;
   // Ptr<LteUePhy> uephy;
   // Ptr<MobilityModel> ueMobilityModel;
   // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
@@ -501,9 +502,9 @@ int main (int argc, char *argv[])
   // (e.g., buffer overflows due to packet transmissions happening
   // exactly at the same time)
 
-  // Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
-  // startTimeSeconds->SetAttribute ("Min", DoubleValue (1));
-  // startTimeSeconds->SetAttribute ("Max", DoubleValue (1.010));
+  Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
+  startTimeSeconds->SetAttribute ("Min", DoubleValue (1));
+  startTimeSeconds->SetAttribute ("Max", DoubleValue (60));
 
   for (uint32_t u = 0; u < numberOfUes; ++u)
   {
@@ -547,17 +548,17 @@ for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
 
   UdpClientHelper dlClient (ueIpIfaces.GetAddress (u), dlPort);
   dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
-  dlClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
+  dlClient.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
   // dlClient.SetAttribute ("PacketSize", UintegerValue (1025));
 
   UdpClientHelper ulClient (remoteHostAddr, ulPort);
   ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
-  ulClient.SetAttribute ("MaxPackets", UintegerValue(1000000));
+  ulClient.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
   // dlClient.SetAttribute ("PacketSize", UintegerValue (1025));
 
   // UdpClientHelper client (ueIpIfaces.GetAddress (u), otherPort);
   // client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
-  // client.SetAttribute ("MaxPackets", UintegerValue(1000000));
+  // client.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
 
   clientApps[u].Add (dlClient.Install (remoteHost));
   clientApps[u].Add (ulClient.Install (ueNodes.Get(u)));
@@ -570,10 +571,10 @@ for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
   //     }
 
   // Install and start applications on UEs and remote host
-  // Time startTime = Seconds (startTimeSeconds->GetValue ());
+  Time startTime = Seconds (startTimeSeconds->GetValue ());
   serverApps[u].Start (Seconds(startTime));
   clientApps[u].Start (Seconds(startTime));
-  startTime = startTime + 0.01;
+  // startTime = startTime + 0.01;
 }
 //   // Install and start applications on UEs and remote host
 // Time startTime = Seconds (startTimeSeconds->GetValue ());
