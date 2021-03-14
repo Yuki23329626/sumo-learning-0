@@ -54,7 +54,7 @@
 using namespace ns3;
 using namespace std;
 
-Ipv4InterfaceContainer internetIpIfaces
+Ipv4InterfaceContainer internetIpIfaces;
 Ipv4InterfaceContainer ueIpIfaces;
 
 NS_LOG_COMPONENT_DEFINE ("LenaX2HandoverMeasures");
