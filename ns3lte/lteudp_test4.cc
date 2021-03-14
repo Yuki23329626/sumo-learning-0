@@ -149,10 +149,16 @@
               << std::endl;
   }
 
-  void TxTrace ()
+  void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
   {
     double now = Simulator::Now().GetSeconds();
     std::cout << "now: " << now << "\t";
+    std::cout << "TxTrace: "
+            << context
+            << ", packetSize: " << pkt->GetSize()
+            << ", source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
+            << ", destination: " << rnInetSocketAddress::ConvertFrom(b).GetIpv4()
+            << std::endl;
   }
 
 AnimationInterface * pAnim = 0;
