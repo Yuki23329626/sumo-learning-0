@@ -532,7 +532,7 @@ uint16_t ulPort = 2000;
 uint16_t otherPort = 3000;
 ApplicationContainer clientApps[numberOfUes];
 ApplicationContainer serverApps[numberOfUes];
-// float startTime = 1;
+float startTime = 1;
 
 Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (nPayloadBytes));
 Config::SetDefault ("ns3::OnOffApplication::DataRate", StringValue ("102400kb/s"));
@@ -543,15 +543,19 @@ Config::SetDefault ("ns3::OnOffApplication::MaxBytes", UintegerValue (nMaxPacket
 for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
     ++ulPort;
     ++otherPort;
-    PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
-                          Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
-    PacketSinkHelper ulsinkHelper ("ns3::UdpSocketFactory",
-                          Address (InetSocketAddress (remoteHostAddr, ulPort)));
+    // PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
+    //                       Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
+    // PacketSinkHelper ulsinkHelper ("ns3::UdpSocketFactory",
+    //                       Address (InetSocketAddress (remoteHostAddr, ulPort)));
+    UdpServerHelper dlUdpServerHelper (dlPort);
+    UdpServerHelper ulUdpServerHelper (ulPort);
     // PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
     // PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
     // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
-    serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
-    serverApps[u].Add (ulsinkHelper.Install (remoteHost));
+    // serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
+    // serverApps[u].Add (ulsinkHelper.Install (remoteHost));
+    serverApps[u].Add (dlUdpServerHelper.Install (ueNodes.Get(u)));
+    serverApps[u].Add (ulUdpServerHelper.Install (remoteHost));
     // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
     
@@ -577,10 +581,10 @@ for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
     //     }
 
     // Install and start applications on UEs and remote host
-    float startTime = startTimeSeconds->GetValue ();
+    // float startTime = startTimeSeconds->GetValue ();
     serverApps[u].Start (Seconds(0));
     clientApps[u].Start (Seconds(startTime));
-    // startTime = startTime + 0.01;
+    startTime = startTime + 0.5;
 }
 //   // Install and start applications on UEs and remote host
 // Time startTime = Seconds (startTimeSeconds->GetValue ());
