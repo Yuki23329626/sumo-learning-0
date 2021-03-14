@@ -50,119 +50,131 @@
 #include<math.h>
 #include <exception>
   
-  using namespace ns3;
-  using namespace std;
-  
-  NS_LOG_COMPONENT_DEFINE ("LenaX2HandoverMeasures");
-  
-  void
-  NotifyConnectionEstablishedUe (std::string context,
-                                  uint64_t imsi,
-                                  uint16_t cellid,
-                                  uint16_t rnti)
-  {
-    double now = Simulator::Now().GetSeconds();
-    std::cout << "now: " << now << "\t";
-    std::cout << context
-              << " UE IMSI " << imsi
-              << ": connected to CellId " << cellid
-              << " with RNTI " << rnti
-              << std::endl;
-  }
-  
-  void
-  NotifyHandoverStartUe (std::string context,
-                          uint64_t imsi,
-                          uint16_t cellid,
-                          uint16_t rnti,
-                          uint16_t targetCellId)
-  {
-    double now = Simulator::Now().GetSeconds();
-    std::cout << "now: " << now << "\t";
-    std::cout << context
-              << " UE IMSI " << imsi
-              << ": previously connected to CellId " << cellid
-              << " with RNTI " << rnti
-              << ", doing handover to CellId " << targetCellId
-              << std::endl;
-  }
-  
-  void
-  NotifyHandoverEndOkUe (std::string context,
-                          uint64_t imsi,
-                          uint16_t cellid,
-                          uint16_t rnti)
-  {
-    double now = Simulator::Now().GetSeconds();
-    std::cout << "now: " << now << "\t";
-    std::cout << context
-              << " UE IMSI " << imsi
-              << ": successful handover to CellId " << cellid
-              << " with RNTI " << rnti
-              << std::endl;
-  }
-  
-  void
-  NotifyConnectionEstablishedEnb (std::string context,
-                                  uint64_t imsi,
-                                  uint16_t cellid,
-                                  uint16_t rnti)
-  {
-    double now = Simulator::Now().GetSeconds();
-    std::cout << "now: " << now << "\t";
-    std::cout << context
-              << " eNB CellId " << cellid
-              << ": successful connection of UE with IMSI " << imsi
-              << " RNTI " << rnti
-              << std::endl;
-  }
-  
-  void
-  NotifyHandoverStartEnb (std::string context,
-                          uint64_t imsi,
-                          uint16_t cellid,
-                          uint16_t rnti,
-                          uint16_t targetCellId)
-  {
-    double now = Simulator::Now().GetSeconds();
-    std::cout << "now: " << now << "\t";
-    std::cout << context
-              << " eNB CellId " << cellid
-              << ": start handover of UE with IMSI " << imsi
-              << " RNTI " << rnti
-              << " to CellId " << targetCellId
-              << std::endl;
-  }
-  
-  void
-  NotifyHandoverEndOkEnb (std::string context,
-                          uint64_t imsi,
-                          uint16_t cellid,
-                          uint16_t rnti)
-  {
-    double now = Simulator::Now().GetSeconds();
-    std::cout << "now: " << now << "\t";
-    std::cout << context
-              << " eNB CellId " << cellid
-              << ": completed handover of UE with IMSI " << imsi
-              << " RNTI " << rnti
-              << std::endl;
-  }
+using namespace ns3;
+using namespace std;
 
-  void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
-  {
-    double now = Simulator::Now().GetSeconds();
-    std::cout << "now: " << now << "\t";
-    std::cout << "TxTrace: "
-            << context
-            << ", packetSize: " << pkt->GetSize()
-            << ", source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
-            << ", destination: " << InetSocketAddress::ConvertFrom(b).GetIpv4()
+NS_LOG_COMPONENT_DEFINE ("LenaX2HandoverMeasures");
+
+void
+NotifyConnectionEstablishedUe (std::string context,
+                                uint64_t imsi,
+                                uint16_t cellid,
+                                uint16_t rnti)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "now: " << now << "\t";
+std::cout << context
+            << " UE IMSI " << imsi
+            << ": connected to CellId " << cellid
+            << " with RNTI " << rnti
             << std::endl;
-  }
+}
+
+void
+NotifyHandoverStartUe (std::string context,
+                        uint64_t imsi,
+                        uint16_t cellid,
+                        uint16_t rnti,
+                        uint16_t targetCellId)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "now: " << now << "\t";
+std::cout << context
+            << " UE IMSI " << imsi
+            << ": previously connected to CellId " << cellid
+            << " with RNTI " << rnti
+            << ", doing handover to CellId " << targetCellId
+            << std::endl;
+}
+
+void
+NotifyHandoverEndOkUe (std::string context,
+                        uint64_t imsi,
+                        uint16_t cellid,
+                        uint16_t rnti)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "now: " << now << "\t";
+std::cout << context
+            << " UE IMSI " << imsi
+            << ": successful handover to CellId " << cellid
+            << " with RNTI " << rnti
+            << std::endl;
+}
+
+void
+NotifyConnectionEstablishedEnb (std::string context,
+                                uint64_t imsi,
+                                uint16_t cellid,
+                                uint16_t rnti)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "now: " << now << "\t";
+std::cout << context
+            << " eNB CellId " << cellid
+            << ": successful connection of UE with IMSI " << imsi
+            << " RNTI " << rnti
+            << std::endl;
+}
+
+void
+NotifyHandoverStartEnb (std::string context,
+                        uint64_t imsi,
+                        uint16_t cellid,
+                        uint16_t rnti,
+                        uint16_t targetCellId)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "now: " << now << "\t";
+std::cout << context
+            << " eNB CellId " << cellid
+            << ": start handover of UE with IMSI " << imsi
+            << " RNTI " << rnti
+            << " to CellId " << targetCellId
+            << std::endl;
+}
+
+void
+NotifyHandoverEndOkEnb (std::string context,
+                        uint64_t imsi,
+                        uint16_t cellid,
+                        uint16_t rnti)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "now: " << now << "\t";
+std::cout << context
+            << " eNB CellId " << cellid
+            << ": completed handover of UE with IMSI " << imsi
+            << " RNTI " << rnti
+            << std::endl;
+}
+
+void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "TxTrace: "
+        << ", now: " << now
+        << context
+        << ", packetSize: " << pkt->GetSize()
+        << ", source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
+        << ", destination: " << InetSocketAddress::ConvertFrom(b).GetIpv4()
+        << std::endl;
+}
+
+void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
+{
+double now = Simulator::Now().GetSeconds();
+std::cout << "TxTrace: "
+        << ", now: " << now
+        << context
+        << ", packetSize: " << pkt->GetSize()
+        << ", source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
+        << ", destination: " << InetSocketAddress::ConvertFrom(b).GetIpv4()
+        << std::endl;
+}
 
 AnimationInterface * pAnim = 0;
-  
+
 // class UEs_Info{
 //   public:
 
@@ -651,6 +663,8 @@ for (uint32_t u = 0; u < 1; ++u){
     //                 MakeCallback (&CourseChange));
     Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::OnOffApplication/TxWithAddresses",
                     MakeCallback (&TxTrace));
+    Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::PacketSink/RxWithAddresses",
+                    MakeCallback (&RxTrace));
 
 
   // Create the animation object and configure for specific output
