@@ -543,9 +543,9 @@ for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
     ++ulPort;
     ++otherPort;
     PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
-                          Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlport)));
+                          Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
     PacketSinkHelper ulsinkHelper ("ns3::UdpSocketFactory",
-                          Address (InetSocketAddress (remoteHostAddr, ulport)));
+                          Address (InetSocketAddress (remoteHostAddr, ulPort)));
     // PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
     // PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
     // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
