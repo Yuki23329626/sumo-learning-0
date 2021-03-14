@@ -193,7 +193,7 @@ void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, co
         << " packetSize: " << pkt->GetSize()
         << " source: " << sourceAddress
         << " destination: " << InetSocketAddress::ConvertFrom(dst).GetIpv4()
-        << std::endl;
+        << " " << std::endl;
 }
 
 void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
@@ -205,7 +205,7 @@ void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, cons
         << " packetSize: " << pkt->GetSize()
         << " source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
         << " destination: " << InetSocketAddress::ConvertFrom(b).GetIpv4()
-        << std::endl;
+        << " " << std::endl;
 }
 
 AnimationInterface * pAnim = 0;
