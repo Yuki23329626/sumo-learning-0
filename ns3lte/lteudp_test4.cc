@@ -49,9 +49,12 @@
 #include <limits>
 #include<math.h>
 #include <exception>
+#include <vector>
   
 using namespace ns3;
 using namespace std;
+
+Ipv4InterfaceContainer ueIpIfaces;
 
 NS_LOG_COMPONENT_DEFINE ("LenaX2HandoverMeasures");
 
@@ -174,13 +177,14 @@ vector<string> splitStr2Vec(string s, string splitSep)
 void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
 {
     vector<string> sep = splitStr2Vec(context, "/");
-    cout << "test: " << sep[1]
+    cout << "node: " << sep[1]
+    int iNode = std::stoi( sep[1] )
     double now = Simulator::Now().GetSeconds();
     std::cout << "TxTrace: "
         << "now: " << now
         << context
         << ", packetSize: " << pkt->GetSize()
-        << ", source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
+        << ", source: " << ueIpIfaces.GetAddress (iNode)
         << ", destination: " << InetSocketAddress::ConvertFrom(b).GetIpv4()
         << std::endl;
 }
@@ -507,7 +511,7 @@ int main (int argc, char *argv[])
 
     // Install the IP stack on the UEs
     internet.Install (ueNodes);
-    Ipv4InterfaceContainer ueIpIfaces;
+    // Ipv4InterfaceContainer ueIpIfaces;
     ueIpIfaces = epcHelper->AssignUeIpv4Address (NetDeviceContainer (ueLteDevs));
 
     // Attach all UEs to the first eNodeB
