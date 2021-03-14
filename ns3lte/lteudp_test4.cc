@@ -537,7 +537,7 @@ ApplicationContainer serverApps[numberOfUes];
 float startTime = 1;
 
 Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (nPayloadBytes));
-Config::SetDefault ("ns3::OnOffApplication::DataRate", StringValue ("100Mbps"));
+// Config::SetDefault ("ns3::OnOffApplication::DataRate", StringValue ("100Mbps"));
 Config::SetDefault ("ns3::OnOffApplication::MaxBytes", UintegerValue (nMaxPackets*nPayloadBytes));
 
 
