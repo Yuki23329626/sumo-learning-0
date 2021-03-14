@@ -285,6 +285,7 @@ int main (int argc, char *argv[])
   // LogComponentEnable ("LteUeNetDevice", logLevel);
   // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
   // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
+	LogComponentEnable ("UdpSocketImpl", LOG_ALL);
 	LogComponentEnable ("OnOffApplication", LOG_ALL);
     LogComponentEnable ("PacketSink", LOG_ALL);
 	LogComponentEnable ("UdpClient", LOG_ALL);
