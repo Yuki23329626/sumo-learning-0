@@ -631,7 +631,7 @@ int main (int argc, char *argv[])
     dlOnOffHelper.SetAttribute ("DataRate",StringValue ("10Mbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("2Mbps"));
+    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("4Mbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
 
