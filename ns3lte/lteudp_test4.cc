@@ -351,7 +351,7 @@ int main (int argc, char *argv[])
     // LogComponentEnable ("UdpClient", LOG_ALL);
     // LogComponentEnable ("UdpServer", LOG_ALL);
 
-    uint16_t numberOfUes = 1;
+    uint16_t numberOfUes = 5;
     uint16_t numberOfEnbs = 12;
     double distance = 500.0; // m
     double speed = 20;       // m/s
@@ -604,8 +604,8 @@ int main (int argc, char *argv[])
 
 
     // generate traffic request to remote server
-    // for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
-    for (uint32_t u = 0; u < 1; ++u){
+    for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
+    // for (uint32_t u = 0; u < 1; ++u){
     ++ulPort;
     ++otherPort;
     PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
@@ -653,7 +653,7 @@ int main (int argc, char *argv[])
     // float startTime = startTimeSeconds->GetValue ();
     serverApps[u].Start (Seconds(0));
     clientApps[u].Start (Seconds(startTime));
-    startTime = startTime + 0.5;
+    startTime = startTime + 8;
 }
 //   // Install and start applications on UEs and remote host
 // Time startTime = Seconds (startTimeSeconds->GetValue ());
