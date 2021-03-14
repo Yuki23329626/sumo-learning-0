@@ -149,6 +149,12 @@
               << std::endl;
   }
 
+  void TxTrace ( Ptr< const Packet > packet, const Address source, const Address destination)
+  {
+    double now = Simulator::Now().GetSeconds();
+    std::cout << "now: " << now << "\t";
+  }
+
 AnimationInterface * pAnim = 0;
   
 // class UEs_Info{
@@ -285,7 +291,7 @@ int main (int argc, char *argv[])
   // LogComponentEnable ("LteUeNetDevice", logLevel);
   // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
   // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
-	LogComponentEnable ("UdpSocketImpl", LOG_ALL);
+	// LogComponentEnable ("UdpSocketImpl", LOG_ALL);
 	LogComponentEnable ("OnOffApplication", LOG_ALL);
     LogComponentEnable ("PacketSink", LOG_ALL);
 	LogComponentEnable ("UdpClient", LOG_ALL);
@@ -622,21 +628,24 @@ for (uint32_t u = 0; u < 1; ++u){
   Ptr<RadioBearerStatsCalculator> pdcpStats = lteHelper->GetPdcpStats ();
   pdcpStats->SetAttribute ("EpochDuration", TimeValue (Seconds (1.0)));
 
-  // connect custom trace sinks for RRC connection establishment and handover notification
-  // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/ConnectionEstablished",
-  //                   MakeCallback (&NotifyConnectionEstablishedEnb));
-  // Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/ConnectionEstablished",
-  //                   MakeCallback (&NotifyConnectionEstablishedUe));
-  // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverStart",
-  //                   MakeCallback (&NotifyHandoverStartEnb));
-  Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
+    // connect custom trace sinks for RRC connection establishment and handover notification
+    // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/ConnectionEstablished",
+    //                   MakeCallback (&NotifyConnectionEstablishedEnb));
+    // Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/ConnectionEstablished",
+    //                   MakeCallback (&NotifyConnectionEstablishedUe));
+    // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverStart",
+    //                   MakeCallback (&NotifyHandoverStartEnb));
+    Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
                     MakeCallback (&NotifyHandoverStartUe));
-  // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverEndOk",
-  //                   MakeCallback (&NotifyHandoverEndOkEnb));
-  Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
+    // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverEndOk",
+    //                   MakeCallback (&NotifyHandoverEndOkEnb));
+    Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
                     MakeCallback (&NotifyHandoverEndOkUe));
-  // Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
-  //                 MakeCallback (&CourseChange));
+    // Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
+    //                 MakeCallback (&CourseChange));
+    Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::OnOffApplication/TxWithAddresses",
+                    MakeCallback (&TxTrace));
+
 
   // Create the animation object and configure for specific output
   pAnim = new AnimationInterface (animFile.c_str ());
