@@ -178,7 +178,7 @@ vector<string> splitStr2Vec(string s, string splitSep)
 void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, const Address& dst)
 {
     vector<string> sep = splitStr2Vec(context, "/");
-    cout << "node: " << sep[1];
+    // cout << "node: " << sep[1];
     int iNode = std::stoi( sep[1] ) - (4 + 12);
     Ipv4Address sourceAddress;
     if( iNode < 0 ){
