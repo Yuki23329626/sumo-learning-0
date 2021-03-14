@@ -557,8 +557,8 @@ for (uint32_t u = 0; u < 1; ++u){
     // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
     // serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
     // serverApps[u].Add (ulsinkHelper.Install (remoteHost));
-    serverApps[u].Add (dlUdpServerHelper.Install (ueNodes.Get(u)));
-    serverApps[u].Add (ulUdpServerHelper.Install (remoteHost));
+    serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
+    serverApps[u].Add (ulsinkHelper.Install (remoteHost));
     // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
     
