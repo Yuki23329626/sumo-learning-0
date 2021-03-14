@@ -189,10 +189,10 @@ void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, co
     double now = Simulator::Now().GetSeconds();
     std::cout << "TxTrace: "
         << "now: " << now
-        << ", Nodelist: " << sep[1]
-        << ", packetSize: " << pkt->GetSize()
-        << ", source: " << sourceAddress
-        << ", destination: " << InetSocketAddress::ConvertFrom(dst).GetIpv4()
+        << " Nodelist: " << sep[1]
+        << " packetSize: " << pkt->GetSize()
+        << " source: " << sourceAddress
+        << " destination: " << InetSocketAddress::ConvertFrom(dst).GetIpv4()
         << std::endl;
 }
 
@@ -202,9 +202,9 @@ void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, cons
     std::cout << "RxTrace: "
         << "now: " << now << " "
         << context
-        << ", packetSize: " << pkt->GetSize()
-        << ", source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
-        << ", destination: " << InetSocketAddress::ConvertFrom(b).GetIpv4()
+        << " packetSize: " << pkt->GetSize()
+        << " source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
+        << ": destination: " << InetSocketAddress::ConvertFrom(b).GetIpv4()
         << std::endl;
 }
 
@@ -351,7 +351,7 @@ int main (int argc, char *argv[])
     // LogComponentEnable ("UdpClient", LOG_ALL);
     // LogComponentEnable ("UdpServer", LOG_ALL);
 
-    uint16_t numberOfUes = 10;
+    uint16_t numberOfUes = 1;
     uint16_t numberOfEnbs = 12;
     double distance = 500.0; // m
     double speed = 20;       // m/s
