@@ -164,7 +164,7 @@ std::cout << "TxTrace: "
 void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
 {
 double now = Simulator::Now().GetSeconds();
-std::cout << "TxTrace: "
+std::cout << "RxTrace: "
         << "now: " << now
         << context
         << ", packetSize: " << pkt->GetSize()
