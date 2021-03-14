@@ -181,8 +181,9 @@ void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, co
     // cout << "node: " << sep[1] << " ";
     int iNode = std::stoi( sep[1] ) - (4 + 12);
     Ipv4Address sourceAddress;
+    std::cout << "iNode: " << iNode << std::endl;
     if( iNode < 0 ){
-        sourceAddress = internetIpIfaces.GetAddress(1);
+        sourceAddress = "1.0.0.2";
     }else{
         sourceAddress = ueIpIfaces.GetAddress(iNode);
     }
@@ -194,6 +195,7 @@ void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, co
         << " source: " << sourceAddress
         << " destination: " << InetSocketAddress::ConvertFrom(dst).GetIpv4()
         << " " << std::endl;
+    
 }
 
 void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
