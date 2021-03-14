@@ -631,7 +631,7 @@ int main (int argc, char *argv[])
     dlOnOffHelper.SetAttribute ("DataRate",StringValue ("10Mbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("4Mbps"));
+    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("2Mbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
 
@@ -653,7 +653,7 @@ int main (int argc, char *argv[])
     // float startTime = startTimeSeconds->GetValue ();
     serverApps[u].Start (Seconds(0));
     clientApps[u].Start (Seconds(startTime));
-    startTime = startTime + 5;
+    startTime = startTime + 6;
 }
 //   // Install and start applications on UEs and remote host
 // Time startTime = Seconds (startTimeSeconds->GetValue ());
