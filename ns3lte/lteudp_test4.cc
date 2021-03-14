@@ -358,7 +358,7 @@ int main (int argc, char *argv[])
     double simTime = 1000; // 1500 m / 20 m/s = 75 secs
     double enbTxPowerDbm = 46.0;
     double interPacketInterval = 1000.0;
-    double interAppInterval = 10.0;
+    double interAppInterval = 10.0; // sec
     uint16_t sdnInterval = 200; // millisecond
     uint16_t nMaxPackets = 1024;
     uint16_t nPayloadBytes = 1024;
