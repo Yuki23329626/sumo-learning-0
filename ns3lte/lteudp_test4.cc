@@ -157,7 +157,7 @@
             << context
             << ", packetSize: " << pkt->GetSize()
             << ", source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
-            << ", destination: " << rnInetSocketAddress::ConvertFrom(b).GetIpv4()
+            << ", destination: " << InetSocketAddress::ConvertFrom(b).GetIpv4()
             << std::endl;
   }
 
