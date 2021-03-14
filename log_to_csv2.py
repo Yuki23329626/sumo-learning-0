@@ -20,10 +20,10 @@ with open("csv_"+filename+".csv", 'w') as csvfile:
         #if(count == 10):
         #    break
         string1 = line.split("(")
-        print("string1[0]", string1[0])
+        # print("string1[0]", string1[0])
         if(string1[0] == "OnOffApplication:SendPacket"):
             clientAddress = string1[0][1:-1]
-            print(clientAddress)
+            print("clientAddress", clientAddress)
         
 
 # print("packet_sent: ", count_sent)
