@@ -628,10 +628,10 @@ int main (int argc, char *argv[])
                         Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
     OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
                 Address (InetSocketAddress (remoteHostAddr, ulPort)));
-    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("10Mbps"));
+    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("100Mbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("10Mbps"));
+    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("50Mbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
 
@@ -653,7 +653,7 @@ int main (int argc, char *argv[])
     // float startTime = startTimeSeconds->GetValue ();
     serverApps[u].Start (Seconds(0));
     clientApps[u].Start (Seconds(startTime));
-    startTime = startTime + 8;
+    startTime = startTime + 5;
 }
 //   // Install and start applications on UEs and remote host
 // Time startTime = Seconds (startTimeSeconds->GetValue ());
