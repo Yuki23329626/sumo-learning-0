@@ -294,9 +294,9 @@ int main (int argc, char *argv[])
   double speed = 20;       // m/s
   double simTime = 60; // 1500 m / 20 m/s = 75 secs
   double enbTxPowerDbm = 46.0;
-  double interPacketInterval = 0.0;
+  double interPacketInterval = 1000.0;
   uint16_t sdnInterval = 200; // millisecond
-  uint16_t nMaxPackets = 1024;
+  uint16_t nMaxPackets = 2048;
   isSdnEnabled = true;
   // Ptr<LteUePhy> uephy;
   // Ptr<MobilityModel> ueMobilityModel;
