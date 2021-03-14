@@ -285,6 +285,7 @@ int main (int argc, char *argv[])
   // LogComponentEnable ("LteUeNetDevice", logLevel);
   // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
   // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
+	LogComponentEnable ("OnOffApplication", LOG_ALL);
 	LogComponentEnable ("UdpClient", LOG_ALL);
 	LogComponentEnable ("UdpServer", LOG_ALL);
 
@@ -540,7 +541,8 @@ Config::SetDefault ("ns3::OnOffApplication::MaxBytes", UintegerValue (nMaxPacket
 
 
 // generate traffic request to remote server
-for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
+// for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
+for (uint32_t u = 0; u < 1; ++u){
     ++ulPort;
     ++otherPort;
     // PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
