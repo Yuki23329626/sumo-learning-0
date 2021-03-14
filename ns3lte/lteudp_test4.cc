@@ -54,6 +54,7 @@
 using namespace ns3;
 using namespace std;
 
+Ipv4InterfaceContainer internetIpIfaces
 Ipv4InterfaceContainer ueIpIfaces;
 
 NS_LOG_COMPONENT_DEFINE ("LenaX2HandoverMeasures");
@@ -174,18 +175,24 @@ vector<string> splitStr2Vec(string s, string splitSep)
     return result;
 }
 
-void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
+void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, const Address& dst)
 {
     vector<string> sep = splitStr2Vec(context, "/");
     cout << "node: " << sep[1]
-    int iNode = std::stoi( sep[1] )
+    int iNode = std::stoi( sep[1] ) - (4 + 12);
+    Ipv4Address sourceAddress;
+    if( iNode < 0 ){
+        sourceAddress = internetIpIfaces.GetAddress(1);
+    }else{
+        sourceAddress = ueIpIfaces.GetAddress(iNode);
+    }
     double now = Simulator::Now().GetSeconds();
     std::cout << "TxTrace: "
         << "now: " << now
         << context
         << ", packetSize: " << pkt->GetSize()
-        << ", source: " << ueIpIfaces.GetAddress (iNode)
-        << ", destination: " << InetSocketAddress::ConvertFrom(b).GetIpv4()
+        << ", source: " << sourceAddress
+        << ", destination: " << InetSocketAddress::ConvertFrom(dst).GetIpv4()
         << std::endl;
 }
 
@@ -432,7 +439,7 @@ int main (int argc, char *argv[])
     NetDeviceContainer internetDevices = p2ph.Install (pgw, remoteHost);
     Ipv4AddressHelper ipv4h;
     ipv4h.SetBase ("1.0.0.0", "255.0.0.0");
-    Ipv4InterfaceContainer internetIpIfaces = ipv4h.Assign (internetDevices);
+    internetIpIfaces = ipv4h.Assign (internetDevices);
     Ipv4Address remoteHostAddr = internetIpIfaces.GetAddress (1);
     cout << "remoteHostAddr: " << internetIpIfaces.GetAddress (1) << endl;
 
