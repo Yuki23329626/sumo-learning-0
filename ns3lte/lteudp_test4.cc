@@ -187,8 +187,8 @@ void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, co
         sourceAddress = ueIpIfaces.GetAddress(iNode);
     }
     double now = Simulator::Now().GetSeconds();
-    std::cout << "TxTrace: "
-        << "now: " << now
+    std::cout << "TxTrace:"
+        << " now: " << now
         << " Nodelist: " << sep[1]
         << " packetSize: " << pkt->GetSize()
         << " source: " << sourceAddress
@@ -199,12 +199,12 @@ void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, co
 void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
 {
     double now = Simulator::Now().GetSeconds();
-    std::cout << "RxTrace: "
-        << "now: " << now << " "
-        << context
+    std::cout << "RxTrace:"
+        << " now: " << now
+        << " " << context
         << " packetSize: " << pkt->GetSize()
         << " source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
-        << ": destination: " << InetSocketAddress::ConvertFrom(b).GetIpv4()
+        << " destination: " << InetSocketAddress::ConvertFrom(b).GetIpv4()
         << std::endl;
 }
 
