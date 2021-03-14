@@ -181,8 +181,9 @@ void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, co
     // cout << "node: " << sep[1] << " ";
     int iNode = std::stoi( sep[1] ) - (4 + 12);
     Ipv4Address sourceAddress;
+    std::cout << "iNode: " << iNode << std::endl;
     if( iNode < 0 ){
-        sourceAddress = internetIpIfaces.GetAddress(1);
+        sourceAddress = "1.0.0.2";
     }else{
         sourceAddress = ueIpIfaces.GetAddress(iNode);
     }
@@ -194,6 +195,7 @@ void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, co
         << " source: " << sourceAddress
         << " destination: " << InetSocketAddress::ConvertFrom(dst).GetIpv4()
         << " " << std::endl;
+    
 }
 
 void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
@@ -363,6 +365,8 @@ int main (int argc, char *argv[])
     uint16_t nMaxPackets = 1024;
     uint16_t nPayloadBytes = 1024;
     isSdnEnabled = false;
+    bool isDownlink = true;
+    bool isUplink = false;
     // Ptr<LteUePhy> uephy;
     // Ptr<MobilityModel> ueMobilityModel;
     // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
@@ -618,9 +622,14 @@ int main (int argc, char *argv[])
     // PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
     // PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
     // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
-    
-    serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
+    // serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
     // serverApps[u].Add (ulsinkHelper.Install (remoteHost));
+    if(isDownlink){
+      serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
+    } 
+    if(isUplink){
+      serverApps[u].Add (ulsinkHelper.Install (remoteHost));
+    }
     // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
 
@@ -639,8 +648,12 @@ int main (int argc, char *argv[])
     // client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
     // client.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
 
-    clientApps[u].Add (dlOnOffHelper.Install (remoteHost));
-    // clientApps[u].Add (ulOnOffHelper.Install (ueNodes.Get(u)));
+    if(isDownlink){
+      clientApps[u].Add (dlOnOffHelper.Install (remoteHost));
+    }
+    if(isUplink){
+      clientApps[u].Add (ulOnOffHelper.Install (ueNodes.Get(u)));
+    }
     // if (u+1 < ueNodes.GetN ()){
     //     clientApps.Add (client.Install (ueNodes.Get(u+1)));
     // }

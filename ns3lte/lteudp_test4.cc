@@ -365,6 +365,8 @@ int main (int argc, char *argv[])
     uint16_t nMaxPackets = 1024;
     uint16_t nPayloadBytes = 1024;
     isSdnEnabled = true;
+    bool isDownlink = true;
+    bool isUplink = true;
     // Ptr<LteUePhy> uephy;
     // Ptr<MobilityModel> ueMobilityModel;
     // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
@@ -622,8 +624,12 @@ int main (int argc, char *argv[])
     // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
     // serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
     // serverApps[u].Add (ulsinkHelper.Install (remoteHost));
-    serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
-    serverApps[u].Add (ulsinkHelper.Install (remoteHost));
+    if(isDownlink){
+      serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
+    } 
+    if(isUplink){
+      serverApps[u].Add (ulsinkHelper.Install (remoteHost));
+    }
     // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
 
@@ -642,8 +648,12 @@ int main (int argc, char *argv[])
     // client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
     // client.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
 
-    clientApps[u].Add (dlOnOffHelper.Install (remoteHost));
-    clientApps[u].Add (ulOnOffHelper.Install (ueNodes.Get(u)));
+    if(isDownlink){
+      clientApps[u].Add (dlOnOffHelper.Install (remoteHost));
+    }
+    if(isUplink){
+      clientApps[u].Add (ulOnOffHelper.Install (ueNodes.Get(u)));
+    }
     // if (u+1 < ueNodes.GetN ()){
     //     clientApps.Add (client.Install (ueNodes.Get(u+1)));
     // }
