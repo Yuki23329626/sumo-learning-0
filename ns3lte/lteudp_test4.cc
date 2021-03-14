@@ -351,11 +351,11 @@ int main (int argc, char *argv[])
     // LogComponentEnable ("UdpClient", LOG_ALL);
     // LogComponentEnable ("UdpServer", LOG_ALL);
 
-    uint16_t numberOfUes = 10;
+    uint16_t numberOfUes = 100;
     uint16_t numberOfEnbs = 12;
     double distance = 500.0; // m
     double speed = 20;       // m/s
-    double simTime = 60; // 1500 m / 20 m/s = 75 secs
+    double simTime = 1000; // 1500 m / 20 m/s = 75 secs
     double enbTxPowerDbm = 46.0;
     double interPacketInterval = 1000.0;
     uint16_t sdnInterval = 200; // millisecond
@@ -596,7 +596,7 @@ int main (int argc, char *argv[])
     uint16_t otherPort = 3000;
     ApplicationContainer clientApps[numberOfUes];
     ApplicationContainer serverApps[numberOfUes];
-    float startTime = 1;
+    float startTime = 0.1;
 
     Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (nPayloadBytes));
     // Config::SetDefault ("ns3::OnOffApplication::DataRate", StringValue ("100Mbps"));
@@ -653,7 +653,7 @@ int main (int argc, char *argv[])
     // float startTime = startTimeSeconds->GetValue ();
     serverApps[u].Start (Seconds(0));
     clientApps[u].Start (Seconds(startTime));
-    startTime = startTime + 6;
+    startTime = startTime + 10;
 }
 //   // Install and start applications on UEs and remote host
 // Time startTime = Seconds (startTimeSeconds->GetValue ());
