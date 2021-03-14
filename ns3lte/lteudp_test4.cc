@@ -351,7 +351,7 @@ int main (int argc, char *argv[])
     // LogComponentEnable ("UdpClient", LOG_ALL);
     // LogComponentEnable ("UdpServer", LOG_ALL);
 
-    uint16_t numberOfUes = 10;
+    uint16_t numberOfUes = 100;
     uint16_t numberOfEnbs = 12;
     double distance = 500.0; // m
     double speed = 20;       // m/s
@@ -631,7 +631,7 @@ int main (int argc, char *argv[])
     dlOnOffHelper.SetAttribute ("DataRate",StringValue ("10Mbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("5Mbps"));
+    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("1Mbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
 
