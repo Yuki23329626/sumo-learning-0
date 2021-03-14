@@ -285,11 +285,12 @@ int main (int argc, char *argv[])
   // LogComponentEnable ("LteUeNetDevice", logLevel);
   // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
   // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
-	LogComponentEnable ("UdpSocket", LOG_ALL);
+	LogComponentEnable ("OnOffApplication", LOG_ALL);
+    LogComponentEnable ("PacketSink", LOG_ALL);
 	LogComponentEnable ("UdpClient", LOG_ALL);
 	LogComponentEnable ("UdpServer", LOG_ALL);
 
-  uint16_t numberOfUes = 100;
+  uint16_t numberOfUes = 10;
   uint16_t numberOfEnbs = 12;
   double distance = 500.0; // m
   double speed = 20;       // m/s
@@ -536,7 +537,7 @@ ApplicationContainer serverApps[numberOfUes];
 float startTime = 1;
 
 Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (nPayloadBytes));
-Config::SetDefault ("ns3::OnOffApplication::DataRate", StringValue ("102400kb/s"));
+Config::SetDefault ("ns3::OnOffApplication::DataRate", StringValue ("100Mbps"));
 Config::SetDefault ("ns3::OnOffApplication::MaxBytes", UintegerValue (nMaxPackets*nPayloadBytes));
 
 
@@ -545,12 +546,12 @@ Config::SetDefault ("ns3::OnOffApplication::MaxBytes", UintegerValue (nMaxPacket
 for (uint32_t u = 0; u < 1; ++u){
     ++ulPort;
     ++otherPort;
-    // PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
-    //                       Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
-    // PacketSinkHelper ulsinkHelper ("ns3::UdpSocketFactory",
-    //                       Address (InetSocketAddress (remoteHostAddr, ulPort)));
-    UdpServerHelper dlUdpServerHelper (dlPort);
-    UdpServerHelper ulUdpServerHelper (ulPort);
+    PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
+                          Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
+    PacketSinkHelper ulsinkHelper ("ns3::UdpSocketFactory",
+                          Address (InetSocketAddress (remoteHostAddr, ulPort)));
+    // UdpServerHelper dlUdpServerHelper (dlPort);
+    // UdpServerHelper ulUdpServerHelper (ulPort);
     // PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
     // PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
     // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
