@@ -533,6 +533,9 @@ ApplicationContainer clientApps[numberOfUes];
 ApplicationContainer serverApps[numberOfUes];
 // float startTime = 1;
 
+Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (1024));
+Config::SetDefault ("ns3::OnOffApplication::DataRate", StringValue ("102400kb/s"));
+
 // generate traffic request to remote server
 for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
   ++ulPort;
