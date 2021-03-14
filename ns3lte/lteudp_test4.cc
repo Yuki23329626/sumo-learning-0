@@ -310,7 +310,7 @@ int main (int argc, char *argv[])
     last_index[i] = -1;
   }
 
-  std::string animFile = "lte_udp_test3.xml";
+  std::string animFile = "lte_udp_test4.xml";
   string traceFile = "scratch/test10.tcl";
   // string traceFile = "scratch/oneUE.tcl";
   Ns2MobilityHelper ns2 = Ns2MobilityHelper(traceFile);
@@ -380,6 +380,7 @@ int main (int argc, char *argv[])
   ipv4h.SetBase ("1.0.0.0", "255.0.0.0");
   Ipv4InterfaceContainer internetIpIfaces = ipv4h.Assign (internetDevices);
   Ipv4Address remoteHostAddr = internetIpIfaces.GetAddress (1);
+  cout << "remoteHostAddr: " << internetIpIfaces.GetAddress (1) << endl;
 
 
   // Routing of the Internet Host (towards the LTE network)
