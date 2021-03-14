@@ -189,7 +189,7 @@ void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, co
     double now = Simulator::Now().GetSeconds();
     std::cout << "TxTrace: "
         << "now: " << now
-        << context
+        << ", Nodelist: " << sep[1]
         << ", packetSize: " << pkt->GetSize()
         << ", source: " << sourceAddress
         << ", destination: " << InetSocketAddress::ConvertFrom(dst).GetIpv4()
