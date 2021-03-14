@@ -153,7 +153,7 @@ void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, cons
 {
 double now = Simulator::Now().GetSeconds();
 std::cout << "TxTrace: "
-        << ", now: " << now
+        << "now: " << now
         << context
         << ", packetSize: " << pkt->GetSize()
         << ", source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
@@ -165,7 +165,7 @@ void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, cons
 {
 double now = Simulator::Now().GetSeconds();
 std::cout << "TxTrace: "
-        << ", now: " << now
+        << "now: " << now
         << context
         << ", packetSize: " << pkt->GetSize()
         << ", source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
@@ -292,129 +292,130 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
   
 int main (int argc, char *argv[])
 {
-  auto t1 = chrono::high_resolution_clock::now();
-  // LogLevel logLevel = (LogLevel)(LOG_PREFIX_ALL | LOG_LEVEL_ALL);
+    auto t1 = chrono::high_resolution_clock::now();
+    // LogLevel logLevel = (LogLevel)(LOG_PREFIX_ALL | LOG_LEVEL_ALL);
 
-  // LogComponentEnable ("LteHelper", logLevel);
-  // LogComponentEnable ("EpcHelper", logLevel);
-  // LogComponentEnable ("EpcEnbApplication", logLevel);
-  // LogComponentEnable ("EpcMmeApplication", logLevel);
-  // LogComponentEnable ("EpcPgwApplication", logLevel);
-  // LogComponentEnable ("EpcSgwApplication", logLevel);
-  // LogComponentEnable ("EpcX2", logLevel);
+    // LogComponentEnable ("LteHelper", logLevel);
+    // LogComponentEnable ("EpcHelper", logLevel);
+    // LogComponentEnable ("EpcEnbApplication", logLevel);
+    // LogComponentEnable ("EpcMmeApplication", logLevel);
+    // LogComponentEnable ("EpcPgwApplication", logLevel);
+    // LogComponentEnable ("EpcSgwApplication", logLevel);
+    // LogComponentEnable ("EpcX2", logLevel);
 
-  // LogComponentEnable ("LteEnbRrc", logLevel);
-  // LogComponentEnable ("LteEnbNetDevice", logLevel);
-  // LogComponentEnable ("LteUeRrc", logLevel);
-  // LogComponentEnable ("LteUeNetDevice", logLevel);
-  // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
-  // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
-	// LogComponentEnable ("UdpSocketImpl", LOG_ALL);
-	LogComponentEnable ("OnOffApplication", LOG_ALL);
-    LogComponentEnable ("PacketSink", LOG_ALL);
-	LogComponentEnable ("UdpClient", LOG_ALL);
-	LogComponentEnable ("UdpServer", LOG_ALL);
+    // LogComponentEnable ("LteEnbRrc", logLevel);
+    // LogComponentEnable ("LteEnbNetDevice", logLevel);
+    // LogComponentEnable ("LteUeRrc", logLevel);
+    // LogComponentEnable ("LteUeNetDevice", logLevel);
+    // LogComponentEnable ("A2A4RsrqHandoverAlgorithm", logLevel);
+    // LogComponentEnable ("A3RsrpHandoverAlgorithm", logLevel);
+    // LogComponentEnable ("UdpSocketImpl", LOG_ALL);
 
-  uint16_t numberOfUes = 10;
-  uint16_t numberOfEnbs = 12;
-  double distance = 500.0; // m
-  double speed = 20;       // m/s
-  double simTime = 60; // 1500 m / 20 m/s = 75 secs
-  double enbTxPowerDbm = 46.0;
-  double interPacketInterval = 1000.0;
-  uint16_t sdnInterval = 200; // millisecond
-  uint16_t nMaxPackets = 1024;
-  uint16_t nPayloadBytes = 1024;
-  isSdnEnabled = true;
-  // Ptr<LteUePhy> uephy;
-  // Ptr<MobilityModel> ueMobilityModel;
-  // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
+    // LogComponentEnable ("OnOffApplication", LOG_ALL);
+    // LogComponentEnable ("PacketSink", LOG_ALL);
+    // LogComponentEnable ("UdpClient", LOG_ALL);
+    // LogComponentEnable ("UdpServer", LOG_ALL);
 
-  last_index = (int*)malloc(sizeof(int)*numberOfUes);
-  for(int i=0; i<numberOfUes; i++){
+    uint16_t numberOfUes = 10;
+    uint16_t numberOfEnbs = 12;
+    double distance = 500.0; // m
+    double speed = 20;       // m/s
+    double simTime = 60; // 1500 m / 20 m/s = 75 secs
+    double enbTxPowerDbm = 46.0;
+    double interPacketInterval = 1000.0;
+    uint16_t sdnInterval = 200; // millisecond
+    uint16_t nMaxPackets = 1024;
+    uint16_t nPayloadBytes = 1024;
+    isSdnEnabled = true;
+    // Ptr<LteUePhy> uephy;
+    // Ptr<MobilityModel> ueMobilityModel;
+    // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
+
+    last_index = (int*)malloc(sizeof(int)*numberOfUes);
+    for(int i=0; i<numberOfUes; i++){
     last_index[i] = -1;
-  }
+    }
 
-  std::string animFile = "lte_udp_test4.xml";
-  string traceFile = "scratch/test10.tcl";
-  // string traceFile = "scratch/oneUE.tcl";
-  Ns2MobilityHelper ns2 = Ns2MobilityHelper(traceFile);
+    std::string animFile = "lte_udp_test4.xml";
+    string traceFile = "scratch/test10.tcl";
+    // string traceFile = "scratch/oneUE.tcl";
+    Ns2MobilityHelper ns2 = Ns2MobilityHelper(traceFile);
 
-  AsciiTraceHelper ascii;
-  MobilityHelper::EnableAsciiAll (ascii.CreateFileStream ("mobility-trace-example.mob"));
+    AsciiTraceHelper ascii;
+    MobilityHelper::EnableAsciiAll (ascii.CreateFileStream ("mobility-trace-example.mob"));
 
-  // change some default attributes so that they are reasonable for
-  // this scenario, but do this before processing command line
-  // arguments, so that the user is allowed to override these settings
-  Config::SetDefault ("ns3::UdpClient::Interval", TimeValue (MilliSeconds (10)));
-  Config::SetDefault ("ns3::UdpClient::MaxPackets", UintegerValue (1000000));
-  Config::SetDefault ("ns3::LteHelper::UseIdealRrc", BooleanValue (true));
-  Config::SetDefault ("ns3::LteEnbMac::NumberOfRaPreambles", UintegerValue (20));
-  Config::SetDefault ("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue (320));
+    // change some default attributes so that they are reasonable for
+    // this scenario, but do this before processing command line
+    // arguments, so that the user is allowed to override these settings
+    Config::SetDefault ("ns3::UdpClient::Interval", TimeValue (MilliSeconds (10)));
+    Config::SetDefault ("ns3::UdpClient::MaxPackets", UintegerValue (1000000));
+    Config::SetDefault ("ns3::LteHelper::UseIdealRrc", BooleanValue (true));
+    Config::SetDefault ("ns3::LteEnbMac::NumberOfRaPreambles", UintegerValue (20));
+    Config::SetDefault ("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue (320));
 
-  // Command line arguments
-  CommandLine cmd (__FILE__);
-  cmd.AddValue ("simTime", "Total duration of the simulation (in seconds)", simTime);
-  cmd.AddValue ("speed", "Speed of the UE (default = 20 m/s)", speed);
-  cmd.AddValue ("enbTxPowerDbm", "TX power [dBm] used by HeNBs (default = 46.0)", enbTxPowerDbm);
-  
-  cmd.AddValue("numberOfNodes", "Number of eNodeBs + UE pairs", numberOfEnbs);
-  cmd.AddValue("simTime", "Total duration of the simulation [s])", simTime);
-  cmd.AddValue("distance", "Distance between eNBs [m]", distance);
-  cmd.AddValue("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
-  cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
-  cmd.AddValue ("traceFile",  "File Name for Trace Input", traceFile);
+    // Command line arguments
+    CommandLine cmd (__FILE__);
+    cmd.AddValue ("simTime", "Total duration of the simulation (in seconds)", simTime);
+    cmd.AddValue ("speed", "Speed of the UE (default = 20 m/s)", speed);
+    cmd.AddValue ("enbTxPowerDbm", "TX power [dBm] used by HeNBs (default = 46.0)", enbTxPowerDbm);
 
-  cmd.Parse (argc, argv);
+    cmd.AddValue("numberOfNodes", "Number of eNodeBs + UE pairs", numberOfEnbs);
+    cmd.AddValue("simTime", "Total duration of the simulation [s])", simTime);
+    cmd.AddValue("distance", "Distance between eNBs [m]", distance);
+    cmd.AddValue("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
+    cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
+    cmd.AddValue ("traceFile",  "File Name for Trace Input", traceFile);
 
-
-  lteHelper = CreateObject<LteHelper> ();
-  Ptr<PointToPointEpcHelper> epcHelper = CreateObject<PointToPointEpcHelper> ();
-  
-  lteHelper->SetEpcHelper (epcHelper);
-  lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
-
-  // lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
-  // lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold",
-  //                                           UintegerValue (30));
-  // lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset",
-  //                                           UintegerValue (1));
-
-   lteHelper->SetHandoverAlgorithmType ("ns3::A3RsrpHandoverAlgorithm");
-   lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",
-                                             DoubleValue (3.0));
-   lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
-                                             TimeValue (MilliSeconds (256)));
-
-  Ptr<Node> pgw = epcHelper->GetPgwNode ();
-
-  // Create a single RemoteHost
-  NodeContainer remoteHostContainer;
-  remoteHostContainer.Create (1);
-  Ptr<Node> remoteHost = remoteHostContainer.Get (0);
-  InternetStackHelper internet;
-  internet.Install (remoteHostContainer);
-
-  // Create the Internet
-  PointToPointHelper p2ph;
-  p2ph.SetDeviceAttribute ("DataRate", DataRateValue (DataRate ("100Gb/s")));
-  p2ph.SetDeviceAttribute ("Mtu", UintegerValue (1500));
-  p2ph.SetChannelAttribute ("Delay", TimeValue (Seconds (0.010)));
-  NetDeviceContainer internetDevices = p2ph.Install (pgw, remoteHost);
-  Ipv4AddressHelper ipv4h;
-  ipv4h.SetBase ("1.0.0.0", "255.0.0.0");
-  Ipv4InterfaceContainer internetIpIfaces = ipv4h.Assign (internetDevices);
-  Ipv4Address remoteHostAddr = internetIpIfaces.GetAddress (1);
-  cout << "remoteHostAddr: " << internetIpIfaces.GetAddress (1) << endl;
+    cmd.Parse (argc, argv);
 
 
-  // Routing of the Internet Host (towards the LTE network)
-  Ipv4StaticRoutingHelper ipv4RoutingHelper;
-  Ptr<Ipv4StaticRouting> remoteHostStaticRouting = ipv4RoutingHelper.GetStaticRouting (remoteHost->GetObject<Ipv4> ());
-  // interface 0 is localhost, 1 is the p2p device
-  remoteHostStaticRouting->AddNetworkRouteTo (Ipv4Address ("7.0.0.0"), Ipv4Mask ("255.0.0.0"), 1);
+    lteHelper = CreateObject<LteHelper> ();
+    Ptr<PointToPointEpcHelper> epcHelper = CreateObject<PointToPointEpcHelper> ();
 
-  /*
+    lteHelper->SetEpcHelper (epcHelper);
+    lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
+
+    // lteHelper->SetHandoverAlgorithmType ("ns3::A2A4RsrqHandoverAlgorithm");
+    // lteHelper->SetHandoverAlgorithmAttribute ("ServingCellThreshold",
+    //                                           UintegerValue (30));
+    // lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset",
+    //                                           UintegerValue (1));
+
+    lteHelper->SetHandoverAlgorithmType ("ns3::A3RsrpHandoverAlgorithm");
+    lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",
+                                                DoubleValue (3.0));
+    lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
+                                                TimeValue (MilliSeconds (256)));
+
+    Ptr<Node> pgw = epcHelper->GetPgwNode ();
+
+    // Create a single RemoteHost
+    NodeContainer remoteHostContainer;
+    remoteHostContainer.Create (1);
+    Ptr<Node> remoteHost = remoteHostContainer.Get (0);
+    InternetStackHelper internet;
+    internet.Install (remoteHostContainer);
+
+    // Create the Internet
+    PointToPointHelper p2ph;
+    p2ph.SetDeviceAttribute ("DataRate", DataRateValue (DataRate ("100Gb/s")));
+    p2ph.SetDeviceAttribute ("Mtu", UintegerValue (1500));
+    p2ph.SetChannelAttribute ("Delay", TimeValue (Seconds (0.010)));
+    NetDeviceContainer internetDevices = p2ph.Install (pgw, remoteHost);
+    Ipv4AddressHelper ipv4h;
+    ipv4h.SetBase ("1.0.0.0", "255.0.0.0");
+    Ipv4InterfaceContainer internetIpIfaces = ipv4h.Assign (internetDevices);
+    Ipv4Address remoteHostAddr = internetIpIfaces.GetAddress (1);
+    cout << "remoteHostAddr: " << internetIpIfaces.GetAddress (1) << endl;
+
+
+    // Routing of the Internet Host (towards the LTE network)
+    Ipv4StaticRoutingHelper ipv4RoutingHelper;
+    Ptr<Ipv4StaticRouting> remoteHostStaticRouting = ipv4RoutingHelper.GetStaticRouting (remoteHost->GetObject<Ipv4> ());
+    // interface 0 is localhost, 1 is the p2p device
+    remoteHostStaticRouting->AddNetworkRouteTo (Ipv4Address ("7.0.0.0"), Ipv4Mask ("255.0.0.0"), 1);
+
+    /*
     * Network topology:
     *
     *      |     + --------------------------------------------------------->
@@ -429,153 +430,153 @@ int main (int argc, char *argv[])
     *            o (0, 0, 0)                                   y = yForUe
     */
 
-  NodeContainer ueNodes;
-  NodeContainer enbNodes;
-  enbNodes.Create (numberOfEnbs);
-  ueNodes.Create (numberOfUes);
-  ns2.Install(ueNodes.Begin(), ueNodes.End());
+    NodeContainer ueNodes;
+    NodeContainer enbNodes;
+    enbNodes.Create (numberOfEnbs);
+    ueNodes.Create (numberOfUes);
+    ns2.Install(ueNodes.Begin(), ueNodes.End());
 
-  // Install Mobility Model in UE
-  // MobilityHelper ueMobility;
-  // ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
-  // ueMobility.Install (ueNodes);
-  // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (583, 365, 0));
-  // ueNodes.Get (0)->GetObject<ConstantVelocityMobilityModel> ()->SetVelocity (Vector (734/60, 585/60, 0));
+    // Install Mobility Model in UE
+    // MobilityHelper ueMobility;
+    // ueMobility.SetMobilityModel ("ns3::ConstantVelocityMobilityModel");
+    // ueMobility.Install (ueNodes);
+    // ueNodes.Get (0)->GetObject<MobilityModel> ()->SetPosition (Vector (583, 365, 0));
+    // ueNodes.Get (0)->GetObject<ConstantVelocityMobilityModel> ()->SetVelocity (Vector (734/60, 585/60, 0));
 
-  // Install Mobility Model in eNB
-  Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator> ();
-  //  for (uint16_t i = 0; i < numberOfEnbs; i++)
-  //    {
-  //      Vector enbPosition (distance * (i + 1), distance, 0);
-  //      enbPositionAlloc->Add (enbPosition);
-  //    }
-  enbPositionAlloc->Add(Vector(583, 365, 0));
+    // Install Mobility Model in eNB
+    Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator> ();
+    //  for (uint16_t i = 0; i < numberOfEnbs; i++)
+    //    {
+    //      Vector enbPosition (distance * (i + 1), distance, 0);
+    //      enbPositionAlloc->Add (enbPosition);
+    //    }
+    enbPositionAlloc->Add(Vector(583, 365, 0));
 
-  enbPositionAlloc->Add(Vector(885, 338, 0));
-  enbPositionAlloc->Add(Vector(1187, 328, 0));
+    enbPositionAlloc->Add(Vector(885, 338, 0));
+    enbPositionAlloc->Add(Vector(1187, 328, 0));
 
-  enbPositionAlloc->Add(Vector(1305, 322, 0));
+    enbPositionAlloc->Add(Vector(1305, 322, 0));
 
-  enbPositionAlloc->Add(Vector(596, 703, 0));
+    enbPositionAlloc->Add(Vector(596, 703, 0));
 
-  enbPositionAlloc->Add(Vector(895, 690, 0));
+    enbPositionAlloc->Add(Vector(895, 690, 0));
 
-  enbPositionAlloc->Add(Vector(1100, 682, 0));
-  enbPositionAlloc->Add(Vector(1317, 679, 0));
+    enbPositionAlloc->Add(Vector(1100, 682, 0));
+    enbPositionAlloc->Add(Vector(1317, 679, 0));
 
-  enbPositionAlloc->Add(Vector(602, 972, 0));
+    enbPositionAlloc->Add(Vector(602, 972, 0));
 
-  enbPositionAlloc->Add(Vector(908, 955, 0));
-  enbPositionAlloc->Add(Vector(1107, 953, 0));
+    enbPositionAlloc->Add(Vector(908, 955, 0));
+    enbPositionAlloc->Add(Vector(1107, 953, 0));
 
-  enbPositionAlloc->Add(Vector(1317, 950, 0));
-  
-  MobilityHelper enbMobility;
-  enbMobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
-  enbMobility.SetPositionAllocator (enbPositionAlloc);
-  enbMobility.Install (enbNodes);
+    enbPositionAlloc->Add(Vector(1317, 950, 0));
 
-  // Install LTE Devices in eNB and UEs
-  Config::SetDefault ("ns3::LteEnbPhy::TxPower", DoubleValue (enbTxPowerDbm));
-  NetDeviceContainer enbLteDevs = lteHelper->InstallEnbDevice (enbNodes);
-  NetDeviceContainer ueLteDevs = lteHelper->InstallUeDevice (ueNodes);
+    MobilityHelper enbMobility;
+    enbMobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
+    enbMobility.SetPositionAllocator (enbPositionAlloc);
+    enbMobility.Install (enbNodes);
 
-  // Install the IP stack on the UEs
-  internet.Install (ueNodes);
-  Ipv4InterfaceContainer ueIpIfaces;
-  ueIpIfaces = epcHelper->AssignUeIpv4Address (NetDeviceContainer (ueLteDevs));
+    // Install LTE Devices in eNB and UEs
+    Config::SetDefault ("ns3::LteEnbPhy::TxPower", DoubleValue (enbTxPowerDbm));
+    NetDeviceContainer enbLteDevs = lteHelper->InstallEnbDevice (enbNodes);
+    NetDeviceContainer ueLteDevs = lteHelper->InstallUeDevice (ueNodes);
 
-  // Attach all UEs to the first eNodeB
-  // for (uint16_t i = 0; i < numberOfUes; i++)
-  //   {
-  //     lteHelper->Attach (ueLteDevs.Get (i), enbLteDevs.Get (0));
-  //   }
+    // Install the IP stack on the UEs
+    internet.Install (ueNodes);
+    Ipv4InterfaceContainer ueIpIfaces;
+    ueIpIfaces = epcHelper->AssignUeIpv4Address (NetDeviceContainer (ueLteDevs));
 
-  // uint16_t j = 0;
-  // for (uint16_t i = 0; i < numberOfUes; i++){  
-  //   if (j < numberOfEnbs){
-  //       lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(j));
-  //       last_index[i] = j;
-  //       j++;
-  //   }
-  //   else{
-  //       j = 0;
-  //       lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(j));
-  //       last_index[i] = j;
-  //   }   
-  // }
+    // Attach all UEs to the first eNodeB
+    // for (uint16_t i = 0; i < numberOfUes; i++)
+    //   {
+    //     lteHelper->Attach (ueLteDevs.Get (i), enbLteDevs.Get (0));
+    //   }
 
-  for(int i=0; i<numberOfUes; i++){
+    // uint16_t j = 0;
+    // for (uint16_t i = 0; i < numberOfUes; i++){  
+    //   if (j < numberOfEnbs){
+    //       lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(j));
+    //       last_index[i] = j;
+    //       j++;
+    //   }
+    //   else{
+    //       j = 0;
+    //       lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(j));
+    //       last_index[i] = j;
+    //   }   
+    // }
+
+    for(int i=0; i<numberOfUes; i++){
     Ptr<const MobilityModel> ueMobilityModel = ueNodes.Get(i)->GetObject<MobilityModel>();
     Vector pos_ue = ueMobilityModel->GetPosition ();
     int index = -1;
     unsigned long long int min_distance = std::numeric_limits<int>::max();
     for(int j=0; j<numberOfEnbs; j++){
-      Ptr<const MobilityModel> enbMobilityModel = enbNodes.Get(j)->GetObject<MobilityModel>();
-      Vector pos_enb = enbMobilityModel->GetPosition ();
-      float current_distance = sqrt((pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y));
-      if( current_distance < min_distance ){
+        Ptr<const MobilityModel> enbMobilityModel = enbNodes.Get(j)->GetObject<MobilityModel>();
+        Vector pos_enb = enbMobilityModel->GetPosition ();
+        float current_distance = sqrt((pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y));
+        if( current_distance < min_distance ){
         min_distance = current_distance;
         index = j;
         std::cout << "ue: " << i <<  ", enb: " << index << ", distance: " << min_distance << endl << endl;
-      }
+        }
     }
     lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(index));
     last_index[i] = index;
-  }
+    }
 
 
-  NS_LOG_LOGIC ("setting up applications");
+    NS_LOG_LOGIC ("setting up applications");
 
-  // randomize a bit start times to avoid simulation artifacts
-  // (e.g., buffer overflows due to packet transmissions happening
-  // exactly at the same time)
+    // randomize a bit start times to avoid simulation artifacts
+    // (e.g., buffer overflows due to packet transmissions happening
+    // exactly at the same time)
 
-  Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
-  startTimeSeconds->SetAttribute ("Min", DoubleValue (1));
-  startTimeSeconds->SetAttribute ("Max", DoubleValue (60));
+    Ptr<UniformRandomVariable> startTimeSeconds = CreateObject<UniformRandomVariable> ();
+    startTimeSeconds->SetAttribute ("Min", DoubleValue (1));
+    startTimeSeconds->SetAttribute ("Max", DoubleValue (60));
 
-  for (uint32_t u = 0; u < numberOfUes; ++u)
-  {
-      Ptr<Node> ue = ueNodes.Get (u);
-      // Set the default gateway for the UE
-      Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting (ue->GetObject<Ipv4> ());
-      ueStaticRouting->SetDefaultRoute (epcHelper->GetUeDefaultGatewayAddress (), 1);
-  }
+    for (uint32_t u = 0; u < numberOfUes; ++u)
+    {
+        Ptr<Node> ue = ueNodes.Get (u);
+        // Set the default gateway for the UE
+        Ptr<Ipv4StaticRouting> ueStaticRouting = ipv4RoutingHelper.GetStaticRouting (ue->GetObject<Ipv4> ());
+        ueStaticRouting->SetDefaultRoute (epcHelper->GetUeDefaultGatewayAddress (), 1);
+    }
 
-Ptr<FlowMonitor> flowMonitor;
-FlowMonitorHelper flowHelper;
-flowMonitor = flowHelper.InstallAll();
-  
-//enter radio range support that carries data between UE and EnodeB
-Ptr<EpcTft> tft = Create<EpcTft> ();
-EpcTft::PacketFilter pf;
-pf.localPortStart = 1234;
-pf.localPortEnd = 1234;
-tft->Add (pf);
-lteHelper->ActivateDedicatedEpsBearer (ueLteDevs, EpsBearer (EpsBearer::NGBR_VIDEO_TCP_DEFAULT), tft);
+    Ptr<FlowMonitor> flowMonitor;
+    FlowMonitorHelper flowHelper;
+    flowMonitor = flowHelper.InstallAll();
 
-uint16_t dlPort = 1234;
-uint16_t ulPort = 2000;
-uint16_t otherPort = 3000;
-ApplicationContainer clientApps[numberOfUes];
-ApplicationContainer serverApps[numberOfUes];
-float startTime = 1;
+    //enter radio range support that carries data between UE and EnodeB
+    Ptr<EpcTft> tft = Create<EpcTft> ();
+    EpcTft::PacketFilter pf;
+    pf.localPortStart = 1234;
+    pf.localPortEnd = 1234;
+    tft->Add (pf);
+    lteHelper->ActivateDedicatedEpsBearer (ueLteDevs, EpsBearer (EpsBearer::NGBR_VIDEO_TCP_DEFAULT), tft);
 
-Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (nPayloadBytes));
-// Config::SetDefault ("ns3::OnOffApplication::DataRate", StringValue ("100Mbps"));
-Config::SetDefault ("ns3::OnOffApplication::MaxBytes", UintegerValue (nMaxPackets*nPayloadBytes));
+    uint16_t dlPort = 1234;
+    uint16_t ulPort = 2000;
+    uint16_t otherPort = 3000;
+    ApplicationContainer clientApps[numberOfUes];
+    ApplicationContainer serverApps[numberOfUes];
+    float startTime = 1;
+
+    Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (nPayloadBytes));
+    // Config::SetDefault ("ns3::OnOffApplication::DataRate", StringValue ("100Mbps"));
+    Config::SetDefault ("ns3::OnOffApplication::MaxBytes", UintegerValue (nMaxPackets*nPayloadBytes));
 
 
-// generate traffic request to remote server
-// for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
-for (uint32_t u = 0; u < 1; ++u){
+    // generate traffic request to remote server
+    // for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
+    for (uint32_t u = 0; u < 1; ++u){
     ++ulPort;
     ++otherPort;
     PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
-                          Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
+                            Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
     PacketSinkHelper ulsinkHelper ("ns3::UdpSocketFactory",
-                          Address (InetSocketAddress (remoteHostAddr, ulPort)));
+                            Address (InetSocketAddress (remoteHostAddr, ulPort)));
     // UdpServerHelper dlUdpServerHelper (dlPort);
     // UdpServerHelper ulUdpServerHelper (ulPort);
     // PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
@@ -587,7 +588,7 @@ for (uint32_t u = 0; u < 1; ++u){
     serverApps[u].Add (ulsinkHelper.Install (remoteHost));
     // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
-    
+
     OnOffHelper dlOnOffHelper ("ns3::UdpSocketFactory", 
                         Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
     OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
