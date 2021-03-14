@@ -149,7 +149,7 @@
               << std::endl;
   }
 
-  void TxTrace ( Ptr< const Packet > packet, const Address source, const Address destination)
+  void TxTrace ()
   {
     double now = Simulator::Now().GetSeconds();
     std::cout << "now: " << now << "\t";
