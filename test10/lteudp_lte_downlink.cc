@@ -618,8 +618,7 @@ int main (int argc, char *argv[])
     // PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
     // PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
     // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
-    // serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
-    // serverApps[u].Add (ulsinkHelper.Install (remoteHost));
+    
     serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
     // serverApps[u].Add (ulsinkHelper.Install (remoteHost));
     // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
