@@ -149,10 +149,34 @@ std::cout << context
             << std::endl;
 }
 
+//函數功能: 傳入一個字串s，以splitSep裡的字元當做分割字符，回傳vector<string>
+vector<string> splitStr2Vec(string s, string splitSep)
+{
+    vector<string> result;
+    int current = 0; //最初由 0 的位置開始找
+    int next = 0;
+    while (next != -1)
+    {
+        next = s.find_first_of(splitSep, current); //尋找從current開始，出現splitSep的第一個位置(找不到則回傳-1)
+        if (next != current)
+        {
+            string tmp = s.substr(current, next - current);
+            if(!tmp.empty())  //忽略空字串(若不寫的話，尾巴都是分割符會錯)
+            {
+                result.push_back(tmp);
+            }
+        }
+        current = next + 1; //下次由 next + 1 的位置開始找起。
+    }
+    return result;
+}
+
 void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
 {
-double now = Simulator::Now().GetSeconds();
-std::cout << "TxTrace: "
+    vector<string> sep = splitStr2Vec(context, "/");
+    cout << "test: " << sep[1]
+    double now = Simulator::Now().GetSeconds();
+    std::cout << "TxTrace: "
         << "now: " << now
         << context
         << ", packetSize: " << pkt->GetSize()
@@ -163,9 +187,9 @@ std::cout << "TxTrace: "
 
 void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
 {
-double now = Simulator::Now().GetSeconds();
-std::cout << "RxTrace: "
-        << "now: " << now
+    double now = Simulator::Now().GetSeconds();
+    std::cout << "RxTrace: "
+        << "now: " << now << " "
         << context
         << ", packetSize: " << pkt->GetSize()
         << ", source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
