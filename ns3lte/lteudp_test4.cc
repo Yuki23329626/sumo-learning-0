@@ -296,7 +296,8 @@ int main (int argc, char *argv[])
   double enbTxPowerDbm = 46.0;
   double interPacketInterval = 1000.0;
   uint16_t sdnInterval = 200; // millisecond
-  uint16_t nMaxPackets = 2048;
+  uint16_t nMaxPackets = 1024;
+  uint16_t nPayloadBytes = 1024;
   isSdnEnabled = true;
   // Ptr<LteUePhy> uephy;
   // Ptr<MobilityModel> ueMobilityModel;
@@ -533,9 +534,9 @@ ApplicationContainer clientApps[numberOfUes];
 ApplicationContainer serverApps[numberOfUes];
 // float startTime = 1;
 
-Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (1024));
+Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (nPayloadBytes));
 Config::SetDefault ("ns3::OnOffApplication::DataRate", StringValue ("102400kb/s"));
-Config::SetDefault ("ns3::OnOffApplication::MaxBytes", UintegerValue (1024*1024));
+Config::SetDefault ("ns3::OnOffApplication::MaxBytes", UintegerValue (nMaxPackets*nPayloadBytes));
 
 
 // generate traffic request to remote server
