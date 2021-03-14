@@ -563,8 +563,10 @@ for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
                         Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
     OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
                 Address (InetSocketAddress (remoteHostAddr, ulPort)));
-    dlOnOffHelper.SetConstantRate (DataRate ("102400kb/s"));
-    ulOnOffHelper.SetConstantRate (DataRate ("102400kb/s"));
+    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("100Mbps"));
+    dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
+    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("100Mbps"));
+    dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
 
     // UdpClientHelper client (ueIpIfaces.GetAddress (u), otherPort);
     // client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
