@@ -362,7 +362,7 @@ int main (int argc, char *argv[])
     uint16_t sdnInterval = 200; // millisecond
     uint16_t nMaxPackets = 1024;
     uint16_t nPayloadBytes = 1024;
-    isSdnEnabled = ture;
+    isSdnEnabled = true;
     // Ptr<LteUePhy> uephy;
     // Ptr<MobilityModel> ueMobilityModel;
     // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
