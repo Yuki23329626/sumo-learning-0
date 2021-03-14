@@ -535,6 +535,7 @@ ApplicationContainer serverApps[numberOfUes];
 
 Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (1024));
 Config::SetDefault ("ns3::OnOffApplication::DataRate", StringValue ("102400kb/s"));
+Config::SetDefault ("ns3::OnOffApplication::MaxBytes", UintegerValue (1024*1024));
 
 // generate traffic request to remote server
 for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
