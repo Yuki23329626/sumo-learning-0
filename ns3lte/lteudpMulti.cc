@@ -658,10 +658,10 @@ for (uint32_t u = startUe; u < endUe; ++u){
         Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
     OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
         Address (InetSocketAddress (remoteHostAddr, ulPort)));
-    // dlOnOffHelper.SetAttribute ("DataRate",StringValue ("5000kbps")); // 500kbps
+    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("1000kbps")); // 500kbps
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    // ulOnOffHelper.SetAttribute ("DataRate",StringValue ("2000kbps"));
+    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("500kbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
 
