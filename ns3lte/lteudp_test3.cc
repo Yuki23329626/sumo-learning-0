@@ -547,7 +547,7 @@ uint16_t ulPort = 2000;
 uint16_t otherPort = 3000;
 ApplicationContainer clientApps[numberOfUes];
 ApplicationContainer serverApps[numberOfUes];
-// float startTime = 1;
+float startTime = 1;
 
 // generate traffic request to remote server
 for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
