@@ -326,7 +326,7 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
             // lteHelper->AttachToClosestEnb (ueLteDevs->Get (i), enbLteDevs->Get (index));
 
             cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ue: " << i << ", last_index: " << last_index[i] << ", next_index: " << index << endl;
-
+            if(last_index[i] == index) return; 
             std::cout << "SHIT7" << std::endl;
             lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
             std::cout << "SHIT8" << std::endl;
@@ -429,7 +429,7 @@ int main (int argc, char *argv[])
     // lteHelper->SetHandoverAlgorithmAttribute ("NeighbourCellOffset",
     //                                           UintegerValue (1));
 
-    lteHelper->SetHandoverAlgorithmType ("ns3::A3RsrpHandoverAlgorithm");
+    // lteHelper->SetHandoverAlgorithmType ("ns3::A3RsrpHandoverAlgorithm");
     lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",
                                                 DoubleValue (3.0));
     lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
