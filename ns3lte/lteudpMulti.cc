@@ -379,8 +379,8 @@ int main (int argc, char *argv[])
     bool isUplink = true;
     string animFile = "lte_udp_test_handover.xml";
     string traceFile = "scratch/test10.tcl";
-    string fileEnableAsciiAll = "serverpgw_test_handover.tr"
-    string fileEnablePcapAll = "pgw-hostudp_test_handover"
+    string fileEnableAsciiAll = "serverpgw_test_handover.tr";
+    string fileEnablePcapAll = "pgw-hostudp_test_handover";
     // Ptr<LteUePhy> uephy;
     // Ptr<MobilityModel> ueMobilityModel;
     // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
