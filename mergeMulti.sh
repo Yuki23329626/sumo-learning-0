@@ -2,6 +2,8 @@
 
 all_num=19
 prefix="log.lteudpMultiPart"
+targerFile="log.total"
+rm $targerFile
 
 a=$(date +%H%M%S)
 
