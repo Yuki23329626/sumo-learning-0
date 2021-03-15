@@ -617,8 +617,8 @@ int main (int argc, char *argv[])
 
 
     // generate traffic request to remote server
-    for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
-    // for (uint32_t u = 0; u < 1; ++u){
+    // for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
+    for (uint32_t u = 0; u < 1; ++u){
     ++ulPort;
     ++otherPort;
     PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
@@ -645,10 +645,10 @@ int main (int argc, char *argv[])
         Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
     OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
         Address (InetSocketAddress (remoteHostAddr, ulPort)));
-    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("5Mbps")); // 0.5Mbps
+    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("500kbps")); // 500kbps
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("2Mbps"));
+    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("250kbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
 
