@@ -646,13 +646,11 @@ int main (int argc, char *argv[])
     OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
         Address (InetSocketAddress (remoteHostAddr, ulPort)));
     dlOnOffHelper.SetAttribute ("DataRate",StringValue ("10Mbps"));
-    // dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
+    dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nPayloadBytes));
     ulOnOffHelper.SetAttribute ("DataRate",StringValue ("2Mbps"));
-    // dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
+    dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nPayloadBytes));
 
     // UdpClientHelper client (ueIpIfaces.GetAddress (u), otherPort);
     // client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));

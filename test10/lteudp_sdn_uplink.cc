@@ -433,7 +433,7 @@ int main (int argc, char *argv[])
     lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",
                                                 DoubleValue (3.0));
     lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
-                                                TimeValue (MilliSeconds (1000)));
+                                                TimeValue (MilliSeconds (256)));
 
     Ptr<Node> pgw = epcHelper->GetPgwNode ();
 
@@ -646,13 +646,11 @@ int main (int argc, char *argv[])
     OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
         Address (InetSocketAddress (remoteHostAddr, ulPort)));
     dlOnOffHelper.SetAttribute ("DataRate",StringValue ("10Mbps"));
-    // dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
+    dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nPayloadBytes));
     ulOnOffHelper.SetAttribute ("DataRate",StringValue ("2Mbps"));
-    // dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
+    dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nPayloadBytes));
 
     // UdpClientHelper client (ueIpIfaces.GetAddress (u), otherPort);
     // client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
