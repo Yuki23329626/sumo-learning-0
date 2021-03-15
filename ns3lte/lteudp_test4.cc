@@ -177,11 +177,12 @@ vector<string> splitStr2Vec(string s, string splitSep)
 
 void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, const Address& dst)
 {
+    std::cout << "SHIT1 " << std::endl;
     vector<string> sep = splitStr2Vec(context, "/");
     // cout << "node: " << sep[1] << " ";
     int iNode = std::stoi( sep[1] ) - (4 + 12);
     Ipv4Address sourceAddress;
-    std::cout << "iNode: " << iNode << std::endl;
+    std::cout << "SHIT2 " << std::endl;
     if( iNode < 0 ){
         sourceAddress = "1.0.0.2";
     }else{
@@ -195,12 +196,13 @@ void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, co
         << " source: " << sourceAddress
         << " destination: " << InetSocketAddress::ConvertFrom(dst).GetIpv4()
         << " " << std::endl;
-    
+    std::cout << "SHIT3 " << std::endl;
 }
 
 void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
 {
     double now = Simulator::Now().GetSeconds();
+    std::cout << "SHIT4 " << std::endl;
     std::cout << "RxTrace:"
         << " now: " << now
         << " " << context
@@ -208,6 +210,7 @@ void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, cons
         << " source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
         << " destination: " << InetSocketAddress::ConvertFrom(b).GetIpv4()
         << " " << std::endl;
+    std::cout << "SHIT5 " << std::endl;
 }
 
 AnimationInterface * pAnim = 0;
