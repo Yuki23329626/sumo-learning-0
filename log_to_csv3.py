@@ -69,6 +69,8 @@ downloadDelay = 0.0
 
 index = 0
 for key in sinkPacketEnd:
+    #if(key == list(sinkPacketEnd.keys())[-2]):
+    #    break
     index = index + 1
     print("index:", index)
     print("source:", key.split(" ")[0])
@@ -91,11 +93,15 @@ half = index/2
 print("\ntotal packet loss:", (1 - totalReceived / (index*nMaxBytes))*100, "%")
 print("average delay(s):", totalDelay / index)
 
-print("\ndownload packet loss:", (1 - downloadReceived / (half*nMaxBytes))*100, "%")
-print("downlaod average delay(s):", downloadDelay / half)
+print("\ndownload video packet loss:", (1 - downloadReceived / (half*nMaxBytes))*100, "%")
+print("downlaod video average delay(s):", downloadDelay / half)
 
-print("\nupload packet loss:", (1 - uploadReceived / (half*nMaxBytes))*100, "%")
-print("upload average delay(s):", uploadDelay / half)
+print("\nupload video packet loss:", (1 - uploadReceived / (half*nMaxBytes))*100, "%")
+print("upload video average delay(s):", uploadDelay / half)
+
+print("downlaod average delay(s):", (downloadDelay / half) / 1024)
+
+print("upload average delay(s):", (uploadDelay / half) / 1024)
 
 print("")
 
