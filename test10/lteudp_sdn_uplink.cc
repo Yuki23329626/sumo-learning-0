@@ -617,8 +617,8 @@ int main (int argc, char *argv[])
 
 
     // generate traffic request to remote server
-    // for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
-    for (uint32_t u = 0; u < 1; ++u){
+    for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
+    // for (uint32_t u = 0; u < 1; ++u){
     ++ulPort;
     ++otherPort;
     PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
