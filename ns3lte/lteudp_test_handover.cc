@@ -365,7 +365,7 @@ int main (int argc, char *argv[])
     uint16_t numberOfEnbs = 12;
     double distance = 500.0; // m
     double speed = 20;       // m/s
-    double simTime = 920; // 1500 m / 20 m/s = 75 secs
+    double simTime = 1000; // 1500 m / 20 m/s = 75 secs
     double enbTxPowerDbm = 46.0;
     double interPacketInterval = 1000.0;
     double interAppInterval = 10.0; // sec
@@ -384,8 +384,8 @@ int main (int argc, char *argv[])
     last_index[i] = -1;
     }
 
-    std::string animFile = "lte_udp_test_handover.xml";
-    string traceFile = "scratch/test_handover.tcl";
+    std::string animFile = "lte_udp_test4.xml";
+    string traceFile = "scratch/test10.tcl";
     // string traceFile = "scratch/oneUE.tcl";
     Ns2MobilityHelper ns2 = Ns2MobilityHelper(traceFile);
 
@@ -617,8 +617,8 @@ int main (int argc, char *argv[])
 
 
     // generate traffic request to remote server
-    // for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
-    for (uint32_t u = 0; u < 1; ++u){
+    for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
+    // for (uint32_t u = 0; u < 1; ++u){
     ++ulPort;
     ++otherPort;
     PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
@@ -645,14 +645,12 @@ int main (int argc, char *argv[])
         Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
     OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
         Address (InetSocketAddress (remoteHostAddr, ulPort)));
-    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("10Mbps"));
-    // dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
+    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("5Mbps")); // 0.5Mbps
+    dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nPayloadBytes));
-    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("2Mbps"));
-    // dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
+    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("5Mbps"));
+    dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nPayloadBytes));
 
     // UdpClientHelper client (ueIpIfaces.GetAddress (u), otherPort);
     // client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
@@ -693,7 +691,7 @@ int main (int argc, char *argv[])
 
   // Uncomment to enable PCAP tracing
   // p2ph.EnablePcapAll("lena-x2-handover-measures");
-  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace_test_handover.tr"));
+  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace4.tr"));
   p2ph.EnablePcapAll("pgw-hostudp");
 
   lteHelper->EnablePhyTraces ();
@@ -747,7 +745,7 @@ int main (int argc, char *argv[])
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
-  flowMonitor->SerializeToXmlFile("flowMonitor_test_handover.xml", true, true);
+  flowMonitor->SerializeToXmlFile("flowMonitor4.xml", true, true);
 
   // GtkConfigStore config;
   // config.ConfigureAttributes ();

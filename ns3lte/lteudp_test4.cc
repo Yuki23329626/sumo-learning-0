@@ -645,7 +645,7 @@ int main (int argc, char *argv[])
         Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
     OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
         Address (InetSocketAddress (remoteHostAddr, ulPort)));
-    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("10Mbps"));
+    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("10Mbps")); // 0.5Mbps
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
     ulOnOffHelper.SetAttribute ("DataRate",StringValue ("2Mbps"));
