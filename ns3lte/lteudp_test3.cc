@@ -216,54 +216,64 @@ AnimationInterface * pAnim = 0;
 Ptr<LteHelper> lteHelper;
 int *last_index;
 bool isSdnEnabled;
-void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, uint16_t numberOfUes, uint16_t numberOfEnbs){
-  if(!isSdnEnabled) return;
-  for(int i=0; i<numberOfUes; i++){
-    Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
-    Vector pos_ue = ueMobilityModel->GetPosition ();
-    // std::cout << Simulator::Now ().GetSeconds() << ", ue_x=" << pos_ue.x << ", ue_y=" << pos_ue.y << std::endl;
-    int index = -1;
-    unsigned long long int min_distance = std::numeric_limits<int>::max();
-    for(int j=0; j<numberOfEnbs; j++){
-      Ptr<const MobilityModel> enbMobilityModel = enbNodes->Get(j)->GetObject<MobilityModel>();
-      Vector pos_enb = enbMobilityModel->GetPosition ();
-      // std::cout << Simulator::Now ().GetSeconds() << ", enb_x=" << pos_enb.x << ", enb_y=" << pos_enb.y << std::endl;
-      float current_distance = sqrt((pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y));
-      if( current_distance < min_distance ){
-        min_distance = current_distance;
-        index = j;
-        // std::cout << "ue: " << i <<  ", enb:" << index << ", distance: " << min_distance << endl << endl;
-      }
-    }
-    if(last_index[i] != index){
-      bool hasRnti = false;
-      for(int j=0; j<numberOfEnbs; j++){
-        uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
-        bool hasUeManager = enbLteDevs->Get(j)->GetObject<LteEnbNetDevice>()->GetRrc()->HasUeManager(ueRNTI); 
-        if(hasUeManager){
-          uint16_t ueIMSI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetImsi();
-          uint16_t enbIMSI = enbLteDevs->Get(j)->GetObject<LteEnbNetDevice>()->GetRrc()->GetUeManager(ueRNTI)->GetImsi();
-          // cout << "j: " << j << ", ueIMSI: " << ueIMSI << ", enbIMSI: " << enbIMSI << endl;
-          if(ueIMSI == enbIMSI){
-            last_index[i] = j;
-            hasRnti = true;
-            break;
-          }
-        }
-      }
-      if(!hasRnti) return; 
-      // uint16_t ueCellId = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetCellId ();
-      // uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
-      // uint16_t enbCellId = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetCellId ();
-      // cout << "ueCellId: " << ueCellId << ", ueRNTI: " << ueRNTI << ", enbCellId: " << enbCellId << endl;
-      // lteHelper->AttachToClosestEnb (ueLteDevs->Get (i), enbLteDevs->Get (index));
 
-      // cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ue: " << i << ", last_index: " << last_index[i] << ", next_index: " << index << endl;
-      
-      lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
-      last_index[i] = index;
+void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeContainer* enbNodes, NetDeviceContainer* enbLteDevs, uint16_t numberOfUes, uint16_t numberOfEnbs)
+{
+    if(!isSdnEnabled) return;
+    for(int i=0; i<numberOfUes; i++){
+        Ptr<const MobilityModel> ueMobilityModel = ueNodes->Get(i)->GetObject<MobilityModel>();
+        Vector pos_ue = ueMobilityModel->GetPosition ();
+        // std::cout << Simulator::Now ().GetSeconds() << ", ue_x=" << pos_ue.x << ", ue_y=" << pos_ue.y << std::endl;
+        int index = -1;
+        unsigned long long int min_distance = std::numeric_limits<int>::max();
+        for(int j=0; j<numberOfEnbs; j++){
+            Ptr<const MobilityModel> enbMobilityModel = enbNodes->Get(j)->GetObject<MobilityModel>();
+            Vector pos_enb = enbMobilityModel->GetPosition ();
+            // std::cout << Simulator::Now ().GetSeconds() << ", enb_x=" << pos_enb.x << ", enb_y=" << pos_enb.y << std::endl;
+            float current_distance = sqrt((pos_ue.x-pos_enb.x)*(pos_ue.x-pos_enb.x)+(pos_ue.y-pos_enb.y)*(pos_ue.y-pos_enb.y));
+            if( current_distance < min_distance ){
+                min_distance = current_distance;
+                index = j;
+                // std::cout << "ue: " << i <<  ", enb:" << index << ", distance: " << min_distance << endl << endl;
+            }
+        }
+        if(last_index[i] != index){
+            bool hasRnti = false;
+            for(int j=0; j<numberOfEnbs; j++){
+                std::cout << "check1" << std::endl;
+                uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
+                std::cout << "check2" << std::endl;
+                bool hasUeManager = enbLteDevs->Get(j)->GetObject<LteEnbNetDevice>()->GetRrc()->HasUeManager(ueRNTI); 
+                std::cout << "check3" << std::endl;
+                if(hasUeManager){
+                    std::cout << "check4" << std::endl;
+                    uint16_t ueIMSI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetImsi();
+                    std::cout << "check5" << std::endl;
+                    uint16_t enbIMSI = enbLteDevs->Get(j)->GetObject<LteEnbNetDevice>()->GetRrc()->GetUeManager(ueRNTI)->GetImsi();
+                    std::cout << "check6" << std::endl;
+                    // cout << "j: " << j << ", ueIMSI: " << ueIMSI << ", enbIMSI: " << enbIMSI << endl;
+                    if(ueIMSI == enbIMSI){
+                        last_index[i] = j;
+                        hasRnti = true;
+                        break;
+                    }
+                }
+            }
+            if(!hasRnti) return; 
+            uint16_t ueCellId = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetCellId ();
+            uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
+            uint16_t enbCellId = enbLteDevs->Get(index)->GetObject<LteEnbNetDevice>()->GetCellId ();
+            cout << "ueCellId: " << ueCellId << ", ueRNTI: " << ueRNTI << ", enbCellId: " << enbCellId << endl;
+            // lteHelper->AttachToClosestEnb (ueLteDevs->Get (i), enbLteDevs->Get (index));
+
+            cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ue: " << i << ", last_index: " << last_index[i] << ", next_index: " << index << endl;
+            if(last_index[i] == index) return; 
+            std::cout << "check7" << std::endl;
+            lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
+            std::cout << "check8" << std::endl;
+            last_index[i] = index;
+        }
     }
-  }
 }
   
 int main (int argc, char *argv[])
@@ -295,9 +305,11 @@ int main (int argc, char *argv[])
   double simTime = 60; // 1500 m / 20 m/s = 75 secs
   double enbTxPowerDbm = 46.0;
   double interPacketInterval = 1000.0;
-  uint16_t sdnInterval = 200; // millisecond
+  uint16_t sdnInterval = 100; // millisecond
   uint16_t nMaxPackets = 2048;
   isSdnEnabled = true;
+  bool isDownlink = true;
+  bool isUplink = true;
   // Ptr<LteUePhy> uephy;
   // Ptr<MobilityModel> ueMobilityModel;
   // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
@@ -336,6 +348,10 @@ int main (int argc, char *argv[])
   cmd.AddValue("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
   cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
   cmd.AddValue ("traceFile",  "File Name for Trace Input", traceFile);
+
+  cmd.AddValue ("isSdnEnabled",  "if sdn is enabled", isSdnEnabled);
+  cmd.AddValue ("isDownlink",  "if downlink is enabled", isDownlink);
+  cmd.AddValue ("isUplink",  "if uplink is enabled", isUplink);
 
   cmd.Parse (argc, argv);
 
@@ -533,10 +549,6 @@ ApplicationContainer clientApps[numberOfUes];
 ApplicationContainer serverApps[numberOfUes];
 // float startTime = 1;
 
-Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (1024));
-Config::SetDefault ("ns3::OnOffApplication::DataRate", StringValue ("102400kb/s"));
-Config::SetDefault ("ns3::OnOffApplication::MaxBytes", UintegerValue (1024*1024));
-
 // generate traffic request to remote server
 for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
   ++ulPort;
@@ -575,10 +587,10 @@ for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
   //     }
 
   // Install and start applications on UEs and remote host
-  float startTime = startTimeSeconds->GetValue ();
+  // float startTime = startTimeSeconds->GetValue ();
   serverApps[u].Start (Seconds(0));
   clientApps[u].Start (Seconds(startTime));
-  // startTime = startTime + 0.01;
+  startTime = startTime + 0.01;
 }
 //   // Install and start applications on UEs and remote host
 // Time startTime = Seconds (startTimeSeconds->GetValue ());
