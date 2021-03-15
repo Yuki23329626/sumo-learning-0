@@ -7,7 +7,16 @@ git pull
 cp ./ns3lte/lteudpMulti.cc ../scratch/
 cp ./test10/test10.tcl ../scratch/
 cd ..
-(./waf --run "scratch/lteudpMulti --numberOfUes=10 --startUe=0 --endUe=5 --isSdnEnabled=true --isDownlink=true --isUplink=true" > log.lteudpMultiPart0 2>&1) &
-(./waf --run "scratch/lteudpMulti --numberOfUes=10 --startUe=5 --endUe=10 --isSdnEnabled=true --isDownlink=true --isUplink=true" > log.lteudpMultiPart5 2>&1) &
+
+logPrefixName = "log.lteudpMultiPart"
+
+for ((i=0; i<2; i++))
+do
+    logName = "${logPrefixName}${i}"
+    echo "logName = ${logName}"
+    endUe = $(($i+5))
+    echo "endUe = ${endUe}"
+    (./waf --run "scratch/lteudpMulti --numberOfUes=10 --startUe=${i} --endUe=${endUe} --isSdnEnabled=true --isDownlink=true --isUplink=true" > $logName 2>&1) &
+done
 
 wait
