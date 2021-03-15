@@ -12,24 +12,38 @@ if(filename == "" or not os.path.exists(filename)):
 data = open(filename, 'r')
 lines = data.readlines()
 
-count_sent = 0
-count = 0
-sum = 0
+upload_sent = 0
+upload_received = 0
+download_sent = 0
+download_received = 0
+
+upload_delay_sum = 0
+download_delay_sum = 0
+
 with open("csv_"+filename+".csv", 'w') as csvfile:
     for line in lines:
         #if(count == 10):
         #    break
         string1 = line.split(" ")
         if(string1[0] == "TraceDelay"):
-            count_sent = count_sent + 1
+            if(string1[5] == "1.0.0.2"):
+                upload_sent = upload_sent + 1
+            else:
+                download_sent = download_sent + 1
         if(string1[0] == "TraceDelay:"):
             floatDelay = eval(string1[16][1:-3])/1000000000
-            sum = sum + floatDelay
-            list1 = list(str(floatDelay).split(" "))
+            if(string1[5] == "1.0.0.2"):
+                download_delay_sum = download_delay_sum + floatDelay
+            else:
+                upload_delay_sum = upload_delay_sum + floatDelay
+            #list1 = list(str(floatDelay).split(" "))
             # print(str(eval(string1[16][1:-3])/1000000000))
-            writer = csv.writer(csvfile)
-            writer.writerow(list1)
-            count = count + 1
-print("packet_sent: ", count_sent)
-print("packet_received: ", count)
-print("average delay(s): ", sum/count)
+            #writer = csv.writer(csvfile)
+            #writer.writerow(list1)
+            #count = count + 1
+print("\nupload_sent: ", upload_sent)
+print("upload_received: ", upload_received)
+print("average upload delay(s): ", upload_delay_sum/upload_received)
+print("\ndownload_sent: ", download_sent)
+print("download_received: ", download_received)
+print("average download delay(s): ", download_delay_sum/download_received)
