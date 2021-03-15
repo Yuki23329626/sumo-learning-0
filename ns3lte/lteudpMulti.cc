@@ -299,17 +299,17 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
         if(last_index[i] != index){
             bool hasRnti = false;
             for(int j=0; j<numberOfEnbs; j++){
-                std::cout << "SHIT1" << std::endl;
+                std::cout << "check1" << std::endl;
                 uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
-                std::cout << "SHIT2" << std::endl;
+                std::cout << "check2" << std::endl;
                 bool hasUeManager = enbLteDevs->Get(j)->GetObject<LteEnbNetDevice>()->GetRrc()->HasUeManager(ueRNTI); 
-                std::cout << "SHIT3" << std::endl;
+                std::cout << "check3" << std::endl;
                 if(hasUeManager){
-                    std::cout << "SHIT4" << std::endl;
+                    std::cout << "check4" << std::endl;
                     uint16_t ueIMSI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetImsi();
-                    std::cout << "SHIT5" << std::endl;
+                    std::cout << "check5" << std::endl;
                     uint16_t enbIMSI = enbLteDevs->Get(j)->GetObject<LteEnbNetDevice>()->GetRrc()->GetUeManager(ueRNTI)->GetImsi();
-                    std::cout << "SHIT6" << std::endl;
+                    std::cout << "check6" << std::endl;
                     // cout << "j: " << j << ", ueIMSI: " << ueIMSI << ", enbIMSI: " << enbIMSI << endl;
                     if(ueIMSI == enbIMSI){
                         last_index[i] = j;
@@ -327,9 +327,9 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
 
             cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ue: " << i << ", last_index: " << last_index[i] << ", next_index: " << index << endl;
             if(last_index[i] == index) return; 
-            std::cout << "SHIT7" << std::endl;
+            std::cout << "check7" << std::endl;
             lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
-            std::cout << "SHIT8" << std::endl;
+            std::cout << "check8" << std::endl;
             last_index[i] = index;
         }
     }
@@ -365,7 +365,7 @@ int main (int argc, char *argv[])
     uint16_t numberOfEnbs = 12;
     double distance = 500.0; // m
     double speed = 20;       // m/s
-    double simTime = 1000; // 1500 m / 20 m/s = 75 secs
+    double simTime = 60; // 1500 m / 20 m/s = 75 secs
     double enbTxPowerDbm = 46.0;
     double interPacketInterval = 1000.0;
     double interAppInterval = 10.0; // sec
@@ -377,6 +377,10 @@ int main (int argc, char *argv[])
     isSdnEnabled = true;
     bool isDownlink = true;
     bool isUplink = true;
+    string animFile = "lte_udp_test_handover.xml";
+    string traceFile = "scratch/test10.tcl";
+    string fileEnableAsciiAll = "serverpgw_test_handover.tr"
+    string fileEnablePcapAll = "pgw-hostudp_test_handover"
     // Ptr<LteUePhy> uephy;
     // Ptr<MobilityModel> ueMobilityModel;
     // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
@@ -386,8 +390,6 @@ int main (int argc, char *argv[])
     last_index[i] = -1;
     }
 
-    std::string animFile = "lte_udp_test4.xml";
-    string traceFile = "scratch/test10.tcl";
     // string traceFile = "scratch/oneUE.tcl";
     Ns2MobilityHelper ns2 = Ns2MobilityHelper(traceFile);
 
@@ -406,18 +408,23 @@ int main (int argc, char *argv[])
     // Command line arguments
     CommandLine cmd (__FILE__);
     cmd.AddValue ("simTime", "Total duration of the simulation (in seconds)", simTime);
+    cmd.AddValue ("distance", "Distance between eNBs [m]", distance);
     cmd.AddValue ("speed", "Speed of the UE (default = 20 m/s)", speed);
     cmd.AddValue ("enbTxPowerDbm", "TX power [dBm] used by HeNBs (default = 46.0)", enbTxPowerDbm);
 
-    cmd.AddValue("numberOfNodes", "Number of eNodeBs + UE pairs", numberOfEnbs);
-    cmd.AddValue("simTime", "Total duration of the simulation [s])", simTime);
-    cmd.AddValue("distance", "Distance between eNBs [m]", distance);
-    cmd.AddValue("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
+    cmd.AddValue ("numberOfUes", "Number of UEs", numberOfUes);
+    cmd.AddValue ("numberOfEnbs", "Number of ENBs", numberOfEnbs);
+    cmd.AddValue ("simTime", "Total duration of the simulation [s])", simTime);
+    cmd.AddValue ("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
     cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
     cmd.AddValue ("traceFile",  "File Name for Trace Input", traceFile);
 
     cmd.AddValue ("startUe",  "application start from", startUe);
     cmd.AddValue ("endUe",  "application end", endUe);
+
+    cmd.AddValue ("isSdnEnabled",  "if sdn is enabled", isSdnEnabled);
+    cmd.AddValue ("isDownlink",  "if downlink is enabled", isDownlink);
+    cmd.AddValue ("isUplink",  "if uplink is enabled", isUplink);
 
     cmd.Parse (argc, argv);
 
@@ -696,7 +703,7 @@ for (uint32_t u = startUe; u < endUe; ++u){
 
   // Uncomment to enable PCAP tracing
   // p2ph.EnablePcapAll("lena-x2-handover-measures");
-  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace4.tr"));
+  p2ph.EnableAsciiAll (ascii.CreateFileStream (fileEnableAsciiAll));
   p2ph.EnablePcapAll("pgw-hostudp");
 
   lteHelper->EnablePhyTraces ();
