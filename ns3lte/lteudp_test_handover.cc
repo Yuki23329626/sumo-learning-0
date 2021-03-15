@@ -619,7 +619,7 @@ int main (int argc, char *argv[])
 
 
 // generate traffic request to remote server
-for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
+for (uint32_t u = startUe; u < endUe; ++u){
     cout << "ueNodes.GetN ()" << ueNodes.GetN () << endl;
     // for (uint32_t u = 0; u < 1; ++u){
     ++ulPort;
