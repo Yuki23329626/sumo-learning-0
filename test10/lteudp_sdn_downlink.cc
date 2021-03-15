@@ -433,7 +433,7 @@ int main (int argc, char *argv[])
     lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",
                                                 DoubleValue (3.0));
     lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
-                                                TimeValue (MilliSeconds (1000)));
+                                                TimeValue (MilliSeconds (256)));
 
     Ptr<Node> pgw = epcHelper->GetPgwNode ();
 
