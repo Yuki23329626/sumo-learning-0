@@ -618,13 +618,13 @@ int main (int argc, char *argv[])
 
     // generate traffic request to remote server
     // for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
-    for (uint32_t u = 0; u < 1; ++u){
+for (uint32_t u = 0; u < 1; ++u){
     ++ulPort;
     ++otherPort;
     PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
-                            Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
+            Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
     PacketSinkHelper ulsinkHelper ("ns3::UdpSocketFactory",
-                            Address (InetSocketAddress (remoteHostAddr, ulPort)));
+            Address (InetSocketAddress (remoteHostAddr, ulPort)));
     // UdpServerHelper dlUdpServerHelper (dlPort);
     // UdpServerHelper ulUdpServerHelper (ulPort);
     // PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
@@ -633,18 +633,18 @@ int main (int argc, char *argv[])
     // serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
     // serverApps[u].Add (ulsinkHelper.Install (remoteHost));
     if(isDownlink){
-      serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
+        serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
     } 
     if(isUplink){
-      serverApps[u].Add (ulsinkHelper.Install (remoteHost));
+        serverApps[u].Add (ulsinkHelper.Install (remoteHost));
     }
     // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
 
     OnOffHelper dlOnOffHelper ("ns3::UdpSocketFactory", 
-                        Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
+        Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
     OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
-                Address (InetSocketAddress (remoteHostAddr, ulPort)));
+        Address (InetSocketAddress (remoteHostAddr, ulPort)));
     dlOnOffHelper.SetAttribute ("DataRate",StringValue ("10Mbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     // dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
@@ -659,10 +659,10 @@ int main (int argc, char *argv[])
     // client.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
 
     if(isDownlink){
-      clientApps[u].Add (dlOnOffHelper.Install (remoteHost));
+        clientApps[u].Add (dlOnOffHelper.Install (remoteHost));
     }
     if(isUplink){
-      clientApps[u].Add (ulOnOffHelper.Install (ueNodes.Get(u)));
+        clientApps[u].Add (ulOnOffHelper.Install (ueNodes.Get(u)));
     }
     // if (u+1 < ueNodes.GetN ()){
     //     clientApps.Add (client.Install (ueNodes.Get(u+1)));
