@@ -369,6 +369,8 @@ int main (int argc, char *argv[])
     double enbTxPowerDbm = 46.0;
     double interPacketInterval = 1000.0;
     double interAppInterval = 10.0; // sec
+    uint16_t startUe = 0;
+    uint16_t endUe = numberOfUes;
     uint16_t sdnInterval = 200; // millisecond
     uint16_t nMaxPackets = 1024;
     uint16_t nPayloadBytes = 1024;
@@ -616,9 +618,10 @@ int main (int argc, char *argv[])
     Config::SetDefault ("ns3::OnOffApplication::MaxBytes", UintegerValue (nMaxPackets*nPayloadBytes));
 
 
-    // generate traffic request to remote server
-    // for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
-    for (uint32_t u = 0; u < 1; ++u){
+// generate traffic request to remote server
+for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
+    cout << "ueNodes.GetN ()" << ueNodes.GetN () << endl;
+    // for (uint32_t u = 0; u < 1; ++u){
     ++ulPort;
     ++otherPort;
     PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
@@ -645,10 +648,10 @@ int main (int argc, char *argv[])
         Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
     OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
         Address (InetSocketAddress (remoteHostAddr, ulPort)));
-    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("500kbps")); // 500kbps
+    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("5Mbps")); // 500kbps
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("250kbps"));
+    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("2Mbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
 
