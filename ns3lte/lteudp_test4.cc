@@ -326,7 +326,7 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
             // lteHelper->AttachToClosestEnb (ueLteDevs->Get (i), enbLteDevs->Get (index));
 
             cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ue: " << i << ", last_index: " << last_index[i] << ", next_index: " << index << endl;
-
+            if(last_index[i] == index) return; 
             std::cout << "SHIT7" << std::endl;
             lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
             std::cout << "SHIT8" << std::endl;
@@ -693,7 +693,7 @@ int main (int argc, char *argv[])
 
   // Uncomment to enable PCAP tracing
   // p2ph.EnablePcapAll("lena-x2-handover-measures");
-  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace3.tr"));
+  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace4.tr"));
   p2ph.EnablePcapAll("pgw-hostudp");
 
   lteHelper->EnablePhyTraces ();
