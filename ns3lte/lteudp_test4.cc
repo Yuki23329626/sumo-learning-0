@@ -369,7 +369,7 @@ int main (int argc, char *argv[])
     double enbTxPowerDbm = 46.0;
     double interPacketInterval = 1000.0;
     double interAppInterval = 10.0; // sec
-    uint16_t sdnInterval = 200; // millisecond
+    uint16_t sdnInterval = 100; // millisecond
     uint16_t nMaxPackets = 1024;
     uint16_t nPayloadBytes = 1024;
     isSdnEnabled = true;
@@ -433,7 +433,7 @@ int main (int argc, char *argv[])
     lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",
                                                 DoubleValue (3.0));
     lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
-                                                TimeValue (MilliSeconds (256)));
+                                                TimeValue (MilliSeconds (1000)));
 
     Ptr<Node> pgw = epcHelper->GetPgwNode ();
 
