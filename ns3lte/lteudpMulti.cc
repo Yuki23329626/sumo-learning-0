@@ -417,6 +417,7 @@ int main (int argc, char *argv[])
     cmd.AddValue ("simTime", "Total duration of the simulation [s])", simTime);
     cmd.AddValue ("interAppInterval", "Inter app interval [ms])", interAppInterval);
     cmd.AddValue ("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
+    cmd.AddValue ("sdnInterval", "Inter sdn interval [ms])", sdnInterval);
     cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
     cmd.AddValue ("traceFile",  "File Name for Trace Input", traceFile);
 
