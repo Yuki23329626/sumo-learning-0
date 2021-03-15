@@ -415,6 +415,7 @@ int main (int argc, char *argv[])
     cmd.AddValue ("numberOfUes", "Number of UEs", numberOfUes);
     cmd.AddValue ("numberOfEnbs", "Number of ENBs", numberOfEnbs);
     cmd.AddValue ("simTime", "Total duration of the simulation [s])", simTime);
+    cmd.AddValue ("interAppInterval", "Inter app interval [ms])", interAppInterval);
     cmd.AddValue ("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
     cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
     cmd.AddValue ("traceFile",  "File Name for Trace Input", traceFile);
@@ -657,10 +658,10 @@ for (uint32_t u = startUe; u < endUe; ++u){
         Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
     OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
         Address (InetSocketAddress (remoteHostAddr, ulPort)));
-    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("5Mbps")); // 500kbps
+    // dlOnOffHelper.SetAttribute ("DataRate",StringValue ("5000kbps")); // 500kbps
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("2Mbps"));
+    // ulOnOffHelper.SetAttribute ("DataRate",StringValue ("2000kbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
 

@@ -1,4 +1,5 @@
 #!/bin/bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 
 trap "kill 0" INT
 
@@ -8,15 +9,27 @@ cp ./ns3lte/lteudpMulti.cc ../scratch/
 cp ./test10/test10.tcl ../scratch/
 cd ..
 
-logPrefixName = "log.lteudpMultiPart"
+prefixName="lteudpMultiSdn"
+outLogDir="outLog_${prefixName}"
+echo "outLogDir = ${outLogDir}"
+mkdir $outLogDir
+cp ./sumo-learning/mergeMulti.sh $outLogDir
+cp ././sumo-learning/log_to_csv3.py $outLogDir
 
-for ((i=0; i<2; i++))
+for ((i=0;i<20;i++))
 do
-    logName = "${logPrefixName}${i}"
+    logName="log.${prefixName}_${i}"
+    outLogPath="${outLogDir}/${logName}"
+    animFile="anim.${prefixName}_${i}"
     echo "logName = ${logName}"
-    endUe = $(($i+5))
+    echo "outLogDir = ${outLogDir}"
+    echo "animFile = ${animFile}"
+    startUe=$(($i*5))
+    endUe=$(($i*5+5))
+    echo "startUe = ${startUe}"
     echo "endUe = ${endUe}"
-    (./waf --run "scratch/lteudpMulti --numberOfUes=10 --startUe=${i} --endUe=${endUe} --isSdnEnabled=true --isDownlink=true --isUplink=true" > $logName 2>&1) &
+    (./waf --run "scratch/lteudpMulti --numberOfUes=100 --startUe=${startUe} --endUe=${endUe} --isSdnEnabled=true --isDownlink=true --isUplink=true --animFile=${animFile}" > $outLogPath 2>&1) &
+    sleep 1s
 done
 
 wait
