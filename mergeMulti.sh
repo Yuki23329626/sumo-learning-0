@@ -1,16 +1,16 @@
 #/bin/bash
 
 all_num=19
-prefix="log.lteudpMultiPart"
-targerFile="log.total"
-rm $targerFile
+prefix="log.lteudpMultiSdn_"
+targetFile="log.total"
+rm $targetFile
 
 a=$(date +%H%M%S)
 
 for index in `seq 0 ${all_num}`
 do
 {
-    cat ${prefix}${index} >> log.total
+    cat ${prefix}${index} >> $targetFile
     echo ${index}
 }
 done
