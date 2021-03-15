@@ -365,7 +365,7 @@ int main (int argc, char *argv[])
     uint16_t numberOfEnbs = 12;
     double distance = 500.0; // m
     double speed = 20;       // m/s
-    double simTime = 900; // 1500 m / 20 m/s = 75 secs
+    double simTime = 920; // 1500 m / 20 m/s = 75 secs
     double enbTxPowerDbm = 46.0;
     double interPacketInterval = 1000.0;
     double interAppInterval = 10.0; // sec
@@ -433,7 +433,7 @@ int main (int argc, char *argv[])
     lteHelper->SetHandoverAlgorithmAttribute ("Hysteresis",
                                                 DoubleValue (3.0));
     lteHelper->SetHandoverAlgorithmAttribute ("TimeToTrigger",
-                                                TimeValue (MilliSeconds (256)));
+                                                TimeValue (MilliSeconds (1000)));
 
     Ptr<Node> pgw = epcHelper->GetPgwNode ();
 
@@ -618,7 +618,7 @@ int main (int argc, char *argv[])
 
     // generate traffic request to remote server
     // for (uint32_t u = 0; u < ueNodes.GetN (); ++u){
-for (uint32_t u = 0; u < 1; ++u){
+    for (uint32_t u = 0; u < 1; ++u){
     ++ulPort;
     ++otherPort;
     PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
@@ -646,12 +646,12 @@ for (uint32_t u = 0; u < 1; ++u){
     OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
         Address (InetSocketAddress (remoteHostAddr, ulPort)));
     dlOnOffHelper.SetAttribute ("DataRate",StringValue ("10Mbps"));
-    dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
-    // dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
+    // dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
+    dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nPayloadBytes));
     ulOnOffHelper.SetAttribute ("DataRate",StringValue ("2Mbps"));
-    dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
-    // dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
+    // dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
+    dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
     dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nPayloadBytes));
 
     // UdpClientHelper client (ueIpIfaces.GetAddress (u), otherPort);
