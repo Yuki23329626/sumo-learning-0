@@ -1,7 +1,7 @@
 #/bin/bash
 
 all_num=19
-prefix="log.lteudpMultiSdn_"
+prefix="log.lteudp_multi_udp_sdn_"
 targetFile="log.total"
 rm $targetFile
 

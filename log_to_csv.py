@@ -34,8 +34,10 @@ with open("csv_"+filename+".csv", 'w') as csvfile:
             floatDelay = eval(string1[16][1:-3])/1000000000
             if(string1[5] == "1.0.0.2"):
                 download_delay_sum = download_delay_sum + floatDelay
+                download_received = download_received + 1
             else:
                 upload_delay_sum = upload_delay_sum + floatDelay
+                upload_received = upload_received + 1
             #list1 = list(str(floatDelay).split(" "))
             # print(str(eval(string1[16][1:-3])/1000000000))
             #writer = csv.writer(csvfile)
