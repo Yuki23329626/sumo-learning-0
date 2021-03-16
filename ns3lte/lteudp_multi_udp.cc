@@ -66,7 +66,7 @@ NotifyConnectionEstablishedUe (std::string context,
                                 uint16_t rnti)
 {
 double now = Simulator::Now().GetSeconds();
-std::cout << "now: " << now << "\t";
+std::cout << "NotifyConnectionEstablishedUe : " << now << "\t";
 std::cout << context
             << " UE IMSI " << imsi
             << ": connected to CellId " << cellid
@@ -82,7 +82,7 @@ NotifyHandoverStartUe (std::string context,
                         uint16_t targetCellId)
 {
 double now = Simulator::Now().GetSeconds();
-std::cout << "now: " << now << "\t";
+std::cout << "NotifyHandoverStartUe : " << now << "\t";
 std::cout << context
             << " UE IMSI " << imsi
             << ": previously connected to CellId " << cellid
@@ -98,7 +98,7 @@ NotifyHandoverEndOkUe (std::string context,
                         uint16_t rnti)
 {
 double now = Simulator::Now().GetSeconds();
-std::cout << "now: " << now << "\t";
+std::cout << "NotifyHandoverEndOkUe : " << now << "\t";
 std::cout << context
             << " UE IMSI " << imsi
             << ": successful handover to CellId " << cellid
@@ -113,7 +113,7 @@ NotifyConnectionEstablishedEnb (std::string context,
                                 uint16_t rnti)
 {
 double now = Simulator::Now().GetSeconds();
-std::cout << "now: " << now << "\t";
+std::cout << "NotifyConnectionEstablishedEnb : " << now << "\t";
 std::cout << context
             << " eNB CellId " << cellid
             << ": successful connection of UE with IMSI " << imsi
@@ -129,7 +129,7 @@ NotifyHandoverStartEnb (std::string context,
                         uint16_t targetCellId)
 {
 double now = Simulator::Now().GetSeconds();
-std::cout << "now: " << now << "\t";
+std::cout << "NotifyHandoverStartEnb : " << now << "\t";
 std::cout << context
             << " eNB CellId " << cellid
             << ": start handover of UE with IMSI " << imsi
@@ -145,7 +145,7 @@ NotifyHandoverEndOkEnb (std::string context,
                         uint16_t rnti)
 {
 double now = Simulator::Now().GetSeconds();
-std::cout << "now: " << now << "\t";
+std::cout << "NotifyHandoverEndOkEnb : " << now << "\t";
 std::cout << context
             << " eNB CellId " << cellid
             << ": completed handover of UE with IMSI " << imsi
@@ -735,10 +735,10 @@ for (uint32_t u = startUe; u < endUe; ++u){
     //                   MakeCallback (&NotifyConnectionEstablishedUe));
     // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverStart",
     //                   MakeCallback (&NotifyHandoverStartEnb));
-    Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
-                    MakeCallback (&NotifyHandoverStartUe));
     // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverEndOk",
     //                   MakeCallback (&NotifyHandoverEndOkEnb));
+    Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
+                    MakeCallback (&NotifyHandoverStartUe));
     Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
                     MakeCallback (&NotifyHandoverEndOkUe));
     // Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
