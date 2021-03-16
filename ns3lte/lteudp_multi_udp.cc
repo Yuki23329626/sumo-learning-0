@@ -735,12 +735,12 @@ for (uint32_t u = startUe; u < endUe; ++u){
     UdpClientHelper dlClient (ueIpIfaces.GetAddress (u), dlPort);
     dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
     dlClient.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
-    dlClient.SetAttribute ("PacketSize", UintegerValue (32*1024));
+    dlClient.SetAttribute ("PacketSize", UintegerValue (1024));
 
     UdpClientHelper ulClient (remoteHostAddr, ulPort);
     ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
     ulClient.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
-    dlClient.SetAttribute ("PacketSize", UintegerValue (32*1024));
+    dlClient.SetAttribute ("PacketSize", UintegerValue (1024));
 
     if(isDownlink){
         clientApps[u].Add (dlClient.Install (remoteHost));
