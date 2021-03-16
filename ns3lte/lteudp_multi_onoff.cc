@@ -286,7 +286,7 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
         int index = -1;
         unsigned long long int min_distance = std::numeric_limits<int>::max();
         for(int j=0; j<numberOfEnbs; j++){
-            std::cout << "nEnb: " << j << endl;
+            // std::cout << "nEnb: " << j << endl;
             Ptr<const MobilityModel> enbMobilityModel = enbNodes->Get(j)->GetObject<MobilityModel>();
             Vector pos_enb = enbMobilityModel->GetPosition ();
             // std::cout << Simulator::Now ().GetSeconds() << ", enb_x=" << pos_enb.x << ", enb_y=" << pos_enb.y << std::endl;
