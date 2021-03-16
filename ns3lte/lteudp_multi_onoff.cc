@@ -797,10 +797,11 @@ for (uint32_t u = startUe; u < endUe; ++u){
                     MakeCallback (&NotifyHandoverEndOkUe));
     // Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
     //                 MakeCallback (&CourseChange));
-    // Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::OnOffApplication/TxWithAddresses",
-    //                 MakeCallback (&TxTrace));
-    // Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::PacketSink/RxWithAddresses",
-    //                 MakeCallback (&RxTrace));
+
+    Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::OnOffApplication/TxWithAddresses",
+                    MakeCallback (&TxTrace));
+    Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::PacketSink/RxWithAddresses",
+                    MakeCallback (&RxTrace));
 
 //   // uncomment to enable anim
 //   // Create the animation object and configure for specific output
