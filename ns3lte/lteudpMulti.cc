@@ -50,6 +50,7 @@
 #include<math.h>
 #include <exception>
 #include <vector>
+#include "ns3/propagation-delay-model.h"
   
 using namespace ns3;
 using namespace std;
@@ -434,6 +435,7 @@ int main (int argc, char *argv[])
     lteHelper = CreateObject<LteHelper> ();
     Ptr<PointToPointEpcHelper> epcHelper = CreateObject<PointToPointEpcHelper> ();
 
+    lteHelper->SetAttribute("PathlossModel", StringValue("ns3::FriisPropagationLossModel"));
     lteHelper->SetEpcHelper (epcHelper);
     lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
 
