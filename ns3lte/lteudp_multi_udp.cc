@@ -358,8 +358,8 @@ int main (int argc, char *argv[])
 
     // LogComponentEnable ("OnOffApplication", LOG_ALL);
     // LogComponentEnable ("PacketSink", LOG_ALL);
-    // LogComponentEnable ("UdpClient", LOG_ALL);
-    // LogComponentEnable ("UdpServer", LOG_ALL);
+    LogComponentEnable ("UdpClient", LOG_ALL);
+    LogComponentEnable ("UdpServer", LOG_ALL);
 
     uint16_t numberOfUes = 100;
     uint16_t numberOfEnbs = 12;
