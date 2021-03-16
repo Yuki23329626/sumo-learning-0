@@ -668,9 +668,10 @@ int main (int argc, char *argv[])
         ueStaticRouting->SetDefaultRoute (epcHelper->GetUeDefaultGatewayAddress (), 1);
     }
 
-    Ptr<FlowMonitor> flowMonitor;
-    FlowMonitorHelper flowHelper;
-    flowMonitor = flowHelper.InstallAll();
+    // uncomment to enable flowmonitor
+    // Ptr<FlowMonitor> flowMonitor;
+    // FlowMonitorHelper flowHelper;
+    // flowMonitor = flowHelper.InstallAll();
 
     //enter radio range support that carries data between UE and EnodeB
     Ptr<EpcTft> tft = Create<EpcTft> ();
@@ -775,10 +776,9 @@ for (uint32_t u = startUe; u < endUe; ++u){
   // X2-based Handover
   //lteHelper->HandoverRequest (Seconds (0.100), ueLteDevs.Get (0), enbLteDevs.Get (0), enbLteDevs.Get (1));
 
-  // Uncomment to enable PCAP tracing
-  // p2ph.EnablePcapAll("lena-x2-handover-measures");
-  p2ph.EnableAsciiAll (ascii.CreateFileStream (fileEnableAsciiAll));
-  p2ph.EnablePcapAll("pgw-hostudp");
+    // Uncomment to enable PCAP tracing
+    //p2ph.EnableAsciiAll (ascii.CreateFileStream (fileEnableAsciiAll));
+    //p2ph.EnablePcapAll("pgw-hostudp");
 
   lteHelper->EnablePhyTraces ();
   lteHelper->EnableMacTraces ();
@@ -831,7 +831,8 @@ for (uint32_t u = startUe; u < endUe; ++u){
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
-  flowMonitor->SerializeToXmlFile("flowMonitor4.xml", true, true);
+  // uncomment to enable flowmonitor
+//   flowMonitor->SerializeToXmlFile("flowMonitor4.xml", true, true);
 
   // GtkConfigStore config;
   // config.ConfigureAttributes ();
