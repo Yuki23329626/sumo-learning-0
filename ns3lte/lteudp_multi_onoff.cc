@@ -208,7 +208,6 @@ void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, cons
         << " " << std::endl;
 }
 
-AnimationInterface * pAnim = 0;
 
 // class UEs_Info{
 //   public:
@@ -336,6 +335,7 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
     }
 }
   
+// AnimationInterface * pAnim = 0;
 int main (int argc, char *argv[])
 {
     auto t1 = chrono::high_resolution_clock::now();
@@ -378,7 +378,7 @@ int main (int argc, char *argv[])
     isSdnEnabled = true;
     bool isDownlink = true;
     bool isUplink = true;
-    string animFile = "animLteudpMulti.xml";
+    // string animFile = "animLteudpMulti.xml";
     string traceFile = "scratch/test10.tcl";
     string fileEnableAsciiAll = "serverpgwLteudpMulti.tr";
     string fileEnablePcapAll = "pgw-hostudpLteudpMulti";
@@ -419,7 +419,7 @@ int main (int argc, char *argv[])
     cmd.AddValue ("interAppInterval", "Inter app interval [ms])", interAppInterval);
     cmd.AddValue ("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
     cmd.AddValue ("sdnInterval", "Inter sdn interval [ms])", sdnInterval);
-    cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
+    // cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
     cmd.AddValue ("traceFile",  "File Name for Trace Input", traceFile);
 
     cmd.AddValue ("startUe",  "application start from", startUe);
@@ -802,11 +802,11 @@ for (uint32_t u = startUe; u < endUe; ++u){
     // Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::PacketSink/RxWithAddresses",
     //                 MakeCallback (&RxTrace));
 
-
-  // Create the animation object and configure for specific output
-  pAnim = new AnimationInterface (animFile.c_str ());
-  // Provide the absolute path to the resource
-  pAnim->SetMaxPktsPerTraceFile(99999999999999);
+//   // uncomment to enable anim
+//   // Create the animation object and configure for specific output
+//   pAnim = new AnimationInterface (animFile.c_str ());
+//   // Provide the absolute path to the resource
+//   pAnim->SetMaxPktsPerTraceFile(99999999999999);
 
   // for(int i = 0; i < numberOfUes; i++){
   //   // uephy = ueLteDevs.Get (i)->GetObject<LteUeNetDevice> ()->GetPhy ();
@@ -831,7 +831,7 @@ for (uint32_t u = startUe; u < endUe; ++u){
   // config.ConfigureAttributes ();
 
   Simulator::Destroy ();
-  delete pAnim;
+//   delete pAnim;
 
   auto t2 = chrono::high_resolution_clock::now();
   auto duration = chrono::duration_cast<std::chrono::seconds>( t2 - t1 ).count();
