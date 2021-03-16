@@ -359,6 +359,7 @@ int main (int argc, char *argv[])
   lteHelper = CreateObject<LteHelper> ();
   Ptr<PointToPointEpcHelper> epcHelper = CreateObject<PointToPointEpcHelper> ();
   
+  lteHelper->SetAttribute("PathlossModel", StringValue("ns3::FriisPropagationLossModel"));
   lteHelper->SetEpcHelper (epcHelper);
   lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
 
