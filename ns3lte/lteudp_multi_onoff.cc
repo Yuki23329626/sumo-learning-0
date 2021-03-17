@@ -179,7 +179,7 @@ void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, co
 {
     vector<string> sep = splitStr2Vec(context, "/");
     // cout << "node: " << sep[1] << " ";
-    int iNode = std::stoi( sep[1] ) - (4 + 12);
+    int iNode = std::stoi( sep[1] ) - (4 + 53);
     Ipv4Address sourceAddress;
     if( iNode < 0 ){
         sourceAddress = "1.0.0.2";
