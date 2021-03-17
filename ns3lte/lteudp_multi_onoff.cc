@@ -373,7 +373,7 @@ int main (int argc, char *argv[])
     uint16_t startUe = 0;
     uint16_t endUe = numberOfUes;
     uint16_t sdnInterval = 200; // millisecond
-    uint16_t nMaxPackets = 4096;
+    uint16_t nMaxPackets = 1024*3;
     uint16_t nPayloadBytes = 1024;
     isSdnEnabled = true;
     bool isDownlink = true;
