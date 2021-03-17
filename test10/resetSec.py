@@ -20,7 +20,7 @@ with open(outFileName, 'w') as f:
         #    break
         string1 = line.split(" ")
         if(string1[1] == "at"):
-            string1[2] = float(string1[2]) - 240.0
+            string1[2] = float(string1[2]) - 270.0
             for item in string1:
                 if item != string1[-1]:
                     f.write("%s " % item)
