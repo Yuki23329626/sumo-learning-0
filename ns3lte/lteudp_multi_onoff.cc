@@ -56,6 +56,7 @@ using namespace std;
 
 Ipv4InterfaceContainer internetIpIfaces;
 Ipv4InterfaceContainer ueIpIfaces;
+uint16_t numberOfEnbs = 53;
 
 NS_LOG_COMPONENT_DEFINE ("LenaX2HandoverMeasures");
 
@@ -336,7 +337,6 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
 }
   
 // AnimationInterface * pAnim = 0;
-uint16_t numberOfEnbs = 53;
 int main (int argc, char *argv[])
 {
     auto t1 = chrono::high_resolution_clock::now();
