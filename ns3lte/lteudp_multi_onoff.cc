@@ -730,10 +730,10 @@ for (uint32_t u = startUe; u < endUe; ++u){
         Address (InetSocketAddress (remoteHostAddr, ulPort)));
     dlOnOffHelper.SetAttribute ("DataRate",StringValue ("1000kbps")); // 500kbps
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
-    dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
+    // dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
     ulOnOffHelper.SetAttribute ("DataRate",StringValue ("500kbps"));
     dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
-    dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
+    // dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
     if(isDownlink){
         clientApps[u].Add (dlOnOffHelper.Install (remoteHost));
     }
