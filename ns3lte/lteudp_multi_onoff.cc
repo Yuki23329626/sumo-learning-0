@@ -366,7 +366,7 @@ int main (int argc, char *argv[])
     uint16_t numberOfEnbs = 53;
     double distance = 500.0; // m
     double speed = 20;       // m/s
-    double simTime = 120; // 1500 m / 20 m/s = 75 secs
+    double simTime = 60; // 1500 m / 20 m/s = 75 secs
     double enbTxPowerDbm = 46.0;
     double interPacketInterval = 1000.0;
     double interAppInterval = 10.0; // sec
