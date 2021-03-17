@@ -179,7 +179,7 @@ void TxTrace (std::string context, Ptr<const Packet> pkt, const Address& src, co
 {
     vector<string> sep = splitStr2Vec(context, "/");
     // cout << "node: " << sep[1] << " ";
-    int iNode = std::stoi( sep[1] ) - (4 + 53);
+    int iNode = std::stoi( sep[1] ) - (4 + numberOfEnbs);
     Ipv4Address sourceAddress;
     if( iNode < 0 ){
         sourceAddress = "1.0.0.2";
@@ -336,6 +336,7 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
 }
   
 // AnimationInterface * pAnim = 0;
+uint16_t numberOfEnbs = 53;
 int main (int argc, char *argv[])
 {
     auto t1 = chrono::high_resolution_clock::now();
@@ -363,7 +364,7 @@ int main (int argc, char *argv[])
     LogComponentEnable ("UdpServer", LOG_ALL);
 
     uint16_t numberOfUes = 100;
-    uint16_t numberOfEnbs = 53;
+    numberOfEnbs = 53;
     double distance = 500.0; // m
     double speed = 20;       // m/s
     double simTime = 60; // 1500 m / 20 m/s = 75 secs
