@@ -421,6 +421,7 @@ int main (int argc, char *argv[])
     cmd.AddValue ("sdnInterval", "Inter sdn interval [ms])", sdnInterval);
     // cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
     cmd.AddValue ("traceFile",  "File Name for Trace Input", traceFile);
+    cmd.AddValue ("nMaxPackets",  "onoff application nMaxPackets", nMaxPackets);
 
     cmd.AddValue ("startUe",  "application start from", startUe);
     cmd.AddValue ("endUe",  "application end", endUe);
