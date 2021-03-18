@@ -1,8 +1,8 @@
 #/bin/bash
 
 all_num=19
-prefix="log.lteudp_multi_udp_sdn_"
-targetFile="log.total"
+prefix="log.lteudp_multi___"
+targetFile="total.log"
 rm $targetFile
 
 a=$(date +%H%M%S)
