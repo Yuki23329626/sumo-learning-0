@@ -420,6 +420,8 @@ int main (int argc, char *argv[])
     cmd.AddValue ("sdnInterval", "Inter sdn interval [ms])", sdnInterval);
     cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
     cmd.AddValue ("traceFile",  "File Name for Trace Input", traceFile);
+    cmd.AddValue ("nPayloadBytes",  "nPayloadBytes", nPayloadBytes);
+
 
     cmd.AddValue ("startUe",  "application start from", startUe);
     cmd.AddValue ("endUe",  "application end", endUe);
@@ -736,12 +738,12 @@ for (uint32_t u = startUe; u < endUe; ++u){
     UdpClientHelper dlClient (ueIpIfaces.GetAddress (u), dlPort);
     dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
     dlClient.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
-    dlClient.SetAttribute ("PacketSize", UintegerValue (1024));
+    dlClient.SetAttribute ("PacketSize", UintegerValue (nPayloadBytes));
 
     UdpClientHelper ulClient (remoteHostAddr, ulPort);
     ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
     ulClient.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
-    dlClient.SetAttribute ("PacketSize", UintegerValue (1024));
+    dlClient.SetAttribute ("PacketSize", UintegerValue (nPayloadBytes));
 
     if(isDownlink){
         clientApps[u].Add (dlClient.Install (remoteHost));
