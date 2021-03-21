@@ -594,7 +594,7 @@ int main (int argc, char *argv[])
         if( current_distance < min_distance ){
         min_distance = current_distance;
         index = j;
-        std::cout << "ue: " << i <<  ", enb: " << index << ", distance: " << min_distance  << ", ueAddress: " << internetIpIfaces.GetAddress(i) << endl << endl;
+        std::cout << "ue: " << i <<  ", enb: " << index << ", distance: " << min_distance  << ", ueAddress: " << ueIpIfaces.GetAddress(i) << endl << endl;
         }
     }
     lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(index));
