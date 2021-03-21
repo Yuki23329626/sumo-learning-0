@@ -66,7 +66,7 @@ NotifyConnectionEstablishedUe (std::string context,
                                 uint16_t rnti)
 {
 double now = Simulator::Now().GetSeconds();
-std::cout << "now: " << now << "\t";
+std::cout << "NotifyConnectionEstablishedUe : " << now << "\t";
 std::cout << context
             << " UE IMSI " << imsi
             << ": connected to CellId " << cellid
@@ -82,7 +82,7 @@ NotifyHandoverStartUe (std::string context,
                         uint16_t targetCellId)
 {
 double now = Simulator::Now().GetSeconds();
-std::cout << "now: " << now << "\t";
+std::cout << "NotifyHandoverStartUe : " << now << "\t";
 std::cout << context
             << " UE IMSI " << imsi
             << ": previously connected to CellId " << cellid
@@ -98,7 +98,7 @@ NotifyHandoverEndOkUe (std::string context,
                         uint16_t rnti)
 {
 double now = Simulator::Now().GetSeconds();
-std::cout << "now: " << now << "\t";
+std::cout << "NotifyHandoverEndOkUe : " << now << "\t";
 std::cout << context
             << " UE IMSI " << imsi
             << ": successful handover to CellId " << cellid
@@ -113,7 +113,7 @@ NotifyConnectionEstablishedEnb (std::string context,
                                 uint16_t rnti)
 {
 double now = Simulator::Now().GetSeconds();
-std::cout << "now: " << now << "\t";
+std::cout << "NotifyConnectionEstablishedEnb : " << now << "\t";
 std::cout << context
             << " eNB CellId " << cellid
             << ": successful connection of UE with IMSI " << imsi
@@ -129,7 +129,7 @@ NotifyHandoverStartEnb (std::string context,
                         uint16_t targetCellId)
 {
 double now = Simulator::Now().GetSeconds();
-std::cout << "now: " << now << "\t";
+std::cout << "NotifyHandoverStartEnb : " << now << "\t";
 std::cout << context
             << " eNB CellId " << cellid
             << ": start handover of UE with IMSI " << imsi
@@ -145,7 +145,7 @@ NotifyHandoverEndOkEnb (std::string context,
                         uint16_t rnti)
 {
 double now = Simulator::Now().GetSeconds();
-std::cout << "now: " << now << "\t";
+std::cout << "NotifyHandoverEndOkEnb : " << now << "\t";
 std::cout << context
             << " eNB CellId " << cellid
             << ": completed handover of UE with IMSI " << imsi
@@ -299,17 +299,17 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
         if(last_index[i] != index){
             bool hasRnti = false;
             for(int j=0; j<numberOfEnbs; j++){
-                std::cout << "SHIT1" << std::endl;
+                std::cout << "check1" << std::endl;
                 uint16_t ueRNTI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetRrc()->GetRnti ();
-                std::cout << "SHIT2" << std::endl;
+                std::cout << "check2" << std::endl;
                 bool hasUeManager = enbLteDevs->Get(j)->GetObject<LteEnbNetDevice>()->GetRrc()->HasUeManager(ueRNTI); 
-                std::cout << "SHIT3" << std::endl;
+                std::cout << "check3" << std::endl;
                 if(hasUeManager){
-                    std::cout << "SHIT4" << std::endl;
+                    std::cout << "check4" << std::endl;
                     uint16_t ueIMSI = ueLteDevs->Get(i)->GetObject<LteUeNetDevice>()->GetImsi();
-                    std::cout << "SHIT5" << std::endl;
+                    std::cout << "check5" << std::endl;
                     uint16_t enbIMSI = enbLteDevs->Get(j)->GetObject<LteEnbNetDevice>()->GetRrc()->GetUeManager(ueRNTI)->GetImsi();
-                    std::cout << "SHIT6" << std::endl;
+                    std::cout << "check6" << std::endl;
                     // cout << "j: " << j << ", ueIMSI: " << ueIMSI << ", enbIMSI: " << enbIMSI << endl;
                     if(ueIMSI == enbIMSI){
                         last_index[i] = j;
@@ -327,9 +327,9 @@ void manualAttach(NodeContainer* ueNodes, NetDeviceContainer* ueLteDevs, NodeCon
 
             cout << "\n\n====================\nsec: " << Simulator::Now ().GetSeconds() << ", ue: " << i << ", last_index: " << last_index[i] << ", next_index: " << index << endl;
             if(last_index[i] == index) return; 
-            std::cout << "SHIT7" << std::endl;
+            std::cout << "check7" << std::endl;
             lteHelper->HandoverRequest(Seconds(0), ueLteDevs->Get(i), enbLteDevs->Get(last_index[i]), enbLteDevs->Get(index));
-            std::cout << "SHIT8" << std::endl;
+            std::cout << "check8" << std::endl;
             last_index[i] = index;
         }
     }
@@ -358,25 +358,29 @@ int main (int argc, char *argv[])
 
     // LogComponentEnable ("OnOffApplication", LOG_ALL);
     // LogComponentEnable ("PacketSink", LOG_ALL);
-    // LogComponentEnable ("UdpClient", LOG_ALL);
-    // LogComponentEnable ("UdpServer", LOG_ALL);
+    LogComponentEnable ("UdpClient", LOG_ALL);
+    LogComponentEnable ("UdpServer", LOG_ALL);
 
-    uint16_t numberOfUes = 100;
-    uint16_t numberOfEnbs = 12;
+    uint16_t numberOfUes = 2;
+    uint16_t numberOfEnbs = 1;
     double distance = 500.0; // m
     double speed = 20;       // m/s
-    double simTime = 1000; // 1500 m / 20 m/s = 75 secs
+    double simTime = 2; // 1500 m / 20 m/s = 75 secs
     double enbTxPowerDbm = 46.0;
     double interPacketInterval = 1000.0;
     double interAppInterval = 10.0; // sec
     uint16_t startUe = 0;
     uint16_t endUe = numberOfUes;
     uint16_t sdnInterval = 200; // millisecond
-    uint16_t nMaxPackets = 1024;
+    uint16_t nMaxPackets = 4096;
     uint16_t nPayloadBytes = 1024;
     isSdnEnabled = true;
     bool isDownlink = true;
     bool isUplink = true;
+    string animFile = "animLteudpMulti.xml";
+    string traceFile = "scratch/test10.tcl";
+    string fileEnableAsciiAll = "serverpgwLteudpMulti.tr";
+    string fileEnablePcapAll = "pgw-hostudpLteudpMulti";
     // Ptr<LteUePhy> uephy;
     // Ptr<MobilityModel> ueMobilityModel;
     // UEs_Info * ues_info = (UEs_Info *)malloc(sizeof(UEs_Info)*numberOfUes);
@@ -386,8 +390,6 @@ int main (int argc, char *argv[])
     last_index[i] = -1;
     }
 
-    std::string animFile = "lte_udp_test4.xml";
-    string traceFile = "scratch/test10.tcl";
     // string traceFile = "scratch/oneUE.tcl";
     Ns2MobilityHelper ns2 = Ns2MobilityHelper(traceFile);
 
@@ -406,18 +408,27 @@ int main (int argc, char *argv[])
     // Command line arguments
     CommandLine cmd (__FILE__);
     cmd.AddValue ("simTime", "Total duration of the simulation (in seconds)", simTime);
+    cmd.AddValue ("distance", "Distance between eNBs [m]", distance);
     cmd.AddValue ("speed", "Speed of the UE (default = 20 m/s)", speed);
     cmd.AddValue ("enbTxPowerDbm", "TX power [dBm] used by HeNBs (default = 46.0)", enbTxPowerDbm);
 
-    cmd.AddValue("numberOfNodes", "Number of eNodeBs + UE pairs", numberOfEnbs);
-    cmd.AddValue("simTime", "Total duration of the simulation [s])", simTime);
-    cmd.AddValue("distance", "Distance between eNBs [m]", distance);
-    cmd.AddValue("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
+    cmd.AddValue ("numberOfUes", "Number of UEs", numberOfUes);
+    cmd.AddValue ("numberOfEnbs", "Number of ENBs", numberOfEnbs);
+    cmd.AddValue ("simTime", "Total duration of the simulation [s])", simTime);
+    cmd.AddValue ("interAppInterval", "Inter app interval [ms])", interAppInterval);
+    cmd.AddValue ("interPacketInterval", "Inter packet interval [ms])", interPacketInterval);
+    cmd.AddValue ("sdnInterval", "Inter sdn interval [ms])", sdnInterval);
     cmd.AddValue ("animFile",  "File Name for Animation Output", animFile);
     cmd.AddValue ("traceFile",  "File Name for Trace Input", traceFile);
+    cmd.AddValue ("nPayloadBytes",  "nPayloadBytes", nPayloadBytes);
+
 
     cmd.AddValue ("startUe",  "application start from", startUe);
     cmd.AddValue ("endUe",  "application end", endUe);
+
+    cmd.AddValue ("isSdnEnabled",  "if sdn is enabled", isSdnEnabled);
+    cmd.AddValue ("isDownlink",  "if downlink is enabled", isDownlink);
+    cmd.AddValue ("isUplink",  "if uplink is enabled", isUplink);
 
     cmd.Parse (argc, argv);
 
@@ -425,6 +436,7 @@ int main (int argc, char *argv[])
     lteHelper = CreateObject<LteHelper> ();
     Ptr<PointToPointEpcHelper> epcHelper = CreateObject<PointToPointEpcHelper> ();
 
+    lteHelper->SetAttribute("PathlossModel", StringValue("ns3::FriisPropagationLossModel"));
     lteHelper->SetEpcHelper (epcHelper);
     lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
 
@@ -487,7 +499,6 @@ int main (int argc, char *argv[])
     NodeContainer enbNodes;
     enbNodes.Create (numberOfEnbs);
     ueNodes.Create (numberOfUes);
-    ns2.Install(ueNodes.Begin(), ueNodes.End());
 
     // Install Mobility Model in UE
     // MobilityHelper ueMobility;
@@ -498,36 +509,48 @@ int main (int argc, char *argv[])
 
     // Install Mobility Model in eNB
     Ptr<ListPositionAllocator> enbPositionAlloc = CreateObject<ListPositionAllocator> ();
+    Ptr<ListPositionAllocator> uePositionAlloc = CreateObject<ListPositionAllocator> ();
     //  for (uint16_t i = 0; i < numberOfEnbs; i++)
     //    {
     //      Vector enbPosition (distance * (i + 1), distance, 0);
     //      enbPositionAlloc->Add (enbPosition);
-    //    }
-    enbPositionAlloc->Add(Vector(583, 365, 0));
+    // //    }
 
-    enbPositionAlloc->Add(Vector(885, 338, 0));
-    enbPositionAlloc->Add(Vector(1187, 328, 0));
+    // enbPositionAlloc->Add(Vector(583, 365, 0));
 
-    enbPositionAlloc->Add(Vector(1305, 322, 0));
+    // enbPositionAlloc->Add(Vector(885, 338, 0));
+    // enbPositionAlloc->Add(Vector(1187, 328, 0));
 
-    enbPositionAlloc->Add(Vector(596, 703, 0));
+    // enbPositionAlloc->Add(Vector(1305, 322, 0));
 
-    enbPositionAlloc->Add(Vector(895, 690, 0));
+    // enbPositionAlloc->Add(Vector(596, 703, 0));
 
-    enbPositionAlloc->Add(Vector(1100, 682, 0));
-    enbPositionAlloc->Add(Vector(1317, 679, 0));
+    // enbPositionAlloc->Add(Vector(895, 690, 0));
 
-    enbPositionAlloc->Add(Vector(602, 972, 0));
+    // enbPositionAlloc->Add(Vector(1100, 682, 0));
+    // enbPositionAlloc->Add(Vector(1317, 679, 0));
 
-    enbPositionAlloc->Add(Vector(908, 955, 0));
-    enbPositionAlloc->Add(Vector(1107, 953, 0));
+    // enbPositionAlloc->Add(Vector(602, 972, 0));
 
-    enbPositionAlloc->Add(Vector(1317, 950, 0));
+    // enbPositionAlloc->Add(Vector(908, 955, 0));
+    // enbPositionAlloc->Add(Vector(1107, 953, 0));
+
+    // enbPositionAlloc->Add(Vector(1317, 950, 0));
+
+    enbPositionAlloc->Add(Vector(222, 222, 0)); //1
+
+    uePositionAlloc->Add(Vector(222, 222, 0)); //1
+    uePositionAlloc->Add(Vector(2222, 2222, 0)); //1
 
     MobilityHelper enbMobility;
     enbMobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
     enbMobility.SetPositionAllocator (enbPositionAlloc);
     enbMobility.Install (enbNodes);
+
+    MobilityHelper ueMobility;
+    ueMobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
+    ueMobility.SetPositionAllocator (uePositionAlloc);
+    ueMobility.Install (ueNodes);
 
     // Install LTE Devices in eNB and UEs
     Config::SetDefault ("ns3::LteEnbPhy::TxPower", DoubleValue (enbTxPowerDbm));
@@ -597,9 +620,10 @@ int main (int argc, char *argv[])
         ueStaticRouting->SetDefaultRoute (epcHelper->GetUeDefaultGatewayAddress (), 1);
     }
 
-    Ptr<FlowMonitor> flowMonitor;
-    FlowMonitorHelper flowHelper;
-    flowMonitor = flowHelper.InstallAll();
+    // uncomment to enable flowmonitor
+    // Ptr<FlowMonitor> flowMonitor;
+    // FlowMonitorHelper flowHelper;
+    // flowMonitor = flowHelper.InstallAll();
 
     //enter radio range support that carries data between UE and EnodeB
     Ptr<EpcTft> tft = Create<EpcTft> ();
@@ -626,46 +650,56 @@ for (uint32_t u = startUe; u < endUe; ++u){
     // for (uint32_t u = 0; u < 1; ++u){
     ++ulPort;
     ++otherPort;
-    PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
-            Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
-    PacketSinkHelper ulsinkHelper ("ns3::UdpSocketFactory",
-            Address (InetSocketAddress (remoteHostAddr, ulPort)));
-    // UdpServerHelper dlUdpServerHelper (dlPort);
-    // UdpServerHelper ulUdpServerHelper (ulPort);
+    // PacketSinkHelper dlsinkHelper ("ns3::UdpSocketFactory",
+    //         Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
+    // PacketSinkHelper ulsinkHelper ("ns3::UdpSocketFactory",
+    //         Address (InetSocketAddress (remoteHostAddr, ulPort)));
+    UdpServerHelper dlUdpServerHelper (dlPort);
+    UdpServerHelper ulUdpServerHelper (ulPort);
     // PacketSinkHelper dlPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), dlPort));
     // PacketSinkHelper ulPacketSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), ulPort));
     // PacketSinkHelper packetSinkHelper ("ns3::UdpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), otherPort));
     // serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
     // serverApps[u].Add (ulsinkHelper.Install (remoteHost));
     if(isDownlink){
-        serverApps[u].Add (dlsinkHelper.Install (ueNodes.Get(u)));
+        serverApps[u].Add (dlUdpServerHelper.Install (ueNodes.Get(u)));
     } 
     if(isUplink){
-        serverApps[u].Add (ulsinkHelper.Install (remoteHost));
+        serverApps[u].Add (ulUdpServerHelper.Install (remoteHost));
     }
     // serverApps.Add (packetSinkHelper.Install (ueNodes.Get(u)));
 
 
-    OnOffHelper dlOnOffHelper ("ns3::UdpSocketFactory", 
-        Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
-    OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
-        Address (InetSocketAddress (remoteHostAddr, ulPort)));
-    dlOnOffHelper.SetAttribute ("DataRate",StringValue ("5Mbps")); // 500kbps
-    dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
-    dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
-    ulOnOffHelper.SetAttribute ("DataRate",StringValue ("2Mbps"));
-    dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
-    dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
+    // OnOffHelper dlOnOffHelper ("ns3::UdpSocketFactory", 
+    //     Address (InetSocketAddress (ueIpIfaces.GetAddress (u), dlPort)));
+    // OnOffHelper ulOnOffHelper ("ns3::UdpSocketFactory", 
+    //     Address (InetSocketAddress (remoteHostAddr, ulPort)));
+    // dlOnOffHelper.SetAttribute ("DataRate",StringValue ("1000kbps")); // 500kbps
+    // dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
+    // dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
+    // ulOnOffHelper.SetAttribute ("DataRate",StringValue ("500kbps"));
+    // dlOnOffHelper.SetAttribute ("PacketSize", UintegerValue(nPayloadBytes));
+    // dlOnOffHelper.SetAttribute ("MaxBytes", UintegerValue(nMaxPackets*nPayloadBytes));
 
     // UdpClientHelper client (ueIpIfaces.GetAddress (u), otherPort);
     // client.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
     // client.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
 
+    UdpClientHelper dlClient (ueIpIfaces.GetAddress (u), dlPort);
+    dlClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+    dlClient.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
+    dlClient.SetAttribute ("PacketSize", UintegerValue (nPayloadBytes));
+
+    UdpClientHelper ulClient (remoteHostAddr, ulPort);
+    ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
+    ulClient.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
+    ulClient.SetAttribute ("PacketSize", UintegerValue (nPayloadBytes));
+
     if(isDownlink){
-        clientApps[u].Add (dlOnOffHelper.Install (remoteHost));
+        clientApps[u].Add (dlClient.Install (remoteHost));
     }
     if(isUplink){
-        clientApps[u].Add (ulOnOffHelper.Install (ueNodes.Get(u)));
+        clientApps[u].Add (ulClient.Install (ueNodes.Get(u)));
     }
     // if (u+1 < ueNodes.GetN ()){
     //     clientApps.Add (client.Install (ueNodes.Get(u+1)));
@@ -694,10 +728,9 @@ for (uint32_t u = startUe; u < endUe; ++u){
   // X2-based Handover
   //lteHelper->HandoverRequest (Seconds (0.100), ueLteDevs.Get (0), enbLteDevs.Get (0), enbLteDevs.Get (1));
 
-  // Uncomment to enable PCAP tracing
-  // p2ph.EnablePcapAll("lena-x2-handover-measures");
-  p2ph.EnableAsciiAll (ascii.CreateFileStream ("serverpgw_trace4.tr"));
-  p2ph.EnablePcapAll("pgw-hostudp");
+    // Uncomment to enable PCAP tracing
+    //p2ph.EnableAsciiAll (ascii.CreateFileStream (fileEnableAsciiAll));
+    //p2ph.EnablePcapAll("pgw-hostudp");
 
   lteHelper->EnablePhyTraces ();
   lteHelper->EnableMacTraces ();
@@ -715,18 +748,18 @@ for (uint32_t u = startUe; u < endUe; ++u){
     //                   MakeCallback (&NotifyConnectionEstablishedUe));
     // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverStart",
     //                   MakeCallback (&NotifyHandoverStartEnb));
-    Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
-                    MakeCallback (&NotifyHandoverStartUe));
     // Config::Connect ("/NodeList/*/DeviceList/*/LteEnbRrc/HandoverEndOk",
     //                   MakeCallback (&NotifyHandoverEndOkEnb));
+    Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverStart",
+                    MakeCallback (&NotifyHandoverStartUe));
     Config::Connect ("/NodeList/*/DeviceList/*/LteUeRrc/HandoverEndOk",
                     MakeCallback (&NotifyHandoverEndOkUe));
     // Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange",
     //                 MakeCallback (&CourseChange));
-    Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::OnOffApplication/TxWithAddresses",
-                    MakeCallback (&TxTrace));
-    Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::PacketSink/RxWithAddresses",
-                    MakeCallback (&RxTrace));
+    // Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::OnOffApplication/TxWithAddresses",
+    //                 MakeCallback (&TxTrace));
+    // Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::PacketSink/RxWithAddresses",
+    //                 MakeCallback (&RxTrace));
 
 
   // Create the animation object and configure for specific output
@@ -750,7 +783,8 @@ for (uint32_t u = startUe; u < endUe; ++u){
   }
   Simulator::Stop (Seconds (simTime));
   Simulator::Run ();
-  flowMonitor->SerializeToXmlFile("flowMonitor4.xml", true, true);
+  // uncomment to enable flowmonitor
+//   flowMonitor->SerializeToXmlFile("flowMonitor4.xml", true, true);
 
   // GtkConfigStore config;
   // config.ConfigureAttributes ();
