@@ -743,7 +743,7 @@ for (uint32_t u = startUe; u < endUe; ++u){
     UdpClientHelper ulClient (remoteHostAddr, ulPort);
     ulClient.SetAttribute ("Interval", TimeValue (MilliSeconds(interPacketInterval)));
     ulClient.SetAttribute ("MaxPackets", UintegerValue(nMaxPackets));
-    dlClient.SetAttribute ("PacketSize", UintegerValue (nPayloadBytes));
+    ulClient.SetAttribute ("PacketSize", UintegerValue (nPayloadBytes));
 
     if(isDownlink){
         clientApps[u].Add (dlClient.Install (remoteHost));
