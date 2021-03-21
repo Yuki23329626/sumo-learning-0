@@ -539,8 +539,8 @@ int main (int argc, char *argv[])
 
     enbPositionAlloc->Add(Vector(222, 222, 0)); //1
 
-    uePositionAlloc->Add(Vector(555, 555, 0)); //1
-    uePositionAlloc->Add(Vector(22222, 22222, 0)); //1
+    uePositionAlloc->Add(Vector(222, 222, 0)); //1
+    uePositionAlloc->Add(Vector(2222, 2222, 0)); //1
 
     MobilityHelper enbMobility;
     enbMobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
