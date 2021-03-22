@@ -208,6 +208,22 @@ void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, cons
         << " " << std::endl;
 }
 
+void RxTraceUdpServer (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
+{
+    SeqTsHeader seqTs;
+    pkt->RemoveHeader (seqTs);
+    uint32_t currentSequenceNumber = seqTs.GetSeq ();
+    double now = Simulator::Now().GetSeconds();
+    std::cout << "RxTraceUdpServer:"
+        << " TXtime: " << seqTs.GetTs ()
+        << " RXtime: " << now
+        << " " << context
+        << " packetSize: " << pkt->GetSize()
+        << " source: " << InetSocketAddress::ConvertFrom(a).GetIpv4()
+        << " destination: " << InetSocketAddress::ConvertFrom(b).GetIpv4()
+        << " " << std::endl;
+}
+
 AnimationInterface * pAnim = 0;
 
 // class UEs_Info{
@@ -761,6 +777,8 @@ for (uint32_t u = startUe; u < endUe; ++u){
     //                 MakeCallback (&TxTrace));
     // Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::PacketSink/RxWithAddresses",
     //                 MakeCallback (&RxTrace));
+    Config::Connect ("/NodeList/*/ApplicationList/*/$ns3::UdpServer/RxWithAddresses",
+                    MakeCallback (&RxTraceUdpServer));
 
 
   // Create the animation object and configure for specific output
