@@ -211,7 +211,7 @@ void RxTrace (std::string context, Ptr<const Packet> pkt, const Address& a, cons
 void RxTraceUdpServer (std::string context, Ptr<const Packet> pkt, const Address& a, const Address& b)
 {
     SeqTsHeader seqTs;
-    Ptr<Packet> packet = pkt;
+    Ptr<const Packet> packet = pkt;
     packet->RemoveHeader (seqTs);
     // uint32_t currentSequenceNumber = seqTs.GetSeq ();
     double now = Simulator::Now().GetSeconds();
