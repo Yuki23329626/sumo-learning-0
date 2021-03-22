@@ -603,7 +603,7 @@ int main (int argc, char *argv[])
 
     enum EpsBearer::Qci q = EpsBearer::GBR_CONV_VOICE;
     EpsBearer bearer (q);
-    lteHelper->ActivateDataRadioBearer (ueDevs, bearer);
+    lteHelper->ActivateDataRadioBearer (ueLteDevs, bearer);
 
 
     NS_LOG_LOGIC ("setting up applications");
