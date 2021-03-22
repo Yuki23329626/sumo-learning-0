@@ -601,6 +601,10 @@ int main (int argc, char *argv[])
     last_index[i] = index;
     }
 
+    enum EpsBearer::Qci q = EpsBearer::GBR_CONV_VOICE;
+    EpsBearer bearer (q);
+    lteHelper->ActivateDataRadioBearer (ueDevs, bearer);
+
 
     NS_LOG_LOGIC ("setting up applications");
 
