@@ -212,7 +212,7 @@ void RxTraceUdpServer (std::string context, Ptr<const Packet> pkt, const Address
 {
     SeqTsHeader seqTs;
     pkt->RemoveHeader (seqTs);
-    uint32_t currentSequenceNumber = seqTs.GetSeq ();
+    // uint32_t currentSequenceNumber = seqTs.GetSeq ();
     double now = Simulator::Now().GetSeconds();
     std::cout << "RxTraceUdpServer:"
         << " TXtime: " << seqTs.GetTs ()
