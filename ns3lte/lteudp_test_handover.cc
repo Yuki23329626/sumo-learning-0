@@ -399,11 +399,12 @@ int main (int argc, char *argv[])
     // change some default attributes so that they are reasonable for
     // this scenario, but do this before processing command line
     // arguments, so that the user is allowed to override these settings
-    Config::SetDefault ("ns3::UdpClient::Interval", TimeValue (MilliSeconds (10)));
+    Config::SetDefault ("ns3::UdpClient::Interval", TimeValue (MilliSeconds (1)));
     Config::SetDefault ("ns3::UdpClient::MaxPackets", UintegerValue (1000000));
     Config::SetDefault ("ns3::LteHelper::UseIdealRrc", BooleanValue (true));
     Config::SetDefault ("ns3::LteEnbMac::NumberOfRaPreambles", UintegerValue (20));
     Config::SetDefault ("ns3::LteEnbRrc::SrsPeriodicity", UintegerValue (320));
+    Config::SetDefault ("ns3::LteRlcUm::MaxTxBufferSize", UintegerValue (10 * 1024));
 
     // Command line arguments
     CommandLine cmd (__FILE__);
@@ -540,7 +541,7 @@ int main (int argc, char *argv[])
     enbPositionAlloc->Add(Vector(222, 222, 0)); //1
 
     uePositionAlloc->Add(Vector(222, 222, 0)); //1
-    uePositionAlloc->Add(Vector(2222, 2222, 0)); //1
+    uePositionAlloc->Add(Vector(222222, 222222, 0)); //1
 
     MobilityHelper enbMobility;
     enbMobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
@@ -600,10 +601,6 @@ int main (int argc, char *argv[])
     lteHelper->Attach (ueLteDevs.Get(i), enbLteDevs.Get(index));
     last_index[i] = index;
     }
-
-    enum EpsBearer::Qci q = EpsBearer::GBR_CONV_VOICE;
-    EpsBearer bearer (q);
-    lteHelper->ActivateDataRadioBearer (ueLteDevs, bearer);
 
 
     NS_LOG_LOGIC ("setting up applications");
