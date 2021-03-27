@@ -371,9 +371,9 @@ int main (int argc, char *argv[])
     double interAppInterval = 0.001; // sec
     uint16_t startUe = 0;
     uint16_t endUe = numberOfUes;
-    uint16_t sdnInterval = 200; // millisecond
-    uint16_t nMaxPackets = 4096;
-    uint16_t nPayloadBytes = 1024;
+    uint16_t sdnInterval = 100; // millisecond
+    uint16_t nMaxPackets = 1000000;
+    uint16_t nPayloadBytes = 1024 + 12;
     isSdnEnabled = true;
     bool isDownlink = true;
     bool isUplink = true;
