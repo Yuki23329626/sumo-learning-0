@@ -64,6 +64,157 @@ def getHOTime(finDir):
         #print("HO_time:", item[1])
     return list_handover_time # list_handover_time[IMSI] = handover_time
 
+def get_avg_delay_all(packet_dict):
+    route_upload = 0
+    route_download = 0
+
+    upload_1k_delay_sum = 0
+    upload_1m_delay_sum = 0
+
+    download_1k_delay_sum = 0
+    download_1m_delay_sum = 0
+
+    for route in packet_dict:
+        #print("route:", route)
+        start = packet_dict[route][0][0]
+        end = packet_dict[route][-1][1]
+        num = len(packet_dict[route])
+        #print("time spent:", (end-start))
+        #print("packet received:", num)
+        throughput_per_sec = num*1024/(end-start)
+        #print("thoughput per sec:", throughput_per_sec)
+        delay_1k = 1024/throughput_per_sec
+        #print("1k byte packet delay:", delay_1k)
+        delay_1m = 1024*1024/throughput_per_sec
+        #print("1M byte packet delay", delay_1m)
+        if route.split(" ")[0] == "1.0.0.2":
+            route_download = route_download + 1
+            download_1k_delay_sum = download_1k_delay_sum + delay_1k
+            download_1m_delay_sum = download_1m_delay_sum + delay_1m
+        else:
+            route_upload = route_upload + 1
+            upload_1k_delay_sum = upload_1k_delay_sum + delay_1k
+            upload_1m_delay_sum = upload_1m_delay_sum + delay_1m
+    
+    print("average upload delay(1k byte):")
+    print(upload_1k_delay_sum/route_upload)
+    print("average upload delay(1m byte):")
+    print(upload_1m_delay_sum/route_upload)
+    print("average download delay(1k byte):")
+    print(download_1k_delay_sum/route_download)
+    print("average download delay(1m byte):")
+    print(download_1m_delay_sum/route_download)
+
+def get_section(list_handover_time, packet):
+    section = {}
+    for imsi_hotimes in list_handover_time:
+        for hotime in imsi_hotimes[1]:
+            if (hotime < 55) and (hotime > 5):
+                start_time = hotime -2
+                end_time = hotime + 2
+                #print("hotime:", hotime)
+                ue_address = "7.0.0." + str(imsi_hotimes[0]+1)
+                upload_route = ue_address + " 1.0.0.2"
+                download_route = "1.0.0.2 " + ue_address
+                #print(upload_route)
+                #print(download_route)
+                #input()
+                for item in packet[upload_route]:
+                    if (item[0] >= start_time) and (item[0] <= end_time):
+                        if upload_route not in section:
+                            section[upload_route] = {}
+                        if hotime not in section[upload_route]:
+                            section[upload_route][hotime] = []
+                        section[upload_route][hotime].append([item[0], item[1], item[2]])
+                #print(section[upload_route][hotime])
+                #input()
+                for item in packet[download_route]:
+                    if (item[0] >= start_time) and (item[0] <= end_time):
+                        if download_route not in section:
+                            section[download_route] = {}
+                        if hotime not in section[download_route]:
+                            section[download_route][hotime] = []
+                        section[download_route][hotime].append([item[0], item[1], item[2]])
+    return section
+
+def get_avg_delay_from_hotime(section):
+    route_upload = 0
+    route_download = 0
+
+    upload_1k_delay_sum = 0
+    upload_1m_delay_sum = 0
+
+    download_1k_delay_sum = 0
+    download_1m_delay_sum = 0
+    
+    for route in section:
+        for hotime in section[route]:
+            #print(hotime)
+            start = section[route][hotime][0][0]
+            end = section[route][hotime][-1][0]
+            num = len(section[route][hotime])
+
+            throughput_per_sec = num*1024/(end-start)
+            delay_1k = 1024/throughput_per_sec
+            delay_1m = 1024*1024/throughput_per_sec
+
+            if route.split(" ")[0] == "1.0.0.2":
+                route_download = route_download + 1
+                download_1k_delay_sum = download_1k_delay_sum + delay_1k
+                download_1m_delay_sum = download_1m_delay_sum + delay_1m
+            else:
+                route_upload = route_upload + 1
+                upload_1k_delay_sum = upload_1k_delay_sum + delay_1k
+                upload_1m_delay_sum = upload_1m_delay_sum + delay_1m
+
+    print("average delay of upload 1KB(sec):")
+    print(upload_1k_delay_sum/route_upload)
+    print("average delay of upload 1MB(sec):")
+    print(upload_1m_delay_sum/route_upload)
+    print("average delay of download 1KB(sec):")
+    print(download_1k_delay_sum/route_download)
+    print("average delay of download 1MB(sec):")
+    print(download_1m_delay_sum/route_download)
+
+def get_avg_delay_from_hotime_2(section):
+    
+    upload_count = 0
+    download_count = 0
+
+    upload_delay_sum = 0
+    download_delay_sum = 0
+
+    upload_1m_count = 0
+    download_1m_count = 0
+    upload_1m_delay_sum = 0
+    download_1m_delay_sum = 0
+
+    for route in section:
+        for hotime in section[route]:
+            for packet in section[route][hotime]:
+                if route.split(" ")[0] == "1.0.0.2":
+                    download_count = download_count + 1
+                    if download_count == 1024:
+                        download_1m_count = download_1m_count + 1
+                        download_1m_delay_sum = download_1m_delay_sum + (packet[1]-section[route][hotime][0][0])
+                    download_delay_sum = download_delay_sum + packet[2]
+                else:
+                    upload_count = upload_count + 1
+                    if upload_count == 1024:
+                        upload_1m_count = upload_1m_count + 1
+                        upload_1m_delay_sum = upload_1m_delay_sum + (packet[1]-section[route][hotime][0][0])
+                    upload_delay_sum = upload_delay_sum + packet[2]
+    
+    print("single packet upload delay:")
+    print(upload_delay_sum/upload_count)
+    print("single packet downlaod delay:")
+    print(download_delay_sum/download_count)
+
+    print("1m packet upload delay:")
+    print(upload_1m_delay_sum/upload_1m_count)
+    print("1m packet downlaod delay:")
+    print(download_1m_delay_sum/download_1m_count)
+
 
 prefix_name = " ".join(map(shlex.quote, sys.argv[1:]))
 print("prefix_name: ", prefix_name)
@@ -106,11 +257,13 @@ else:
     print("get packet info from file:", path_packet_lte)
     packet_lte = json.load(open(path_packet_lte,'r'))
 
+# packet["From To"] = [[TX, RX, Delay],...]
+
 # get handover time in sdn
 
 list_handover_time = getHOTime(dir_udp_sdn)
 
-#print(list_handover_time[0][0])
+#print("len(list_handover_time):", len(list_handover_time))
 
 #for item in list_handover_time:
 #    print("IMSI:", item[0])
@@ -118,88 +271,24 @@ list_handover_time = getHOTime(dir_udp_sdn)
 #        print("handover_time:", handover_time)
 
 # average delay SDN
-route_upload = 0
-route_download = 0
+#print("\nSDN:\n")
+#get_avg_delay_all(packet_sdn)
+#print("\nLTE:\n")
+#get_avg_delay_all(packet_lte)
 
-upload_1k_delay_sum = 0
-upload_1m_delay_sum = 0
+# average delay from sdn_hotime to sdn_hotime+6(sec)
 
-download_1k_delay_sum = 0
-download_1m_delay_sum = 0
+section_sdn = get_section(list_handover_time, packet_sdn)
+section_lte = get_section(list_handover_time, packet_lte)
 
-for route in packet_sdn:
-    #print("route:", route)
-    start = packet_sdn[route][0][0]
-    end = packet_sdn[route][-1][1]
-    num = len(packet_sdn[route])
-    #print("time spent:", (end-start))
-    #print("packet received:", num)
-    throughput_per_sec = num*1024/(end-start)
-    #print("thoughput per sec:", throughput_per_sec)
-    delay_1k = 1024/throughput_per_sec
-    #print("1k byte packet delay:", delay_1k)
-    delay_1m = 1024*1024/throughput_per_sec
-    #print("1M byte packet delay", delay_1m)
-    if route.split(" ")[0] == "1.0.0.2":
-        route_download = route_download + 1
-        download_1k_delay_sum = download_1k_delay_sum + delay_1k
-        download_1m_delay_sum = download_1m_delay_sum + delay_1m
-    else:
-        route_upload = route_upload + 1
-        upload_1k_delay_sum = upload_1k_delay_sum + delay_1k
-        upload_1m_delay_sum = upload_1m_delay_sum + delay_1m
+# calculate average delay in section
+print("\nSDN before and after handover(+-2 sec):\n")
+get_avg_delay_from_hotime(section_sdn)
+print("\nLTE before and after handover(+-2 sec):\n")
+get_avg_delay_from_hotime(section_lte)
 
-print("\nSDN:\n")
-print("average upload delay(1k byte):")
-print(upload_1k_delay_sum/route_upload)
-print("average upload delay(1m byte):")
-print(upload_1m_delay_sum/route_upload)
-print("average download delay(1k byte):")
-print(download_1k_delay_sum/route_download)
-print("average download delay(1m byte):")
-print(download_1m_delay_sum/route_download)
-
-# average delay LTE
-route_upload = 0
-route_download = 0
-
-upload_1k_delay_sum = 0
-upload_1m_delay_sum = 0
-
-download_1k_delay_sum = 0
-download_1m_delay_sum = 0
-
-for route in packet_lte:
-    #print("route:", route)
-    start = packet_lte[route][0][0]
-    end = packet_lte[route][-1][1]
-    num = len(packet_lte[route])
-    #print("time spent:", (end-start))
-    #print("packet received:", num)
-    throughput_per_sec = num*1024/(end-start)
-    #print("thoughput per sec:", throughput_per_sec)
-    delay_1k = 1024/throughput_per_sec
-    #print("1k byte packet delay:", delay_1k)
-    delay_1m = 1024*1024/throughput_per_sec
-    #print("1M byte packet delay", delay_1m)
-    if route.split(" ")[0] == "1.0.0.2":
-        route_download = route_download + 1
-        download_1k_delay_sum = download_1k_delay_sum + delay_1k
-        download_1m_delay_sum = download_1m_delay_sum + delay_1m
-    else:
-        route_upload = route_upload + 1
-        upload_1k_delay_sum = upload_1k_delay_sum + delay_1k
-        upload_1m_delay_sum = upload_1m_delay_sum + delay_1m
-
-print("\nLTE\n")
-print("average upload delay(1k byte):")
-print(upload_1k_delay_sum/route_upload)
-print("average upload delay(1m byte):")
-print(upload_1m_delay_sum/route_upload)
-print("average download delay(1k byte):")
-print(download_1k_delay_sum/route_download)
-print("average download delay(1m byte):")
-print(download_1m_delay_sum/route_download)
-
-
-
+# single packet average delay and cumulate 1024 packet delay
+#print("\nSDN cumulate 1024 packet before and after handover:\n")
+#get_avg_delay_from_hotime_2(section_sdn)
+#print("\nLTE cumulate 1024 packet before and after handover:\n")
+#get_avg_delay_from_hotime_2(section_lte)
