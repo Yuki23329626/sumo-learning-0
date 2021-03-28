@@ -366,7 +366,7 @@ int main (int argc, char *argv[])
     double distance = 500.0; // m
     double speed = 20;       // m/s
     double simTime = 60; // 1500 m / 20 m/s = 75 secs
-    double enbTxPowerDbm = 24.0;
+    double enbTxPowerDbm = 23.0;
     double interPacketInterval = 1.0; // ms
     double interAppInterval = 0.001; // sec
     uint16_t startUe = 0;
@@ -436,7 +436,7 @@ int main (int argc, char *argv[])
     lteHelper = CreateObject<LteHelper> ();
     Ptr<PointToPointEpcHelper> epcHelper = CreateObject<PointToPointEpcHelper> ();
 
-    lteHelper->SetAttribute("PathlossModel", StringValue("ns3::FriisPropagationLossModel"));
+    lteHelper->SetAttribute("PathlossModel", StringValue("ns3::TwoRayGroundPropagationLossModel"));
     lteHelper->SetEpcHelper (epcHelper);
     lteHelper->SetSchedulerType ("ns3::RrFfMacScheduler");
 
