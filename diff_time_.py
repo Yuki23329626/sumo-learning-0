@@ -3,6 +3,7 @@ import sys
 import shlex
 import os
 import glob
+import numpy as np
 import matplotlib.pyplot as plt
 import shutil
 import json
@@ -110,8 +111,8 @@ def get_section(list_handover_time, packet):
     for imsi_hotimes in list_handover_time:
         for hotime in imsi_hotimes[1]:
             if (hotime < 55) and (hotime > 5):
-                start_time = hotime -2
-                end_time = hotime + 2
+                start_time = hotime 
+                end_time = hotime + 5
                 #print("hotime:", hotime)
                 ue_address = "7.0.0." + str(imsi_hotimes[0]+1)
                 upload_route = ue_address + " 1.0.0.2"
@@ -157,7 +158,10 @@ def get_avg_delay_from_hotime(section):
             throughput_per_sec = num*1024/(end-start)
             delay_1k = 1024/throughput_per_sec
             delay_1m = 1024*1024/throughput_per_sec
-
+            #print("route:",route)
+            #print("num:",num)
+            #print("delay_1k:",delay_1k)
+            #print("delay_1m:",delay_1m)
             if route.split(" ")[0] == "1.0.0.2":
                 route_download = route_download + 1
                 download_1k_delay_sum = download_1k_delay_sum + delay_1k
@@ -167,14 +171,19 @@ def get_avg_delay_from_hotime(section):
                 upload_1k_delay_sum = upload_1k_delay_sum + delay_1k
                 upload_1m_delay_sum = upload_1m_delay_sum + delay_1m
 
+    upload_1k_delay = upload_1k_delay_sum/route_upload
+    upload_1m_delay = upload_1m_delay_sum/route_upload
+    download_1k_delay = download_1k_delay_sum/route_download
+    download_1m_delay = download_1m_delay_sum/route_download
     print("average delay of upload 1KB(sec):")
-    print(upload_1k_delay_sum/route_upload)
+    print(upload_1k_delay)
     print("average delay of upload 1MB(sec):")
-    print(upload_1m_delay_sum/route_upload)
+    print(upload_1m_delay)
     print("average delay of download 1KB(sec):")
-    print(download_1k_delay_sum/route_download)
+    print(download_1k_delay)
     print("average delay of download 1MB(sec):")
-    print(download_1m_delay_sum/route_download)
+    print(download_1m_delay)
+    return upload_1k_delay, upload_1m_delay, download_1k_delay, download_1m_delay
 
 def get_avg_delay_from_hotime_2(section):
     
@@ -209,7 +218,6 @@ def get_avg_delay_from_hotime_2(section):
     print(upload_delay_sum/upload_count)
     print("single packet downlaod delay:")
     print(download_delay_sum/download_count)
-
     print("1m packet upload delay:")
     print(upload_1m_delay_sum/upload_1m_count)
     print("1m packet downlaod delay:")
@@ -282,13 +290,50 @@ section_sdn = get_section(list_handover_time, packet_sdn)
 section_lte = get_section(list_handover_time, packet_lte)
 
 # calculate average delay in section
-print("\nSDN before and after handover(+-2 sec):\n")
-get_avg_delay_from_hotime(section_sdn)
-print("\nLTE before and after handover(+-2 sec):\n")
-get_avg_delay_from_hotime(section_lte)
+print("\nSDN after handover:\n")
+upload_1k_sdn, upload_1m_sdn, download_1k_sdn, download_1m_sdn = get_avg_delay_from_hotime(section_sdn)
+print("\nLTE after handover:\n")
+upload_1k_lte, upload_1m_lte, download_1k_lte, download_1m_lte = get_avg_delay_from_hotime(section_lte)
 
 # single packet average delay and cumulate 1024 packet delay
 #print("\nSDN cumulate 1024 packet before and after handover:\n")
 #get_avg_delay_from_hotime_2(section_sdn)
 #print("\nLTE cumulate 1024 packet before and after handover:\n")
 #get_avg_delay_from_hotime_2(section_lte)
+
+# draw picture
+
+# 1MB
+fig2 = plt.figure(2, figsize=(8,6))
+condition = ['Upload', 'Downlaod']
+lte_delay = [upload_1m_lte, download_1m_lte]
+sdn_delay = [upload_1m_sdn, download_1m_sdn]
+x = np.arange(len(condition))
+width = 0.4
+plt.bar(x, lte_delay, width, color='blue', label='LTE')
+plt.bar(x+width, sdn_delay, width, color='green', label='SDN')
+plt.xticks( x + width / 2, condition)
+plt.ylabel('Average Delay(sec)')
+plt.title('1MB file transmission delay between LTE and SDN')
+plt.legend( loc='upper right')
+fig2.show()
+
+# 1KB
+fig1 = plt.figure(1, figsize=(8,6))
+axes = plt.gca()
+axes.set_ylim([0,0.006])
+condition = ['Upload', 'Downlaod']
+lte_delay = [upload_1k_lte, download_1k_lte]
+sdn_delay = [upload_1k_sdn, download_1k_sdn]
+x = np.arange(len(condition))
+width = 0.4
+plt.bar(x, lte_delay, width, color='blue', label='LTE')
+plt.bar(x+width, sdn_delay, width, color='green', label='SDN')
+plt.xticks( x + width / 2, condition)
+plt.ylabel('Average Delay(sec)')
+plt.title('1KB file transmission delay between LTE and SDN')
+plt.legend( loc='upper right')
+fig1.show()
+input()
+
+
