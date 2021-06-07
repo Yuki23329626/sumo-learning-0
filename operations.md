@@ -1,3 +1,5 @@
+# 舊版在 windows 上產生路徑的方式
+
 1. generate a bundle file from created scenario
 sumo -c test09.sumocfg --fcd-output test09.xml --step-length 1
 
@@ -17,8 +19,36 @@ cd git
 
 會產生 tcl 檔
 
-3. ./waf --run "test09 --traceFile=scratch/test09.tcl --nodeNum=100 --duration=60 --selectedEnb=0 --outputDir=test09-4"
-產生結果
+# 新版在 windows 上產生路徑的方式
+
+``` CMD
+
+:: 設定檔案路徑
+set SUMO_PREFIX=2021-06-06-21-51-17
+set SUMO_CONFIG=D:\github\sumo-learning\%SUMO_PREFIX%\osm.sumocfg
+set SUMO_XML=D:\github\sumo-learning\%SUMO_PREFIX%\%SUMO_PREFIX%.xml
+set SUMO_CSV=D:\github\sumo-learning\%SUMO_PREFIX%\%SUMO_PREFIX%.csv
+set SUMO_TCL=D:\github\sumo-learning\%SUMO_PREFIX%\%SUMO_PREFIX%.tcl
+echo %SUMO_PREFIX%
+echo %SUMO_CONFIG%
+echo %SUMO_XML%
+echo %SUMO_TCL%
+
+:: 模擬開始跟結束時間
+set SIM_BEGIN=300
+set SIM_END=1300
+
+:: 產生 NS3 可以 input 的 mobility trace file
+sumo -c %SUMO_CONFIG% --fcd-output %SUMO_XML% --step-length 1
+python D:\SUMO\tools\traceExporter.py --fcd-input %SUMO_XML% --ns2mobility-output %SUMO_TCL% --begin %SIM_BEGIN% --end %SIM_END%
+python D:\SUMO\tools\traceExporter.py --fcd-input %SUMO_XML% --gpsdat-output %SUMO_CSV% --begin %SIM_BEGIN% --end %SIM_END%
+
+```
+
+# 在 server 上使用 NS3 的相關動作
+
+5. ./waf --run "test09 --traceFile=scratch/test09.tcl --nodeNum=100 --duration=60 --selectedEnb=0 --outputDir=test09-4"
+在 server 上產生結果
 
 cd sumo-learning
 git pull

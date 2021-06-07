@@ -42,7 +42,7 @@ t_authorization = 3*g1
 t_compare = e
 t_reEncryption = xor
 t_reDecryption = 3*g1 + 2*g2 + xor
-t_encryption_TK = 6
+t_encryption_TK = 6.63
 t_decryptionTK = 6
 
 print("Encryption:", t_encryption_asymmetric)
@@ -57,23 +57,31 @@ print("DecryptionTK:", t_decryptionTK)
 
 t_upload_1k_lte = 4.43
 t_download_1k_lte = 3.26
+
 t_upload_1m_lte = 4545.35
 t_download_1m_lte = 3340.03
 
+t_upload_05k_lte = 2.21
+t_download_05k_lte = 1.63
+
 t_upload_1k_sdn = 3.88
 t_dwonload_1k_sdn = 2.98
+
 t_upload_1m_sdn = 3973.65
 t_dwonload_1m_sdn = 3058.92
+
+t_upload_05k_sdn = 1.94
+t_dwonload_05k_sdn = 1.49
 
 n = 1
 
 # trans into seconds
 
-bpreetUpload = (t_upload_1k_lte + t_encryption_asymmetric + t_encryption_TK) / 1000
-bpreetRequest = (t_upload_1k_lte + t_download_1k_lte + t_download_1m_lte + t_upload_1m_lte + t_encryption_asymmetric + n*t_compare + 2*t_authorization + t_rekey + t_reEncryption + t_reDecryption + t_decryptionTK) / 1000
+bpreetUpload = (t_upload_05k_lte + t_encryption_asymmetric + t_encryption_TK) / 1000
+bpreetRequest = (t_upload_05k_lte + t_download_05k_lte + t_download_1m_lte + t_upload_1m_lte + t_encryption_asymmetric + n*t_compare + 2*t_authorization + t_rekey + t_reEncryption + t_reDecryption + t_decryptionTK) / 1000
 
-OurSchemeUpload = (max(t_upload_1k_sdn, t_upload_1m_sdn) + t_encryption_asymmetric + t_encryption_TK) / 1000
-OurSchemeRequest = (3*t_upload_1k_sdn + 2*t_dwonload_1k_sdn + 1*t_dwonload_1m_sdn + t_encryption_asymmetric + (n+2)*t_compare + 2*t_authorization + t_rekey + t_reEncryption + t_reDecryption + t_decryptionTK) / 1000
+OurSchemeUpload = (max(t_upload_05k_sdn, t_upload_1m_sdn) + t_encryption_asymmetric + t_encryption_TK) / 1000
+OurSchemeRequest = (3*t_upload_05k_sdn + 2*t_dwonload_05k_sdn + 1*t_dwonload_1m_sdn + t_encryption_asymmetric + (n+2)*t_compare + 2*t_authorization + t_rekey + t_reEncryption + t_reDecryption + t_decryptionTK) / 1000
 
 # onoffResponseDelay = [[0]*3 for i in range(5)]
 
@@ -154,9 +162,17 @@ print(onoffResponseDelay_bpreet_2)
 plt.title('Average delay(min) with M/M/1 queuing model')
 plt.xlabel('Online time(min)')
 plt.ylabel('Response Delay(min)')
-plt.plot(t_online, onoffResponseDelay_our_scheme)
-plt.plot(t_online, onoffResponseDelay_bpreet_1)
-plt.plot(t_online, onoffResponseDelay_bpreet_1_5)
-plt.plot(t_online, onoffResponseDelay_bpreet_2)
+plt.plot(t_online, onoffResponseDelay_our_scheme, color='green', marker='o', markersize=3)
+plt.plot(t_online, onoffResponseDelay_bpreet_1, color='blue', linestyle=':', marker='o', markersize=3)
+plt.plot(t_online, onoffResponseDelay_bpreet_1_5, color='brown', linestyle='--', marker='o', markersize=3)
+plt.plot(t_online, onoffResponseDelay_bpreet_2, color='red', linestyle='-.', marker='o', markersize=3)
 
-plt.legend(['our scheme', 'bpreet, 50%', 'bpreet, 40%', 'bpreet, 33%'])
+for i in range(5):
+    plt.text(t_online[i]-2, onoffResponseDelay_our_scheme[i]+1.5, str(onoffResponseDelay_our_scheme[i])[:5])
+    plt.text(t_online[i]-2, onoffResponseDelay_bpreet_1[i]+1.5, str(onoffResponseDelay_bpreet_1[i])[:5])
+    plt.text(t_online[i]-2, onoffResponseDelay_bpreet_1_5[i]+1.5, str(onoffResponseDelay_bpreet_1_5[i])[:5])
+    plt.text(t_online[i]-2, onoffResponseDelay_bpreet_2[i]+1.5, str(onoffResponseDelay_bpreet_2[i])[:5])
+
+plt.legend(['our scheme, 1/1', 'bpreet, 1/2', 'bpreet, 2/5', 'bpreet, 1/3'])
+
+plt.show()
