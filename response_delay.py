@@ -173,6 +173,6 @@ for i in range(5):
     plt.text(t_online[i]-2, onoffResponseDelay_bpreet_1_5[i]+1.5, str(onoffResponseDelay_bpreet_1_5[i])[:5])
     plt.text(t_online[i]-2, onoffResponseDelay_bpreet_2[i]+1.5, str(onoffResponseDelay_bpreet_2[i])[:5])
 
-plt.legend(['our scheme, 1/1', 'bpreet, 1/2', 'bpreet, 2/5', 'bpreet, 1/3'])
+plt.legend(['our scheme', 'BPREET, 1/2', 'BPREET, 2/5', 'BPREET, 1/3'])
 
 plt.show()
